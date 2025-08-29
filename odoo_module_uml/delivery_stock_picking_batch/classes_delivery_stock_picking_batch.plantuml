@@ -1,0 +1,16 @@
+@startuml classes_delivery_stock_picking_batch
+set namespaceSeparator none
+class "StockPicking" as odoo_src.odoo.addons.delivery_stock_picking_batch.models.stock_picking.StockPicking {
+}
+class "StockPickingBatch" as odoo_src.odoo.addons.delivery_stock_picking_batch.models.stock_picking_batch.StockPickingBatch {
+}
+class "StockPickingType" as odoo_src.odoo.addons.delivery_stock_picking_batch.models.stock_picking.StockPickingType {
+  batch_group_by_carrier
+  batch_max_weight
+  weight_uom_name
+}
+class "TestDeliveryPickingBatch" as odoo_src.odoo.addons.delivery_stock_picking_batch.tests.test_delivery_picking_batch.TestDeliveryPickingBatch {
+  setUpClass()
+  test_batch_picking_pack_shipping_weight_compute()
+}
+@enduml

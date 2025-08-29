@@ -1,0 +1,24 @@
+@startuml classes_l10n_tr_nilvera_einvoice
+set namespaceSeparator none
+class "AccountEdiXmlUblTr" as odoo_src.odoo.addons.l10n_tr_nilvera_einvoice.models.account_edi_xml_ubl_tr.AccountEdiXmlUblTr {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_tr_nilvera_einvoice.models.account_journal.AccountJournal {
+  l10n_tr_nilvera_get_documents()
+  l10n_tr_nilvera_get_message_status()
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_tr_nilvera_einvoice.models.account_move.AccountMove {
+  is_move_sent : bool
+  l10n_tr_nilvera_send_status
+  l10n_tr_nilvera_uuid
+  button_draft()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_tr_nilvera_einvoice.models.account_move_send.AccountMoveSend {
+}
+class "TestUBLTR" as odoo_src.odoo.addons.l10n_tr_nilvera_einvoice.tests.test_xml_ubl_tr.TestUBLTR {
+  setUpClass()
+  test_xml_invoice_earchive()
+  test_xml_invoice_earchive_multicurrency()
+  test_xml_invoice_einvoice()
+  test_xml_invoice_einvoice_multicurrency()
+}
+@enduml

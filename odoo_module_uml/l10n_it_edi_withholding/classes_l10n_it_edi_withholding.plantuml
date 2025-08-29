@@ -1,0 +1,31 @@
+@startuml classes_l10n_it_edi_withholding
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_it_edi_withholding.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_edi_withholding.models.account_move.AccountMove {
+  l10n_it_amount_before_withholding_signed
+  l10n_it_amount_pension_fund_signed
+  l10n_it_amount_vat_signed
+  l10n_it_amount_withholding_signed
+  get_tag(element, selector)
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_it_edi_withholding.models.account_tax.AccountTax {
+  l10n_it_pension_fund_type
+  l10n_it_withholding_reason
+  l10n_it_withholding_type
+}
+class "TestWithholdingAndPensionFundTaxes" as odoo_src.odoo.addons.l10n_it_edi_withholding.tests.test_withholding.TestWithholdingAndPensionFundTaxes {
+  get_real_client_invoice_data()
+  setUpClass()
+  test_enasarco_tax_export()
+  test_enasarco_tax_import()
+  test_enasarco_tax_import_global()
+  test_inps_tax_export()
+  test_pension_fund_taxes_export()
+  test_pension_fund_taxes_import()
+  test_pension_fund_taxes_import_assosoftware_tag()
+  test_withholding_tax_constraints()
+  test_withholding_taxes_export()
+  test_withholding_taxes_import()
+}
+@enduml

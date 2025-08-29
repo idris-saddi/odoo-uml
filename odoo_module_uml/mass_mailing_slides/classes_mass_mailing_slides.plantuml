@@ -1,0 +1,6 @@
+@startuml classes_mass_mailing_slides
+set namespaceSeparator none
+class "Course" as odoo_src.odoo.addons.mass_mailing_slides.models.slide_channel.Course {
+  action_mass_mailing_attendees()
+}
+@enduml

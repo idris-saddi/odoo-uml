@@ -1,0 +1,37 @@
+@startuml classes_payment_demo
+set namespaceSeparator none
+class "PaymentDemoCommon" as odoo_src.odoo.addons.payment_demo.tests.common.PaymentDemoCommon {
+  setUpClass()
+}
+class "PaymentDemoController" as odoo_src.odoo.addons.payment_demo.controllers.main.PaymentDemoController {
+  demo_simulate_payment()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_demo.models.payment_provider.PaymentProvider {
+  code
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment_demo.models.payment_token.PaymentToken {
+  demo_simulated_state
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_demo.models.payment_transaction.PaymentTransaction {
+  capture_manually
+  provider_reference
+  action_demo_set_canceled()
+  action_demo_set_done()
+  action_demo_set_error()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_demo.tests.test_payment_transaction.TestPaymentTransaction {
+  test_making_a_payment_request_propagates_token_simulated_state_to_transaction()
+  test_processing_notification_data_authorizes_transaction()
+  test_processing_notification_data_cancels_transaction()
+  test_processing_notification_data_confirms_transaction()
+  test_processing_notification_data_propagates_simulated_state_to_token()
+  test_processing_notification_data_sets_transaction_in_error()
+  test_processing_notification_data_sets_transaction_pending()
+  test_processing_notification_data_tokenizes_transaction()
+  test_send_full_capture_request_does_not_create_capture_tx()
+  test_send_partial_capture_request_creates_capture_tx()
+}
+class "TestProcessingFlows" as odoo_src.odoo.addons.payment_demo.tests.test_processing_flows.TestProcessingFlows {
+  test_portal_payment_triggers_processing()
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml classes_account_qr_code_sepa
+set namespaceSeparator none
+class "ResPartnerBank" as odoo_src.odoo.addons.account_qr_code_sepa.models.res_bank.ResPartnerBank {
+}
+class "TestSEPAQRCode" as odoo_src.odoo.addons.account_qr_code_sepa.tests.test_sepa_qr.TestSEPAQRCode {
+  setUpClass()
+  test_get_qr_vals_communication()
+  test_out_invoice_create_refund_qr_code()
+  test_sepa_qr_code_detection()
+  test_sepa_qr_code_generation()
+}
+@enduml

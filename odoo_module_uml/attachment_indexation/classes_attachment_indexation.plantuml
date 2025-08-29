@@ -1,0 +1,9 @@
+@startuml classes_attachment_indexation
+set namespaceSeparator none
+class "IrAttachment" as odoo_src.odoo.addons.attachment_indexation.models.ir_attachment.IrAttachment {
+  copy(default)
+}
+class "TestCaseIndexation" as odoo_src.odoo.addons.attachment_indexation.tests.test_indexation.TestCaseIndexation {
+  test_attachment_pdf_indexation()
+}
+@enduml

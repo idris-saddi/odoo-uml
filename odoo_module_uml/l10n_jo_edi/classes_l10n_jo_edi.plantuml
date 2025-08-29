@@ -1,0 +1,58 @@
+@startuml classes_l10n_jo_edi
+set namespaceSeparator none
+class "AccountEdiXmlUBL21JO" as odoo_src.odoo.addons.l10n_jo_edi.models.account_edi_xml_ubl_21_jo.AccountEdiXmlUBL21JO {
+  approximate()
+  format_float(amount, precision_digits)
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_jo_edi.models.account_move.AccountMove {
+  l10n_jo_edi_computed_xml
+  l10n_jo_edi_error
+  l10n_jo_edi_is_needed
+  l10n_jo_edi_qr
+  l10n_jo_edi_state
+  l10n_jo_edi_uuid
+  l10n_jo_edi_xml_attachment_file
+  l10n_jo_edi_xml_attachment_id
+  reversed_entry_id
+  button_draft()
+  download_l10n_jo_edi_computed_xml()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_jo_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_jo_edi.models.account_tax.AccountTax {
+}
+class "IrAttachment" as odoo_src.odoo.addons.l10n_jo_edi.models.ir_attachment.IrAttachment {
+}
+class "JoEdiCommon" as odoo_src.odoo.addons.l10n_jo_edi.tests.jo_edi_common.JoEdiCommon {
+  setUpClass()
+  setup_currency_rate(currency, rate)
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_jo_edi.models.res_company.ResCompany {
+  l10n_jo_edi_client_identifier
+  l10n_jo_edi_secret_key
+  l10n_jo_edi_sequence_income_source
+  l10n_jo_edi_taxpayer_type
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_jo_edi.models.res_config_settings.ResConfigSettings {
+  l10n_jo_edi_client_identifier
+  l10n_jo_edi_secret_key
+  l10n_jo_edi_sequence_income_source
+  l10n_jo_edi_taxpayer_type
+}
+class "TestJoEdiPrecision" as odoo_src.odoo.addons.l10n_jo_edi.tests.test_jo_edi_precision.TestJoEdiPrecision {
+  test_jo_credit_notes_price_unit()
+  test_jo_sales_invoice_precision()
+  test_jo_special_invoice_precision()
+}
+class "TestJoEdiTypes" as odoo_src.odoo.addons.l10n_jo_edi.tests.test_jo_edi_types.TestJoEdiTypes {
+  test_credit_notes_lines_matching()
+  test_jo_income_invoice()
+  test_jo_income_refund()
+  test_jo_no_country_customer()
+  test_jo_no_vat_customer()
+  test_jo_sales_invoice()
+  test_jo_sales_refund()
+  test_jo_special_invoice()
+  test_jo_special_refund()
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml classes_l10n_bg_ledger
+set namespaceSeparator none
+class "AccountJournal" as odoo_src.odoo.addons.l10n_bg_ledger.models.account_journal.AccountJournal {
+  l10n_bg_credit_notes
+  l10n_bg_customer_invoice
+  l10n_bg_debit_notes
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_bg_ledger.models.account_move.AccountMove {
+  l10n_bg_document_number
+  l10n_bg_document_type
+  l10n_bg_exemption_reason
+}
+@enduml

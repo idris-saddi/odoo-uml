@@ -1,0 +1,101 @@
+@startuml classes_l10n_my_edi
+set namespaceSeparator none
+class "AccountEdiProxyClientUser" as odoo_src.odoo.addons.l10n_my_edi.models.account_edi_proxy_user.AccountEdiProxyClientUser {
+  proxy_type
+}
+class "AccountEdiXmlUBLMyInvoisMY" as odoo_src.odoo.addons.l10n_my_edi.models.account_edi_xml_ubl_my.AccountEdiXmlUBLMyInvoisMY {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_my_edi.models.account_move.AccountMove {
+  l10n_my_edi_custom_form_reference
+  l10n_my_edi_display_tax_exemption_reason
+  l10n_my_edi_exemption_reason
+  l10n_my_edi_external_uuid
+  l10n_my_edi_file
+  l10n_my_edi_file_id
+  l10n_my_edi_retry_at
+  l10n_my_edi_state
+  l10n_my_edi_submission_uid
+  l10n_my_edi_validation_time
+  l10n_my_error_document_hash
+  action_l10n_my_edi_reject_bill()
+  action_l10n_my_edi_update_status()
+  action_validate_tin()
+  button_draft()
+  button_request_cancel()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_my_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_my_edi.models.account_tax.AccountTax {
+  l10n_my_tax_type
+}
+class "L10nMyEDITestFileGeneration" as odoo_src.odoo.addons.l10n_my_edi.tests.test_file_generation.L10nMyEDITestFileGeneration {
+  setUpClass()
+  test_01_can_generate_file()
+  test_02_multicurrency()
+  test_03_optional_fields()
+  test_04_credit_note()
+  test_05_invoice_with_so()
+  test_06_foreigner()
+  test_07_tax_exempt()
+  test_08_bill_imports_form()
+  test_09_partner_ref_not_in_party_id()
+  test_10_prepaid_amount_present()
+}
+class "L10nMyEDITestSubmission" as odoo_src.odoo.addons.l10n_my_edi.tests.test_submissions.L10nMyEDITestSubmission {
+  get_submission_status_count : int
+  submission_count : int
+  submission_invoice
+  setUpClass()
+  test_01_basic_submission()
+  test_02_failed_submission()
+  test_03_failed_document_submission()
+  test_04_cancellation()
+  test_05_cancellation_failures()
+  test_06_invalid_reset()
+  test_07_pending_submission()
+  test_08_mass_submission()
+  test_09_fetch_status()
+  test_10_reject_bill()
+  test_11_full_rejection_flow_invoice()
+}
+class "L10nMyEdiIndustryClassification" as odoo_src.odoo.addons.l10n_my_edi.models.l10n_my_edi_industry_classification.L10nMyEdiIndustryClassification {
+  code
+  name
+}
+class "L10nMyEdiStatusUpdateWizard" as odoo_src.odoo.addons.l10n_my_edi.wizard.l10n_my_edi_status_update_wizard.L10nMyEdiStatusUpdateWizard {
+  invoice_id
+  new_status
+  reason
+  button_request_update()
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_my_edi.models.product_template.ProductTemplate {
+  l10n_my_edi_classification_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_my_edi.models.res_company.ResCompany {
+  l10n_my_edi_default_import_journal_id
+  l10n_my_edi_industrial_classification
+  l10n_my_edi_mode
+  l10n_my_edi_proxy_user_id
+  l10n_my_identification_number
+  l10n_my_identification_number_placeholder
+  l10n_my_identification_type
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_my_edi.models.res_config_settings.ResConfigSettings {
+  l10n_my_accept_processing
+  l10n_my_edi_company_vat
+  l10n_my_edi_default_import_journal_id
+  l10n_my_edi_mode
+  l10n_my_edi_proxy_user_id
+  action_l10n_my_edi_allow_processing()
+  action_l10n_my_edi_unregister()
+  action_open_company_form()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_my_edi.models.res_partner.ResPartner {
+  l10n_my_edi_display_tin_warning
+  l10n_my_identification_number
+  l10n_my_identification_number_placeholder
+  l10n_my_identification_type
+  l10n_my_tin_validation_state
+  action_validate_tin()
+}
+@enduml

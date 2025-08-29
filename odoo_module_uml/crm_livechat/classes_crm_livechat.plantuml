@@ -1,0 +1,26 @@
+@startuml classes_crm_livechat
+set namespaceSeparator none
+class "ChatbotScript" as odoo_src.odoo.addons.crm_livechat.models.chatbot_script.ChatbotScript {
+  lead_count
+  action_view_leads()
+}
+class "ChatbotScriptStep" as odoo_src.odoo.addons.crm_livechat.models.chatbot_script_step.ChatbotScriptStep {
+  crm_team_id
+  step_type
+}
+class "CrmChatbotCase" as odoo_src.odoo.addons.crm_livechat.tests.test_chatbot_lead.CrmChatbotCase {
+  test_chatbot_lead_portal_user()
+  test_chatbot_lead_public_user()
+}
+class "CrmChatbotCase" as odoo_src.odoo.addons.crm_livechat.tests.chatbot_common.CrmChatbotCase {
+  setUpClass()
+}
+class "DiscussChannel" as odoo_src.odoo.addons.crm_livechat.models.discuss_channel.DiscussChannel {
+  execute_command_lead()
+}
+class "TestLivechatLead" as odoo_src.odoo.addons.crm_livechat.tests.test_crm_lead.TestLivechatLead {
+  setUpClass()
+  test_crm_lead_creation_guest()
+  test_crm_lead_creation_portal()
+}
+@enduml

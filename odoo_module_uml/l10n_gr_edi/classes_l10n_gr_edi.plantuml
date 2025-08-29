@@ -1,0 +1,99 @@
+@startuml classes_l10n_gr_edi
+set namespaceSeparator none
+class "AccountFiscalPosition" as odoo_src.odoo.addons.l10n_gr_edi.models.account_fiscal_position.AccountFiscalPosition {
+  l10n_gr_edi_preferred_classification_ids
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_gr_edi.models.account_move.AccountMove {
+  l10n_gr_edi_alerts
+  l10n_gr_edi_attachment_id
+  l10n_gr_edi_available_inv_type
+  l10n_gr_edi_cls_mark
+  l10n_gr_edi_correlation_id
+  l10n_gr_edi_document_ids
+  l10n_gr_edi_enable_send_expense_classification
+  l10n_gr_edi_enable_send_invoices
+  l10n_gr_edi_enable_view_mydata
+  l10n_gr_edi_inv_type
+  l10n_gr_edi_mark
+  l10n_gr_edi_need_correlated
+  l10n_gr_edi_need_payment_method
+  l10n_gr_edi_payment_method
+  l10n_gr_edi_state
+  l10n_gr_edi_try_send_expense_classification()
+  l10n_gr_edi_try_send_invoices()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_gr_edi.models.account_move_line.AccountMoveLine {
+  l10n_gr_edi_available_cls_category
+  l10n_gr_edi_available_cls_type
+  l10n_gr_edi_available_cls_vat
+  l10n_gr_edi_cls_category
+  l10n_gr_edi_cls_type
+  l10n_gr_edi_cls_vat
+  l10n_gr_edi_detail_type
+  l10n_gr_edi_need_exemption_category
+  l10n_gr_edi_tax_exemption_category
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_gr_edi.wizard.account_move_reversal.AccountMoveReversal {
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_gr_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_gr_edi.models.account_tax.AccountTax {
+  l10n_gr_edi_default_tax_exemption_category
+}
+class "GreeceEDIDocument" as odoo_src.odoo.addons.l10n_gr_edi.models.l10n_gr_edi_document.GreeceEDIDocument {
+  attachment_id
+  datetime
+  message
+  move_id
+  mydata_cls_mark
+  mydata_mark
+  mydata_url
+  state
+  action_download()
+}
+class "PreferredClassification" as odoo_src.odoo.addons.l10n_gr_edi.models.preferred_classification.PreferredClassification {
+  fiscal_position_id
+  l10n_gr_edi_available_cls_category
+  l10n_gr_edi_available_cls_type
+  l10n_gr_edi_available_inv_type
+  l10n_gr_edi_cls_category
+  l10n_gr_edi_cls_type
+  l10n_gr_edi_inv_type
+  priority
+  product_template_id
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_gr_edi.models.product_template.ProductTemplate {
+  l10n_gr_edi_preferred_classification_ids
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_gr_edi.models.res_company.ResCompany {
+  l10n_gr_edi_aade_id
+  l10n_gr_edi_aade_key
+  l10n_gr_edi_branch_number
+  l10n_gr_edi_test_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_gr_edi.models.res_config_settings.ResConfigSettings {
+  l10n_gr_edi_aade_id
+  l10n_gr_edi_aade_key
+  l10n_gr_edi_branch_number
+  l10n_gr_edi_test_env
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_gr_edi.models.res_partner.ResPartner {
+  l10n_gr_edi_branch_number
+}
+class "TestMyDATAInvoice" as odoo_src.odoo.addons.l10n_gr_edi.tests.test_mydata_invoice.TestMyDATAInvoice {
+  assert_mydata_error(invoice, expected_error_message)
+  assert_mydata_xml_tree(invoice, expected_file_path, send_classification)
+  setUpClass()
+  test_l10n_gr_edi_try_send_invoices_allowed_no_cls_type()
+  test_l10n_gr_edi_try_send_invoices_invalid_tax_amount()
+  test_l10n_gr_edi_try_send_invoices_invalid_tax_exempt_no_category()
+  test_l10n_gr_edi_try_send_invoices_invalid_tax_multi()
+  test_l10n_gr_edi_try_send_invoices_invalid_tax_nonexistent()
+  test_l10n_gr_edi_try_send_invoices_no_classification()
+  test_l10n_gr_edi_try_send_invoices_no_credentials_and_vat()
+  test_mydata_available_inv_type_values()
+  test_mydata_send_bill_cls_expense()
+  test_mydata_send_invoice()
+  test_mydata_send_multi_invoices()
+}
+@enduml

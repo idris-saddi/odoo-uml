@@ -1,0 +1,35 @@
+@startuml classes_payment_paypal
+set namespaceSeparator none
+class "PaymentProvider" as odoo_src.odoo.addons.payment_paypal.models.payment_provider.PaymentProvider {
+  code
+  paypal_access_token
+  paypal_access_token_expiry
+  paypal_client_id
+  paypal_client_secret
+  paypal_email_account
+  paypal_webhook_id
+  action_paypal_create_webhook()
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_paypal.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  paypal_type
+  provider_reference
+}
+class "PaypalCommon" as odoo_src.odoo.addons.payment_paypal.tests.common.PaypalCommon {
+  setUpClass()
+}
+class "PaypalController" as odoo_src.odoo.addons.payment_paypal.controllers.main.PaypalController {
+  paypal_complete_order(provider_id, order_id, reference)
+  paypal_webhook()
+}
+class "PaypalTest" as odoo_src.odoo.addons.payment_paypal.tests.test_paypal.PaypalTest {
+  reference : str
+  test_complete_order_confirms_transaction()
+  test_feedback_processing()
+  test_order_payload_values_for_public_user()
+  test_processing_values()
+  test_provide_shipping_address()
+  test_webhook_notification_confirms_transaction()
+  test_webhook_notification_triggers_origin_check()
+}
+@enduml

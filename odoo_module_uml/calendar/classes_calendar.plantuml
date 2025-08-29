@@ -1,0 +1,435 @@
+@startuml classes_calendar
+set namespaceSeparator none
+class "Alarm" as odoo_src.odoo.addons.calendar.models.calendar_alarm.Alarm {
+  alarm_type
+  body
+  duration
+  duration_minutes
+  interval
+  mail_template_id
+  name
+}
+class "AlarmManager" as odoo_src.odoo.addons.calendar.models.calendar_alarm_manager.AlarmManager {
+  do_check_alarm_for_one_date(one_date, event, event_maxdelta, in_the_next_X_seconds, alarm_type, after, missing)
+  do_notif_reminder(alert)
+  get_next_notif()
+}
+class "Attendee" as odoo_src.odoo.addons.calendar.models.calendar_attendee.Attendee {
+  STATE_SELECTION : list
+  access_token
+  availability
+  common_name
+  email
+  event_id
+  mail_tz
+  partner_id
+  phone
+  recurrence_id
+  state
+  copy(default)
+  create(vals_list)
+  do_accept()
+  do_decline()
+  do_tentative()
+  unlink()
+}
+class "CalendarController" as odoo_src.odoo.addons.calendar.controllers.main.CalendarController {
+  accept_meeting(token, id)
+  accept_recurrence(token, id)
+  calendar_join_meeting(token)
+  calendar_join_videocall(access_token)
+  check_calendar_credentials()
+  decline_meeting(token, id)
+  decline_recurrence(token, id)
+  notify()
+  notify_ack()
+  view_meeting(token, id)
+}
+class "CalendarProviderConfig" as odoo_src.odoo.addons.calendar.wizard.calendar_provider_config.CalendarProviderConfig {
+  cal_client_id
+  cal_client_secret
+  cal_sync_paused
+  external_calendar_provider
+  microsoft_outlook_client_identifier
+  microsoft_outlook_client_secret
+  microsoft_outlook_sync_paused
+  action_calendar_prepare_external_provider_sync()
+}
+class "CalendarProviderConfig" as odoo_src.odoo.addons.calendar.wizard.calendar_popover_delete_wizard.CalendarProviderConfig {
+  delete
+  record
+  close()
+}
+class "Contacts" as odoo_src.odoo.addons.calendar.models.calendar_filter.Contacts {
+  active
+  partner_checked
+  partner_id
+  user_id
+  unlink_from_partner_id(partner_id)
+}
+class "IrHttp" as odoo_src.odoo.addons.calendar.models.ir_http.IrHttp {
+}
+class "MailActivity" as odoo_src.odoo.addons.calendar.models.mail_activity.MailActivity {
+  calendar_event_id
+  action_create_calendar_event()
+  unlink_w_meeting()
+}
+class "MailActivityMixin" as odoo_src.odoo.addons.calendar.models.mail_activity_mixin.MailActivityMixin {
+  activity_calendar_event_id
+}
+class "MailActivitySchedule" as odoo_src.odoo.addons.calendar.wizard.mail_activity_schedule.MailActivitySchedule {
+  action_create_calendar_event()
+}
+class "MailActivityType" as odoo_src.odoo.addons.calendar.models.mail_activity_type.MailActivityType {
+  category
+}
+class "Meeting" as odoo_src.odoo.addons.calendar.models.calendar_event.Meeting {
+  DISCUSS_ROUTE : str
+  accepted_count
+  access_token
+  active
+  activity_ids
+  alarm_ids
+  allday
+  attendee_ids
+  attendees_count
+  awaiting_count
+  byday
+  categ_ids
+  count
+  current_attendee
+  current_status
+  day
+  declined_count
+  description
+  display_description
+  display_time
+  duration
+  end_type
+  event_tz
+  follow_recurrence
+  fri
+  interval
+  invalid_email_partner_ids
+  is_highlighted
+  is_organizer_alone
+  location
+  mon
+  month_by
+  name
+  partner_id
+  partner_ids
+  privacy
+  recurrence_id
+  recurrence_update
+  recurrency
+  res_id
+  res_model
+  res_model_id
+  res_model_name
+  rrule
+  rrule_type
+  rrule_type_ui
+  sat
+  should_show_status
+  show_as
+  start
+  start_date
+  stop
+  stop_date
+  sun
+  tentative_count
+  thu
+  tue
+  until
+  user_can_edit
+  user_id
+  videocall_channel_id
+  videocall_location
+  videocall_source
+  wed
+  weekday
+  action_join_meeting(partner_id)
+  action_join_video_call()
+  action_mass_archive(recurrence_update_setting)
+  action_mass_deletion(recurrence_update_setting)
+  action_open_calendar_event()
+  action_open_composer()
+  action_sendmail()
+  change_attendee_status(status, recurrence_update_setting)
+  clear_videocall_location()
+  copy(default)
+  create(vals_list)
+  default_get(fields)
+  find_partner_customer()
+  get_default_duration()
+  get_discuss_videocall_location()
+  get_display_time_tz(tz)
+  get_next_alarm_date(events_by_alarm)
+  get_state_selections()
+  read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+  set_discuss_videocall_location()
+  unlink()
+  write(values)
+}
+class "MeetingType" as odoo_src.odoo.addons.calendar.models.calendar_event_type.MeetingType {
+  color
+  name
+}
+class "Partner" as odoo_src.odoo.addons.calendar.models.res_partner.Partner {
+  calendar_last_notif_ack
+  meeting_count
+  meeting_ids
+  get_attendee_detail(meeting_ids)
+  schedule_meeting()
+}
+class "RecurrenceRule" as odoo_src.odoo.addons.calendar.models.calendar_recurrence.RecurrenceRule {
+  base_event_id
+  byday
+  calendar_event_ids
+  count
+  day
+  dtstart
+  end_type
+  event_tz
+  fri
+  interval
+  mon
+  month_by
+  name
+  rrule
+  rrule_type
+  sat
+  sun
+  thu
+  trigger_id
+  tue
+  until
+  wed
+  weekday
+  get_recurrence_name()
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.calendar.models.res_users_settings.ResUsersSettings {
+  calendar_default_privacy
+}
+class "TestAccessRights" as odoo_src.odoo.addons.calendar.tests.test_access_rights.TestAccessRights {
+  create_event(user)
+  read_event(user, events, field)
+  setUpClass()
+  test_admin_cant_edit_uninvited_private_events()
+  test_admin_cant_fetch_uninvited_private_events()
+  test_admin_edit_uninvited_non_private_events()
+  test_check_private_event_conditions_by_internal_user()
+  test_edit_private_event_of_other_user()
+  test_event_default_privacy_as_private()
+  test_hide_sensitive_fields_private_events_from_uninvited_admins()
+  test_meeting_edit_access_notification_handle_in_odoo()
+  test_privacy()
+  test_private_and_public()
+  test_private_attendee()
+  test_read_group_agg()
+  test_read_group_list()
+  test_read_group_private()
+  test_read_group_public()
+  test_recurring_event_with_alarms_for_non_admin()
+  test_user_update_calendar_default_privacy()
+}
+class "TestCalendar" as odoo_src.odoo.addons.calendar.tests.test_calendar.TestCalendar {
+  CalendarEvent
+  event_tech_presentation
+  setUp()
+  test_activity_event_multiple_meetings()
+  test_discuss_videocall()
+  test_event_activity()
+  test_event_activity_timezone()
+  test_event_activity_user_sync()
+  test_event_allday()
+  test_event_allday_activity_timezone()
+  test_event_creation_internal_user_invitation_ics()
+  test_event_creation_mail()
+  test_event_creation_sudo_other_company()
+  test_event_duplication_allday()
+  test_event_order()
+  test_event_privacy_domain()
+  test_meeting_creation_from_partner_form()
+  test_recurring_around_dst()
+  test_recurring_ny()
+  test_search_current_attendee_status()
+}
+class "TestCalendarController" as odoo_src.odoo.addons.calendar.tests.test_calendar_controller.TestCalendarController {
+  event
+  other_user
+  partner
+  user
+  setUp()
+  test_accept_meeting_authenticated()
+  test_accept_meeting_unauthenticated()
+}
+class "TestCalendarTours" as odoo_src.odoo.addons.calendar.tests.test_calendar.TestCalendarTours {
+  test_calendar_decline_tour()
+  test_calendar_decline_with_everybody_filter_tour()
+  test_calendar_delete_tour()
+  test_calendar_month_view_start_hour_displayed()
+  test_calendar_res_id_fallback_when_res_id_is_0()
+  test_default_duration()
+}
+class "TestCreateRecurrentEvents" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestCreateRecurrentEvents {
+  setUpClass()
+  test_all_day_date()
+  test_ambiguous_dst_time_spring()
+  test_ambiguous_dst_time_winter()
+  test_ambiguous_full_day()
+  test_backward_pass_dst()
+  test_dst_timezone()
+  test_monthly_count_by_date()
+  test_monthly_count_by_date_31()
+  test_monthly_until_by_day()
+  test_monthly_until_by_day_last()
+  test_recurrency_with_this_event()
+  test_videocall_recurrency()
+  test_weekly_count()
+  test_weekly_interval_2()
+  test_weekly_interval_2_week_start_sunday()
+  test_weekly_until()
+  test_yearly_count()
+}
+class "TestEventNotifications" as odoo_src.odoo.addons.calendar.tests.test_attendees.TestEventNotifications {
+  setUpClass()
+  test_attendee_add_self()
+  test_attendee_added()
+  test_attendee_added_create()
+  test_attendee_added_create_with_specific_states()
+  test_attendee_added_multi()
+  test_attendee_added_write()
+  test_attendee_removed()
+  test_attendee_with_invalid_email()
+  test_attendee_without_email()
+  test_default_attendee()
+  test_existing_attendee_added()
+  test_multi_attendee_mt_note_default()
+  test_push_meeting_start()
+}
+class "TestEventNotifications" as odoo_src.odoo.addons.calendar.tests.test_event_notifications.TestEventNotifications {
+  event
+  setUpClass()
+  test_bus_notif()
+  test_email_alarm()
+  test_email_alarm_daily_recurrence()
+  test_email_alarm_recurrence()
+  test_get_next_potential_limit_alarm()
+  test_message_add_and_date_changed()
+  test_message_date_changed()
+  test_message_date_changed_past()
+  test_message_datetime_changed()
+  test_message_inactive_date_changed()
+  test_message_inactive_invite()
+  test_message_invite()
+  test_message_invite_allday()
+  test_message_invite_email_notif_mass_queued()
+  test_message_invite_self()
+  test_message_set_inactive_date_changed()
+  test_message_set_inactive_invite()
+  test_notification_event_timezone()
+  test_recurring_meeting_reminder_notification()
+}
+class "TestMailActivityMixin" as odoo_src.odoo.addons.calendar.tests.test_mail_activity_mixin.TestMailActivityMixin {
+  setUpClass()
+  test_activity_calendar_event_id()
+}
+class "TestRecurrenceRule" as odoo_src.odoo.addons.calendar.tests.test_recurrence_rule.TestRecurrenceRule {
+  test_daily_count()
+  test_daily_none()
+  test_daily_until()
+  test_monthly_count_by_date()
+  test_monthly_count_by_day()
+  test_monthly_none_by_date()
+  test_monthly_none_by_day()
+  test_monthly_until_by_date()
+  test_monthly_until_by_day()
+  test_weekly_count()
+  test_weekly_none()
+  test_weekly_until()
+  test_yearly_count()
+  test_yearly_none()
+  test_yearly_until()
+}
+class "TestRecurrentEvent" as odoo_src.odoo.addons.calendar.tests.test_calendar_recurrent_event_case2.TestRecurrentEvent {
+  CalendarEvent
+  setUp()
+  test_recurrent_meeting1()
+  test_recurrent_meeting2()
+}
+class "TestRecurrentEvents" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents {
+  assertEventDates(events, dates)
+  setUpClass()
+}
+class "TestResPartner" as odoo_src.odoo.addons.calendar.tests.test_res_partner.TestResPartner {
+  test_meeting_count()
+}
+class "TestResUsers" as odoo_src.odoo.addons.calendar.tests.test_res_users.TestResUsers {
+  test_avoid_res_users_settings_creation_portal()
+  test_same_calendar_default_privacy_as_user_template()
+}
+class "TestUpdateMonthlyByDate" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMonthlyByDate {
+  setUpClass()
+  test_attendees_state_after_update()
+  test_recurring_ui_options_daily()
+  test_recurring_ui_options_monthly()
+  test_recurring_ui_options_yearly()
+  test_shift_future()
+  test_update_all()
+}
+class "TestUpdateMonthlyByDay" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMonthlyByDay {
+  setUpClass()
+  test_shift_all()
+}
+class "TestUpdateMultiDayWeeklyRecurrentEvents" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMultiDayWeeklyRecurrentEvents {
+  setUpClass()
+  test_shift_all_multiple_weekdays()
+  test_shift_all_multiple_weekdays_duration()
+  test_shift_future_multiple_weekdays()
+}
+class "TestUpdateRecurrentEvents" as odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateRecurrentEvents {
+  setUpClass()
+  test_all_day_shift()
+  test_archive_recurrence_all()
+  test_archive_recurrence_future()
+  test_break_recurrence_all()
+  test_break_recurrence_future()
+  test_change_week_day_rrule()
+  test_recurrence_update_all_first_archived()
+  test_rrule_x_params()
+  test_rrule_x_params_no_rrule_prefix()
+  test_shift_all()
+  test_shift_all_base_inactive()
+  test_shift_all_with_outlier()
+  test_shift_future()
+  test_shift_future_first()
+  test_shift_reapply()
+  test_shift_single()
+  test_shift_stop_all()
+  test_unlink_recurrence_all()
+  test_unlink_recurrence_future()
+  test_unlink_recurrence_wizard_all()
+  test_unlink_recurrence_wizard_next()
+  test_update_name_all()
+  test_update_name_future()
+  test_update_recurrence_all()
+  test_update_recurrence_future()
+}
+class "Users" as odoo_src.odoo.addons.calendar.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  calendar_default_privacy
+  check_calendar_credentials()
+  check_synchronization_status()
+  create(vals_list)
+  get_selected_calendars_partner_ids(include_user)
+  write(vals)
+}
+odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestCreateRecurrentEvents --|> odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents
+odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMonthlyByDate --|> odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents
+odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMonthlyByDay --|> odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents
+odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateMultiDayWeeklyRecurrentEvents --|> odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents
+odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestUpdateRecurrentEvents --|> odoo_src.odoo.addons.calendar.tests.test_event_recurrence.TestRecurrentEvents
+@enduml

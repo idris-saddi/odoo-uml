@@ -1,0 +1,17 @@
+@startuml classes_cloud_storage
+set namespaceSeparator none
+class "CloudAttachmentController" as odoo_src.odoo.addons.cloud_storage.controllers.attachment.CloudAttachmentController {
+  mail_attachment_upload(ufile, thread_id, thread_model, is_pending)
+}
+class "CloudStorageAttachment" as odoo_src.odoo.addons.cloud_storage.models.ir_attachment.CloudStorageAttachment {
+  type
+}
+class "CloudStorageSettings" as odoo_src.odoo.addons.cloud_storage.models.res_config_settings.CloudStorageSettings {
+  cloud_storage_min_file_size
+  cloud_storage_provider
+  set_values()
+}
+class "IrHttp" as odoo_src.odoo.addons.cloud_storage.models.ir_http.IrHttp {
+  session_info()
+}
+@enduml

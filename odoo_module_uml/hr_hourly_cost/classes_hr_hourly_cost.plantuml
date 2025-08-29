@@ -1,0 +1,6 @@
+@startuml classes_hr_hourly_cost
+set namespaceSeparator none
+class "HrEmployee" as odoo_src.odoo.addons.hr_hourly_cost.models.hr_employee.HrEmployee {
+  hourly_cost
+}
+@enduml

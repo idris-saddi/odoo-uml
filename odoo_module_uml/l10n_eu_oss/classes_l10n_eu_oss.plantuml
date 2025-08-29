@@ -1,0 +1,32 @@
+@startuml classes_l10n_eu_oss
+set namespaceSeparator none
+class "Company" as odoo_src.odoo.addons.l10n_eu_oss.models.res_company.Company {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_eu_oss.models.res_config_settings.ResConfigSettings {
+  l10n_eu_oss_eu_country
+  refresh_eu_tax_mapping()
+}
+class "TestOSSBelgium" as odoo_src.odoo.addons.l10n_eu_oss.tests.test_oss.TestOSSBelgium {
+  setUpClass()
+  test_country_tag_from_belgium()
+  test_oss_tax_copied_name()
+  test_oss_tax_should_be_instantiated_on_first_branch_having_a_tax_id()
+  test_oss_tax_should_be_instantiated_on_root_company_if_no_tax_id_on_sub_branch()
+}
+class "TestOSSMap" as odoo_src.odoo.addons.l10n_eu_oss.tests.test_oss.TestOSSMap {
+  test_oss_eu_tag_map()
+}
+class "TestOSSSpain" as odoo_src.odoo.addons.l10n_eu_oss.tests.test_oss.TestOSSSpain {
+  setUpClass()
+  test_country_tag_from_spain()
+}
+class "TestOSSUSA" as odoo_src.odoo.addons.l10n_eu_oss.tests.test_oss.TestOSSUSA {
+  child_company
+  foreign_vat_fpos
+  root_company
+  sub_child_company
+  setUpClass()
+  test_no_oss_tax()
+  test_oss_tax_on_eu_branch()
+}
+@enduml

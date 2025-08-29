@@ -1,0 +1,15 @@
+@startuml classes_l10n_ca
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ca.models.template_ca.AccountChartTemplate {
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_ca.models.res_company.BaseDocumentLayout {
+  account_fiscal_country_id
+  l10n_ca_pst
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ca.models.res_company.ResCompany {
+  l10n_ca_pst
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ca.models.res_partner.ResPartner {
+  l10n_ca_pst
+}
+@enduml

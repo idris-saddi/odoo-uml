@@ -1,0 +1,26 @@
+@startuml classes_hr_gamification
+set namespaceSeparator none
+class "GamificationBadge" as odoo_src.odoo.addons.hr_gamification.models.gamification.GamificationBadge {
+  granted_employees_count
+  get_granted_employees()
+}
+class "GamificationBadgeUser" as odoo_src.odoo.addons.hr_gamification.models.gamification.GamificationBadgeUser {
+  employee_id
+  action_open_badge()
+}
+class "GamificationBadgeUserWizard" as odoo_src.odoo.addons.hr_gamification.wizard.gamification_badge_user_wizard.GamificationBadgeUserWizard {
+  employee_id
+  user_id
+  action_grant_badge()
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_gamification.models.hr_employee.HrEmployeeBase {
+  badge_ids
+  direct_badge_ids
+  goal_ids
+  has_badges
+}
+class "ResUsers" as odoo_src.odoo.addons.hr_gamification.models.res_users.ResUsers {
+  badge_ids
+  goal_ids
+}
+@enduml

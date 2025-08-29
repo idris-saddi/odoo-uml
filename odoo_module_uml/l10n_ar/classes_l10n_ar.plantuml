@@ -1,0 +1,119 @@
+@startuml classes_l10n_ar
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar.models.template_ar_base.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar.models.template_ar_ri.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar.models.account_chart_template.AccountChartTemplate {
+  try_loading(template_code, company, install_demo, force_create)
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar.models.template_ar_ex.AccountChartTemplate {
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.l10n_ar.models.account_fiscal_position.AccountFiscalPosition {
+  l10n_ar_afip_responsibility_type_ids
+}
+class "AccountInvoiceReport" as odoo_src.odoo.addons.l10n_ar.report.invoice_report.AccountInvoiceReport {
+  date
+  l10n_ar_state_id
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_ar.models.account_journal.AccountJournal {
+  code
+  company_partner
+  l10n_ar_afip_pos_number
+  l10n_ar_afip_pos_partner_id
+  l10n_ar_afip_pos_system
+  l10n_ar_is_pos
+  write(vals)
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ar.models.account_move.AccountMove {
+  l10n_ar_afip_concept
+  l10n_ar_afip_responsibility_type_id
+  l10n_ar_afip_service_end
+  l10n_ar_afip_service_start
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_ar.models.account_move_line.AccountMoveLine {
+}
+class "AccountTaxGroup" as odoo_src.odoo.addons.l10n_ar.models.account_tax_group.AccountTaxGroup {
+  l10n_ar_tribute_afip_code
+  l10n_ar_vat_afip_code
+  check_uninstall_required()
+}
+class "L10nArAfipResponsibilityType" as odoo_src.odoo.addons.l10n_ar.models.l10n_ar_afip_responsibility_type.L10nArAfipResponsibilityType {
+  active
+  code
+  name
+  sequence
+}
+class "L10nLatamDocumentType" as odoo_src.odoo.addons.l10n_ar.models.l10n_latam_document_type.L10nLatamDocumentType {
+  l10n_ar_letter
+  purchase_aliquots
+}
+class "L10nLatamIdentificationType" as odoo_src.odoo.addons.l10n_ar.models.l10n_latam_identification_type.L10nLatamIdentificationType {
+  l10n_ar_afip_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ar.models.res_company.ResCompany {
+  l10n_ar_afip_responsibility_type_id
+  l10n_ar_afip_start_date
+  l10n_ar_company_requires_vat
+  l10n_ar_gross_income_number
+  l10n_ar_gross_income_type
+  onchange_country()
+  write(vals)
+}
+class "ResCountry" as odoo_src.odoo.addons.l10n_ar.models.res_country.ResCountry {
+  l10n_ar_afip_code
+  l10n_ar_legal_entity_vat
+  l10n_ar_natural_vat
+  l10n_ar_other_vat
+}
+class "ResCurrency" as odoo_src.odoo.addons.l10n_ar.models.res_currency.ResCurrency {
+  l10n_ar_afip_code
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ar.models.res_partner.ResPartner {
+  l10n_ar_afip_responsibility_type_id
+  l10n_ar_formatted_vat
+  l10n_ar_gross_income_number
+  l10n_ar_gross_income_type
+  l10n_ar_vat
+  check_vat()
+  ensure_vat()
+  l10n_ar_identification_validation()
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_ar.models.res_partner_bank.ResPartnerBank {
+  retrieve_acc_type(acc_number)
+}
+class "TestAr" as odoo_src.odoo.addons.l10n_ar.tests.common.TestAr {
+  setUpClass()
+}
+class "TestManual" as odoo_src.odoo.addons.l10n_ar.tests.test_manual.TestManual {
+  journal
+  setUpClass()
+  test_01_create_invoice()
+  test_02_fiscal_position()
+  test_03_corner_cases()
+  test_04_corner_cases()
+  test_05_corner_cases()
+  test_06_corner_cases()
+  test_07_corner_cases()
+  test_08_corner_cases()
+  test_09_corner_cases()
+  test_10_corner_cases()
+  test_11_corner_cases()
+  test_12_corner_cases()
+  test_13_corner_cases()
+  test_14_corner_cases()
+  test_15_liquido_producto_sales()
+  test_16_liquido_producto_purchase()
+  test_17_corner_cases()
+  test_18_invoice_b_tax_breakdown_1()
+  test_19_invoice_b_tax_breakdown_2()
+  test_20_invoice_b_tax_breakdown_3()
+  test_l10n_ar_prices_and_taxes()
+}
+class "Uom" as odoo_src.odoo.addons.l10n_ar.models.uom_uom.Uom {
+  l10n_ar_afip_code
+}
+odoo_src.odoo.addons.l10n_ar.tests.test_manual.TestManual --|> odoo_src.odoo.addons.l10n_ar.tests.common.TestAr
+@enduml

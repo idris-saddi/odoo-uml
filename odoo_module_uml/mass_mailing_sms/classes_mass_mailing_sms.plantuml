@@ -1,0 +1,118 @@
+@startuml classes_mass_mailing_sms
+set namespaceSeparator none
+class "Mailing" as odoo_src.odoo.addons.mass_mailing_sms.models.mailing_mailing.Mailing {
+  ab_testing_mailings_sms_count
+  ab_testing_sms_winner_selection
+  body_plaintext
+  mailing_type
+  sms_allow_unsubscribe
+  sms_force_send
+  sms_has_insufficient_credit
+  sms_has_unregistered_account
+  sms_subject
+  sms_template_id
+  action_buy_sms_credits()
+  action_retry_failed()
+  action_retry_failed_sms()
+  action_send_sms(res_ids)
+  action_test()
+  convert_links()
+  create(vals_list)
+  default_get(fields)
+  get_sms_link_replacements_placeholders()
+}
+class "MailingContact" as odoo_src.odoo.addons.mass_mailing_sms.models.mailing_contact.MailingContact {
+  mobile
+}
+class "MailingList" as odoo_src.odoo.addons.mass_mailing_sms.models.mailing_list.MailingList {
+  contact_count_sms
+  action_send_mailing_sms()
+  action_view_contacts_sms()
+  action_view_mailings()
+}
+class "MailingSMSController" as odoo_src.odoo.addons.mass_mailing_sms.controllers.main.MailingSMSController {
+  blacklist_number(mailing_id, trace_code)
+  blacklist_page(mailing_id, trace_code)
+  sms_short_link_redirect(code, sms_id_int)
+}
+class "MailingTrace" as odoo_src.odoo.addons.mass_mailing_sms.models.mailing_trace.MailingTrace {
+  CODE_SIZE : int
+  failure_type
+  sms_code
+  sms_id
+  sms_id_int
+  sms_number
+  sms_tracker_ids
+  trace_type
+  create(values_list)
+}
+class "MassSMSCase" as odoo_src.odoo.addons.mass_mailing_sms.tests.common.MassSMSCase {
+  assertSMSStatistics(recipients_info, mailing, records, check_sms)
+  assertSMSTraces(recipients_info, mailing, records, check_sms, sent_unlink, sms_links_info)
+  gateway_sms_bounce(mailing, records, error_code)
+  gateway_sms_click(mailing, record, use_sent_sms)
+  gateway_sms_delivered(mailing, records)
+  gateway_sms_sent_click(sms_sent)
+  gateway_sms_sms_click(sms_sms)
+}
+class "MassSMSCommon" as odoo_src.odoo.addons.mass_mailing_sms.tests.common.MassSMSCommon {
+  setUpClass()
+}
+class "MassSMSTest" as odoo_src.odoo.addons.mass_mailing_sms.wizard.mailing_sms_test.MassSMSTest {
+  mailing_id
+  numbers
+  action_send_sms()
+}
+class "SMSComposer" as odoo_src.odoo.addons.mass_mailing_sms.wizard.sms_composer.SMSComposer {
+  mailing_id
+  mass_sms_allow_unsubscribe
+  utm_campaign_id
+}
+class "SmsSms" as odoo_src.odoo.addons.mass_mailing_sms.models.sms_sms.SmsSms {
+  mailing_id
+  mailing_trace_ids
+}
+class "SmsTracker" as odoo_src.odoo.addons.mass_mailing_sms.models.sms_tracker.SmsTracker {
+  SMS_STATE_TO_TRACE_STATUS : dict
+  mailing_trace_id
+}
+class "TestMailingListSms" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_controllers.TestMailingListSms {
+  test_controller_unsubscribe()
+}
+class "TestMailingListSms" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_list.TestMailingListSms {
+  setUpClass()
+  test_mailing_list_action_send_sms()
+}
+class "TestMailingRetrySMS" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_retry.TestMailingRetrySMS {
+  setUpClass()
+  test_sms_retry_immediate_trigger()
+}
+class "TestMailingSMSABTesting" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_sms_ab_testing.TestMailingSMSABTesting {
+  ab_testing_mailing_sms_1
+  ab_testing_mailing_sms_2
+  setUp()
+  test_mailing_sms_ab_testing_compare()
+}
+class "TestMailingUi" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_ui.TestMailingUi {
+  test_tour_mailing_activities_split()
+}
+class "TestMassMailValues" as odoo_src.odoo.addons.mass_mailing_sms.tests.test_mailing_internals.TestMassMailValues {
+  setUpClass()
+  test_mailing_computed_fields()
+  test_mailing_get_sms_link_replacements_placeholders()
+}
+class "Users" as odoo_src.odoo.addons.mass_mailing_sms.models.res_users.Users {
+}
+class "UtmCampaign" as odoo_src.odoo.addons.mass_mailing_sms.models.utm.UtmCampaign {
+  ab_testing_mailings_sms_count
+  ab_testing_sms_winner_selection
+  mailing_sms_count
+  mailing_sms_ids
+  action_create_mass_sms()
+  action_redirect_to_mailing_sms()
+}
+class "UtmMedium" as odoo_src.odoo.addons.mass_mailing_sms.models.utm.UtmMedium {
+  SELF_REQUIRED_UTM_MEDIUMS_REF
+}
+odoo_src.odoo.addons.mass_mailing_sms.tests.common.MassSMSCommon --|> odoo_src.odoo.addons.mass_mailing_sms.tests.common.MassSMSCase
+@enduml

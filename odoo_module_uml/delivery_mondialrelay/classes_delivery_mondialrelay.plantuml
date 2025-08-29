@@ -1,0 +1,27 @@
+@startuml classes_delivery_mondialrelay
+set namespaceSeparator none
+class "ChooseDeliveryCarrier" as odoo_src.odoo.addons.delivery_mondialrelay.wizard.choose_delivery_carrier.ChooseDeliveryCarrier {
+  is_mondialrelay
+  mondialrelay_allowed_countries
+  mondialrelay_brand
+  mondialrelay_colLivMod
+  mondialrelay_last_selected
+  mondialrelay_last_selected_id
+  shipping_country_code
+  shipping_zip
+  button_confirm()
+}
+class "DeliveryCarrierMondialRelay" as odoo_src.odoo.addons.delivery_mondialrelay.models.delivery_carrier.DeliveryCarrierMondialRelay {
+  is_mondialrelay
+  mondialrelay_brand
+  mondialrelay_packagetype
+  base_on_rule_get_tracking_link(picking)
+  fixed_get_tracking_link(picking)
+}
+class "ResPartnerMondialRelay" as odoo_src.odoo.addons.delivery_mondialrelay.models.res_partner.ResPartnerMondialRelay {
+  is_mondialrelay
+}
+class "SaleOrderMondialRelay" as odoo_src.odoo.addons.delivery_mondialrelay.models.sale_order.SaleOrderMondialRelay {
+  action_confirm()
+}
+@enduml

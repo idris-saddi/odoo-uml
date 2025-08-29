@@ -1,0 +1,19 @@
+@startuml classes_l10n_jo_edi_extended
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_jo_edi_extended.models.account_move.AccountMove {
+  l10n_jo_edi_invoice_type
+  l10n_jo_edi_state
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_jo_edi_extended.models.account_move_send.AccountMoveSend {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_jo_edi_extended.models.res_company.ResCompany {
+  l10n_jo_edi_demo_mode
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_jo_edi_extended.models.res_config_settings.ResConfigSettings {
+  l10n_jo_edi_demo_mode
+}
+class "TestJoEdiInvoiceCodes" as odoo_src.odoo.addons.l10n_jo_edi_extended.tests.test_jo_edi_invoice_codes.TestJoEdiInvoiceCodes {
+  setUpClass()
+  test_jo_invoice_codes()
+}
+@enduml

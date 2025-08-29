@@ -1,0 +1,44 @@
+@startuml classes_payment_razorpay
+set namespaceSeparator none
+class "PaymentProvider" as odoo_src.odoo.addons.payment_razorpay.models.payment_provider.PaymentProvider {
+  code
+  razorpay_key_id
+  razorpay_key_secret
+  razorpay_webhook_secret
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment_razorpay.models.payment_token.PaymentToken {
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_razorpay.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "RazorpayCommon" as odoo_src.odoo.addons.payment_razorpay.tests.common.RazorpayCommon {
+  setUpClass()
+}
+class "RazorpayController" as odoo_src.odoo.addons.payment_razorpay.controllers.main.RazorpayController {
+  razorpay_webhook()
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_razorpay.tests.test_payment_provider.TestPaymentProvider {
+  test_incompatible_with_unsupported_currencies()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_razorpay.tests.test_payment_transaction.TestPaymentTransaction {
+  maxDiff : int
+  test_allow_multi_payments_on_non_recurring_transactions()
+  test_get_tx_from_notification_data_creates_refund_tx_when_missing()
+  test_get_tx_from_notification_data_returns_refund_tx()
+  test_no_item_missing_from_order_request_payload()
+  test_prevent_multi_payments_on_recurring_transactions()
+  test_processing_notification_data_confirms_transaction()
+  test_processing_notification_data_only_tokenizes_once()
+  test_processing_notification_data_tokenizes_transaction()
+  test_processing_notification_data_updates_reference_if_not_confirmed()
+  test_void_is_not_supported()
+}
+class "TestProcessingFlows" as odoo_src.odoo.addons.payment_razorpay.tests.test_processing_flows.TestProcessingFlows {
+  test_accept_webhook_notification_with_valid_signature()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_webhook_notification_triggers_processing()
+  test_webhook_notification_triggers_signature_check()
+}
+@enduml

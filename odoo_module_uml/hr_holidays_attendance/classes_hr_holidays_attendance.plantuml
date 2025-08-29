@@ -1,0 +1,53 @@
+@startuml classes_hr_holidays_attendance
+set namespaceSeparator none
+class "AccrualPlanLevel" as odoo_src.odoo.addons.hr_holidays_attendance.models.hr_leave_accrual_plan_level.AccrualPlanLevel {
+  frequency_hourly_source
+}
+class "HRLeave" as odoo_src.odoo.addons.hr_holidays_attendance.models.hr_leave.HRLeave {
+  employee_overtime
+  overtime_deductible
+  overtime_id
+  action_confirm()
+  action_refuse()
+  action_reset_confirm()
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "HRLeaveType" as odoo_src.odoo.addons.hr_holidays_attendance.models.hr_leave_type.HRLeaveType {
+  overtime_deductible
+  get_allocation_data(employees, date)
+}
+class "HolidaysAllocation" as odoo_src.odoo.addons.hr_holidays_attendance.models.hr_leave_allocation.HolidaysAllocation {
+  employee_overtime
+  overtime_deductible
+  overtime_id
+  action_refuse()
+  create(vals_list)
+  default_get(fields)
+  write(vals)
+}
+class "HrAttendance" as odoo_src.odoo.addons.hr_holidays_attendance.models.hr_attendance.HrAttendance {
+}
+class "ResUsers" as odoo_src.odoo.addons.hr_holidays_attendance.models.res_users.ResUsers {
+  SELF_READABLE_FIELDS
+  request_overtime
+}
+class "TestAccrualAllocationsAttendance" as odoo_src.odoo.addons.hr_holidays_attendance.tests.test_accrual_allocations.TestAccrualAllocationsAttendance {
+  setUpClass()
+  test_accrual_allocation_based_on_attendance()
+  test_frequency_hourly_attendance()
+}
+class "TestHolidaysOvertime" as odoo_src.odoo.addons.hr_holidays_attendance.tests.test_holidays_overtime.TestHolidaysOvertime {
+  new_attendance(check_in, check_out)
+  setUpClass()
+  test_allocation_check_overtime_write()
+  test_check_overtime()
+  test_deduct_button_visibility()
+  test_employee_create_allocation()
+  test_leave_adjust_overtime()
+  test_leave_check_cancel()
+  test_leave_check_overtime_write()
+  test_public_leave_overtime()
+}
+@enduml

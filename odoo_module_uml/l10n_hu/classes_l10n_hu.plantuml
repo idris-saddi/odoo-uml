@@ -1,0 +1,10 @@
+@startuml classes_l10n_hu
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_hu.models.template_hu.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_hu.models.account_move.AccountMove {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_hu.models.res_partner.ResPartner {
+  l10n_hu_eu_vat
+}
+@enduml

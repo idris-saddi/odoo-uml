@@ -1,0 +1,141 @@
+@startuml classes_account_peppol
+set namespaceSeparator none
+class "AccountEdiProxyClientUser" as odoo_src.odoo.addons.account_peppol.models.account_edi_proxy_user.AccountEdiProxyClientUser {
+  peppol_verification_code
+  proxy_type
+}
+class "AccountJournal" as odoo_src.odoo.addons.account_peppol.models.account_journal.AccountJournal {
+  account_peppol_proxy_state
+  is_peppol_journal
+  action_peppol_ready_moves()
+  peppol_get_message_status()
+  peppol_get_new_documents()
+}
+class "AccountMove" as odoo_src.odoo.addons.account_peppol.models.account_move.AccountMove {
+  peppol_message_uuid
+  peppol_move_state
+  sending_data : bool
+  action_cancel_peppol_documents()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.account_peppol.models.account_move_send.AccountMoveSend {
+  action_what_is_peppol_activate(moves)
+}
+class "AccountMoveSendBatchWizard" as odoo_src.odoo.addons.account_peppol.wizard.account_move_send_batch_wizard.AccountMoveSendBatchWizard {
+  action_send_and_print(force_synchronous, allow_fallback_pdf)
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.account_peppol.wizard.account_move_send_wizard.AccountMoveSendWizard {
+  action_send_and_print(allow_fallback_pdf)
+}
+class "PeppolRegistration" as odoo_src.odoo.addons.account_peppol.wizard.peppol_registration.PeppolRegistration {
+  account_peppol_migration_key
+  account_peppol_proxy_state
+  company_id
+  contact_email
+  edi_mode
+  edi_mode_constraint
+  edi_user_id
+  peppol_eas
+  peppol_endpoint
+  peppol_warnings
+  phone_number
+  smp_registration
+  verification_code
+  {abstract}button_check_peppol_verification_code()
+  button_deregister_peppol_participant()
+  button_peppol_sender_registration()
+  button_peppol_smp_registration()
+  button_register_peppol_participant()
+  {abstract}button_send_peppol_verification_code()
+  button_update_peppol_user_data()
+}
+class "PeppolService" as odoo_src.odoo.addons.account_peppol.wizard.service_wizard.PeppolService {
+  document_identifier
+  document_name
+  enabled
+  wizard_id
+}
+class "PeppolServiceConfig" as odoo_src.odoo.addons.account_peppol.wizard.service_wizard.PeppolServiceConfig {
+  edi_user_id
+  service_ids
+  service_info
+  service_json
+  confirm()
+  create(vals_list)
+}
+class "PortalAccount" as odoo_src.odoo.addons.account_peppol.controllers.portal.PortalAccount {
+  details_form_validate(data, partner_creation)
+}
+class "ResCompany" as odoo_src.odoo.addons.account_peppol.models.res_company.ResCompany {
+  account_peppol_contact_email
+  account_peppol_migration_key
+  account_peppol_phone_number
+  account_peppol_proxy_state
+  peppol_eas
+  peppol_endpoint
+  peppol_purchase_journal_id
+  create(vals_list)
+  write(vals)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.account_peppol.models.res_config_settings.ResConfigSettings {
+  account_peppol_contact_email
+  account_peppol_eas
+  account_peppol_edi_identification
+  account_peppol_edi_mode
+  account_peppol_edi_user
+  account_peppol_endpoint
+  account_peppol_migration_key
+  account_peppol_mode_constraint
+  account_peppol_phone_number
+  account_peppol_proxy_state
+  account_peppol_purchase_journal_id
+  action_open_peppol_form()
+  button_account_peppol_configure_services()
+  button_deregister_peppol_participant()
+  button_migrate_peppol_registration()
+  button_peppol_smp_registration()
+  button_update_peppol_user_data()
+}
+class "ResPartner" as odoo_src.odoo.addons.account_peppol.models.res_partner.ResPartner {
+  available_peppol_eas : list
+  available_peppol_edi_formats
+  available_peppol_sending_methods
+  invoice_sending_method
+  peppol_eas
+  peppol_verification_state
+  button_account_peppol_check_partner_endpoint(company)
+  create(vals_list)
+  write(vals)
+}
+class "TestPeppolMessage" as odoo_src.odoo.addons.account_peppol.tests.test_peppol_messages.TestPeppolMessage {
+  create_move(partner, company)
+  setUpClass()
+  test_attachment_placeholders()
+  test_available_peppol_edi_formats()
+  test_available_peppol_sending_methods()
+  test_peppol_default_ubl_bis3_multi()
+  test_peppol_default_ubl_bis3_single()
+  test_peppol_send_multi_async()
+  test_receive_error_peppol()
+  test_receive_success_peppol()
+  test_resend_error_peppol_message()
+  test_send_invalid_edi_user()
+  test_send_peppol_alerts_invalid_partner()
+  test_send_peppol_alerts_not_valid_format_partner(mocked_check)
+  test_send_peppol_alerts_not_valid_partner()
+  test_send_success_message()
+  test_silent_error_while_creating_xml()
+  test_validate_partner()
+}
+class "TestPeppolParticipant" as odoo_src.odoo.addons.account_peppol.tests.test_peppol_participant.TestPeppolParticipant {
+  setUpClass()
+  test_create_duplicate_participant()
+  test_create_participant_already_exists()
+  test_create_participant_missing_data()
+  test_create_reject_participant()
+  test_create_success_receiver()
+  test_create_success_receiver_two_steps()
+  test_create_success_sender()
+  test_ignore_archived_edi_users()
+  test_save_migration_key()
+}
+@enduml

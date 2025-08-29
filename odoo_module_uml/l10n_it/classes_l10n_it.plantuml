@@ -1,0 +1,13 @@
+@startuml classes_l10n_it
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_it.models.template_it.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_it.models.account_move.AccountMove {
+}
+class "AccountReportExpression" as odoo_src.odoo.addons.l10n_it.models.account_report.AccountReportExpression {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_it.models.account_tax.AccountTax {
+  l10n_it_exempt_reason
+  l10n_it_law_reference
+}
+@enduml

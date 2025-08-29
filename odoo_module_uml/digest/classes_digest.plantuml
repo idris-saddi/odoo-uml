@@ -1,0 +1,68 @@
+@startuml classes_digest
+set namespaceSeparator none
+class "Digest" as odoo_src.odoo.addons.digest.models.digest.Digest {
+  available_fields
+  company_id
+  currency_id
+  is_subscribed
+  kpi_mail_message_total
+  kpi_mail_message_total_value
+  kpi_res_users_connected
+  kpi_res_users_connected_value
+  name
+  next_run_date
+  periodicity
+  state
+  user_ids
+  action_activate()
+  action_deactivate()
+  action_send()
+  action_send_manual()
+  action_set_periodicity(periodicity)
+  action_subscribe()
+  action_unsubscribe()
+  create(vals_list)
+}
+class "DigestController" as odoo_src.odoo.addons.digest.controllers.portal.DigestController {
+  digest_set_periodicity(digest_id, periodicity)
+  digest_unsubscribe(digest_id, token, user_id, one_click)
+  digest_unsubscribe_oneclick(digest_id, token, user_id)
+}
+class "DigestTip" as odoo_src.odoo.addons.digest.models.digest_tip.DigestTip {
+  group_id
+  name
+  sequence
+  tip_description
+  user_ids
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.digest.models.res_config_settings.ResConfigSettings {
+  digest_emails
+  digest_id
+}
+class "ResUsers" as odoo_src.odoo.addons.digest.models.res_users.ResUsers {
+  create(vals_list)
+}
+class "TestDigest" as odoo_src.odoo.addons.digest.tests.test_digest.TestDigest {
+  mock_datetime_and_now(mock_dt)
+  setUpClass()
+  test_assert_initial_values()
+  test_digest_kpi_res_users_connected_value()
+  test_digest_numbers()
+  test_digest_subscribe()
+  test_digest_tip_description()
+  test_digest_tone_down()
+  test_digest_tone_down_wlogs()
+}
+class "TestDigestCommon" as odoo_src.odoo.addons.digest.tests.common.TestDigestCommon {
+  setUpClass()
+}
+class "TestUnsubscribe" as odoo_src.odoo.addons.digest.tests.test_digest.TestUnsubscribe {
+  base_url
+  test_digest
+  user_demo_unsubscribe_token
+  setUp()
+  test_mail_mail_headers()
+  test_unsubscribe()
+  test_unsubscribe_token_one_click()
+}
+@enduml

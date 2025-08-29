@@ -1,0 +1,47 @@
+@startuml classes_l10n_ec
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ec.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ec.models.template_ec.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_ec.models.account_journal.AccountJournal {
+  l10n_ec_emission
+  l10n_ec_emission_address_id
+  l10n_ec_entity
+  l10n_ec_require_emission
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ec.models.account_move.AccountMove {
+  l10n_ec_sri_payment_id
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_ec.models.account_tax.AccountTax {
+  l10n_ec_code_applied
+  l10n_ec_code_ats
+  l10n_ec_code_base
+}
+class "AccountTaxGroup" as odoo_src.odoo.addons.l10n_ec.models.account_tax_group.AccountTaxGroup {
+  l10n_ec_type
+}
+class "L10nLatamDocumentType" as odoo_src.odoo.addons.l10n_ec.models.l10n_latam_document_type.L10nLatamDocumentType {
+  internal_type
+  l10n_ec_check_format
+}
+class "PartnerIdTypeEc" as odoo_src.odoo.addons.l10n_ec.models.res_partner.PartnerIdTypeEc {
+  name
+  get_ats_code_for_partner(partner, move_type)
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ec.models.res_company.ResCompany {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ec.models.res_partner.ResPartner {
+  l10n_ec_vat_validation
+  check_vat()
+}
+class "SriPayment" as odoo_src.odoo.addons.l10n_ec.models.l10n_ec_sri_payment.SriPayment {
+  active
+  code
+  name
+}
+class "TestEcAccountMove" as odoo_src.odoo.addons.l10n_ec.tests.test_account_move.TestEcAccountMove {
+  setUpClass()
+  test_document_number_credit_note()
+}
+@enduml

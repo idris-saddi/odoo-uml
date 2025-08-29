@@ -1,0 +1,5 @@
+@startuml classes_event_crm_sale
+set namespaceSeparator none
+class "EventRegistration" as odoo_src.odoo.addons.event_crm_sale.models.event_registration.EventRegistration {
+}
+@enduml

@@ -1,0 +1,138 @@
+@startuml classes_mail_group
+set namespaceSeparator none
+class "MailGroup" as odoo_src.odoo.addons.mail_group.models.mail_group.MailGroup {
+  access_group_id
+  access_mode
+  active
+  alias_contact : str
+  can_manage_group
+  description
+  image_128
+  is_member
+  is_moderator
+  mail_group_message_count
+  mail_group_message_ids
+  mail_group_message_last_month_count
+  mail_group_message_moderation_count
+  member_count
+  member_ids
+  member_partner_ids
+  moderation
+  moderation_guidelines
+  moderation_guidelines_msg
+  moderation_notify
+  moderation_notify_msg
+  moderation_rule_count
+  moderation_rule_ids
+  moderator_ids
+  name
+  action_join()
+  action_leave()
+  action_send_guidelines(members)
+  default_get(fields)
+  message_new(msg_dict, custom_values)
+  message_post(body, subject, email_from, author_id)
+  message_update(msg_dict, update_vals)
+}
+class "MailGroupMember" as odoo_src.odoo.addons.mail_group.models.mail_group_member.MailGroupMember {
+  email
+  email_normalized
+  mail_group_id
+  partner_id
+}
+class "MailGroupMessage" as odoo_src.odoo.addons.mail_group.models.mail_group_message.MailGroupMessage {
+  attachment_ids
+  author_id
+  author_moderation
+  body
+  create_date
+  email_from
+  email_from_normalized
+  group_message_child_ids
+  group_message_parent_id
+  is_group_moderated
+  mail_group_id
+  mail_message_id
+  moderation_status
+  moderator_id
+  subject
+  action_moderate_accept()
+  action_moderate_allow()
+  action_moderate_ban()
+  action_moderate_ban_with_comment(ban_subject, ban_comment)
+  action_moderate_reject()
+  action_moderate_reject_with_comment(reject_subject, reject_comment)
+  copy_data(default)
+  create(values_list)
+}
+class "MailGroupMessageReject" as odoo_src.odoo.addons.mail_group.wizard.mail_group_message_reject.MailGroupMessageReject {
+  action
+  body
+  email_from_normalized
+  mail_group_message_id
+  send_email
+  subject
+  action_send_mail()
+}
+class "MailGroupModeration" as odoo_src.odoo.addons.mail_group.models.mail_group_moderation.MailGroupModeration {
+  email
+  mail_group_id
+  status
+  create(vals_list)
+  write(values)
+}
+class "PortalMailGroup" as odoo_src.odoo.addons.mail_group.controllers.portal.PortalMailGroup {
+  group_message_get_replies(group, message, last_displayed_id)
+  group_subscribe(group_id, email, token)
+  group_subscribe_confirm(group_id, email, token)
+  group_unsubscribe(group_id, email, token)
+  group_unsubscribe_confirm(group_id, email, token)
+  group_unsubscribe_oneclick(group_id, token, email)
+  group_view_message(group, message, mode, date_begin, date_end)
+  group_view_messages(group, page, mode, date_begin, date_end)
+  groups_index(email)
+}
+class "TestMailGroup" as odoo_src.odoo.addons.mail_group.tests.test_mail_group.TestMailGroup {
+  test_clean_email_body()
+  test_constraint_valid_email()
+  test_find_group_user_for_alias()
+  test_find_member()
+  test_find_member_for_alias()
+  test_join_group()
+  test_mail_group_access_mode_groups()
+  test_mail_group_access_mode_members()
+  test_mail_group_access_mode_public()
+  test_mail_group_member_security()
+}
+class "TestMailGroupMailing" as odoo_src.odoo.addons.mail_group.tests.test_mail_group_mailing.TestMailGroupMailing {
+  setUpClass()
+  test_mail_mail_headers()
+}
+class "TestMailGroupMessage" as odoo_src.odoo.addons.mail_group.tests.test_mail_group_message.TestMailGroupMessage {
+  test_batch_send()
+  test_email_duplicated()
+  test_email_empty_from()
+  test_email_not_sent_to_author()
+  test_mail_group_message_security_groups()
+  test_mail_group_message_security_public()
+}
+class "TestMailGroupModeration" as odoo_src.odoo.addons.mail_group.tests.test_mail_group_moderation.TestMailGroupModeration {
+  setUpClass()
+  test_constraints()
+  test_moderation_rule_api()
+  test_moderation_rule_email_normalize()
+  test_moderation_rule_security()
+}
+class "TestMailListCommon" as odoo_src.odoo.addons.mail_group.tests.common.TestMailListCommon {
+  setUpClass()
+}
+class "TestModeration" as odoo_src.odoo.addons.mail_group.tests.test_mail_group_moderation.TestModeration {
+  setUpClass()
+  test_moderation_flow_accept()
+  test_moderation_flow_allow()
+  test_moderation_flow_ban()
+  test_moderation_flow_reject()
+  test_moderation_send_guidelines()
+  test_moderation_send_guidelines_on_new_member()
+}
+@enduml

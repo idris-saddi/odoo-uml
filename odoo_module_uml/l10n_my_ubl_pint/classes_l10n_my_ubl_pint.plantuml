@@ -1,0 +1,24 @@
+@startuml classes_l10n_my_ubl_pint
+set namespaceSeparator none
+class "AccountEdiXmlUBLPINTMY" as odoo_src.odoo.addons.l10n_my_ubl_pint.models.account_edi_xml_pint_my.AccountEdiXmlUBLPINTMY {
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_my_ubl_pint.models.res_company.BaseDocumentLayout {
+  account_fiscal_country_id
+  sst_registration_number
+  ttx_registration_number
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_my_ubl_pint.models.res_company.ResCompany {
+  sst_registration_number
+  ttx_registration_number
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_my_ubl_pint.models.res_partner.ResPartner {
+  invoice_edi_format
+  sst_registration_number
+  ttx_registration_number
+}
+class "TestMyUBLPint" as odoo_src.odoo.addons.l10n_my_ubl_pint.tests.test_my_ubl_pint.TestMyUBLPint {
+  setUpClass()
+  test_invoice_no_taxes()
+  test_invoice_with_sst()
+}
+@enduml

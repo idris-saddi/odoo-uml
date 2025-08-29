@@ -1,0 +1,9 @@
+@startuml classes_auth_totp_portal
+set namespaceSeparator none
+class "TestTOTPortal" as odoo_src.odoo.addons.auth_totp_portal.tests.test_tour.TestTOTPortal {
+  test_totp()
+}
+class "Users" as odoo_src.odoo.addons.auth_totp_portal.models.res_users.Users {
+  get_totp_invite_url()
+}
+@enduml

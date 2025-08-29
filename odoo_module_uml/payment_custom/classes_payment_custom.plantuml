@@ -1,0 +1,23 @@
+@startuml classes_payment_custom
+set namespaceSeparator none
+class "CustomController" as odoo_src.odoo.addons.payment_custom.controllers.main.CustomController {
+  custom_process_transaction()
+}
+class "PaymentCustomCommon" as odoo_src.odoo.addons.payment_custom.tests.common.PaymentCustomCommon {
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_custom.models.payment_provider.PaymentProvider {
+  code
+  custom_mode
+  qr_code
+  action_recompute_pending_msg()
+  create(values_list)
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_custom.models.payment_transaction.PaymentTransaction {
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_custom.tests.test_payment_transaction.TestPaymentTransaction {
+  setUpClass()
+  test_communication_based_on_transaction_reference()
+  test_communication_for_invoice()
+  test_communication_for_sale_order()
+}
+@enduml

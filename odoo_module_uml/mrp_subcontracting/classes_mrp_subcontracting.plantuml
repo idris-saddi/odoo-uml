@@ -1,0 +1,155 @@
+@startuml classes_mrp_subcontracting
+set namespaceSeparator none
+class "ChangeProductionQty" as odoo_src.odoo.addons.mrp_subcontracting.wizard.change_production_qty.ChangeProductionQty {
+}
+class "CustomerPortal" as odoo_src.odoo.addons.mrp_subcontracting.controllers.portal.CustomerPortal {
+  portal_my_production(picking_id)
+  portal_my_productions(page, date_begin, date_end, sortby, filterby)
+  render_production_backend_view(picking_id)
+}
+class "MrpBom" as odoo_src.odoo.addons.mrp_subcontracting.models.mrp_bom.MrpBom {
+  subcontractor_ids
+  type
+}
+class "MrpConsumptionWarning" as odoo_src.odoo.addons.mrp_subcontracting.wizard.mrp_consumption_warning.MrpConsumptionWarning {
+  action_cancel()
+  action_confirm()
+}
+class "MrpProduction" as odoo_src.odoo.addons.mrp_subcontracting.models.mrp_production.MrpProduction {
+  bom_product_ids
+  incoming_picking
+  move_line_raw_ids
+  product_qty
+  subcontracting_has_been_recorded
+  subcontractor_id
+  action_merge()
+  pre_button_mark_done()
+  subcontracting_record_component()
+  write(vals)
+}
+class "ProductProduct" as odoo_src.odoo.addons.mrp_subcontracting.models.product.ProductProduct {
+}
+class "ProductReplenishMixin" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_replenish_mixin.ProductReplenishMixin {
+}
+class "ReportBomStructure" as odoo_src.odoo.addons.mrp_subcontracting.report.mrp_report_bom_structure.ReportBomStructure {
+}
+class "ResCompany" as odoo_src.odoo.addons.mrp_subcontracting.models.res_company.ResCompany {
+  subcontracting_location_id
+}
+class "ResPartner" as odoo_src.odoo.addons.mrp_subcontracting.models.res_partner.ResPartner {
+  bom_ids
+  is_subcontractor
+  picking_ids
+  production_ids
+  property_stock_subcontractor
+}
+class "ReturnPicking" as odoo_src.odoo.addons.mrp_subcontracting.wizard.stock_picking_return.ReturnPicking {
+}
+class "ReturnPickingLine" as odoo_src.odoo.addons.mrp_subcontracting.wizard.stock_picking_return.ReturnPickingLine {
+}
+class "StockLocation" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_location.StockLocation {
+  is_subcontracting_location
+  subcontractor_ids
+  create(vals_list)
+  write(values)
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_move.StockMove {
+  is_subcontract
+  show_subcontracting_details_visible
+  action_show_details()
+  action_show_subcontract_details()
+  copy_data(default)
+  create(vals_list)
+  write(values)
+}
+class "StockMoveLine" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_move_line.StockMoveLine {
+  location_id
+  write(vals)
+}
+class "StockPicking" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_picking.StockPicking {
+  display_action_record_components
+  move_line_ids_without_package
+  action_record_components()
+}
+class "StockQuant" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_quant.StockQuant {
+  is_subcontract
+}
+class "StockRule" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_rule.StockRule {
+}
+class "StockWarehouse" as odoo_src.odoo.addons.mrp_subcontracting.models.stock_warehouse.StockWarehouse {
+  subcontracting_mto_pull_id
+  subcontracting_pull_id
+  subcontracting_resupply_type_id
+  subcontracting_route_id
+  subcontracting_to_resupply
+  subcontracting_type_id
+  create(vals_list)
+  get_rules_dict()
+  write(vals)
+}
+class "SupplierInfo" as odoo_src.odoo.addons.mrp_subcontracting.models.product.SupplierInfo {
+  is_subcontractor
+}
+class "TestMrpSubcontractingCommon" as odoo_src.odoo.addons.mrp_subcontracting.tests.common.TestMrpSubcontractingCommon {
+  setUpClass()
+}
+class "TestSubcontractingBasic" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting.TestSubcontractingBasic {
+  test_duplicating_warehouses_recreates_their_routes_and_operation_types()
+  test_subcontracting_location_1()
+  test_warehouse_subcontracting_resupply_type_code()
+}
+class "TestSubcontractingFlows" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting.TestSubcontractingFlows {
+  test_change_partner_subcontracting_location()
+  test_change_reception_serial()
+  test_decrease_quantity_done()
+  test_flow_1()
+  test_flow_10()
+  test_flow_2()
+  test_flow_3()
+  test_flow_4()
+  test_flow_5()
+  test_flow_6()
+  test_flow_8()
+  test_flow_9()
+  test_flow_flexible_bom_1()
+  test_flow_warning_bom_1()
+  test_flow_warning_bom_2()
+  test_mrp_report_bom_structure_subcontracting()
+  test_multiple_component_records_for_incomplete_move()
+  test_several_backorders()
+  test_several_backorders_2()
+  test_subcontracting_date_warning()
+  test_subcontracting_rules_replication()
+  test_subcontracting_set_quantity_done()
+  test_validate_partial_subcontracting_without_backorder()
+}
+class "TestSubcontractingPortal" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting.TestSubcontractingPortal {
+  setUpClass()
+  test_flow_subcontracting_portal()
+}
+class "TestSubcontractingPortalUi" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting_portal_ui.TestSubcontractingPortalUi {
+  setUpClass()
+  test_subcontrating_portal()
+}
+class "TestSubcontractingSerialMassReceipt" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting.TestSubcontractingSerialMassReceipt {
+  bom
+  finished
+  raw_material
+  resupply_route
+  subcontractor
+  setUp()
+  test_bom_subcontracting_product_dynamic_attribute()
+  test_receive_after_resupply()
+  test_receive_no_resupply()
+  test_subcontracting_multiple_backorders()
+}
+class "TestSubcontractingTracking" as odoo_src.odoo.addons.mrp_subcontracting.tests.test_subcontracting.TestSubcontractingTracking {
+  setUpClass()
+  test_flow_backorder_production()
+  test_flow_mass_produce_tracked_product()
+  test_flow_tracked_1()
+  test_flow_tracked_backorder()
+  test_flow_tracked_backorder02()
+  test_flow_tracked_only_finished()
+}
+@enduml

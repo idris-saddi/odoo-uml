@@ -1,0 +1,140 @@
+@startuml classes_delivery
+set namespaceSeparator none
+class "ChooseDeliveryCarrier" as odoo_src.odoo.addons.delivery.wizard.choose_delivery_carrier.ChooseDeliveryCarrier {
+  available_carrier_ids
+  carrier_id
+  company_id
+  currency_id
+  delivery_message
+  delivery_price
+  delivery_type
+  display_price
+  invoicing_message
+  order_id
+  partner_id
+  total_weight
+  weight_uom_name
+  button_confirm()
+  update_price()
+}
+class "DeliveryCarrier" as odoo_src.odoo.addons.delivery.models.delivery_carrier.DeliveryCarrier {
+  active
+  amount
+  can_generate_return
+  carrier_description
+  company_id
+  country_ids
+  currency_id
+  debug_logging
+  delivery_type
+  excluded_tag_ids
+  fixed_margin
+  fixed_price
+  free_over
+  get_return_label_from_portal
+  integration_level
+  invoice_policy
+  margin
+  max_volume
+  max_weight
+  must_have_tag_ids
+  name
+  price_rule_ids
+  prod_environment
+  product_id
+  return_label_on_delivery
+  sequence
+  shipping_insurance
+  state_ids
+  supports_shipping_insurance
+  tracking_url
+  volume_uom_name
+  weight_uom_name
+  zip_prefix_ids
+  available_carriers(partner, order)
+  base_on_rule_rate_shipment(order)
+  copy_data(default)
+  fixed_rate_shipment(order)
+  install_more_provider()
+  log_xml(xml_string, func)
+  rate_shipment(order)
+  toggle_debug()
+  toggle_prod_environment()
+}
+class "DeliveryCommon" as odoo_src.odoo.addons.delivery.tests.common.DeliveryCommon {
+  setUpClass()
+}
+class "DeliveryZipPrefix" as odoo_src.odoo.addons.delivery.models.delivery_zip_prefix.DeliveryZipPrefix {
+  name
+  create(vals_list)
+  write(vals)
+}
+class "LocationSelectorController" as odoo_src.odoo.addons.delivery.controllers.location_selector.LocationSelectorController {
+  delivery_get_pickup_locations(order_id, zip_code)
+  delivery_set_pickup_location(order_id, pickup_location_data)
+}
+class "PriceRule" as odoo_src.odoo.addons.delivery.models.delivery_price_rule.PriceRule {
+  carrier_id
+  currency_id
+  list_base_price
+  list_price
+  max_value
+  name
+  operator
+  sequence
+  variable
+  variable_factor
+}
+class "ProductCategory" as odoo_src.odoo.addons.delivery.models.product_category.ProductCategory {
+}
+class "ResPartner" as odoo_src.odoo.addons.delivery.models.res_partner.ResPartner {
+  property_delivery_carrier_id
+}
+class "SaleOrder" as odoo_src.odoo.addons.delivery.models.sale_order.SaleOrder {
+  carrier_id
+  delivery_message
+  delivery_set
+  is_all_service
+  pickup_location_data
+  recompute_delivery_price
+  shipping_weight
+  action_open_delivery_wizard()
+  onchange_order_line()
+  set_delivery_line(carrier, amount)
+}
+class "SaleOrderLine" as odoo_src.odoo.addons.delivery.models.sale_order_line.SaleOrderLine {
+  is_delivery
+  product_qty
+  recompute_delivery_price
+  unlink()
+}
+class "TestDeliveryAvailability" as odoo_src.odoo.addons.delivery.tests.test_delivery_availability.TestDeliveryAvailability {
+  sale_order
+  setUpClass()
+  test_00_order_with_heavy_product_simple()
+  test_01_order_with_heavy_product_different_uom()
+  test_02_order_with_big_product_simple()
+  test_03_order_with_big_product_different_uom()
+  test_04_check_must_have_tag()
+  test_05_check_excluded_tag()
+  test_06_check_tags_complex()
+}
+class "TestDeliveryCost" as odoo_src.odoo.addons.delivery.tests.test_delivery_cost.TestDeliveryCost {
+  a_sale
+  delivery_sale_order_cost
+  product_consultant
+  sale_normal_delivery_charges
+  setUpClass()
+  test_00_delivery_cost()
+  test_01_delivery_cost_from_pricelist()
+  test_01_taxes_on_delivery_cost()
+  test_02_delivery_cost_from_different_currency()
+  test_base_on_rule_currency_is_converted()
+  test_delivery_product_taxes_on_branch()
+  test_estimated_weight()
+  test_fixed_price_margins()
+  test_get_invalid_delivery_weight_lines()
+  test_price_with_weight_volume_variable()
+  test_update_weight_in_shipping_when_change_quantity()
+}
+@enduml

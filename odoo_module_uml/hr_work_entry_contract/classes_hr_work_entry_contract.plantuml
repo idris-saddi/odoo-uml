@@ -1,0 +1,78 @@
+@startuml classes_hr_work_entry_contract
+set namespaceSeparator none
+class "HrContract" as odoo_src.odoo.addons.hr_work_entry_contract.models.hr_contract.HrContract {
+  date_generated_from
+  date_generated_to
+  last_generation_date
+  work_entry_source
+  work_entry_source_calendar_invalid
+  generate_work_entries(date_start, date_stop, force)
+  has_static_work_entries()
+  write(vals)
+}
+class "HrEmployee" as odoo_src.odoo.addons.hr_work_entry_contract.models.hr_employee.HrEmployee {
+  generate_work_entries(date_start, date_stop, force)
+}
+class "HrWorkEntry" as odoo_src.odoo.addons.hr_work_entry_contract.models.hr_work_entry.HrWorkEntry {
+  contract_id
+  employee_id
+  work_entry_source
+  create(vals_list)
+  init()
+}
+class "HrWorkEntryRegenerationWizard" as odoo_src.odoo.addons.hr_work_entry_contract.wizard.hr_work_entry_regeneration_wizard.HrWorkEntryRegenerationWizard {
+  date_from
+  date_to
+  earliest_available_date
+  earliest_available_date_message
+  employee_ids
+  latest_available_date
+  latest_available_date_message
+  search_criteria_completed
+  valid
+  validated_work_entry_ids
+  regenerate_work_entries()
+}
+class "HrWorkEntryType" as odoo_src.odoo.addons.hr_work_entry_contract.models.hr_work_entry.HrWorkEntryType {
+  is_leave
+}
+class "ResourceCalendar" as odoo_src.odoo.addons.hr_work_entry_contract.models.resource_calendar.ResourceCalendar {
+}
+class "TestGlobalTimeOff" as odoo_src.odoo.addons.hr_work_entry_contract.tests.test_global_time_off.TestGlobalTimeOff {
+  test_gto_no_calendar()
+  test_gto_other_calendar()
+}
+class "TestIntervals" as odoo_src.odoo.addons.hr_work_entry_contract.tests.test_work_intervals.TestIntervals {
+  ints(pairs)
+  test_difference()
+  test_intersection()
+  test_union()
+}
+class "TestWorkEntry" as odoo_src.odoo.addons.hr_work_entry_contract.tests.test_work_entry.TestWorkEntry {
+  setUpClass()
+  test_approve_multiple_day_work_entry()
+  test_create_conflict()
+  test_no_duplicate()
+  test_no_overlap_sql_constraint()
+  test_outside_calendar()
+  test_separate_overlapping_work_entries_by_type()
+  test_unarchive_conflict()
+  test_validate_conflict_work_entry()
+  test_validate_undefined_work_entry()
+  test_validated_no_conflict()
+  test_work_entry()
+  test_work_entry_duration()
+  test_work_entry_employee_without_contract()
+  test_work_entry_timezone()
+  test_write_conflict()
+  test_write_move()
+}
+class "TestWorkEntryBase" as odoo_src.odoo.addons.hr_work_entry_contract.tests.common.TestWorkEntryBase {
+  create_work_entries(intervals)
+  create_work_entry(start, stop, work_entry_type)
+  setUpClass()
+}
+class "WorkIntervals" as odoo_src.odoo.addons.hr_work_entry_contract.models.hr_work_intervals.WorkIntervals {
+}
+odoo_src.odoo.addons.hr_work_entry_contract.tests.test_global_time_off.TestGlobalTimeOff --|> odoo_src.odoo.addons.hr_work_entry_contract.tests.common.TestWorkEntryBase
+@enduml

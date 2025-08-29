@@ -1,0 +1,1143 @@
+@startuml classes_mrp
+set namespaceSeparator none
+class "ChangeProductionQty" as odoo_src.odoo.addons.mrp.wizard.change_production_qty.ChangeProductionQty {
+  mo_id
+  product_qty
+  change_prod_qty()
+  default_get(fields)
+}
+class "Company" as odoo_src.odoo.addons.mrp.models.res_company.Company {
+  manufacturing_lead
+  create_missing_unbuild_sequences()
+}
+class "MRPProductDocumentController" as odoo_src.odoo.addons.mrp.controller.main.MRPProductDocumentController {
+  get_additional_create_params()
+}
+class "MrpBatchProduct" as odoo_src.odoo.addons.mrp.wizard.mrp_batch_produce.MrpBatchProduct {
+  component_separator
+  lot_name
+  lot_qty
+  lots_quantity_separator
+  lots_separator
+  production_id
+  production_text
+  production_text_help
+  action_done()
+  action_generate_production_text()
+  action_prepare()
+}
+class "MrpBom" as odoo_src.odoo.addons.mrp.models.mrp_bom.MrpBom {
+  active
+  allow_operation_dependencies
+  bom_line_ids
+  byproduct_ids
+  code
+  company_id
+  consumption
+  days_to_prepare_mo
+  operation_ids
+  picking_type_id
+  possible_product_template_attribute_value_ids
+  produce_delay
+  product_id
+  product_qty
+  product_tmpl_id
+  product_uom_category_id
+  product_uom_id
+  ready_to_produce
+  sequence
+  type
+  action_compute_bom_days()
+  check_kit_has_not_orderpoint()
+  copy(default)
+  create(vals_list)
+  explode(product, quantity, picking_type, never_attribute_values)
+  get_import_templates()
+  name_create(name)
+  onchange_bom_structure()
+  onchange_product_tmpl_id()
+  onchange_product_uom_id()
+  toggle_active()
+  write(vals)
+}
+class "MrpBomLine" as odoo_src.odoo.addons.mrp.models.mrp_bom.MrpBomLine {
+  allowed_operation_ids
+  attachments_count
+  bom_id
+  bom_product_template_attribute_value_ids
+  child_bom_id
+  child_line_ids
+  company_id
+  manual_consumption
+  operation_id
+  parent_product_tmpl_id
+  possible_bom_product_template_attribute_value_ids
+  product_id
+  product_qty
+  product_tmpl_id
+  product_uom_category_id
+  product_uom_id
+  sequence
+  tracking
+  action_add_from_catalog()
+  action_see_attachments()
+  create(vals_list)
+  onchange_product_id()
+  onchange_product_uom_id()
+}
+class "MrpByProduct" as odoo_src.odoo.addons.mrp.models.mrp_bom.MrpByProduct {
+  allowed_operation_ids
+  bom_id
+  bom_product_template_attribute_value_ids
+  company_id
+  cost_share
+  operation_id
+  possible_bom_product_template_attribute_value_ids
+  product_id
+  product_qty
+  product_uom_category_id
+  product_uom_id
+  sequence
+  action_add_from_catalog()
+}
+class "MrpConsumptionWarning" as odoo_src.odoo.addons.mrp.wizard.mrp_consumption_warning.MrpConsumptionWarning {
+  consumption
+  mrp_consumption_warning_line_ids
+  mrp_production_count
+  mrp_production_ids
+  action_cancel()
+  action_confirm()
+  action_set_qty()
+}
+class "MrpConsumptionWarningLine" as odoo_src.odoo.addons.mrp.wizard.mrp_consumption_warning.MrpConsumptionWarningLine {
+  consumption
+  mrp_consumption_warning_id
+  mrp_production_id
+  product_consumed_qty_uom
+  product_expected_qty_uom
+  product_id
+  product_uom_id
+}
+class "MrpProduction" as odoo_src.odoo.addons.mrp.models.mrp_production.MrpProduction {
+  all_move_ids
+  all_move_raw_ids
+  allow_workorder_dependencies
+  backorder_sequence
+  bom_id
+  company_id
+  components_availability
+  components_availability_state
+  consumption
+  date_deadline
+  date_finished
+  date_start
+  delay_alert_date
+  delivery_count
+  duration
+  duration_expected
+  finished_move_line_ids
+  forecasted_issue
+  is_delayed
+  is_locked
+  is_outdated_bom
+  is_planned
+  json_popover
+  location_dest_id
+  location_final_id
+  location_src_id
+  lot_producing_id
+  move_byproduct_ids
+  move_dest_ids
+  move_finished_ids
+  move_raw_ids
+  mrp_production_backorder_count
+  mrp_production_child_count
+  mrp_production_source_count
+  name
+  never_product_template_attribute_value_ids
+  orderpoint_id
+  origin
+  picking_ids
+  picking_type_id
+  priority
+  procurement_group_id
+  product_description_variants
+  product_id
+  product_qty
+  product_tmpl_id
+  product_tracking
+  product_uom_category_id
+  product_uom_id
+  product_uom_qty
+  product_variant_attributes
+  production_capacity
+  production_location_id
+  propagate_cancel
+  qty_produced
+  qty_producing
+  reservation_state
+  reserve_visible
+  scrap_count
+  scrap_ids
+  search_date_category
+  show_allocation
+  show_final_lots
+  show_lock
+  show_lot_ids
+  show_produce
+  show_produce_all
+  state
+  unbuild_count
+  unbuild_ids
+  unreserve_visible
+  use_create_components_lots
+  user_id
+  valid_product_template_attribute_line_ids
+  warehouse_id
+  workcenter_id
+  workorder_ids
+  action_assign()
+  action_cancel()
+  action_confirm()
+  action_generate_bom()
+  action_generate_serial()
+  action_mass_produce()
+  action_merge()
+  action_open_label_layout()
+  action_open_label_type()
+  action_plan_with_components_availability()
+  action_product_forecast_report()
+  action_see_move_scrap()
+  action_split()
+  action_start()
+  action_toggle_is_locked()
+  action_update_bom()
+  action_view_mo_delivery()
+  action_view_mrp_production_backorders()
+  action_view_mrp_production_childs()
+  action_view_mrp_production_sources()
+  action_view_mrp_production_unbuilds()
+  action_view_reception_report()
+  button_mark_done()
+  button_plan()
+  button_scrap()
+  button_unbuild()
+  button_unplan()
+  copy_data(default)
+  create(vals_list)
+  do_unreserve()
+  get_empty_list_help(help_message)
+  pre_button_mark_done()
+  set_qty_producing()
+  unlink()
+  write(vals)
+}
+class "MrpProductionBackorder" as odoo_src.odoo.addons.mrp.wizard.mrp_production_backorder.MrpProductionBackorder {
+  mrp_production_backorder_line_ids
+  mrp_production_ids
+  show_backorder_lines
+  action_backorder()
+  action_close_mo()
+}
+class "MrpProductionBackorderLine" as odoo_src.odoo.addons.mrp.wizard.mrp_production_backorder.MrpProductionBackorderLine {
+  mrp_production_backorder_id
+  mrp_production_id
+  to_backorder
+}
+class "MrpProductionSplit" as odoo_src.odoo.addons.mrp.wizard.mrp_production_split.MrpProductionSplit {
+  counter
+  product_id
+  product_qty
+  product_uom_id
+  production_capacity
+  production_detailed_vals_ids
+  production_id
+  production_split_multi_id
+  valid_details
+  action_prepare_split()
+  action_return_to_list()
+  action_split()
+}
+class "MrpProductionSplitLine" as odoo_src.odoo.addons.mrp.wizard.mrp_production_split.MrpProductionSplitLine {
+  date
+  mrp_production_split_id
+  quantity
+  user_id
+}
+class "MrpProductionSplitMulti" as odoo_src.odoo.addons.mrp.wizard.mrp_production_split.MrpProductionSplitMulti {
+  production_ids
+}
+class "MrpRoutingWorkcenter" as odoo_src.odoo.addons.mrp.models.mrp_routing.MrpRoutingWorkcenter {
+  active
+  allow_operation_dependencies
+  blocked_by_operation_ids
+  bom_id
+  bom_product_template_attribute_value_ids
+  company_id
+  name
+  needed_by_operation_ids
+  note
+  possible_bom_product_template_attribute_value_ids
+  sequence
+  time_computed_on
+  time_cycle
+  time_cycle_manual
+  time_mode
+  time_mode_batch
+  workcenter_id
+  workorder_count
+  workorder_ids
+  worksheet
+  worksheet_google_slide
+  worksheet_type
+  action_archive()
+  action_unarchive()
+  copy_existing_operations()
+  copy_to_bom()
+  create(vals_list)
+  write(vals)
+}
+class "MrpStockReport" as odoo_src.odoo.addons.mrp.models.stock_traceability.MrpStockReport {
+}
+class "MrpUnbuild" as odoo_src.odoo.addons.mrp.models.mrp_unbuild.MrpUnbuild {
+  bom_id
+  company_id
+  consume_line_ids
+  has_tracking
+  location_dest_id
+  location_id
+  lot_id
+  mo_bom_id
+  mo_id
+  name
+  produce_line_ids
+  product_id
+  product_qty
+  product_uom_id
+  state
+  action_unbuild()
+  action_validate()
+  create(vals_list)
+}
+class "MrpWorkCenterCapacity" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.MrpWorkCenterCapacity {
+  capacity
+  product_id
+  product_uom_id
+  time_start
+  time_stop
+  workcenter_id
+}
+class "MrpWorkcenter" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.MrpWorkcenter {
+  active
+  alternative_workcenter_ids
+  blocked_time
+  capacity_ids
+  code
+  color
+  costs_hour
+  currency_id
+  default_capacity
+  has_routing_lines
+  kanban_dashboard_graph
+  name
+  note
+  oee
+  oee_target
+  order_ids
+  performance
+  productive_time
+  resource_calendar_id
+  routing_line_ids
+  sequence
+  tag_ids
+  time_efficiency
+  time_ids
+  time_start
+  time_stop
+  workcenter_load
+  working_state
+  workorder_count
+  workorder_late_count
+  workorder_pending_count
+  workorder_progress_count
+  workorder_ready_count
+  action_archive()
+  action_show_operations()
+  action_work_order()
+  action_work_order_alternatives()
+  create(vals_list)
+  unblock()
+  write(vals)
+}
+class "MrpWorkcenterProductivity" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.MrpWorkcenterProductivity {
+  company_id
+  date_end
+  date_start
+  description
+  duration
+  loss_id
+  loss_type
+  production_id
+  user_id
+  workcenter_id
+  workorder_id
+  button_block()
+}
+class "MrpWorkcenterProductivityLoss" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.MrpWorkcenterProductivityLoss {
+  loss_id
+  loss_type
+  manual
+  name
+  sequence
+}
+class "MrpWorkcenterProductivityLossType" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.MrpWorkcenterProductivityLossType {
+  loss_type
+}
+class "MrpWorkorder" as odoo_src.odoo.addons.mrp.models.mrp_workorder.MrpWorkorder {
+  allow_workorder_dependencies
+  barcode
+  blocked_by_workorder_ids
+  company_id
+  consumption
+  costs_hour
+  date_finished
+  date_start
+  duration
+  duration_expected
+  duration_percent
+  duration_unit
+  finished_lot_id
+  has_worksheet
+  is_planned
+  is_produced
+  is_user_working
+  json_popover
+  last_working_user_id
+  leave_id
+  move_finished_ids
+  move_line_ids
+  move_raw_ids
+  name
+  needed_by_workorder_ids
+  operation_id
+  operation_note
+  product_id
+  product_tracking
+  product_uom_id
+  production_availability
+  production_bom_id
+  production_date
+  production_id
+  production_state
+  progress
+  qty_produced
+  qty_producing
+  qty_production
+  qty_remaining
+  qty_reported_from_previous_wo
+  scrap_count
+  scrap_ids
+  sequence
+  show_json_popover
+  state
+  time_ids
+  workcenter_id
+  working_state
+  working_user_ids
+  worksheet
+  worksheet_google_slide
+  worksheet_type
+  action_cancel()
+  action_mark_as_done()
+  action_open_wizard()
+  action_replan()
+  action_see_move_scrap()
+  button_done()
+  button_finish()
+  button_pending()
+  button_scrap()
+  button_start(raise_on_invalid_state)
+  button_unblock()
+  create(values)
+  end_all()
+  end_previous(doall)
+  get_duration()
+  get_working_duration()
+  unlink()
+  write(values)
+}
+class "Orderpoint" as odoo_src.odoo.addons.mrp.models.stock_warehouse.Orderpoint {
+  check_product_is_not_kit()
+}
+class "ProcurementGroup" as odoo_src.odoo.addons.mrp.models.stock_rule.ProcurementGroup {
+  mrp_production_ids
+  run(procurements, raise_user_error)
+}
+class "ProductDocument" as odoo_src.odoo.addons.mrp.models.product_document.ProductDocument {
+  attached_on_mrp
+}
+class "ProductLabelLayout" as odoo_src.odoo.addons.mrp.wizard.stock_label_type.ProductLabelLayout {
+  production_ids
+  process()
+}
+class "ProductProduct" as odoo_src.odoo.addons.mrp.models.product.ProductProduct {
+  bom_count
+  bom_line_ids
+  is_kits
+  mrp_product_qty
+  product_catalog_product_is_in_bom
+  product_catalog_product_is_in_mo
+  used_in_bom_count
+  variant_bom_ids
+  action_archive()
+  action_open_quants()
+  action_used_in_bom()
+  action_view_bom()
+  action_view_mos()
+  get_components()
+  write(values)
+}
+class "ProductReplenish" as odoo_src.odoo.addons.mrp.wizard.product_replenish.ProductReplenish {
+}
+class "ProductReplenishMixin" as odoo_src.odoo.addons.mrp.models.stock_replenish_mixin.ProductReplenishMixin {
+  bom_id
+  show_bom
+}
+class "ProductTemplate" as odoo_src.odoo.addons.mrp.models.product.ProductTemplate {
+  bom_count
+  bom_ids
+  bom_line_ids
+  is_kits
+  mrp_product_qty
+  used_in_bom_count
+  action_archive()
+  action_used_in_bom()
+  action_view_mos()
+  write(values)
+}
+class "ReceptionReport" as odoo_src.odoo.addons.mrp.report.report_stock_reception.ReceptionReport {
+}
+class "ReportBomStructure" as odoo_src.odoo.addons.mrp.report.mrp_report_bom_structure.ReportBomStructure {
+  get_html(bom_id, searchQty, searchVariant)
+  get_warehouses()
+}
+class "ReportMoOverview" as odoo_src.odoo.addons.mrp.report.mrp_report_mo_overview.ReportMoOverview {
+  get_report_values(production_id)
+}
+class "ReportStockRule" as odoo_src.odoo.addons.mrp.report.report_stock_rule.ReportStockRule {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.mrp.models.res_config_settings.ResConfigSettings {
+  group_mrp_byproducts
+  group_mrp_reception_report
+  group_mrp_routings
+  group_mrp_workorder_dependencies
+  group_unlocked_by_default
+  manufacturing_lead
+  module_mrp_mps
+  module_mrp_plm
+  module_mrp_subcontracting
+  module_quality_control
+  module_quality_control_worksheet
+  use_manufacturing_lead
+  set_values()
+}
+class "StockForecasted" as odoo_src.odoo.addons.mrp.report.stock_forecasted.StockForecasted {
+}
+class "StockLot" as odoo_src.odoo.addons.mrp.models.stock_lot.StockLot {
+}
+class "StockMove" as odoo_src.odoo.addons.mrp.models.stock_move.StockMove {
+  allowed_operation_ids
+  bom_line_id
+  byproduct_id
+  consume_unbuild_id
+  cost_share
+  created_production_id
+  description_bom_line
+  is_done
+  manual_consumption
+  operation_id
+  order_finished_lot_id
+  product_qty_available
+  product_virtual_available
+  production_id
+  quantity
+  raw_material_production_id
+  should_consume_qty
+  unbuild_id
+  unit_factor
+  workorder_id
+  action_add_from_catalog_byproduct()
+  action_add_from_catalog_raw()
+  action_explode()
+  action_open_reference()
+  action_show_details()
+  create(vals_list)
+  default_get(fields_list)
+  write(vals)
+}
+class "StockMoveLine" as odoo_src.odoo.addons.mrp.models.stock_move.StockMoveLine {
+  description_bom_line
+  production_id
+  workorder_id
+  create(values)
+  write(vals)
+}
+class "StockPicking" as odoo_src.odoo.addons.mrp.models.stock_picking.StockPicking {
+  has_kits
+  production_count
+  production_ids
+  action_detailed_operations()
+  action_view_mrp_production()
+  get_action_click_graph()
+}
+class "StockPickingType" as odoo_src.odoo.addons.mrp.models.stock_picking.StockPickingType {
+  auto_print_done_mrp_lot
+  auto_print_done_mrp_product_labels
+  auto_print_done_production_order
+  auto_print_generated_mrp_lot
+  auto_print_mrp_reception_report
+  auto_print_mrp_reception_report_labels
+  code
+  count_mo_in_progress
+  count_mo_late
+  count_mo_to_close
+  count_mo_todo
+  count_mo_waiting
+  done_mrp_lot_label_to_print
+  generated_mrp_lot_label_to_print
+  mrp_product_label_to_print
+  use_create_components_lots
+  get_mrp_stock_picking_action_picking_type()
+}
+class "StockQuant" as odoo_src.odoo.addons.mrp.models.stock_quant.StockQuant {
+}
+class "StockRule" as odoo_src.odoo.addons.mrp.models.stock_rule.StockRule {
+  action
+}
+class "StockScrap" as odoo_src.odoo.addons.mrp.models.stock_scrap.StockScrap {
+  bom_id
+  location_id
+  product_is_kit
+  product_template
+  production_id
+  scrap_qty : int
+  workorder_id
+  do_replenish(values)
+}
+class "StockWarehouse" as odoo_src.odoo.addons.mrp.models.stock_warehouse.StockWarehouse {
+  manu_type_id
+  manufacture_mto_pull_id
+  manufacture_pull_id
+  manufacture_steps
+  manufacture_to_resupply
+  pbm_loc_id
+  pbm_mto_pull_id
+  pbm_route_id
+  pbm_type_id
+  sam_loc_id
+  sam_rule_id
+  sam_type_id
+  get_rules_dict()
+  write(vals)
+}
+class "StockWarehouseOrderpoint" as odoo_src.odoo.addons.mrp.models.stock_orderpoint.StockWarehouseOrderpoint {
+  bom_id
+  manufacturing_visibility_days
+  show_bom
+}
+class "StockWarnInsufficientQtyUnbuild" as odoo_src.odoo.addons.mrp.wizard.stock_warn_insufficient_qty.StockWarnInsufficientQtyUnbuild {
+  unbuild_id
+  action_done()
+}
+class "TestBoM" as odoo_src.odoo.addons.mrp.tests.test_bom.TestBoM {
+  car
+  car_color_attribute_line
+  car_color_blue
+  car_color_red
+  car_gps_attribute_line
+  car_gps_no
+  car_gps_yes
+  color_attribute
+  color_blue
+  color_red
+  dashboard
+  dashboard_color_attribute_line
+  dashboard_color_blue
+  dashboard_color_red
+  dashboard_gps_attribute_line
+  dashboard_gps_no
+  dashboard_gps_yes
+  gps
+  gps_attribute
+  gps_no
+  gps_yes
+  paint
+  paint_color_attribute_line
+  paint_color_blue
+  paint_color_red
+  product_10
+  product_9
+  setUpClass()
+  test_01_explode()
+  test_02_explode_rounding()
+  test_10_variants()
+  test_11_multi_level_variants()
+  test_12_multi_level_variants2()
+  test_13_bom_kit_qty()
+  test_13_bom_kit_qty_multi_uom()
+  test_13_negative_on_hand_qty()
+  test_14_bom_kit_qty_multi_uom()
+  test_19_bom_kit_field_is_kits_bom_with_product_id()
+  test_19_bom_kit_field_is_kits_bom_without_product_id()
+  test_20_bom_report()
+  test_21_bom_report_variant()
+  test_22_bom_report_recursive_bom()
+  test_archive_operation()
+  test_archive_operations()
+  test_availability_bom_type_kit()
+  test_bom_document()
+  test_bom_generated_from_mo()
+  test_bom_generated_from_mo_with_byproducts()
+  test_bom_generated_from_mo_with_different_uom()
+  test_bom_kit_with_sub_kit()
+  test_bom_never_attribute()
+  test_bom_never_attribute_mix()
+  test_bom_overview_for_product_template_with_dynamic_variants()
+  test_bom_report_capacity_with_duplicate_components()
+  test_bom_report_capacity_with_quantity_of_0()
+  test_bom_report_dozens()
+  test_bom_report_same_component()
+  test_bom_updates_mo()
+  test_bom_updates_mo_after_updating_operations()
+  test_bom_updates_mo_with_different_uom()
+  test_bom_updates_mo_with_pre_prod_picking()
+  test_component_when_bom_change()
+  test_compute_days_to_prepare_from_mo_if_unavailable()
+  test_copy_bom_with_operations()
+  test_cycle_on_bom_creation()
+  test_cycle_on_bom_sequencing()
+  test_cycle_on_bom_unarchive()
+  test_cycle_on_legit_apply_variants()
+  test_cycle_on_line_creation()
+  test_cycle_on_line_update()
+  test_indirect_cycle_on_bom_creation()
+  test_manual_consumption_bom_line()
+  test_operation_blocked_by_another_operation()
+  test_replenishment()
+  test_report_data_bom_with_0_qty()
+  test_update_bom_in_routing_workcenter()
+  test_update_operations()
+  test_validate_bom_line_with_different_product_variant()
+  test_validate_bom_line_with_variant_of_bom_product()
+  test_validate_no_bom_line_with_same_product()
+  test_validate_no_bom_line_with_same_product_variant()
+  test_workorders_on_bom_changes()
+}
+class "TestConsumeComponent" as odoo_src.odoo.addons.mrp.tests.test_consume_component.TestConsumeComponent {
+  test_automatic_consume_new_added_component()
+  test_no_component_consumption_on_lot_removal()
+  test_option_enabled_and_qty_available()
+  test_option_enabled_and_qty_not_available()
+  test_option_enabled_and_qty_partially_available()
+  test_tracked_production_2_steps_manufacturing()
+}
+class "TestConsumeComponentCommon" as odoo_src.odoo.addons.mrp.tests.test_consume_component.TestConsumeComponentCommon {
+  create_bom_lines(bom, products, quantities)
+  create_mo(template, count)
+  create_quant(product, qty, offset, name)
+  executeConsumptionTriggers(mrp_productions)
+  setUpClass()
+}
+class "TestKitPicking" as odoo_src.odoo.addons.mrp.tests.test_stock.TestKitPicking {
+  setUpClass()
+  test_add_sml_with_kit_to_confirmed_picking()
+  test_kit_immediate_transfer()
+  test_kit_planned_transfer()
+  test_kit_with_packaging_different_uom()
+  test_move_line_aggregated_product_quantities_with_kit()
+  test_scrap_consu_kit_not_available()
+  test_scrap_storable_kit_not_available()
+}
+class "TestManualConsumption" as odoo_src.odoo.addons.mrp.tests.test_manual_consumption.TestManualConsumption {
+  setUpClass()
+  test_manual_consumption_backorder()
+  test_manual_consumption_quantity_change()
+  test_manual_consumption_split_merge_00()
+  test_manual_consumption_with_different_component_price()
+  test_reservation_state_with_manual_consumption()
+  test_update_manual_consumption_00()
+  test_update_manual_consumption_01()
+}
+class "TestMrpByProduct" as odoo_src.odoo.addons.mrp.tests.test_byproduct.TestMrpByProduct {
+  product_d
+  product_e
+  stock_location
+  setUpClass()
+  test_00_mrp_byproduct()
+  test_01_check_byproducts_update()
+  test_01_mrp_byproduct()
+  test_02_check_byproducts_update()
+  test_03_check_byproducts_update()
+  test_3_steps_byproduct()
+  test_byproduct_putaway()
+  test_byproduct_qty_update()
+  test_byproducts_bom_document()
+  test_change_product()
+  test_check_byproducts_cost_share()
+  test_check_byproducts_cost_share_02()
+  test_default_uom()
+  test_finished_and_byproduct_moves()
+  test_over_produce_by_products_with_cost_share()
+}
+class "TestMrpCancelMO" as odoo_src.odoo.addons.mrp.tests.test_cancel_mo.TestMrpCancelMO {
+  test_cancel_mo_without_component()
+  test_cancel_mo_without_routing_1()
+  test_cancel_mo_without_routing_2()
+  test_cancel_mo_without_routing_3()
+  test_unlink_mo()
+}
+class "TestMrpCommon" as odoo_src.odoo.addons.mrp.tests.common.TestMrpCommon {
+  generate_mo(tracking_final, tracking_base_1, tracking_base_2, qty_final, qty_base_1, qty_base_2, picking_type_id, consumption)
+  make_bom(p)
+  make_prods(n)
+  setUpClass()
+}
+class "TestMrpMulticompany" as odoo_src.odoo.addons.mrp.tests.test_multicompany.TestMrpMulticompany {
+  setUpClass()
+  test_bom_1()
+  test_bom_2()
+  test_company_specific_routes_and_company_creation()
+  test_company_specific_routes_and_warehouse_creation()
+  test_is_kit_in_multi_company_env()
+  test_multi_company_kit_reservation()
+  test_partner_1()
+  test_product_produce_1()
+  test_product_produce_2()
+  test_production_1()
+  test_production_2()
+}
+class "TestMrpOrder" as odoo_src.odoo.addons.mrp.tests.test_order.TestMrpOrder {
+  box250
+  byproduct1
+  byproduct2
+  byproduct3
+  lot_1
+  lot_2
+  serial_1
+  serial_2
+  stock_location
+  stock_shelf_1
+  stock_shelf_2
+  workcenter_4
+  workcenter_5
+  setUpClass()
+  test_a_multi_button_plan()
+  test_access_rights_manager()
+  test_access_rights_user()
+  test_all_workorders_planned()
+  test_backorder_with_overconsumption()
+  test_backorder_with_underconsumption()
+  test_basic()
+  test_batch_production_01()
+  test_batch_production_02()
+  test_batch_production_03()
+  test_batch_production_04()
+  test_cancel_return()
+  test_capacity_duration_expected()
+  test_change_sn_tracked_qty_produced()
+  test_child_mo_after_qty_parent_mo_update()
+  test_clear_finished_move()
+  test_components_availability()
+  test_compute_bom_id()
+  test_compute_picking_type_id()
+  test_compute_product_id()
+  test_compute_product_uom_id()
+  test_compute_tracked_time_1()
+  test_compute_tracked_time_2_under_capacity()
+  test_compute_tracked_time_3()
+  test_consumed_and_produced_in_operation()
+  test_consumption_action_set_qty_and_validate()
+  test_consumption_flexible_1()
+  test_consumption_flexible_2()
+  test_consumption_strict_1()
+  test_consumption_warning_1()
+  test_copy()
+  test_duration_expected_when_done()
+  test_end_date()
+  test_exceeded_consumed_qty_and_duplicated_lines()
+  test_expected_duration_alternative_wc()
+  test_immediate_validate_1()
+  test_immediate_validate_3()
+  test_immediate_validate_4()
+  test_immediate_validate_5()
+  test_immediate_validate_6()
+  test_immediate_validate_uom()
+  test_immediate_validate_uom_2()
+  test_json_popover_with_workorder_dependence()
+  test_manual_duration()
+  test_manufacture_lead_days()
+  test_mo_assign_producing_lot()
+  test_mo_duration_expected()
+  test_mo_modify_date_with_manuf_lead_time()
+  test_mo_overview_added_component()
+  test_mo_overview_added_operation()
+  test_mo_overview_base_decorators()
+  test_mo_overview_component_bom()
+  test_mo_overview_component_bom_mto()
+  test_mo_sn_warning()
+  test_mo_without_resource_calendar()
+  test_move_finished_onchanges()
+  test_move_raw_uom_rounding()
+  test_mrp_link_new_operations()
+  test_multi_edit_start_date_wo()
+  test_onchange_bom_ids_and_picking_type()
+  test_onchange_picking_type_id_and_name()
+  test_over_consumption()
+  test_planning_cancelled_workorder()
+  test_planning_workorder()
+  test_product_produce_1()
+  test_product_produce_10()
+  test_product_produce_11()
+  test_product_produce_12()
+  test_product_produce_13()
+  test_product_produce_14()
+  test_product_produce_2()
+  test_product_produce_3()
+  test_product_produce_4()
+  test_product_produce_6()
+  test_product_produce_7()
+  test_product_produce_9()
+  test_product_produce_different_uom()
+  test_product_produce_duplicate_1()
+  test_product_produce_duplicate_2()
+  test_product_produce_duplicate_3()
+  test_product_produce_duplicate_4()
+  test_product_produce_duplicate_5()
+  test_product_produce_duplicate_6()
+  test_product_produce_uom()
+  test_product_qty_digits_precision()
+  test_product_type_service_1()
+  test_product_variants_in_mo()
+  test_production_availability()
+  test_products_with_variants()
+  test_propagate_quantity_on_backorders()
+  test_qty_producing()
+  test_qty_update_and_method_reservation()
+  test_recursive_work_orders()
+  test_replan_mo_without_bom()
+  test_replan_workorders01()
+  test_replan_workorders02()
+  test_rounding()
+  test_source_and_child_mo()
+  test_starting_wo_twice()
+  test_state_workorders()
+  test_timers_after_cancelling_mo()
+  test_under_consumption()
+  test_unlink_workorder_with_consumed_operations()
+  test_update_mo_from_bom_with_kit()
+  test_update_mo_from_bom_with_kit_variants()
+  test_update_mo_with_mrp_user()
+  test_update_plan_date()
+  test_update_qty_producing_done_MO_with_lot()
+  test_update_qty_to_consume_of_component()
+  test_update_quantity_1()
+  test_update_quantity_2()
+  test_update_quantity_3()
+  test_update_quantity_4()
+  test_update_quantity_5()
+  test_update_workcenter_adapt_finish_date()
+  test_use_kit_as_component_in_production_without_bom()
+  test_validation_mo_with_tracked_component()
+  test_wo_date_finished_on_done_unplanned_mo()
+  test_workcenter_specific_capacities()
+  test_workcenter_timezone()
+  test_workcenter_with_resource_calendar_from_another_company()
+  test_workorder_planning_validity_with_workcenters()
+  test_workorder_sequence()
+  test_workorder_set_duration()
+}
+class "TestMrpProductionBackorder" as odoo_src.odoo.addons.mrp.tests.test_backorder.TestMrpProductionBackorder {
+  setUpClass()
+  test_auto_generate_backorder()
+  test_backorder_name()
+  test_backorder_name_with_multiple_backorder()
+  test_backorder_name_without_procurement_group()
+  test_generate_backorder_multi_type()
+  test_no_tracking_1()
+  test_no_tracking_2()
+  test_no_tracking_pbm_1()
+  test_no_tracking_pbm_sam_1()
+  test_reservation_method_w_mo()
+  test_rounding_backorder()
+  test_split_draft()
+  test_split_merge()
+  test_split_mo()
+  test_split_mo_partially_available()
+  test_tracking_backorder_immediate_production_serial_1()
+  test_tracking_backorder_series_lot_1()
+  test_tracking_backorder_series_lot_2()
+  test_tracking_backorder_series_serial_1()
+  test_uom_backorder()
+}
+class "TestMrpReplenish" as odoo_src.odoo.addons.mrp.tests.test_replenish.TestMrpReplenish {
+  warehouse
+  test_global_visibility_days_affect_lead_time_manufacture_rule()
+  test_mrp_delay()
+  test_mrp_delay_bom()
+  test_mrp_orderpoint_leadtime()
+  test_orderpoint_onchange_reordering_rule()
+  test_replenish_from_scrap()
+  test_replenish_multi_level_bom_with_pbm_sam()
+  test_scrap_replenishment_reassigns_required_qty_to_component()
+}
+class "TestMrpSerialMassProduce" as odoo_src.odoo.addons.mrp.tests.test_smp.TestMrpSerialMassProduce {
+  test_mass_produce_with_tracked_product()
+  test_mass_produce_with_tracked_product_2()
+  test_smp_produce_all()
+  test_smp_produce_all_but_one()
+  test_smp_produce_complex()
+  test_smp_produce_with_consumable_component()
+  test_smp_serial()
+  test_smp_two_steps()
+}
+class "TestMrpSerialMassProducePerformance" as odoo_src.odoo.addons.mrp.tests.test_performance.TestMrpSerialMassProducePerformance {
+  test_smp_performance()
+}
+class "TestMrpStockReports" as odoo_src.odoo.addons.mrp.tests.test_stock_report.TestMrpStockReports {
+  test_kit_packaging_delivery_slip()
+  test_mo_overview()
+  test_mo_overview_same_component()
+  test_multi_step_component_forecast_availability()
+  test_overview_with_component_also_as_byproduct()
+  test_report_forecast_1_mo_count()
+  test_report_forecast_2_production_backorder()
+  test_report_forecast_3_report_line_corresponding_to_mo_highlighted()
+  test_report_price_variants()
+  test_subkit_in_delivery_slip()
+}
+class "TestMrpWorkorderBackorder" as odoo_src.odoo.addons.mrp.tests.test_backorder.TestMrpWorkorderBackorder {
+  setUpClass()
+  test_kit_bom_order_splitting()
+  test_mrp_backorder_operations()
+}
+class "TestMultistepManufacturingWarehouse" as odoo_src.odoo.addons.mrp.tests.test_warehouse_multistep_manufacturing.TestMultistepManufacturingWarehouse {
+  wood_product
+  setUpClass()
+  test_00_create_warehouse()
+  test_01_warehouse_twostep_manufacturing()
+  test_02_warehouse_twostep_manufacturing()
+  test_2_steps_and_additional_moves()
+  test_3_steps_and_byproduct()
+  test_3_steps_manufacturing_forecast()
+  test_cancel_propagation()
+  test_child_parent_relationship_on_backorder_creation()
+  test_component_and_byproduct_on_transfers()
+  test_manufacturing_3_steps()
+  test_manufacturing_3_steps_flexible()
+  test_manufacturing_3_steps_trigger_reordering_rules()
+  test_manufacturing_bom_from_reordering_rules()
+  test_manufacturing_bom_with_repetitions()
+  test_manufacturing_flow()
+  test_no_initial_demand()
+  test_pick_components_uses_shipping_policy_from_picking_type()
+  test_source_location_on_merge_mo_3_steps()
+  test_update_component_qty()
+  test_update_mo_from_bom_forecast()
+}
+class "TestOee" as odoo_src.odoo.addons.mrp.tests.test_oee.TestOee {
+  create_productivity_line(loss_reason, date_start, date_end)
+  test_unset_end_date()
+  test_wrokcenter_oee()
+}
+class "TestProcurement" as odoo_src.odoo.addons.mrp.tests.test_procurement.TestProcurement {
+  warehouse
+  test_auto_assign()
+  test_check_update_qty_mto_chain()
+  test_consecutive_pickings()
+  test_finished_move_cancellation()
+  test_link_date_mo_moves()
+  test_pbm_and_additionnal_components()
+  test_procurement()
+  test_procurement_2()
+  test_procurement_3()
+  test_procurement_with_empty_bom()
+  test_rr_with_dependance_between_bom()
+  test_several_boms_same_finished_product()
+  test_update_merged_mo_component_qty()
+  test_update_mo_component_qty()
+}
+class "TestTourBoM" as odoo_src.odoo.addons.mrp.tests.test_bom.TestTourBoM {
+  setUpClass()
+  test_bom_kit_rounding()
+  test_manufacture_from_bom()
+  test_mrp_bom_product_catalog()
+}
+class "TestTourManualConsumption" as odoo_src.odoo.addons.mrp.tests.test_manual_consumption.TestTourManualConsumption {
+  test_mrp_manual_consumption_02()
+}
+class "TestTourMrpOrder" as odoo_src.odoo.addons.mrp.tests.test_order.TestTourMrpOrder {
+  test_manufacturing_and_byproduct_sm_to_sml_synchronization()
+  test_mrp_order_product_catalog()
+}
+class "TestTraceability" as odoo_src.odoo.addons.mrp.tests.test_traceability.TestTraceability {
+  TRACKING_TYPES : list
+  setUpClass()
+  test_assign_stock_move_date_on_mark_done()
+  test_generate_serial_button()
+  test_generate_serial_button_sequence()
+  test_last_delivery_traceability()
+  test_produce_consume_unbuild_all_and_consume()
+  test_produce_consume_unbuild_and_consume()
+  test_reuse_unbuilt_usn()
+  test_tracked_and_manufactured_component()
+  test_tracking_on_byproducts()
+  test_tracking_types_on_mo()
+  test_unbuild_scrap_and_unscrap_tracked_component()
+  test_use_lot_already_consumed()
+}
+class "TestUnbuild" as odoo_src.odoo.addons.mrp.tests.test_unbuild.TestUnbuild {
+  setUpClass()
+  test_compute_location_id()
+  test_compute_product_uom_id()
+  test_production_links_with_non_tracked_lots()
+  test_putaway_strategy_with_unbuild()
+  test_unbuild_and_multilocations()
+  test_unbuild_consigned_comp()
+  test_unbuild_decimal_qty()
+  test_unbuild_different_qty()
+  test_unbuild_less_quantity_consumed()
+  test_unbuild_mo_different_qty()
+  test_unbuild_mo_with_tracked_product_and_component()
+  test_unbuild_similar_tracked_components()
+  test_unbuild_standart()
+  test_unbuild_with_consumed_lot()
+  test_unbuild_with_duplicate_move()
+  test_unbuild_with_everything_tracked()
+  test_unbuild_with_final_lot()
+  test_unbuild_with_routes()
+  test_use_unbuilt_sn_in_mo()
+}
+class "TestWarehouseMrp" as odoo_src.odoo.addons.mrp.tests.test_stock.TestWarehouseMrp {
+  new_mo_laptop()
+  setUpClass()
+  test_backorder_unpacking()
+  test_manufacturing_route()
+  test_manufacturing_rule_other_dest()
+  test_manufacturing_scrap()
+  test_multi_warehouse_resupply()
+  test_produce_with_zero_available_qty()
+  test_putaway_after_manufacturing_3()
+  test_unarchive_mto_route_active_needed_rules_only()
+}
+class "TestWorkcenterOverview" as odoo_src.odoo.addons.mrp.tests.test_workcenter.TestWorkcenterOverview {
+  test_workcenter_graph_data()
+}
+class "WorkcenterTag" as odoo_src.odoo.addons.mrp.models.mrp_workcenter.WorkcenterTag {
+  color
+  name
+}
+odoo_src.odoo.addons.mrp.tests.test_consume_component.TestConsumeComponent --|> odoo_src.odoo.addons.mrp.tests.test_consume_component.TestConsumeComponentCommon
+odoo_src.odoo.addons.mrp.tests.test_stock.TestKitPicking --|> odoo_src.odoo.addons.mrp.tests.common.TestMrpCommon
+odoo_src.odoo.addons.mrp.tests.test_stock.TestWarehouseMrp --|> odoo_src.odoo.addons.mrp.tests.common.TestMrpCommon
+odoo_src.odoo.addons.mrp.tests.test_workcenter.TestWorkcenterOverview --|> odoo_src.odoo.addons.mrp.tests.common.TestMrpCommon
+@enduml

@@ -1,0 +1,30 @@
+@startuml classes_l10n_dk_oioubl
+set namespaceSeparator none
+class "AccountEdiXmlOIOUBL201" as odoo_src.odoo.addons.l10n_dk_oioubl.models.account_edi_xml_oioubl_201.AccountEdiXmlOIOUBL201 {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_dk_oioubl.models.account_move.AccountMove {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_dk_oioubl.models.res_partner.ResPartner {
+  invoice_edi_format
+}
+class "TestUBLDK" as odoo_src.odoo.addons.l10n_dk_oioubl.tests.test_xml_oioubl_dk.TestUBLDK {
+  create_post_and_send_invoice(partner, move_type)
+  import_bill_xml_file_in_purchase_journal(file_path)
+  setUpClass()
+  test_export_credit_note_two_line_partner_dk()
+  test_export_credit_note_two_line_partner_fr()
+  test_export_invoice_company_and_partner_without_country_code_prefix_in_vat()
+  test_export_invoice_two_line_foreign_partner_be()
+  test_export_invoice_two_line_foreign_partner_fr()
+  test_export_invoice_two_line_partner_dk()
+  test_export_partner_fr_without_siret_should_raise_an_error()
+  test_oioubl_export_partner_without_vat_number()
+  test_oioubl_export_should_raise_an_error_when_company_building_number_is_missing()
+  test_oioubl_export_should_raise_an_error_when_partner_building_number_is_missing()
+  test_oioubl_export_should_still_be_valid_when_currency_has_more_precision_digit()
+  test_oioubl_import_exemple_file_1()
+  test_oioubl_import_exemple_file_2()
+  test_oioubl_import_exemple_file_3()
+  test_oioubl_import_exemple_file_4()
+}
+@enduml

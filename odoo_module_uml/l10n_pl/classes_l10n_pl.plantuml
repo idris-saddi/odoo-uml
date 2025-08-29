@@ -1,0 +1,26 @@
+@startuml classes_l10n_pl
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_pl.models.template_pl.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_pl.models.account_move.AccountMove {
+  l10n_pl_vat_b_mpv_prowizja
+  l10n_pl_vat_b_spv
+  l10n_pl_vat_b_spv_dostawa
+}
+class "Company" as odoo_src.odoo.addons.l10n_pl.models.res_company.Company {
+  l10n_pl_reports_tax_office_id
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_pl.models.product.ProductTemplate {
+  l10n_pl_vat_gtu
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_pl.models.res_config_settings.ResConfigSettings {
+  l10n_pl_reports_tax_office_id
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_pl.models.res_partner.ResPartner {
+  l10n_pl_links_with_customer
+}
+class "TaxOffice" as odoo_src.odoo.addons.l10n_pl.models.l10n_pl_tax_office.TaxOffice {
+  code
+  name
+}
+@enduml

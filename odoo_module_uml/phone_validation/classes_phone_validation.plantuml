@@ -1,0 +1,65 @@
+@startuml classes_phone_validation
+set namespaceSeparator none
+class "BaseModel" as odoo_src.odoo.addons.phone_validation.models.models.BaseModel {
+}
+class "Partner" as odoo_src.odoo.addons.phone_validation.models.res_partner.Partner {
+  mobile
+  phone
+}
+class "PhoneBlackList" as odoo_src.odoo.addons.phone_validation.models.phone_blacklist.PhoneBlackList {
+  active
+  number
+  action_add()
+  add(number, message)
+  create(values)
+  phone_action_blacklist_remove()
+  remove(number, message)
+  write(values)
+}
+class "PhoneBlacklistRemove" as odoo_src.odoo.addons.phone_validation.wizard.phone_blacklist_remove.PhoneBlacklistRemove {
+  phone
+  reason
+  action_unblacklist_apply()
+}
+class "PhoneInputOutputLine" as odoo_src.odoo.addons.phone_validation.tests.test_phonenumbers_patch.TestPhonenumbersPatch.PhoneInputOutputLine {
+  gt_country_code : Optional[int]
+  gt_italian_leading_zero : Optional[bool]
+  gt_national_number : Optional[int]
+  gt_number_of_leading_zeros : Optional[int]
+  number : str
+  region : str
+}
+class "PhoneMixin" as odoo_src.odoo.addons.phone_validation.models.mail_thread_phone.PhoneMixin {
+  mobile_blacklisted
+  phone_blacklisted
+  phone_mobile_search
+  phone_sanitized
+  phone_sanitized_blacklisted
+  init()
+  phone_action_blacklist_remove()
+}
+class "TestPhonenumbers" as odoo_src.odoo.addons.phone_validation.tests.test_phonenumbers.TestPhonenumbers {
+  test_country_code_falsy()
+  test_get_region_data_for_number()
+  test_phone_format_e164_brazil()
+  test_phone_format_e164_mexico()
+  test_phone_format_error()
+}
+class "TestPhonenumbersBlacklist" as odoo_src.odoo.addons.phone_validation.tests.test_phonenumbers_blacklist.TestPhonenumbersBlacklist {
+  test_sanitize_search()
+}
+class "TestPhonenumbersPatch" as odoo_src.odoo.addons.phone_validation.tests.test_phonenumbers_patch.TestPhonenumbersPatch {
+  test_region_BR_monkey_patch()
+  test_region_CI_monkey_patch()
+  test_region_CO_monkey_patch()
+  test_region_IL_monkey_patch()
+  test_region_KE_monkey_patch()
+  test_region_MA_monkey_patch()
+  test_region_MU_monkey_patch()
+  test_region_MX_monkey_patch()
+  test_region_PA_monkey_patch()
+  test_region_SN_monkey_patch()
+}
+class "Users" as odoo_src.odoo.addons.phone_validation.models.res_users.Users {
+}
+@enduml

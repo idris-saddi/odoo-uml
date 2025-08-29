@@ -1,0 +1,15 @@
+@startuml classes_l10n_fr_facturx_chorus_pro
+set namespaceSeparator none
+class "AccountEdiXmlUBLBIS3" as odoo_src.odoo.addons.l10n_fr_facturx_chorus_pro.models.account_edi_xml_ubl_bis3.AccountEdiXmlUBLBIS3 {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_fr_facturx_chorus_pro.models.account_move.AccountMove {
+  buyer_reference
+  contract_reference
+  purchase_order_reference
+}
+class "TestChorusProXml" as odoo_src.odoo.addons.l10n_fr_facturx_chorus_pro.tests.test_chorus_pro_xml.TestChorusProXml {
+  setUpClass()
+  test_export_invoice_chorus_pro()
+  test_export_invoice_chorus_pro_new()
+}
+@enduml

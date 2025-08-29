@@ -1,0 +1,8 @@
+@startuml classes_l10n_it_edi_ndd_account_dn
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_edi_ndd_account_dn.models.account_move.AccountMove {
+}
+class "TestItDocumentType" as odoo_src.odoo.addons.l10n_it_edi_ndd_account_dn.tests.test_it_document_type.TestItDocumentType {
+  test_l10n_it_edi_debit_note_document_type()
+}
+@enduml

@@ -1,0 +1,22 @@
+@startuml classes_hr_timesheet_attendance
+set namespaceSeparator none
+class "IrUiMenu" as odoo_src.odoo.addons.hr_timesheet_attendance.models.ir_ui_menu.IrUiMenu {
+}
+class "TestTimesheetAttendance" as odoo_src.odoo.addons.hr_timesheet_attendance.tests.test_timesheet_attendance.TestTimesheetAttendance {
+  setUpClass()
+  test_timesheet_attendance_report()
+}
+class "TimesheetAttendance" as odoo_src.odoo.addons.hr_timesheet_attendance.report.hr_timesheet_attendance_report.TimesheetAttendance {
+  attendance_cost
+  company_id
+  cost_difference
+  date
+  employee_id
+  timesheets_cost
+  total_attendance
+  total_difference
+  total_timesheet
+  init()
+  read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+}
+@enduml

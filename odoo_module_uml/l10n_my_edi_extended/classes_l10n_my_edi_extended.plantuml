@@ -1,0 +1,49 @@
+@startuml classes_l10n_my_edi_extended
+set namespaceSeparator none
+class "AccountEdiXmlUBLMyInvoisMY" as odoo_src.odoo.addons.l10n_my_edi_extended.models.account_edi_xml_ubl_my.AccountEdiXmlUBLMyInvoisMY {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_my_edi_extended.models.account_move.AccountMove {
+  l10n_my_edi_invoice_long_id
+  l10n_my_invoice_need_edi
+  action_invoice_sent()
+  action_l10n_my_edi_send_invoice()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_my_edi_extended.models.account_move_line.AccountMoveLine {
+  l10n_my_edi_classification_code
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_my_edi_extended.models.account_move_send.AccountMoveSend {
+}
+class "L10nMyEDITestFileGeneration" as odoo_src.odoo.addons.l10n_my_edi_extended.tests.test_file_generation.L10nMyEDITestFileGeneration {
+  setUpClass()
+  test_07_self_billing()
+  test_08_refund_note()
+  test_09_credit_note()
+}
+class "L10nMyEDITestNewSubmission" as odoo_src.odoo.addons.l10n_my_edi_extended.tests.test_new_submissions_flow.L10nMyEDITestNewSubmission {
+  get_submission_status_count : int
+  submission_count : int
+  submission_invoice
+  submission_status_count : int
+  setUpClass()
+  test_01_new_basic_submission()
+  test_02_new_failed_submission()
+  test_03_new_failed_document_submission()
+  test_04_new_cancellation()
+  test_05_new_cancellation_failures()
+  test_06_new_invalid_reset()
+  test_07_new_pending_submission()
+  test_08_new_mass_submission()
+  test_09_new_fetch_status()
+  test_10_new_full_rejection_flow_invoice()
+  test_11_qr_code_generation()
+  test_12_multiple_moves_with_one_failed_submission()
+  test_13_multiple_cron_runs()
+}
+class "PortalAccountMy" as odoo_src.odoo.addons.l10n_my_edi_extended.controllers.portal.PortalAccountMy {
+  account(redirect)
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_my_edi_extended.models.res_partner.ResPartner {
+  l10n_my_edi_industrial_classification
+  l10n_my_edi_malaysian_tin
+}
+@enduml

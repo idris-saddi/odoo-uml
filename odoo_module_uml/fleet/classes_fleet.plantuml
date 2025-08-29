@@ -1,0 +1,228 @@
+@startuml classes_fleet
+set namespaceSeparator none
+class "FleetReport" as odoo_src.odoo.addons.fleet.report.fleet_report.FleetReport {
+  company_id
+  cost
+  cost_type
+  date_start
+  driver_id
+  fuel_type
+  name
+  vehicle_id
+  vehicle_type
+  init()
+}
+class "FleetServiceType" as odoo_src.odoo.addons.fleet.models.fleet_service_type.FleetServiceType {
+  category
+  name
+}
+class "FleetVehicle" as odoo_src.odoo.addons.fleet.models.fleet_vehicle.FleetVehicle {
+  acquisition_date
+  active
+  brand_id
+  car_value
+  category_id
+  co2
+  co2_standard
+  color
+  company_id
+  contract_count
+  contract_renewal_due_soon
+  contract_renewal_overdue
+  contract_state
+  country_code
+  country_id
+  currency_id
+  description
+  doors
+  driver_id
+  electric_assistance
+  first_contract_date
+  frame_size
+  frame_type
+  fuel_type
+  future_driver_id
+  history_count
+  horsepower
+  horsepower_tax
+  image_128
+  license_plate
+  location
+  log_contracts
+  log_drivers
+  log_services
+  manager_id
+  model_id
+  model_year
+  name
+  net_car_value
+  next_assignation_date
+  odometer
+  odometer_count
+  odometer_unit
+  order_date
+  plan_to_change_bike
+  plan_to_change_car
+  power
+  power_unit
+  residual_value
+  seats
+  service_activity
+  service_count
+  state_id
+  tag_ids
+  trailer_hook
+  transmission
+  vehicle_properties
+  vehicle_range
+  vehicle_type
+  vin_sn
+  write_off_date
+  act_show_log_cost()
+  action_accept_driver_change()
+  action_send_email()
+  create(vals_list)
+  create_driver_history(vals)
+  open_assignation_logs()
+  return_action_to_open()
+  write(vals)
+}
+class "FleetVehicleAssignationLog" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_assignation_log.FleetVehicleAssignationLog {
+  date_end
+  date_start
+  driver_id
+  vehicle_id
+}
+class "FleetVehicleLogContract" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_log_contract.FleetVehicleLogContract {
+  active
+  amount
+  company_id
+  cost_frequency
+  cost_generated
+  cost_subtype_id
+  currency_id
+  date
+  days_left
+  expiration_date
+  expires_today
+  has_open_contract
+  ins_ref
+  insurer_id
+  name
+  notes
+  purchaser_id
+  service_ids
+  start_date
+  state
+  user_id
+  vehicle_id
+  action_close()
+  action_draft()
+  action_expire()
+  action_open()
+  compute_next_year_date(strdate)
+  run_scheduler()
+  scheduler_manage_contract_expiration()
+  write(vals)
+}
+class "FleetVehicleLogServices" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_log_services.FleetVehicleLogServices {
+  active
+  amount
+  company_id
+  currency_id
+  date
+  description
+  inv_ref
+  manager_id
+  notes
+  odometer
+  odometer_id
+  odometer_unit
+  purchaser_id
+  service_type_id
+  state
+  vehicle_id
+  vendor_id
+  create(vals_list)
+}
+class "FleetVehicleModel" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_model.FleetVehicleModel {
+  active
+  brand_id
+  category_id
+  co2_standard
+  color
+  default_co2
+  default_fuel_type
+  doors
+  electric_assistance
+  horsepower
+  horsepower_tax
+  image_128
+  model_year
+  name
+  power
+  power_unit
+  seats
+  trailer_hook
+  transmission
+  vehicle_count
+  vehicle_properties_definition
+  vehicle_range
+  vehicle_type
+  vendors
+  action_model_vehicle()
+}
+class "FleetVehicleModelBrand" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_model_brand.FleetVehicleModelBrand {
+  active
+  image_128
+  model_count
+  model_ids
+  name
+  action_brand_model()
+}
+class "FleetVehicleModelCategory" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_model_category.FleetVehicleModelCategory {
+  name
+  sequence
+}
+class "FleetVehicleOdometer" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_odometer.FleetVehicleOdometer {
+  date
+  driver_id
+  name
+  unit
+  value
+  vehicle_id
+}
+class "FleetVehicleSendMail" as odoo_src.odoo.addons.fleet.wizard.fleet_vehicle_send_mail.FleetVehicleSendMail {
+  attachment_ids
+  author_id
+  render_model : str
+  template_id
+  vehicle_ids
+  action_save_as_template()
+  action_send()
+}
+class "FleetVehicleState" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_state.FleetVehicleState {
+  name
+  sequence
+}
+class "FleetVehicleTag" as odoo_src.odoo.addons.fleet.models.fleet_vehicle_tag.FleetVehicleTag {
+  color
+  name
+}
+class "MailActivityType" as odoo_src.odoo.addons.fleet.models.mail_activity_type.MailActivityType {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.fleet.models.res_config_settings.ResConfigSettings {
+  delay_alert_contract
+}
+class "ResPartner" as odoo_src.odoo.addons.fleet.models.res_partner.ResPartner {
+  plan_to_change_bike
+  plan_to_change_car
+}
+class "TestFleet" as odoo_src.odoo.addons.fleet.tests.test_access_rights.TestFleet {
+  test_manager_create_vehicle()
+}
+class "TestFleet" as odoo_src.odoo.addons.fleet.tests.test_overdue.TestFleet {
+  test_exclude_resolved_vehicles_from_overdue()
+  test_search_renewal()
+}
+@enduml

@@ -1,0 +1,21 @@
+@startuml classes_l10n_be
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_be.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_be.models.template_be_comp.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_be.models.template_be.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_be.models.template_be_asso.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_be.models.account_journal.AccountJournal {
+  invoice_reference_model
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_be.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_be.models.account_tax.AccountTax {
+  tax_scope
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_be.models.res_partner.ResPartner {
+}
+@enduml

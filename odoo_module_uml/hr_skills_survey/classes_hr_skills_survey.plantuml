@@ -1,0 +1,18 @@
+@startuml classes_hr_skills_survey
+set namespaceSeparator none
+class "ResumeLine" as odoo_src.odoo.addons.hr_skills_survey.models.hr_resume_line.ResumeLine {
+  department_id
+  display_type
+  expiration_status
+  survey_id
+}
+class "SurveySurvey" as odoo_src.odoo.addons.hr_skills_survey.models.survey_survey.SurveySurvey {
+  certification_validity_months
+}
+class "SurveyUserInput" as odoo_src.odoo.addons.hr_skills_survey.models.survey_user.SurveyUserInput {
+}
+class "TestCertificationFlow" as odoo_src.odoo.addons.hr_skills_survey.tests.test_certification_flow.TestCertificationFlow {
+  setUpClass()
+  test_resume_line_creation()
+}
+@enduml

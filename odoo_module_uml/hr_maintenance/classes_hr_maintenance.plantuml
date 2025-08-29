@@ -1,0 +1,33 @@
+@startuml classes_hr_maintenance
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.hr_maintenance.models.res_users.Employee {
+  equipment_count
+  equipment_ids
+}
+class "HrDepartureWizard" as odoo_src.odoo.addons.hr_maintenance.wizard.hr_departure_wizard.HrDepartureWizard {
+  unassign_equipment
+  action_register_departure()
+}
+class "MaintenanceEquipment" as odoo_src.odoo.addons.hr_maintenance.models.equipment.MaintenanceEquipment {
+  assign_date
+  department_id
+  employee_id
+  equipment_assign_to
+  owner_user_id
+  create(vals_list)
+  write(vals)
+}
+class "MaintenanceRequest" as odoo_src.odoo.addons.hr_maintenance.models.equipment.MaintenanceRequest {
+  employee_id
+  equipment_id
+  owner_user_id
+  create(vals_list)
+  message_new(msg, custom_values)
+  write(vals)
+}
+class "Users" as odoo_src.odoo.addons.hr_maintenance.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  equipment_count
+  equipment_ids
+}
+@enduml

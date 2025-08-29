@@ -1,0 +1,11 @@
+@startuml classes_l10n_co
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_co.models.template_co.AccountChartTemplate {
+}
+class "L10nCoDocumentType" as odoo_src.odoo.addons.l10n_co.models.l10n_latam_identification_type.L10nCoDocumentType {
+  l10n_co_document_code
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_co.models.res_partner.ResPartner {
+  check_vat()
+}
+@enduml

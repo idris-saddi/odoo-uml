@@ -1,0 +1,139 @@
+@startuml classes_analytic
+set namespaceSeparator none
+class "AccountAnalyticAccount" as odoo_src.odoo.addons.analytic.models.analytic_account.AccountAnalyticAccount {
+  active
+  balance
+  code
+  color
+  company_id
+  credit
+  currency_id
+  debit
+  line_ids
+  name
+  partner_id
+  plan_id
+  root_plan_id
+  copy_data(default)
+  web_read(specification: dict[str, dict]) -> list[dict]
+  write(vals)
+}
+class "AccountAnalyticApplicability" as odoo_src.odoo.addons.analytic.models.analytic_plan.AccountAnalyticApplicability {
+  analytic_plan_id
+  applicability
+  business_domain
+  company_id
+}
+class "AccountAnalyticDistributionModel" as odoo_src.odoo.addons.analytic.models.analytic_distribution_model.AccountAnalyticDistributionModel {
+  company_id
+  partner_category_id
+  partner_id
+  sequence
+  action_read_distribution_model()
+}
+class "AccountAnalyticLine" as odoo_src.odoo.addons.analytic.models.analytic_line.AccountAnalyticLine {
+  amount
+  analytic_distribution
+  analytic_precision
+  category
+  company_id
+  currency_id
+  date
+  name
+  partner_id
+  product_uom_category_id
+  product_uom_id
+  unit_amount
+  user_id
+}
+class "AccountAnalyticPlan" as odoo_src.odoo.addons.analytic.models.analytic_plan.AccountAnalyticPlan {
+  account_count
+  account_ids
+  all_account_count
+  applicability_ids
+  children_count
+  children_ids
+  color
+  complete_name
+  default_applicability
+  description
+  name
+  parent_id
+  parent_path
+  root_id
+  sequence
+  action_view_analytical_accounts()
+  action_view_children_plans()
+  get_relevant_plans()
+  unlink()
+  write(vals)
+}
+class "AnalyticCommon" as odoo_src.odoo.addons.analytic.tests.common.AnalyticCommon {
+  get_default_groups()
+  setUpClass()
+  setup_independent_company()
+  setup_independent_user()
+}
+class "AnalyticMixin" as odoo_src.odoo.addons.analytic.models.analytic_mixin.AnalyticMixin {
+  analytic_distribution
+  analytic_precision
+  distribution_analytic_account_ids
+  create(vals_list)
+  filtered_domain(domain)
+  init()
+  mapped(func)
+  write(vals)
+}
+class "AnalyticPlanFields" as odoo_src.odoo.addons.analytic.models.analytic_line.AnalyticPlanFields {
+  account_id
+  auto_account_id
+  fields_get(allfields, attributes)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.analytic.models.res_config_settings.ResConfigSettings {
+  group_analytic_accounting
+}
+class "TestAnalyticAccount" as odoo_src.odoo.addons.analytic.tests.test_analytic_account.TestAnalyticAccount {
+  analytic_plan
+  analytic_sub_plan
+  analytic_sub_sub_plan
+  setUpClass()
+  test_aggregates()
+  test_all_account_count_with_subplans()
+  test_analytic_account_branches()
+  test_analytic_distribution_model()
+  test_analytic_plan_account_child()
+  test_change_parent_plan()
+  test_change_parent_plan_conflict()
+  test_change_parent_plan_with_intermediate()
+  test_change_plan()
+  test_change_plan_conflict()
+  test_change_plan_no_conflict()
+  test_create_analytic_with_minimal_access()
+  test_get_plans_with_option()
+  test_get_plans_without_options()
+  test_order_analytic_distribution_model()
+}
+class "TestAnalyticDynamicUpdate" as odoo_src.odoo.addons.analytic.tests.test_analytic_dynamic_update.TestAnalyticDynamicUpdate {
+  test_configurations()
+}
+class "TestAnalyticMixin" as odoo_src.odoo.addons.analytic.tests.test_analytic_mixin.TestAnalyticMixin {
+  adm_com_marketing_ad
+  adm_commercial_ad
+  adm_rd_ad
+  adm_sales_admin_ad
+  adm_without_ad
+  adm_without_ad_1
+  setUpClass()
+  test_filtered_domain()
+}
+class "TestAnalyticPlanOperations" as odoo_src.odoo.addons.analytic.tests.test_plan_operations.TestAnalyticPlanOperations {
+  test_delete_plan()
+  test_delete_plan_with_view()
+  test_delete_subplan()
+  test_demote_plan()
+  test_promote_subplan()
+  test_rename_plan()
+  test_validate_company_plans()
+  test_validate_deleted_account()
+}
+@enduml

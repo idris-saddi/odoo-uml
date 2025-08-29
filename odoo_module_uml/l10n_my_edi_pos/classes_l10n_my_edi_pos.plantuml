@@ -1,0 +1,79 @@
+@startuml classes_l10n_my_edi_pos
+set namespaceSeparator none
+class "AccountEdiXmlUBLMyInvoisMY" as odoo_src.odoo.addons.l10n_my_edi_pos.models.account_edi_xml_ubl_my.AccountEdiXmlUBLMyInvoisMY {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_my_edi_pos.models.account_tax.AccountTax {
+  l10n_my_tax_exemption_reason
+}
+class "MyInvoisConsolidateInvoiceWizard" as odoo_src.odoo.addons.l10n_my_edi_pos.wizard.myinvois_consolidate_invoice_wizard.MyInvoisConsolidateInvoiceWizard {
+  date_from
+  date_to
+  button_consolidate_orders()
+}
+class "MyInvoisDocument" as odoo_src.odoo.addons.l10n_my_edi_pos.models.myinvois_document.MyInvoisDocument {
+  active
+  company_currency_id
+  company_id
+  currency_id
+  invoice_ids
+  myinvois_custom_form_reference
+  myinvois_document_long_id
+  myinvois_error_document_hash
+  myinvois_exemption_reason
+  myinvois_external_uuid
+  myinvois_file
+  myinvois_file_id
+  myinvois_issuance_date
+  myinvois_retry_at
+  myinvois_state
+  myinvois_submission_uid
+  myinvois_validation_time
+  name
+  action_cancel_submission()
+  action_generate_xml_file()
+  action_submit_to_myinvois()
+  action_update_submission_status()
+}
+class "MyInvoisDocumentPoS" as odoo_src.odoo.addons.l10n_my_edi_pos.models.myinvois_document_pos.MyInvoisDocumentPoS {
+  linked_order_count
+  pos_config_id
+  pos_order_date_range
+  pos_order_ids
+  action_open_consolidate_invoice_wizard()
+  action_view_linked_orders()
+}
+class "MyInvoisStatusUpdateWizard" as odoo_src.odoo.addons.l10n_my_edi_pos.wizard.myinvois_status_update_wizard.MyInvoisStatusUpdateWizard {
+  document_id
+  new_status
+  reason
+  button_request_update()
+}
+class "PosOrder" as odoo_src.odoo.addons.l10n_my_edi_pos.models.pos_order.PosOrder {
+  consolidated_invoice_ids
+  action_show_consolidated_invoice()
+}
+class "TestMyInvoisPoS" as odoo_src.odoo.addons.l10n_my_edi_pos.tests.test_myinvois_pos.TestMyInvoisPoS {
+  config
+  setUpClass()
+  test_consolidate_invoices()
+  test_consolidate_invoices_export_xml()
+  test_consolidate_invoices_from_multiple_configs()
+  test_consolidate_invoices_in_foreign_currency()
+  test_consolidate_invoices_limit()
+  test_consolidate_invoices_refund_export_xml()
+  test_consolidate_invoices_refund_with_customer()
+  test_consolidate_invoices_with_different_discounts()
+  test_consolidate_invoices_with_split()
+  test_delete_consolidated_invoice()
+  test_invoice_from_pos()
+  test_nothing_to_consolidate()
+  test_refund_constrains_consolidated_invoice()
+  test_refund_constrains_not_submitted()
+  test_refund_constrains_regular_invoice()
+  test_refund_order()
+  test_refund_order_partially()
+  test_send_consolidated_invoice()
+  test_send_multiple_consolidated_invoice()
+  with_pos_session()
+}
+@enduml

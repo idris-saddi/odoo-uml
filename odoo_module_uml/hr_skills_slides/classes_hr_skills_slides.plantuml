@@ -1,0 +1,18 @@
+@startuml classes_hr_skills_slides
+set namespaceSeparator none
+class "Channel" as odoo_src.odoo.addons.hr_skills_slides.models.slide_channel.Channel {
+}
+class "Employee" as odoo_src.odoo.addons.hr_skills_slides.models.hr_employee.Employee {
+  courses_completion_text
+  has_subscribed_courses
+  subscribed_courses
+  action_open_courses()
+}
+class "ResumeLine" as odoo_src.odoo.addons.hr_skills_slides.models.hr_resume_line.ResumeLine {
+  channel_id
+  course_url
+  display_type
+}
+class "SlideChannelPartner" as odoo_src.odoo.addons.hr_skills_slides.models.slide_channel.SlideChannelPartner {
+}
+@enduml

@@ -1,0 +1,54 @@
+@startuml classes_hr_work_entry
+set namespaceSeparator none
+class "Contacts" as odoo_src.odoo.addons.hr_work_entry.models.hr_work_entry.Contacts {
+  active
+  employee_id
+  user_id
+}
+class "HrEmployee" as odoo_src.odoo.addons.hr_work_entry.models.hr_employee.HrEmployee {
+  has_work_entries
+  action_open_work_entries(initial_date)
+}
+class "HrWorkEntry" as odoo_src.odoo.addons.hr_work_entry.models.hr_work_entry.HrWorkEntry {
+  active
+  code
+  color
+  company_id
+  conflict
+  country_id
+  date_start
+  date_stop
+  department_id
+  duration
+  employee_id
+  external_code
+  name
+  state
+  work_entry_type_id
+  action_validate()
+  create(vals_list)
+  init()
+  unlink()
+  write(vals)
+}
+class "HrWorkEntryType" as odoo_src.odoo.addons.hr_work_entry.models.hr_work_entry.HrWorkEntryType {
+  active
+  code
+  color
+  country_code
+  country_id
+  external_code
+  name
+  sequence
+}
+class "ResourceCalendarAttendance" as odoo_src.odoo.addons.hr_work_entry.models.resource.ResourceCalendarAttendance {
+  work_entry_type_id
+}
+class "ResourceCalendarLeave" as odoo_src.odoo.addons.hr_work_entry.models.resource.ResourceCalendarLeave {
+  work_entry_type_id
+}
+class "TestHrWorkEntry" as odoo_src.odoo.addons.hr_work_entry.tests.test_hr_work_entry.TestHrWorkEntry {
+  setUpClass()
+  test_work_entry_company_from_employee()
+}
+@enduml

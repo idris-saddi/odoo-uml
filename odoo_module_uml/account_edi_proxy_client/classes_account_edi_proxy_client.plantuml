@@ -1,0 +1,26 @@
+@startuml classes_account_edi_proxy_client
+set namespaceSeparator none
+class "AccountEdiProxyClientUser" as odoo_src.odoo.addons.account_edi_proxy_client.models.account_edi_proxy_user.AccountEdiProxyClientUser {
+  active
+  company_id
+  edi_identification
+  edi_mode
+  id_client
+  private_key_id
+  proxy_type
+  refresh_token
+}
+class "<color:red>AccountEdiProxyError</color>" as odoo_src.odoo.addons.account_edi_proxy_client.models.account_edi_proxy_user.AccountEdiProxyError {
+  code
+  message : bool
+}
+class "Key" as odoo_src.odoo.addons.account_edi_proxy_client.models.key.Key {
+}
+class "OdooEdiProxyAuth" as odoo_src.odoo.addons.account_edi_proxy_client.models.account_edi_proxy_auth.OdooEdiProxyAuth {
+  id_client
+  refresh_token
+}
+class "ResCompany" as odoo_src.odoo.addons.account_edi_proxy_client.models.res_company.ResCompany {
+  account_edi_proxy_client_ids
+}
+@enduml

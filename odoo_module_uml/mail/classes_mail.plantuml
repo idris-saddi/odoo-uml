@@ -1,0 +1,1580 @@
+@startuml classes_mail
+set namespaceSeparator none
+class "ActWindowView" as odoo_src.odoo.addons.mail.models.ir_action_act_window.ActWindowView {
+  view_mode
+}
+class "ActivityScheduleCase" as odoo_src.odoo.addons.mail.tests.test_mail_activity.ActivityScheduleCase {
+  activity_create_mocked
+  assertActivitiesFromPlan(plan, record, expected_deadlines, expected_responsible)
+  assertActivityCreatedOnRecord(record, activity_values)
+  assertActivityDoneOnRecord(record, activity_type)
+  assertMessagesFromPlan(plan, record, expected_deadlines, expected_responsible)
+  assertPlanExecution(plan, records, expected_deadlines, expected_responsible)
+  get_last_activities(on_record, limit)
+  reverse_record_set(records)
+  setUpClass()
+}
+class "Algorithm" as odoo_src.odoo.addons.mail.tools.jwt.Algorithm {
+  name
+}
+class "Alias" as odoo_src.odoo.addons.mail.models.mail_alias.Alias {
+  alias_bounced_content
+  alias_contact
+  alias_defaults
+  alias_domain
+  alias_domain_id
+  alias_force_thread_id
+  alias_full_name
+  alias_incoming_local
+  alias_model_id
+  alias_name
+  alias_parent_model_id
+  alias_parent_thread_id
+  alias_status
+  display_name
+  create(vals_list)
+  init()
+  open_document()
+  open_parent_document()
+  write(vals)
+}
+class "AliasDomain" as odoo_src.odoo.addons.mail.models.mail_alias_domain.AliasDomain {
+  bounce_alias
+  bounce_email
+  catchall_alias
+  catchall_email
+  company_ids
+  default_from
+  default_from_email
+  name
+  sequence
+  create(vals_list)
+  write(vals)
+}
+class "AliasError" as odoo_src.odoo.addons.mail.tools.alias_error.AliasError {
+  code : str
+  is_config_error : bool
+  message : str
+}
+class "AliasMixin" as odoo_src.odoo.addons.mail.models.mail_alias_mixin.AliasMixin {
+  alias_defaults
+  alias_id
+  alias_name
+}
+class "AliasMixinOptional" as odoo_src.odoo.addons.mail.models.mail_alias_mixin_optional.AliasMixinOptional {
+  ALIAS_WRITEABLE_FIELDS : list
+  alias_defaults
+  alias_domain
+  alias_domain_id
+  alias_email
+  alias_id
+  alias_name
+  copy_data(default)
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "AttachmentController" as odoo_src.odoo.addons.mail.controllers.attachment.AttachmentController {
+  mail_attachment_delete(attachment_id, access_token)
+  mail_attachment_get_zip(file_ids, zip_name)
+  mail_attachment_upload(ufile, thread_id, thread_model, is_pending)
+}
+class "BaseModel" as odoo_src.odoo.addons.mail.models.models.BaseModel {
+  mail_allowed_qweb_expressions()
+}
+class "BaseModuleUninstall" as odoo_src.odoo.addons.mail.wizard.base_module_uninstall.BaseModuleUninstall {
+}
+class "BinaryController" as odoo_src.odoo.addons.mail.controllers.discuss.binary.BinaryController {
+  content_image()
+  discuss_channel_attachment(channel_id, attachment_id, download)
+  fetch_image(channel_id, attachment_id, width, height)
+}
+class "BusListenerMixin" as odoo_src.odoo.addons.mail.models.bus_listener_mixin.BusListenerMixin {
+}
+class "BusListenerMixin" as odoo_src.odoo.addons.mail.models.discuss.bus_listener_mixin.BusListenerMixin {
+}
+class "BusPresence" as odoo_src.odoo.addons.mail.models.bus_presence.BusPresence {
+  guest_id
+  init()
+}
+class "Channel" as odoo_src.odoo.addons.mail.models.discuss.discuss_channel.Channel {
+  MAX_BOUNCE_LIMIT : int
+  active
+  allow_public_upload
+  avatar_128
+  avatar_cache_key
+  channel_member_ids
+  channel_partner_ids
+  channel_type
+  default_display_mode
+  description
+  from_message_id
+  group_ids
+  group_public_id
+  image_128
+  invitation_url
+  is_editable
+  is_member
+  last_interest_dt
+  member_count
+  name
+  parent_channel_id
+  pinned_message_ids
+  rtc_session_ids
+  sfu_channel_uuid
+  sfu_server_url
+  sub_channel_ids
+  uuid
+  action_unfollow()
+  add_members(partner_ids, guest_ids, invite_to_rtc_call, open_chat_window, post_joined_message)
+  channel_change_description(description)
+  channel_create(name, group_id)
+  channel_fetched()
+  channel_get(partners_to, pin, force_open)
+  channel_join()
+  channel_pin(pinned)
+  channel_rename(name)
+  channel_set_custom_name(name)
+  create(vals_list)
+  create_group(partners_to, default_display_mode, name)
+  execute_command_help()
+  execute_command_leave()
+  execute_command_who()
+  get_mention_suggestions(search, limit)
+  init()
+  message_post()
+  set_message_pin(message_id, pinned)
+  write(vals)
+}
+class "ChannelController" as odoo_src.odoo.addons.mail.controllers.discuss.channel.ChannelController {
+  discuss_channel_avatar_update(channel_id, data)
+  discuss_channel_fold(channel_id, state, state_count)
+  discuss_channel_info(channel_id)
+  discuss_channel_join(channel_id)
+  discuss_channel_mark_as_read(channel_id, last_message_id, sync)
+  discuss_channel_mark_as_unread(channel_id, message_id)
+  discuss_channel_members(channel_id, known_member_ids)
+  discuss_channel_messages(channel_id, search_term, before, after, limit, around)
+  discuss_channel_notify_typing(channel_id, is_typing)
+  discuss_channel_pins(channel_id)
+  discuss_channel_sub_channel_create(parent_channel_id, from_message_id, name)
+  discuss_channel_sub_channel_fetch(parent_channel_id, search_term, before, limit)
+  load_attachments(channel_id, limit, before)
+}
+class "ChannelMember" as odoo_src.odoo.addons.mail.models.discuss.discuss_channel_member.ChannelMember {
+  channel_id
+  custom_channel_name
+  custom_notifications
+  fetched_message_id
+  fold_state
+  guest_id
+  is_pinned
+  is_self
+  last_interest_dt
+  last_seen_dt
+  message_unread_counter
+  mute_until_dt
+  new_message_separator
+  partner_id
+  rtc_inviting_session_id
+  rtc_session_ids
+  seen_message_id
+  unpin_dt
+  create(vals_list)
+  init()
+  set_custom_notifications(custom_notifications)
+  unlink()
+  write(vals)
+}
+class "Company" as odoo_src.odoo.addons.mail.models.res_company.Company {
+  alias_domain_id
+  alias_domain_name
+  bounce_email
+  bounce_formatted
+  catchall_email
+  catchall_formatted
+  default_from_email
+  email_formatted
+  email_primary_color
+  email_secondary_color
+}
+class "<color:red>DeviceUnreachableError</color>" as odoo_src.odoo.addons.mail.tools.web_push.DeviceUnreachableError {
+}
+class "DiscussChannelWebclientController" as odoo_src.odoo.addons.mail.controllers.discuss.channel.DiscussChannelWebclientController {
+}
+class "DiscussGifController" as odoo_src.odoo.addons.mail.controllers.discuss.gif.DiscussGifController {
+  add_favorite(tenor_gif_id)
+  categories(locale, country)
+  get_favorites(offset)
+  remove_favorite(tenor_gif_id)
+  search(search_term, locale, country, position, readonly)
+}
+class "DiscussSettingsController" as odoo_src.odoo.addons.mail.controllers.discuss.settings.DiscussSettingsController {
+  discuss_custom_notifications(custom_notifications, channel_id)
+  discuss_mute(minutes, channel_id)
+}
+class "DiscussThreadController" as odoo_src.odoo.addons.mail.controllers.discuss.thread.DiscussThreadController {
+}
+class "DiscussVoiceMetadata" as odoo_src.odoo.addons.mail.models.discuss.discuss_voice_metadata.DiscussVoiceMetadata {
+  attachment_id
+}
+class "FetchmailServer" as odoo_src.odoo.addons.mail.models.fetchmail.FetchmailServer {
+  active
+  attach
+  configuration
+  date
+  is_ssl
+  message_ids
+  name
+  object_id
+  original
+  password
+  port
+  priority
+  script
+  server
+  server_type
+  server_type_info
+  state
+  user
+  button_confirm_login()
+  connect(allow_archived)
+  create(vals_list)
+  fetch_mail(raise_exception)
+  onchange_server_type()
+  set_draft()
+  unlink()
+  write(values)
+}
+class "Followers" as odoo_src.odoo.addons.mail.models.mail_followers.Followers {
+  email
+  is_active
+  name
+  partner_id
+  res_id
+  res_model
+  subtype_ids
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "GifFavorite" as odoo_src.odoo.addons.mail.models.discuss.discuss_gif_favorite.GifFavorite {
+  tenor_gif_id
+}
+class "GoogleTranslateController" as odoo_src.odoo.addons.mail.controllers.google_translate.GoogleTranslateController {
+  translate(message_id)
+}
+class "GuestController" as odoo_src.odoo.addons.mail.controllers.guest.GuestController {
+  mail_guest_update_name(guest_id, name)
+}
+class "IMAP4Connection" as odoo_src.odoo.addons.mail.models.fetchmail.IMAP4Connection {
+}
+class "<color:red>InvalidVapidError</color>" as odoo_src.odoo.addons.mail.tools.jwt.InvalidVapidError {
+}
+class "Invite" as odoo_src.odoo.addons.mail.wizard.mail_wizard_invite.Invite {
+  message
+  notify
+  partner_ids
+  res_id
+  res_model
+  add_followers()
+}
+class "IrAttachment" as odoo_src.odoo.addons.mail.models.ir_attachment.IrAttachment {
+  register_as_main_attachment(force)
+}
+class "IrAttachment" as odoo_src.odoo.addons.mail.models.discuss.ir_attachment.IrAttachment {
+  voice_ids
+}
+class "IrConfigParameter" as odoo_src.odoo.addons.mail.models.ir_config_parameter.IrConfigParameter {
+  set_param(key, value)
+}
+class "IrCron" as odoo_src.odoo.addons.mail.models.ir_cron.IrCron {
+}
+class "IrHttp" as odoo_src.odoo.addons.mail.models.ir_http.IrHttp {
+  session_info()
+}
+class "IrMailServer" as odoo_src.odoo.addons.mail.models.ir_mail_server.IrMailServer {
+  mail_template_ids
+}
+class "IrModel" as odoo_src.odoo.addons.mail.models.ir_model.IrModel {
+  is_mail_activity
+  is_mail_blacklist
+  is_mail_thread
+  unlink()
+  write(vals)
+}
+class "IrModelField" as odoo_src.odoo.addons.mail.models.ir_model_fields.IrModelField {
+  tracking
+  unlink()
+}
+class "IrQweb" as odoo_src.odoo.addons.mail.models.ir_qweb.IrQweb {
+  allowed_directives : tuple
+}
+class "IrUiMenu" as odoo_src.odoo.addons.mail.models.ir_ui_menu.IrUiMenu {
+}
+class "IrWebsocket" as odoo_src.odoo.addons.mail.models.discuss.ir_websocket.IrWebsocket {
+}
+class "LinkPreview" as odoo_src.odoo.addons.mail.models.mail_link_preview.LinkPreview {
+  create_date
+  image_mimetype
+  is_hidden
+  message_id
+  og_description
+  og_image
+  og_mimetype
+  og_site_name
+  og_title
+  og_type
+  source_url
+}
+class "LinkPreviewController" as odoo_src.odoo.addons.mail.controllers.link_preview.LinkPreviewController {
+  mail_link_preview(message_id)
+  mail_link_preview_hide(link_preview_ids)
+}
+class "MailActivity" as odoo_src.odoo.addons.mail.models.mail_activity.MailActivity {
+  active
+  activity_category
+  activity_decoration
+  activity_type_id
+  attachment_ids
+  automated
+  can_write
+  chaining_type
+  date_deadline
+  date_done
+  has_recommended_activities
+  icon
+  mail_template_ids
+  note
+  previous_activity_type_id
+  recommended_activity_type_id
+  request_partner_id
+  res_id
+  res_model
+  res_model_id
+  res_name
+  state
+  summary
+  user_id
+  user_tz
+  action_cancel()
+  action_close_dialog()
+  action_done()
+  action_done_redirect_to_other()
+  action_done_schedule_next()
+  action_feedback(feedback, attachment_ids)
+  action_feedback_schedule_next(feedback, attachment_ids)
+  action_notify()
+  action_open_document()
+  action_snooze()
+  activity_format()
+  create(vals_list)
+  default_get(fields)
+  get_activity_data(res_model, domain, limit, offset, fetch_done)
+  unlink()
+  write(values)
+}
+class "MailActivityMixin" as odoo_src.odoo.addons.mail.models.mail_activity_mixin.MailActivityMixin {
+  activity_date_deadline
+  activity_exception_decoration
+  activity_exception_icon
+  activity_ids
+  activity_state
+  activity_summary
+  activity_type_icon
+  activity_type_id
+  activity_user_id
+  my_activity_date_deadline
+  activity_feedback(act_type_xmlids, user_id, feedback, attachment_ids)
+  activity_reschedule(act_type_xmlids, user_id, date_deadline, new_user_id)
+  activity_schedule(act_type_xmlid, date_deadline, summary, note)
+  activity_search(act_type_xmlids, user_id, additional_domain)
+  activity_send_mail(template_id)
+  activity_unlink(act_type_xmlids, user_id)
+  toggle_active()
+  unlink()
+  write(vals)
+}
+class "MailActivityPlan" as odoo_src.odoo.addons.mail.models.mail_activity_plan.MailActivityPlan {
+  active
+  company_id
+  has_user_on_demand
+  name
+  res_model
+  res_model_id
+  steps_count
+  template_ids
+  copy_data(default)
+}
+class "MailActivityPlanTemplate" as odoo_src.odoo.addons.mail.models.mail_activity_plan_template.MailActivityPlanTemplate {
+  activity_type_id
+  company_id
+  delay_count
+  delay_from
+  delay_unit
+  icon
+  note
+  plan_id
+  res_model
+  responsible_id
+  responsible_type
+  sequence
+  summary
+}
+class "MailActivitySchedule" as odoo_src.odoo.addons.mail.wizard.mail_activity_schedule.MailActivitySchedule {
+  activity_category
+  activity_type_id
+  activity_user_id
+  chaining_type
+  company_id
+  date_deadline
+  error
+  has_error
+  is_batch_mode
+  note
+  plan_available_ids
+  plan_date
+  plan_has_user_on_demand
+  plan_id
+  plan_on_demand_user_id
+  plan_summary
+  res_ids
+  res_model
+  res_model_id
+  summary
+  action_schedule_activities()
+  action_schedule_activities_done()
+  action_schedule_activities_done_and_schedule()
+  action_schedule_plan()
+  default_get(fields_list)
+}
+class "MailActivityType" as odoo_src.odoo.addons.mail.models.mail_activity_type.MailActivityType {
+  active
+  category
+  chaining_type
+  create_uid
+  decoration_type
+  default_note
+  default_user_id
+  delay_count
+  delay_from
+  delay_label
+  delay_unit
+  icon
+  initial_res_model
+  keep_done
+  mail_template_ids
+  name
+  previous_type_ids
+  res_model
+  res_model_change
+  sequence
+  suggested_next_type_ids
+  summary
+  triggered_next_type_id
+  action_archive()
+  write(values)
+}
+class "MailBlackList" as odoo_src.odoo.addons.mail.models.mail_blacklist.MailBlackList {
+  active
+  email
+  action_add()
+  create(values)
+  mail_action_blacklist_remove()
+  write(values)
+}
+class "MailBlackListMixin" as odoo_src.odoo.addons.mail.models.mail_thread_blacklist.MailBlackListMixin {
+  email_normalized
+  is_blacklisted
+  message_bounce
+  mail_action_blacklist_remove()
+}
+class "MailBlacklistRemove" as odoo_src.odoo.addons.mail.wizard.mail_blacklist_remove.MailBlacklistRemove {
+  email
+  reason
+  action_unblacklist_apply()
+}
+class "MailCCMixin" as odoo_src.odoo.addons.mail.models.mail_thread_cc.MailCCMixin {
+  email_cc
+  message_new(msg_dict, custom_values)
+  message_update(msg_dict, update_vals)
+}
+class "MailCannedResponse" as odoo_src.odoo.addons.mail.models.mail_canned_response.MailCannedResponse {
+  description
+  group_ids
+  is_editable
+  is_shared
+  last_used
+  source
+  substitution
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "MailCase" as odoo_src.odoo.addons.mail.tests.test_mail_mail.MailCase {
+  test_mail_send_non_connected_smtp_session()
+}
+class "MailCase" as odoo_src.odoo.addons.mail.tests.common.MailCase {
+  assertBus(channels, message_items, get_params)
+  assertBusNotificationType(expected_pairs)
+  assertBusNotifications(channels, message_items, check_unique)
+  assertMailNotifications(messages, recipients_info, bus_notif_count)
+  assertMessageBusNotifications(message, count)
+  assertMsgWithoutNotifications(mail_unlink_sent)
+  assertNoNotifications()
+  assertNotified(message, recipients_info, is_complete)
+  assertPostNotifications(recipients_info, mail_unlink_sent)
+  assertSinglePostNotifications(recipients_info, message_info, mail_unlink_sent)
+  assertTracking(message, data, strict)
+  flush_tracking()
+  mock_bus()
+  mock_mail_app()
+  setUp()
+}
+class "MailCommon" as odoo_src.odoo.addons.mail.tests.common.MailCommon {
+  setUpClass()
+}
+class "MailComposer" as odoo_src.odoo.addons.mail.wizard.mail_compose_message.MailComposer {
+  attachment_ids
+  author_id
+  auto_delete
+  auto_delete_keep_log
+  body
+  composition_batch
+  composition_mode
+  email_add_signature
+  email_from
+  email_layout_xmlid
+  force_send
+  mail_activity_type_id
+  mail_server_id
+  message_type
+  model
+  model_is_thread
+  parent_id
+  partner_ids
+  record_alias_domain_id
+  record_company_id
+  record_name
+  reply_to
+  reply_to_force_new
+  reply_to_mode
+  res_domain
+  res_domain_user_id
+  res_ids
+  scheduled_date
+  subject
+  subtype_id
+  subtype_is_log
+  template_id
+  template_name
+  use_exclusion_list
+  action_schedule_message(scheduled_date)
+  action_send_mail()
+  cancel_save_template()
+  create_mail_template()
+  default_get(fields_list)
+  open_template_creation_wizard()
+}
+class "MailComposerMixin" as odoo_src.odoo.addons.mail.models.mail_composer_mixin.MailComposerMixin {
+  body
+  body_has_template_value
+  can_edit_body
+  is_mail_template_editor
+  lang
+  subject
+  template_id
+}
+class "MailController" as odoo_src.odoo.addons.mail.controllers.mail.MailController {
+  mail_action_unfollow(model, res_id, pid, token)
+  mail_action_view(model, res_id, access_token)
+  mail_thread_message_redirect(message_id)
+}
+class "MailGatewayAllowed" as odoo_src.odoo.addons.mail.models.mail_gateway_allowed.MailGatewayAllowed {
+  email
+  email_normalized
+  get_empty_list_help(help_message)
+}
+class "MailGuest" as odoo_src.odoo.addons.mail.models.discuss.mail_guest.MailGuest {
+  access_token
+  channel_ids
+  country_id
+  im_status
+  lang
+  name
+  timezone
+}
+class "MailIceServer" as odoo_src.odoo.addons.mail.models.mail_ice_server.MailIceServer {
+  credential
+  server_type
+  uri
+  username
+}
+class "MailMail" as odoo_src.odoo.addons.mail.models.mail_mail.MailMail {
+  auto_delete
+  body_content
+  body_html
+  email_cc
+  email_to
+  failure_reason
+  failure_type
+  fetchmail_server_id
+  headers
+  is_notification
+  mail_message_id
+  mail_message_id_int
+  message_type
+  recipient_ids
+  references
+  restricted_attachment_count
+  scheduled_date
+  state
+  unrestricted_attachment_ids
+  action_open_document()
+  action_retry()
+  cancel()
+  create(values_list)
+  default_get(fields)
+  fields_get()
+  mark_outgoing()
+  process_email_queue(ids, batch_size)
+  send(auto_commit, raise_exception, post_send_callback)
+  send_after_commit()
+  unlink()
+  write(vals)
+}
+class "MailMainAttachmentMixin" as odoo_src.odoo.addons.mail.models.mail_thread_main_attachment.MailMainAttachmentMixin {
+  message_main_attachment_id
+}
+class "MailMessage" as odoo_src.odoo.addons.mail.models.discuss.mail_message.MailMessage {
+}
+class "MailMessageReaction" as odoo_src.odoo.addons.mail.models.mail_message_reaction.MailMessageReaction {
+  content
+  guest_id
+  message_id
+  partner_id
+  init()
+}
+class "MailMessageSchedule" as odoo_src.odoo.addons.mail.models.mail_message_schedule.MailMessageSchedule {
+  mail_message_id
+  notification_parameters
+  scheduled_datetime
+  create(vals_list)
+  force_send()
+}
+class "MailMessageSubtype" as odoo_src.odoo.addons.mail.models.mail_message_subtype.MailMessageSubtype {
+  default
+  description
+  hidden
+  internal
+  name
+  parent_id
+  relation_field
+  res_model
+  sequence
+  track_recipients
+  create(vals_list)
+  default_subtypes(model_name)
+  unlink()
+  write(vals)
+}
+class "MailNotification" as odoo_src.odoo.addons.mail.models.mail_notification.MailNotification {
+  author_id
+  failure_reason
+  failure_type
+  is_read
+  mail_mail_id
+  mail_message_id
+  notification_status
+  notification_type
+  read_date
+  res_partner_id
+  create(vals_list)
+  format_failure_reason()
+  init()
+  write(vals)
+}
+class "MailPush" as odoo_src.odoo.addons.mail.models.mail_push.MailPush {
+  mail_push_device_id
+  payload
+}
+class "MailPushDevice" as odoo_src.odoo.addons.mail.models.mail_push_device.MailPushDevice {
+  endpoint
+  expiration_time
+  keys
+  partner_id
+  get_web_push_vapid_public_key()
+  register_devices()
+  unregister_devices()
+}
+class "MailRenderMixin" as odoo_src.odoo.addons.mail.models.mail_render_mixin.MailRenderMixin {
+  lang
+  render_model
+  create(values_list)
+  write(vals)
+}
+class "MailResendMessage" as odoo_src.odoo.addons.mail.wizard.mail_resend_message.MailResendMessage {
+  can_cancel
+  can_resend
+  mail_message_id
+  notification_ids
+  partner_ids
+  partner_readonly
+  cancel_mail_action()
+  default_get(fields)
+  resend_mail_action()
+}
+class "MailRtcSession" as odoo_src.odoo.addons.mail.models.discuss.discuss_channel_rtc_session.MailRtcSession {
+  channel_id
+  channel_member_id
+  guest_id
+  is_camera_on
+  is_deaf
+  is_muted
+  is_screen_sharing_on
+  partner_id
+  write_date
+  action_disconnect()
+  create(vals_list)
+  unlink()
+}
+class "MailTemplate" as odoo_src.odoo.addons.mail.models.mail_template.MailTemplate {
+  active
+  attachment_ids
+  auto_delete
+  body_html
+  can_write
+  description
+  email_cc
+  email_from
+  email_layout_xmlid
+  email_to
+  is_template_editor
+  mail_server_id
+  model
+  model_id
+  name
+  partner_to
+  ref_ir_act_window
+  reply_to
+  report_template_ids
+  scheduled_date
+  subject
+  template_category
+  use_default_to
+  user_id
+  cancel_unlink()
+  copy_data(default)
+  create(vals_list)
+  create_action()
+  default_get(fields)
+  open_delete_confirmation_modal()
+  send_mail(res_id, force_send, raise_exception, email_values, email_layout_xmlid)
+  send_mail_batch(res_ids, force_send, raise_exception, email_values, email_layout_xmlid)
+  unlink()
+  unlink_action()
+  write(vals)
+}
+class "MailTemplatePreview" as odoo_src.odoo.addons.mail.wizard.mail_template_preview.MailTemplatePreview {
+  attachment_ids
+  body_html
+  email_cc
+  email_from
+  email_to
+  error_msg
+  lang
+  mail_template_id
+  model_id
+  no_record
+  partner_ids
+  reply_to
+  resource_ref
+  scheduled_date
+  subject
+}
+class "MailTemplateReset" as odoo_src.odoo.addons.mail.wizard.mail_template_reset.MailTemplateReset {
+  template_ids
+  reset_template()
+}
+class "MailThread" as odoo_src.odoo.addons.mail.models.mail_thread.MailThread {
+  has_message
+  message_attachment_count
+  message_follower_ids
+  message_has_error
+  message_has_error_counter
+  message_ids
+  message_is_follower
+  message_needaction
+  message_needaction_counter
+  message_partner_ids
+  copy_data(default)
+  create(vals_list)
+  get_empty_list_help(help_message)
+  get_views(views, options)
+  message_change_thread(new_thread, new_parent_message)
+  message_get_followers(after, limit, filter_recipients)
+  message_mail_with_source(source_ref, render_values, message_type, auto_commit)
+  message_new(msg_dict, custom_values)
+  message_notify()
+  message_parse(message, save_original)
+  message_post()
+  message_post_with_source(source_ref, render_values, message_type, subtype_xmlid, subtype_id)
+  message_process(model, message, custom_values, save_original, strip_attachments, thread_id)
+  message_route(message, message_dict, model, thread_id, custom_values)
+  message_subscribe(partner_ids, subtype_ids)
+  message_unsubscribe(partner_ids)
+  message_update(msg_dict, update_vals)
+  notify_cancel_by_type(notification_type)
+  unlink()
+  write(values)
+}
+class "MailTracking" as odoo_src.odoo.addons.mail.models.mail_tracking_value.MailTracking {
+  currency_id
+  field_id
+  field_info
+  mail_message_id
+  new_value_char
+  new_value_datetime
+  new_value_float
+  new_value_integer
+  new_value_text
+  old_value_char
+  old_value_datetime
+  old_value_float
+  old_value_integer
+  old_value_text
+}
+class "MailTrackingDurationMixin" as odoo_src.odoo.addons.mail.models.mail_tracking_duration_mixin.MailTrackingDurationMixin {
+  duration_tracking
+}
+class "MailTrackingDurationMixinCase" as odoo_src.odoo.addons.mail.tests.mail_tracking_duration_mixin_case.MailTrackingDurationMixinCase {
+  assertTrackingDuration(records, record_to_tracking_dic)
+  setUpClass(tested_model, model_fields)
+}
+class "MailboxController" as odoo_src.odoo.addons.mail.controllers.mailbox.MailboxController {
+  discuss_history_messages(search_term, before, after, limit, around)
+  discuss_inbox_messages(search_term, before, after, limit, around)
+  discuss_starred_messages(search_term, before, after, limit, around)
+}
+class "MergePartnerAutomatic" as odoo_src.odoo.addons.mail.wizard.base_partner_merge_automatic_wizard.MergePartnerAutomatic {
+}
+class "Message" as odoo_src.odoo.addons.mail.models.mail_message.Message {
+  attachment_ids
+  author_avatar
+  author_guest_id
+  author_id
+  body
+  child_ids
+  date
+  email_add_signature
+  email_from
+  email_layout_xmlid
+  has_error
+  is_current_user_or_guest_author
+  is_internal
+  link_preview_ids
+  mail_activity_type_id
+  mail_ids
+  mail_server_id
+  message_id
+  message_type
+  model
+  needaction
+  notification_ids
+  notified_partner_ids
+  parent_id
+  partner_ids
+  pinned_at
+  preview
+  reaction_ids
+  record_alias_domain_id
+  record_company_id
+  record_name
+  reply_to
+  reply_to_force_new
+  res_id
+  starred
+  starred_partner_ids
+  subject
+  subtype_id
+  tracking_value_ids
+  action_open_document()
+  create(values_list)
+  default_get(fields)
+  export_data(fields_to_export)
+  fetch(field_names)
+  init()
+  is_thread_message(vals)
+  mark_all_as_read(domain)
+  read(fields, load)
+  set_message_done()
+  toggle_message_starred()
+  unlink()
+  unstar_all()
+  write(vals)
+}
+class "MessagePostSubTestData" as odoo_src.odoo.addons.mail.tests.test_thread_controller.MessagePostSubTestData {
+  allowed
+  exp_author : NoneType
+  exp_emails : NoneType
+  exp_partners : NoneType
+  guest
+  post_data : dict
+  route_kw
+  user
+}
+class "MessageReactionController" as odoo_src.odoo.addons.mail.controllers.message_reaction.MessageReactionController {
+  mail_message_reaction(message_id, content, action)
+}
+class "MessageTranslation" as odoo_src.odoo.addons.mail.models.mail_message_translation.MessageTranslation {
+  body
+  create_date
+  message_id
+  source_lang
+  target_lang
+  init()
+}
+class "MockEmail" as odoo_src.odoo.addons.mail.tests.common.MockEmail {
+  build_email_mocked
+  mail_mail_create_mocked
+  mail_mail_private_send_mocked
+  mail_unlink_sent : bool
+  send_email_mocked
+  assertHtmlEqual(value, expected, message)
+  assertMailMail(recipients, status, email_to_recipients, mail_message, author, content, fields_values, email_values)
+  assertMailMailWEmails(emails, status, email_to_recipients, mail_message, author, content, fields_values, email_values)
+  assertMailMailWId(mail_id, status, email_to_recipients, author, content, fields_values, email_values)
+  assertMailMailWRecord(record, recipients, status, email_to_recipients, mail_message, author, content, fields_values, email_values)
+  assertMessageFields(message, fields_values)
+  assertNoMail(recipients, mail_message, author)
+  assertNotSentEmail(recipients)
+  assertSentEmail(author, recipients)
+  format(template, to, subject, email_from, return_path, cc, extra, msg_id, references)
+  format_and_process(template, email_from, to, subject, cc, return_path, extra, msg_id, model, target_model, target_field, with_user)
+  from_string(text)
+  gateway_mail_reply_from_smtp_email(template, source_smtp_to_list, reply_all, cc, force_email_from, force_return_path, extra, use_references, extra_references, use_in_reply_to, debug_log)
+  gateway_mail_reply_last_email(template, force_email_to, debug_log)
+  gateway_mail_reply_wemail(template, email_to, target_model, target_field, debug_log)
+  gateway_mail_reply_wrecord(template, record, use_in_reply_to, debug_log)
+  mock_datetime_and_now(mock_dt)
+  mock_mail_gateway(mail_unlink_sent)
+  setUpClass()
+}
+class "POP3Connection" as odoo_src.odoo.addons.mail.models.fetchmail.POP3Connection {
+}
+class "Partner" as odoo_src.odoo.addons.mail.models.res_partner.Partner {
+  contact_address_inline
+  email
+  name
+  parent_id
+  phone
+  starred_message_ids
+  user_id
+  vat
+  find_or_create(email, assert_valid_email)
+  get_mention_suggestions(search, limit)
+  im_search(name, limit, excluded_ids)
+}
+class "PartnerResend" as odoo_src.odoo.addons.mail.wizard.mail_resend_message.PartnerResend {
+  email
+  failure_reason
+  message
+  name
+  notification_id
+  partner_id
+  partner_readonly
+  resend
+  resend_wizard_id
+  action_open_record()
+  action_open_resend_partner()
+  action_resend()
+}
+class "PublicPageController" as odoo_src.odoo.addons.mail.controllers.discuss.public_page.PublicPageController {
+  discuss_channel(channel_id)
+  discuss_channel_chat_from_token(create_token, channel_name)
+  discuss_channel_invitation(channel_id, invitation_token)
+  discuss_channel_meet_from_token(create_token, channel_name)
+}
+class "PublisherWarrantyContract" as odoo_src.odoo.addons.mail.models.update.PublisherWarrantyContract {
+  update_notification(cron_mode)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.mail.models.res_config_settings.ResConfigSettings {
+  alias_domain_id
+  email_primary_color
+  email_secondary_color
+  external_email_server_default
+  fail_counter
+  google_translate_api_key
+  module_google_gmail
+  module_microsoft_outlook
+  restrict_template_rendering
+  sfu_server_key
+  sfu_server_url
+  tenor_api_key
+  tenor_content_filter
+  tenor_gif_limit
+  twilio_account_sid
+  twilio_account_token
+  use_twilio_rtc_servers
+  open_email_layout()
+  open_mail_templates()
+}
+class "ResGroups" as odoo_src.odoo.addons.mail.models.discuss.res_groups.ResGroups {
+  write(vals)
+}
+class "ResPartner" as odoo_src.odoo.addons.mail.models.discuss.res_partner.ResPartner {
+  channel_ids
+  get_mention_suggestions_from_channel(channel_id, search, limit)
+  search_for_channel_invite(search_term, channel_id, limit)
+}
+class "ResUsers" as odoo_src.odoo.addons.mail.models.discuss.res_users.ResUsers {
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.mail.models.res_users_settings.ResUsersSettings {
+  channel_notifications
+  is_discuss_sidebar_category_channel_open
+  is_discuss_sidebar_category_chat_open
+  mute_until_dt
+  push_to_talk_key
+  use_push_to_talk
+  voice_active_duration
+  volume_settings_ids
+  set_custom_notifications(custom_notifications)
+  set_res_users_settings(new_settings)
+  set_volume_setting(partner_id, volume, guest_id)
+}
+class "ResUsersSettingsVolumes" as odoo_src.odoo.addons.mail.models.res_users_settings_volumes.ResUsersSettingsVolumes {
+  guest_id
+  partner_id
+  user_setting_id
+  volume
+  init()
+}
+class "RtcController" as odoo_src.odoo.addons.mail.controllers.discuss.rtc.RtcController {
+  audio_worklet_processor()
+  channel_call_cancel_invitation(channel_id, member_ids)
+  channel_call_join(channel_id, check_rtc_session_ids, camera)
+  channel_call_leave(channel_id)
+  channel_ping(channel_id, rtc_session_id, check_rtc_session_ids)
+  session_call_notify(peer_notifications)
+  session_update_and_broadcast(session_id, values)
+}
+class "ScheduledMessage" as odoo_src.odoo.addons.mail.models.mail_scheduled_message.ScheduledMessage {
+  attachment_ids
+  author_id
+  body
+  is_note
+  model
+  notification_parameters
+  partner_ids
+  res_id
+  scheduled_date
+  subject
+  create(vals_list)
+  open_edit_form()
+  post_message()
+  unlink()
+  write(vals)
+}
+class "ServerActions" as odoo_src.odoo.addons.mail.models.ir_actions_server.ServerActions {
+  activity_date_deadline_range
+  activity_date_deadline_range_type
+  activity_note
+  activity_summary
+  activity_type_id
+  activity_user_field_name
+  activity_user_id
+  activity_user_type
+  mail_post_autofollow
+  mail_post_method
+  partner_ids
+  state
+  template_id
+}
+class "Store" as odoo_src.odoo.addons.mail.tools.discuss.Store {
+  data : dict
+  add()
+  get_result()
+  many()
+  many_ids()
+  one()
+  one_id()
+}
+class "TemplateResetMixin" as odoo_src.odoo.addons.mail.models.template_reset_mixin.TemplateResetMixin {
+  template_fs
+  create(vals_list)
+  reset_template()
+}
+class "TestAttachmentController" as odoo_src.odoo.addons.mail.tests.test_attachment_controller.TestAttachmentController {
+  test_attachment_partner()
+  test_send_attachment_without_body()
+}
+class "TestAttachmentControllerCommon" as odoo_src.odoo.addons.mail.tests.test_attachment_controller.TestAttachmentControllerCommon {
+  setUpClass()
+}
+class "TestAvatarAcl" as odoo_src.odoo.addons.mail.tests.discuss.test_avatar_acl.TestAvatarAcl {
+  get_avatar_url(record, add_token)
+  test_guest_open_guest_avatar()
+  test_guest_open_guest_avatar_with_channel()
+  test_guest_open_partner_avatar()
+  test_guest_open_partner_avatar_with_channel()
+  test_partner_open_guest_avatar()
+  test_partner_open_guest_avatar_with_channel()
+  test_partner_open_partner_avatar()
+  test_portal_open_partner_avatar()
+  test_portal_open_partner_avatar_with_channel()
+}
+class "TestBinaryController" as odoo_src.odoo.addons.mail.tests.test_binary_controller.TestBinaryController {
+  test_open_partner_avatar()
+  test_open_partner_avatar_has_message()
+}
+class "TestBinaryControllerCommon" as odoo_src.odoo.addons.mail.tests.test_binary_controller.TestBinaryControllerCommon {
+  setUpClass()
+}
+class "TestBusPresence" as odoo_src.odoo.addons.mail.tests.discuss.test_bus_presence.TestBusPresence {
+  test_receive_presences_as_guest()
+  test_receive_presences_as_internal()
+  test_receive_presences_as_portal()
+}
+class "TestChannelInternals" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_channel.TestChannelInternals {
+  setUpClass()
+  test_channel_chat_message_post_should_update_last_interest_dt()
+  test_channel_command_help_in_channel()
+  test_channel_command_help_in_group()
+  test_channel_info_get()
+  test_channel_info_get_should_update_last_interest_dt()
+  test_channel_info_mark_as_read()
+  test_channel_member_cannot_be_public_user()
+  test_channel_members()
+  test_channel_message_post_should_not_allow_adding_wrong_parent()
+  test_channel_message_post_with_voice_attachment()
+  test_channel_notification()
+  test_channel_private_unfollow()
+  test_channel_recipients_channel()
+  test_channel_recipients_chat()
+  test_channel_recipients_mention()
+  test_channel_should_generate_correct_default_avatar()
+  test_channel_unfollow_should_not_post_message_if_the_partner_has_been_removed()
+  test_channel_unsubscribe_auto()
+  test_channel_user_synchronize()
+  test_channel_write_should_send_notification()
+  test_channel_write_should_send_notification_if_image_128_changed()
+  test_create_chat_channel_should_only_pin_the_channel_for_the_current_user()
+  test_mail_message_starred_group()
+  test_multi_company_chat()
+  test_set_last_seen_message_should_send_notification_only_once()
+}
+class "TestChannelRTC" as odoo_src.odoo.addons.mail.tests.discuss.test_rtc.TestChannelRTC {
+  maxDiff : NoneType
+  test_01_join_call()
+  test_10_start_call_in_chat_should_invite_all_members_to_call()
+  test_11_start_call_in_group_should_invite_all_members_to_call()
+  test_20_join_call_should_cancel_pending_invitations()
+  test_21_leave_call_should_cancel_pending_invitations()
+  test_25_lone_call_participant_leaving_call_should_cancel_pending_invitations()
+  test_30_add_members_while_in_call_should_invite_new_members_to_call()
+  test_40_leave_call_should_remove_existing_sessions_of_user_in_channel_and_return_data()
+  test_50_garbage_collect_should_remove_old_sessions_and_notify_data()
+  test_51_action_disconnect_should_remove_selected_session_and_notify_data()
+  test_60_rtc_sync_sessions_should_gc_and_return_outdated_and_active_sessions()
+}
+class "TestCompany" as odoo_src.odoo.addons.mail.tests.test_res_company.TestCompany {
+  test_company_colors()
+}
+class "TestControllerCommon" as odoo_src.odoo.addons.mail.tests.test_controller_common.TestControllerCommon {
+  setUpClass()
+}
+class "TestDiscussAction" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_action.TestDiscussAction {
+  test_go_back_to_thread_from_breadcrumbs()
+}
+class "TestDiscussAttachmentController" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_attachment_controller.TestDiscussAttachmentController {
+  test_attachment_allowed_upload_public_channel()
+  test_attachment_not_allowed_upload_public_channel()
+}
+class "TestDiscussBinaryController" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_binary_controller.TestDiscussBinaryController {
+  test_01_guest_avatar_private_channel()
+  test_01_guest_avatar_public_channel()
+  test_01_partner_avatar_private_channel()
+  test_01_partner_avatar_public_channel()
+  test_02_guest_avatar_private_channel()
+  test_02_guest_avatar_public_channel()
+  test_02_partner_avatar_private_channel()
+  test_02_partner_avatar_public_channel()
+  test_03_guest_avatar_private_channel()
+  test_03_guest_avatar_public_channel()
+  test_03_partner_avatar_private_channel()
+  test_03_partner_avatar_public_channel()
+  test_04_guest_avatar_private_channel()
+  test_04_partner_avatar_private_channel()
+  test_05_guest_avatar_private_channel()
+  test_05_partner_avatar_private_channel()
+  test_open_guest_avatar()
+}
+class "TestDiscussBinaryControllerCommon" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_binary_controller.TestDiscussBinaryControllerCommon {
+  setUpClass()
+}
+class "TestDiscussChannelAccess" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_channel_access.TestDiscussChannelAccess {
+  setUpClass()
+  test_01_discuss_channel_access()
+  test_02_discuss_sub_channel_access()
+  test_10_discuss_channel_member_access()
+  test_11_discuss_sub_channel_member_access()
+}
+class "TestDiscussChannelMember" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_channel_member.TestDiscussChannelMember {
+  setUpClass()
+  test_channel_member_invite_with_guest()
+  test_group_01()
+  test_group_invite()
+  test_group_leave()
+  test_group_members()
+  test_group_restricted_channel()
+  test_public_channel()
+  test_unread_counter_with_message_post()
+  test_unread_counter_with_message_post_multi_channel()
+}
+class "TestDiscussMessageUpdateController" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_message_update_controller.TestDiscussMessageUpdateController {
+  test_message_update_guest_as_owner()
+  test_message_update_public_channel()
+}
+class "TestDiscussSubChannels" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_sub_channels.TestDiscussSubChannels {
+  test_01_gc_unpin_outdated_sub_channels()
+  test_02_sub_channel_members_sync_with_parent()
+  test_03_cannot_create_recursive_sub_channel()
+  test_04_sub_channel_panel_search()
+  test_05_cannot_upate_first_message_nor_parent_channel()
+  test_06_initial_message_must_belong_to_parent_channel()
+  test_07_unlink_sub_channel()
+  test_08_sub_channel_message_author_member()
+}
+class "TestDiscussThreadController" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_thread_controller.TestDiscussThreadController {
+  test_internal_channel_message_post_access()
+  test_public_channel_message_post_access()
+  test_public_channel_message_post_partner_emails()
+  test_public_channel_message_post_partner_ids()
+}
+class "TestDiscussTools" as odoo_src.odoo.addons.mail.tests.test_discuss_tools.TestDiscussTools {
+  test_010_store_dict()
+  test_011_store_dict_update_same_id()
+  test_012_store_dict_update_multiple_ids()
+  test_014_store_dict_update_multiple_ids_list()
+  test_020_store_list()
+  test_021_store_list_append()
+  test_030_store_add_key()
+  test_040_store_invalid()
+  test_042_store_invalid_missing_id()
+  test_050_store_dict_to_list()
+  test_051_store_list_to_dict()
+  test_060_store_data_empty_val()
+  test_061_store_data_empty_not_empty()
+  test_110_store_store_singleton()
+  test_111_store_store_dict_update()
+  test_130_store_store_add_key()
+  test_140_store_store_invalid_bool()
+  test_141_store_store_invalid_list()
+  test_160_store_store_data_empty_val()
+  test_161_store_store_data_empty_not_empty()
+  test_210_store_thread_dict()
+  test_211_store_thread_dict_update_same_id()
+  test_212_store_thread_dict_update_multiple_ids()
+  test_213_store_thread_dict_update_multiple_models()
+  test_214_store_thread_dict_update_multiple_models_list()
+  test_220_store_thread_list()
+  test_221_store_thread_list_append()
+  test_230_store_thread_add_key()
+  test_240_store_thread_invalid_bool()
+  test_241_store_thread_invalid_list()
+  test_242_store_thread_invalid_missing_id()
+  test_243_store_thread_invalid_missing_model()
+  test_250_store_thread_dict_to_list()
+  test_251_store_thread_list_to_dict()
+  test_260_store_thread_data_empty_val()
+  test_261_store_thread_data_empty_not_empty()
+}
+class "TestGuestFeature" as odoo_src.odoo.addons.mail.tests.discuss.test_guest_feature.TestGuestFeature {
+  test_mark_as_read_as_guest()
+  test_subscribe_to_discuss_channel()
+  test_subscribe_to_guest_channel()
+}
+class "TestIrMailServer" as odoo_src.odoo.addons.mail.tests.test_ir_mail_server.TestIrMailServer {
+  setUpClass()
+  test_assert_base_values()
+  test_default_email_from()
+  test_mail_server_config_bin()
+  test_mail_server_get_test_email_from()
+  test_mail_server_priorities()
+  test_mail_server_send_email()
+}
+class "TestLinkPreview" as odoo_src.odoo.addons.mail.tests.test_link_preview.TestLinkPreview {
+  setUpClass()
+  test_get_link_preview_from_url()
+  test_link_preview()
+  test_link_preview_ignore_internal_link()
+  test_link_preview_no_content_type()
+}
+class "TestLoadMessages" as odoo_src.odoo.addons.mail.tests.discuss.test_load_messages.TestLoadMessages {
+  test_01_mail_message_load_order_tour()
+}
+class "TestMailActivityChatter" as odoo_src.odoo.addons.mail.tests.test_mail_activity.TestMailActivityChatter {
+  env
+  setUpClass()
+  test_mail_activity_date_format()
+  test_mail_activity_schedule_from_chatter()
+}
+class "TestMailActivityIntegrity" as odoo_src.odoo.addons.mail.tests.test_mail_activity.TestMailActivityIntegrity {
+  test_mail_activity_type_master_data()
+}
+class "TestMailComposer" as odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposer {
+  setUpClass()
+}
+class "TestMailComposerForm" as odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposerForm {
+  setUpClass()
+  test_composer_default_recipients()
+  test_composer_default_recipients_private()
+  test_composer_default_recipients_private_norights()
+  test_composer_template_recipients_private()
+}
+class "TestMailComposerRendering" as odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposerRendering {
+  test_mail_mass_mode_compose_with_mso()
+  test_mail_mass_mode_template_with_mso()
+}
+class "TestMailComposerUI" as odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposerUI {
+  test_mail_composer_test_tour()
+}
+class "TestMailMessage" as odoo_src.odoo.addons.mail.tests.test_mail_message.TestMailMessage {
+  test_unlink_failure_message_notify_author()
+}
+class "TestMailPublicPage" as odoo_src.odoo.addons.mail.tests.discuss.test_discuss_channel_as_guest.TestMailPublicPage {
+  channel
+  group
+  tour : str
+  setUp()
+  test_channel_invitation_from_token()
+  test_chat_from_token_as_guest()
+  test_discuss_channel_public_page_as_admin()
+  test_discuss_channel_public_page_as_guest()
+  test_discuss_channel_public_page_as_internal()
+  test_discuss_channel_public_page_as_portal()
+  test_discuss_channel_public_page_call_public()
+  test_mail_group_public_page_as_admin()
+  test_mail_group_public_page_as_guest()
+  test_mail_group_public_page_as_internal()
+  test_mail_group_public_page_as_portal()
+  test_sidebar_in_public_page()
+}
+class "TestMailRender" as odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRender {
+  test_evaluation_context()
+  test_prepend_preview_inline_template_to_qweb()
+  test_render_field()
+  test_render_field_lang()
+  test_render_field_no_records()
+  test_render_field_not_existing()
+  test_render_template_inline_template()
+  test_render_template_inline_template_w_post_process_custom_local_links()
+  test_render_template_qweb()
+  test_render_template_qweb_view()
+  test_render_template_various()
+  test_replace_local_links()
+}
+class "TestMailRenderCommon" as odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRenderCommon {
+  setUpClass()
+}
+class "TestMailRenderSecurity" as odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRenderSecurity {
+  test_render_inline_template_impersonate()
+  test_render_inline_template_restricted()
+  test_render_inline_template_restricted_static()
+  test_render_inline_template_unrestricted()
+  test_render_template_qweb_restricted()
+  test_security_function_call()
+  test_security_inline_template_restricted()
+  test_security_inline_template_unrestricted()
+  test_security_qweb_template_restricted()
+  test_security_qweb_template_restricted_cached()
+  test_security_qweb_template_unrestricted()
+}
+class "TestMailTemplate" as odoo_src.odoo.addons.mail.tests.test_mail_template.TestMailTemplate {
+  setUpClass()
+  test_mail_compose_message_content_from_template()
+  test_mail_compose_message_content_from_template_mass_mode()
+  test_mail_template_abstract_model()
+  test_mail_template_acl()
+  test_mail_template_acl_translation()
+  test_mail_template_parse_partner_to()
+  test_server_archived_usage_protection()
+}
+class "TestMailTemplateReset" as odoo_src.odoo.addons.mail.tests.test_mail_template.TestMailTemplateReset {
+  test_mail_template_reset()
+  test_mail_template_reset_translation()
+}
+class "TestMailTemplateUI" as odoo_src.odoo.addons.mail.tests.test_mail_template.TestMailTemplateUI {
+  test_mail_template_dynamic_placeholder_tour()
+}
+class "TestMailTools" as odoo_src.odoo.addons.mail.tests.test_mail_tools.TestMailTools {
+  setUpClass()
+  test_find_partner_from_emails()
+  test_mail_find_partner_from_emails_followers()
+  test_mail_find_partner_from_emails_multicompany()
+}
+class "TestMailUninstall" as odoo_src.odoo.addons.mail.tests.test_uninstall.TestMailUninstall {
+  test_unlink_model()
+}
+class "TestMailUtils" as odoo_src.odoo.addons.mail.tests.test_mail_tools.TestMailUtils {
+  test_migrate_icp_to_domain()
+}
+class "TestMenuRootLookupByModel" as odoo_src.odoo.addons.mail.tests.test_ir_ui_menu.TestMenuRootLookupByModel {
+  patch_get_backend_root_menu_ids(model, return_values)
+  setUpClass()
+  test_initial_data()
+  test_look_for_existing_menu_root_user_no_access()
+  test_look_for_existing_menu_root_user_with_access()
+  test_look_for_non_existing_menu_root()
+}
+class "TestMessageController" as odoo_src.odoo.addons.mail.tests.discuss.test_message_controller.TestMessageController {
+  setUpClass()
+  test_attachment_hijack()
+  test_channel_message_attachments()
+  test_chatter_on_archived_record()
+  test_mail_cache_control_header()
+  test_mail_partner_from_email_authenticated()
+}
+class "TestMessageLinks" as odoo_src.odoo.addons.mail.tests.discuss.test_message_controller.TestMessageLinks {
+  setUpClass()
+  test_message_link_by_employee()
+  test_message_link_by_public()
+}
+class "TestMessageReactionController" as odoo_src.odoo.addons.mail.tests.test_message_reaction_controller.TestMessageReactionController {
+  test_message_reaction_channel_as_member()
+  test_message_reaction_channel_as_non_member()
+  test_message_reaction_fake_message()
+  test_message_reaction_partner()
+  test_message_reaction_public_channel()
+}
+class "TestMessageReactionControllerCommon" as odoo_src.odoo.addons.mail.tests.test_message_reaction_controller.TestMessageReactionControllerCommon {
+  setUpClass()
+}
+class "TestMessageUpdateController" as odoo_src.odoo.addons.mail.tests.test_message_update_controller.TestMessageUpdateController {
+  test_message_update_fake_message()
+  test_message_update_non_owner_partner()
+  test_message_update_partner_as_owner()
+}
+class "TestMessageUpdateControllerCommon" as odoo_src.odoo.addons.mail.tests.test_message_update_controller.TestMessageUpdateControllerCommon {
+  setUpClass()
+}
+class "TestNotifySecurityUpdate" as odoo_src.odoo.addons.mail.tests.test_res_users.TestNotifySecurityUpdate {
+  test_security_update_email()
+  test_security_update_login()
+  test_security_update_password()
+}
+class "TestPartner" as odoo_src.odoo.addons.mail.tests.test_res_partner.TestPartner {
+  mockPartnerCalls()
+  setUpClass()
+  test_address_tracking()
+  test_discuss_mention_suggestions_priority()
+  test_find_or_create()
+  test_find_or_create_email_field()
+  test_find_or_create_from_emails()
+  test_log_portal_group()
+  test_name_create_corner_cases()
+  test_partner_merge_wizards()
+  test_res_partner_find_or_create_from_emails_dupes_email_field()
+}
+class "TestRegexRendering" as odoo_src.odoo.addons.mail.tests.test_mail_render.TestRegexRendering {
+  test_inline_regex_rendering()
+  test_qweb_regex_rendering()
+}
+class "TestResUsersSettings" as odoo_src.odoo.addons.mail.tests.test_res_users_settings.TestResUsersSettings {
+  test_find_or_create_for_user_should_create_record_if_not_existing()
+  test_find_or_create_for_user_should_return_correct_res_users_settings()
+  test_set_res_users_settings_should_send_notification_on_bus()
+  test_set_res_users_settings_should_set_settings_properly()
+}
+class "TestSearchTemplateCategory" as odoo_src.odoo.addons.mail.tests.test_mail_template.TestSearchTemplateCategory {
+  setUpClass()
+  test_search_template_category()
+}
+class "TestTemplateConfigRestrictEditor" as odoo_src.odoo.addons.mail.tests.test_mail_template.TestTemplateConfigRestrictEditor {
+  test_switch_icp_value()
+}
+class "TestThreadController" as odoo_src.odoo.addons.mail.tests.test_thread_controller.TestThreadController {
+  test_partner_message_post_access()
+  test_partner_message_post_partner_ids()
+}
+class "TestThreadControllerCommon" as odoo_src.odoo.addons.mail.tests.test_thread_controller.TestThreadControllerCommon {
+}
+class "TestToggleUpload" as odoo_src.odoo.addons.mail.tests.discuss.test_toggle_upload.TestToggleUpload {
+  test_upload_allowed()
+  test_upload_denied()
+}
+class "TestTranslationController" as odoo_src.odoo.addons.mail.tests.test_mail_message_translate.TestTranslationController {
+  request_count
+  setUpClass()
+  test_access_right()
+  test_html_sanitization()
+  test_invalid_api_key()
+  test_translation_multi_users()
+  test_unknown_language()
+  test_update_message()
+}
+class "TestUSerCreationSettings" as odoo_src.odoo.addons.mail.tests.test_res_users_settings.TestUSerCreationSettings {
+  test_create_internal_user()
+  test_create_portal_user()
+}
+class "TestUi" as odoo_src.odoo.addons.mail.tests.discuss.test_ui.TestUi {
+  test_01_mail_tour()
+  test_02_mail_create_channel_no_mail_tour()
+  test_03_mail_discuss_configuration_tour()
+}
+class "TestUpdateNotification" as odoo_src.odoo.addons.mail.tests.test_update_notification.TestUpdateNotification {
+  test_user_count()
+}
+class "TestUser" as odoo_src.odoo.addons.mail.tests.test_res_users.TestUser {
+  test_notification_type_constraint()
+  test_notification_type_convert_internal_inbox_to_portal()
+  test_web_create_users()
+}
+class "TestUserTours" as odoo_src.odoo.addons.mail.tests.test_res_users.TestUserTours {
+  test_user_modify_own_profile()
+}
+class "ThreadController" as odoo_src.odoo.addons.mail.controllers.thread.ThreadController {
+  mail_message_post(thread_model, thread_id, post_data, context)
+  mail_message_update_content(message_id, body, attachment_ids, attachment_tokens, partner_ids)
+  mail_thread_data(thread_model, thread_id, request_list)
+  mail_thread_messages(thread_model, thread_id, search_term, before, after, around, limit)
+  mail_thread_partner_from_email(emails, additional_values)
+  read_subscription_data(follower_id)
+}
+class "Users" as odoo_src.odoo.addons.mail.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  notification_type
+  action_archive()
+  create(vals_list)
+  write(vals)
+}
+class "View" as odoo_src.odoo.addons.mail.models.ir_ui_view.View {
+  type
+}
+class "VoiceController" as odoo_src.odoo.addons.mail.controllers.discuss.voice.VoiceController {
+  voice_worklet_processor()
+}
+class "WebManifest" as odoo_src.odoo.addons.mail.controllers.webmanifest.WebManifest {
+}
+class "WebclientController" as odoo_src.odoo.addons.mail.controllers.webclient.WebclientController {
+  mail_action()
+  mail_data()
+}
+odoo_src.odoo.addons.mail.tests.common.MailCase --|> odoo_src.odoo.addons.mail.tests.common.MockEmail
+odoo_src.odoo.addons.mail.tests.common.MailCommon --|> odoo_src.odoo.addons.mail.tests.common.MailCase
+odoo_src.odoo.addons.mail.tests.discuss.test_discuss_binary_controller.TestDiscussBinaryController --|> odoo_src.odoo.addons.mail.tests.discuss.test_discuss_binary_controller.TestDiscussBinaryControllerCommon
+odoo_src.odoo.addons.mail.tests.test_attachment_controller.TestAttachmentController --|> odoo_src.odoo.addons.mail.tests.test_attachment_controller.TestAttachmentControllerCommon
+odoo_src.odoo.addons.mail.tests.test_binary_controller.TestBinaryController --|> odoo_src.odoo.addons.mail.tests.test_binary_controller.TestBinaryControllerCommon
+odoo_src.odoo.addons.mail.tests.test_mail_activity.TestMailActivityIntegrity --|> odoo_src.odoo.addons.mail.tests.test_mail_activity.ActivityScheduleCase
+odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposerForm --|> odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposer
+odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposerRendering --|> odoo_src.odoo.addons.mail.tests.test_mail_composer.TestMailComposer
+odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRender --|> odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRenderCommon
+odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRenderSecurity --|> odoo_src.odoo.addons.mail.tests.test_mail_render.TestMailRenderCommon
+odoo_src.odoo.addons.mail.tests.test_message_reaction_controller.TestMessageReactionController --|> odoo_src.odoo.addons.mail.tests.test_message_reaction_controller.TestMessageReactionControllerCommon
+odoo_src.odoo.addons.mail.tests.test_message_update_controller.TestMessageUpdateController --|> odoo_src.odoo.addons.mail.tests.test_message_update_controller.TestMessageUpdateControllerCommon
+odoo_src.odoo.addons.mail.tests.test_thread_controller.TestThreadController --|> odoo_src.odoo.addons.mail.tests.test_thread_controller.TestThreadControllerCommon
+@enduml

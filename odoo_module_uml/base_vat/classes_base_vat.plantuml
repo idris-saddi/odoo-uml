@@ -1,0 +1,73 @@
+@startuml classes_base_vat
+set namespaceSeparator none
+class "AccountFiscalPosition" as odoo_src.odoo.addons.base_vat.models.account_fiscal_position.AccountFiscalPosition {
+  adjust_vals_country_id(vals)
+  create(vals_list)
+  raise_vat_error_message(country)
+  write(vals)
+}
+class "ResCompany" as odoo_src.odoo.addons.base_vat.models.res_company.ResCompany {
+  vat_check_vies
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.base_vat.models.res_config_settings.ResConfigSettings {
+  vat_check_vies
+}
+class "ResPartner" as odoo_src.odoo.addons.base_vat.models.res_partner.ResPartner {
+  perform_vies_validation
+  vies_valid
+  vies_vat_to_check
+  check_vat()
+  check_vat_al(vat)
+  check_vat_br(vat)
+  check_vat_ch(vat)
+  check_vat_cr(vat)
+  check_vat_de(vat)
+  check_vat_ec(vat)
+  check_vat_gr(vat)
+  check_vat_gt(vat)
+  check_vat_hu(vat)
+  check_vat_id(vat)
+  check_vat_ie(vat)
+  check_vat_il(vat)
+  check_vat_in(vat)
+  check_vat_ma(vat)
+  check_vat_mx(vat)
+  check_vat_no(vat)
+  check_vat_pe(vat)
+  check_vat_ph(vat)
+  check_vat_ro(vat)
+  check_vat_ru(vat)
+  check_vat_sa(vat)
+  check_vat_t(vat)
+  check_vat_tr(vat)
+  check_vat_ua(vat)
+  check_vat_uy(vat)
+  check_vat_ve(vat)
+  check_vat_vn(vat)
+  create(vals_list)
+  fix_eu_vat_number(country_id, vat)
+  format_vat_ch(vat)
+  format_vat_eu(vat)
+  format_vat_sm(vat)
+  is_valid_ruc_ec(vat)
+  simple_vat_check(country_code, vat_number)
+  write(values)
+}
+class "TestStructure" as odoo_src.odoo.addons.base_vat.tests.test_validate_ruc.TestStructure {
+  setUpClass()
+  test_nif_de()
+  test_parent_validation()
+  test_peru_ruc_format()
+  test_rut_uy()
+  test_soap_client_for_vies_loads()
+  test_vat_country_difference()
+  test_vat_eu()
+  test_vat_syntactic_validation()
+  test_vat_vn()
+}
+class "TestStructureVIES" as odoo_src.odoo.addons.base_vat.tests.test_validate_ruc.TestStructureVIES {
+  allow_inherited_tests_method : bool
+  setUpClass()
+}
+odoo_src.odoo.addons.base_vat.tests.test_validate_ruc.TestStructureVIES --|> odoo_src.odoo.addons.base_vat.tests.test_validate_ruc.TestStructure
+@enduml

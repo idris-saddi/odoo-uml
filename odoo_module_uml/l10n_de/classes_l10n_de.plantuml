@@ -1,0 +1,42 @@
+@startuml classes_l10n_de
+set namespaceSeparator none
+class "AccountAccount" as odoo_src.odoo.addons.l10n_de.models.account_account.AccountAccount {
+  write(vals)
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_de.models.template_de_skr03.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_de.models.template_de_skr04.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_de.models.chart_template.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_de.models.account_journal.AccountJournal {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_de.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_de.models.datev.AccountTax {
+  l10n_de_datev_code
+}
+class "IrActionsReport" as odoo_src.odoo.addons.l10n_de.models.ir_actions_report.IrActionsReport {
+}
+class "IrAttachment" as odoo_src.odoo.addons.l10n_de.models.ir_attachment.IrAttachment {
+  unlink()
+  write(vals)
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_de.models.datev.ProductTemplate {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_de.models.res_company.ResCompany {
+  l10n_de_stnr
+  l10n_de_widnr
+  get_l10n_de_stnr_national()
+  write(vals)
+}
+class "TestAccountMoveDE" as odoo_src.odoo.addons.l10n_de.tests.test_account_move.TestAccountMoveDE {
+  setUpClass()
+  test_missing_invoice_delivery_date()
+}
+class "TestAuditTrailDE" as odoo_src.odoo.addons.l10n_de.tests.test_audit_trail.TestAuditTrailDE {
+  setUpClass()
+  test_audit_trail_de()
+  test_audit_trail_write()
+}
+@enduml

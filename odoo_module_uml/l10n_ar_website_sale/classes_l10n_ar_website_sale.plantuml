@@ -1,0 +1,18 @@
+@startuml classes_l10n_ar_website_sale
+set namespaceSeparator none
+class "L10nARCustomerPortal" as odoo_src.odoo.addons.l10n_ar_website_sale.controllers.portal.L10nARCustomerPortal {
+  details_form_validate(data, partner_creation)
+}
+class "L10nARWebsiteSale" as odoo_src.odoo.addons.l10n_ar_website_sale.controllers.main.L10nARWebsiteSale {
+}
+class "SaleOrder" as odoo_src.odoo.addons.l10n_ar_website_sale.models.sale_order.SaleOrder {
+}
+class "TestWebsiteSaleInvoice" as odoo_src.odoo.addons.l10n_ar_website_sale.tests.test_invoice.TestWebsiteSaleInvoice {
+  amount
+  frozen_today : str
+  setUpClass()
+  test_website_automatic_invoice_date()
+}
+class "Website" as odoo_src.odoo.addons.l10n_ar_website_sale.models.website.Website {
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml classes_account_test
+set namespaceSeparator none
+class "AccountingAssertTest" as odoo_src.odoo.addons.account_test.models.accounting_assert_test.AccountingAssertTest {
+  active
+  code_exec
+  desc
+  name
+  sequence
+}
+class "ReportAssertAccount" as odoo_src.odoo.addons.account_test.report.report_account_test.ReportAssertAccount {
+}
+@enduml

@@ -1,0 +1,94 @@
+@startuml classes_account_edi_ubl_cii
+set namespaceSeparator none
+class "AccountEdiCommon" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_common.AccountEdiCommon {
+  format_float(amount, precision_digits)
+}
+class "AccountEdiXmlCII" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_cii_facturx.AccountEdiXmlCII {
+}
+class "AccountEdiXmlUBL20" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_20.AccountEdiXmlUBL20 {
+}
+class "AccountEdiXmlUBL21" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_21.AccountEdiXmlUBL21 {
+}
+class "AccountEdiXmlUBLANZ" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_a_nz.AccountEdiXmlUBLANZ {
+}
+class "AccountEdiXmlUBLBIS3" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_bis3.AccountEdiXmlUBLBIS3 {
+}
+class "AccountEdiXmlUBLDE" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_xrechnung.AccountEdiXmlUBLDE {
+}
+class "AccountEdiXmlUBLEFFF" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_efff.AccountEdiXmlUBLEFFF {
+}
+class "AccountEdiXmlUBLNL" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_nlcius.AccountEdiXmlUBLNL {
+}
+class "AccountEdiXmlUBLSG" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_sg.AccountEdiXmlUBLSG {
+}
+class "AccountMove" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_move.AccountMove {
+  ubl_cii_xml_file
+  ubl_cii_xml_id
+  action_invoice_download_ubl()
+  get_extra_print_items()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_move_send.AccountMoveSend {
+}
+class "FloatFmt" as odoo_src.odoo.addons.account_edi_ubl_cii.models.account_edi_xml_ubl_20.FloatFmt {
+  max_dp : NoneType
+  min_dp : int
+}
+class "IrActionsReport" as odoo_src.odoo.addons.account_edi_ubl_cii.models.ir_actions_report.IrActionsReport {
+}
+class "ResPartner" as odoo_src.odoo.addons.account_edi_ubl_cii.models.res_partner.ResPartner {
+  available_peppol_eas
+  invoice_edi_format
+  is_peppol_edi_format
+  is_ubl_format
+  peppol_eas
+  peppol_endpoint
+}
+class "TestAccountEdiUblCii" as odoo_src.odoo.addons.account_edi_ubl_cii.tests.test_ubl_cii.TestAccountEdiUblCii {
+  import_attachment(attachment, journal)
+  setUpClass()
+  test_actual_delivery_date_in_cii_xml()
+  test_billing_date_in_cii_xml()
+  test_export_import_billing_dates()
+  test_export_import_product()
+  test_export_import_product_new()
+  test_import_discount()
+  test_import_partner_fields()
+  test_import_partner_peppol_fields()
+  test_import_tax_prediction()
+  test_payment_means_code_in_facturx_xml()
+  test_peppol_eas_endpoint_compute()
+}
+class "TestAccountUblCii" as odoo_src.odoo.addons.account_edi_ubl_cii.tests.test_partner_peppol_fields.TestAccountUblCii {
+  check_peppol_vals(partner, expected, reset)
+  test_partner_ubl_cii_formats()
+  test_peppol_eas_endpoint()
+}
+class "TestAutoPostBills" as odoo_src.odoo.addons.account_edi_ubl_cii.tests.test_autopost_bills.TestAutoPostBills {
+  assert_wizard(post_result, expected_nb_bills)
+  import_facturx(filename, ref)
+  test_autopost_bills()
+}
+class "TestDownloadDocs" as odoo_src.odoo.addons.account_edi_ubl_cii.tests.test_download_docs.TestDownloadDocs {
+  setUpClass()
+  test_download_invoice_documents_filetype_all()
+}
+class "TestUblBis3" as odoo_src.odoo.addons.account_edi_ubl_cii.tests.test_ubl_bis3.TestUblBis3 {
+  setUpClass()
+  setup_partner_as_be1(partner)
+  setup_partner_as_be2(partner)
+  test_dispatch_base_lines_delta()
+  test_early_pay_discount_different_taxes()
+  test_early_pay_discount_with_discount_on_lines()
+  test_early_pay_discount_with_fixed_tax()
+  test_export_invoice_from_account_edi_xml_ubl_bis3()
+  test_financial_account()
+  test_manual_tax_amount_on_invoice()
+  test_multiple_fixed_taxes_price_excluded()
+  test_price_unit_with_more_decimals()
+  test_product_code_and_barcode()
+  test_single_fixed_tax_price_excluded()
+  test_single_fixed_tax_price_excluded_and_discount()
+  test_single_fixed_tax_price_included()
+  test_taxes_rounding_negative_line_tax_included()
+}
+@enduml

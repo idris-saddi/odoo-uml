@@ -1,0 +1,69 @@
+@startuml classes_hr_work_entry_holidays
+set namespaceSeparator none
+class "HrContract" as odoo_src.odoo.addons.hr_work_entry_holidays.models.hr_contract.HrContract {
+}
+class "HrLeave" as odoo_src.odoo.addons.hr_work_entry_holidays.models.hr_leave.HrLeave {
+  action_refuse()
+  action_reset_confirm()
+  create(vals_list)
+  write(vals)
+}
+class "HrLeaveType" as odoo_src.odoo.addons.hr_work_entry_holidays.models.hr_leave.HrLeaveType {
+  work_entry_type_id
+}
+class "HrWorkEntry" as odoo_src.odoo.addons.hr_work_entry_holidays.models.hr_work_entry.HrWorkEntry {
+  leave_id
+  leave_state
+  action_approve_leave()
+  action_refuse_leave()
+  write(vals)
+}
+class "HrWorkEntryType" as odoo_src.odoo.addons.hr_work_entry_holidays.models.hr_work_entry.HrWorkEntryType {
+  leave_type_ids
+}
+class "TestPayslipHolidaysComputation" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_payslip_holidays_computation.TestPayslipHolidaysComputation {
+  test_work_data()
+}
+class "TestWorkEntryHolidaysBase" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.common.TestWorkEntryHolidaysBase {
+  setUpClass()
+}
+class "TestWorkEntryHolidaysMultiContract" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_multi_contract.TestWorkEntryHolidaysMultiContract {
+  test_multi_contract_holiday()
+}
+class "TestWorkEntryHolidaysPerformance" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_performance.TestWorkEntryHolidaysPerformance {
+  setUpClass()
+  test_performance_leave_create()
+  test_performance_leave_validate()
+  test_performance_leave_write()
+}
+class "TestWorkEntryHolidaysPerformancesBigData" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_performance.TestWorkEntryHolidaysPerformancesBigData {
+  setUpClass()
+  test_work_entries_generation_perf()
+}
+class "TestWorkEntryLeave" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_leave.TestWorkEntryLeave {
+  test_archived_work_entry_conflict()
+  test_conflict_move_work_entry()
+  test_create_mark_conflicting_work_entries()
+  test_create_work_entry_for_flexible_employee_leave()
+  test_refuse_approved_leave()
+  test_refuse_leave()
+  test_resource_leave_has_work_entry_type()
+  test_resource_leave_in_contract_calendar()
+  test_split_leaves_by_entry_type()
+  test_time_off_duration_contract_state_change()
+  test_validate_leave_with_overlap()
+  test_validate_leave_without_overlap()
+  test_work_entry_cancel_leave()
+  test_work_entry_generation_company_time_off()
+  test_write_mark_conflicting_work_entries()
+}
+class "TestWorkeEntryHolidaysWorkEntry" as odoo_src.odoo.addons.hr_work_entry_holidays.tests.test_work_entry.TestWorkeEntryHolidaysWorkEntry {
+  setUpClass()
+  test_contract_on_another_company()
+  test_refuse_leave_work_entry()
+  test_time_week_leave_work_entry()
+  test_validate_non_approved_leave_work_entry()
+  test_work_entries_generation_if_parent_leave_zero_hours()
+  test_work_entries_leave_if_leave_conflict_with_public_holiday()
+}
+@enduml

@@ -1,0 +1,41 @@
+@startuml classes_l10n_es
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_assec.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_coop_pymes.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_canary_common.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_common.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_common_mainland.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_coop_full.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_canary_pymes.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_canary_assoc.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_pymes.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_canary_full.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es.models.template_es_full.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_es.models.account_move.AccountMove {
+  l10n_es_is_simplified
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_es.models.account_tax.AccountTax {
+  l10n_es_bien_inversion
+  l10n_es_exempt_reason
+  l10n_es_type
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es.models.res_company.ResCompany {
+  l10n_es_simplified_invoice_limit
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_es.models.res_config_settings.ResConfigSettings {
+  l10n_es_simplified_invoice_limit
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_es.models.res_partner.ResPartner {
+}
+@enduml

@@ -1,0 +1,96 @@
+@startuml classes_l10n_es_edi_verifactu
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.account_move.AccountMove {
+  l10n_es_edi_verifactu_available_clave_regimens
+  l10n_es_edi_verifactu_clave_regimen
+  l10n_es_edi_verifactu_document_ids
+  l10n_es_edi_verifactu_qr_code
+  l10n_es_edi_verifactu_refund_reason
+  l10n_es_edi_verifactu_required
+  l10n_es_edi_verifactu_show_cancel_button
+  l10n_es_edi_verifactu_state
+  l10n_es_edi_verifactu_substituted_entry_id
+  l10n_es_edi_verifactu_substitution_move_ids
+  l10n_es_edi_verifactu_warning
+  l10n_es_edi_verifactu_warning_level
+  l10n_es_edi_verifactu_button_cancel()
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_es_edi_verifactu.wizard.account_move_reversal.AccountMoveReversal {
+  l10n_es_edi_verifactu_refund_reason
+  l10n_es_edi_verifactu_required
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.account_tax.AccountTax {
+  l10n_es_applicability
+}
+class "Certificate" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.certificate.Certificate {
+  scope
+}
+class "L10nEsEdiVerifactuDocument" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.verifactu_document.L10nEsEdiVerifactuDocument {
+  chain_index
+  company_id
+  document_type
+  errors
+  json_attachment_base64
+  json_attachment_filename
+  json_attachment_id
+  move_id
+  response_csv
+  state
+  trigger_next_batch()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.res_company.ResCompany {
+  l10n_es_edi_verifactu_certificate_ids
+  l10n_es_edi_verifactu_chain_sequence_id
+  l10n_es_edi_verifactu_next_batch_time
+  l10n_es_edi_verifactu_required
+  l10n_es_edi_verifactu_special_vat_regime
+  l10n_es_edi_verifactu_test_environment
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.res_config_settings.ResConfigSettings {
+  l10n_es_edi_verifactu_certificate_ids
+  l10n_es_edi_verifactu_required
+  l10n_es_edi_verifactu_special_vat_regime
+  l10n_es_edi_verifactu_test_environment
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_es_edi_verifactu.models.res_partner.ResPartner {
+}
+class "TestL10nEsEdiVerifactuCommon" as odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.common.TestL10nEsEdiVerifactuCommon {
+  setUpClass()
+}
+class "TestL10nEsEdiVerifactuDocument" as odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.test_document.TestL10nEsEdiVerifactuDocument {
+  setUpClass()
+  test_batch_single_accepted_cancellation()
+  test_batch_single_accepted_registration()
+  test_batch_single_duplicate_original_registered_with_errors_registration_with_timeout()
+  test_batch_single_duplicate_original_registered_with_errors_registration_without_timeout()
+  test_batch_single_registered_with_errors_registration()
+  test_batch_single_rejected_registration()
+  test_cannot_delete_chained_document()
+  test_certificate_issue()
+  test_generation_error()
+  test_mark_for_next_batch()
+  test_record_identifier()
+  test_response_issue()
+  test_response_parsing_error_document_not_found()
+  test_soapfault()
+}
+class "TestL10nEsEdiVerifactuJson" as odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.test_json.TestL10nEsEdiVerifactuJson {
+  setUpClass()
+  test_huella_generation()
+  test_invoice_1_and_credit_note()
+  test_invoice_1_and_substitution()
+  test_invoice_2()
+  test_invoice_3()
+  test_invoice_4()
+  test_invoice_cancellation_1()
+  test_invoice_multicurrency_1()
+  test_invoice_simplified_partner()
+  test_multiple_invoices_with_predecessor()
+}
+odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.test_document.TestL10nEsEdiVerifactuDocument --|> odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.common.TestL10nEsEdiVerifactuCommon
+odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.test_json.TestL10nEsEdiVerifactuJson --|> odoo_src.odoo.addons.l10n_es_edi_verifactu.tests.common.TestL10nEsEdiVerifactuCommon
+@enduml

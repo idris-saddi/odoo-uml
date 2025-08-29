@@ -1,0 +1,31 @@
+@startuml classes_hr_presence
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.hr_presence.models.hr_employee.Employee {
+  email_sent
+  hr_presence_state_display
+  ip_connected
+  manually_set_presence
+  manually_set_present
+  action_open_leave_request()
+  action_send_log()
+  action_send_sms()
+  action_set_absent()
+  action_set_present()
+  get_presence_server_action_data()
+  write(vals)
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_presence.models.hr_employee_base.HrEmployeeBase {
+}
+class "IrWebsocket" as odoo_src.odoo.addons.hr_presence.models.ir_websocket.IrWebsocket {
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_presence.models.res_company.ResCompany {
+  hr_presence_last_compute_date
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_presence.models.res_config_settings.ResConfigSettings {
+  create(vals)
+}
+class "ResUsersLog" as odoo_src.odoo.addons.hr_presence.models.res_users_log.ResUsersLog {
+  create_uid
+  ip
+}
+@enduml

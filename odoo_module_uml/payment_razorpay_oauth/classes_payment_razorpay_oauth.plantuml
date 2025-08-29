@@ -1,0 +1,24 @@
+@startuml classes_payment_razorpay_oauth
+set namespaceSeparator none
+class "PaymentProvider" as odoo_src.odoo.addons.payment_razorpay_oauth.models.payment_provider.PaymentProvider {
+  razorpay_access_token
+  razorpay_access_token_expiry
+  razorpay_account_id
+  razorpay_key_id
+  razorpay_key_secret
+  razorpay_public_token
+  razorpay_refresh_token
+  razorpay_webhook_secret
+  action_razorpay_create_webhook()
+  action_razorpay_redirect_to_oauth_url()
+  action_razorpay_reset_oauth_account()
+}
+class "RazorpayController" as odoo_src.odoo.addons.payment_razorpay_oauth.controllers.onboarding.RazorpayController {
+  OAUTH_RETURN_URL : str
+  razorpay_return_from_authorization()
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_razorpay_oauth.tests.test_payment_provider.TestPaymentProvider {
+  test_allow_enabling_if_credentials_are_set()
+  test_prevent_enabling_if_credentials_are_not_set()
+}
+@enduml

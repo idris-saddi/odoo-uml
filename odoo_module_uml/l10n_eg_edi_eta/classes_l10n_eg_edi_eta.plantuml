@@ -1,0 +1,84 @@
+@startuml classes_l10n_eg_edi_eta
+set namespaceSeparator none
+class "AccountEdiFormat" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.account_edi_format.AccountEdiFormat {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.account_journal.AccountJournal {
+  l10n_eg_activity_type_id
+  l10n_eg_branch_id
+  l10n_eg_branch_identifier
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.account_move.AccountMove {
+  l10n_eg_eta_json_doc_id
+  l10n_eg_is_signed
+  l10n_eg_long_id
+  l10n_eg_qr_code
+  l10n_eg_signing_time
+  l10n_eg_submission_number
+  l10n_eg_uuid
+  action_get_eta_invoice_pdf()
+  action_post_sign_invoices()
+  button_draft()
+}
+class "EtaActivityType" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.eta_activity_type.EtaActivityType {
+  code
+  name
+}
+class "EtaThumbDrive" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.eta_thumb_drive.EtaThumbDrive {
+  access_token
+  certificate
+  company_id
+  pin
+  user_id
+  action_set_certificate_from_usb()
+  action_sign_invoices(invoice_ids)
+  set_certificate(certificate)
+  set_signature_data(invoices)
+}
+class "ProductProduct" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.product_template.ProductProduct {
+  l10n_eg_eta_code
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.product_template.ProductTemplate {
+  l10n_eg_eta_code
+  create(vals_list)
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.res_company.ResCompany {
+  l10n_eg_client_identifier
+  l10n_eg_client_secret
+  l10n_eg_invoicing_threshold
+  l10n_eg_production_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.res_config_settings.ResConfigSettings {
+  l10n_eg_client_identifier
+  l10n_eg_client_secret
+  l10n_eg_invoicing_threshold
+  l10n_eg_production_env
+}
+class "ResCurrencyRate" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.res_currency_rate.ResCurrencyRate {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.res_partner.ResPartner {
+  l10n_eg_building_no
+}
+class "TestEGEdiCommon" as odoo_src.odoo.addons.l10n_eg_edi_eta.tests.common.TestEGEdiCommon {
+  create_invoice()
+  setUpClass()
+}
+class "TestEdiJson" as odoo_src.odoo.addons.l10n_eg_edi_eta.tests.test_edi_json.TestEdiJson {
+  test_1_simple_test_local_parter_no_tax()
+  test_2_simple_test_local_parter_vat_14()
+  test_3_simple_test_local_parter_vat_14_discount_credit_note()
+  test_4_simple_test_local_parter_vat_14_discount_multiple_tax()
+  test_5_simple_test_foreign_partner_exempt_discount()
+  test_6_simple_test_foreign_parter_exempt_discount_foreign_currency()
+  test_7_simple_test_foreign_parter_exempt_discount_foreign_currency_credit_note()
+  test_8_test_serialization_function()
+  test_9_test_withholding_tax()
+}
+class "UomCode" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.uom_uom.UomCode {
+  code
+  name
+}
+class "UomUom" as odoo_src.odoo.addons.l10n_eg_edi_eta.models.uom_uom.UomUom {
+  l10n_eg_unit_code_id
+}
+odoo_src.odoo.addons.l10n_eg_edi_eta.tests.test_edi_json.TestEdiJson --|> odoo_src.odoo.addons.l10n_eg_edi_eta.tests.common.TestEGEdiCommon
+@enduml

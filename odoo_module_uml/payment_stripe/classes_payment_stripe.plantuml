@@ -1,0 +1,49 @@
+@startuml classes_payment_stripe
+set namespaceSeparator none
+class "OnboardingController" as odoo_src.odoo.addons.payment_stripe.controllers.onboarding.OnboardingController {
+  stripe_refresh_onboarding(provider_id, account_id, menu_id)
+  stripe_return_from_onboarding(provider_id, menu_id)
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_stripe.models.payment_provider.PaymentProvider {
+  code
+  stripe_publishable_key
+  stripe_secret_key
+  stripe_webhook_secret
+  action_stripe_connect_account(menu_id)
+  action_stripe_create_webhook()
+  action_stripe_verify_apple_pay_domain()
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment_stripe.models.payment_token.PaymentToken {
+  stripe_mandate
+  stripe_payment_method
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_stripe.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "StripeCommon" as odoo_src.odoo.addons.payment_stripe.tests.common.StripeCommon {
+  setUpClass()
+}
+class "StripeController" as odoo_src.odoo.addons.payment_stripe.controllers.main.StripeController {
+  WEBHOOK_AGE_TOLERANCE : int
+  stripe_apple_pay_get_domain_association_file()
+  stripe_return()
+  stripe_webhook()
+}
+class "StripeTest" as odoo_src.odoo.addons.payment_stripe.tests.test_stripe.StripeTest {
+  test_create_account_link_pass_required_parameters()
+  test_do_not_create_webhook_if_already_done()
+  test_onboarding_action_redirect_to_url()
+  test_only_create_webhook_if_not_already_done()
+  test_processing_values()
+  test_tx_state_after_send_capture_request()
+  test_tx_state_after_send_void_request()
+  test_webhook_notification_confirms_transaction()
+  test_webhook_notification_tokenizes_payment_method()
+  test_webhook_notification_triggers_signature_check()
+}
+class "TestRefundFlows" as odoo_src.odoo.addons.payment_stripe.tests.test_refund_flows.TestRefundFlows {
+  test_canceled_refund_webhook_notification_triggers_processing()
+  test_refund_id_is_set_as_provider_reference()
+}
+@enduml

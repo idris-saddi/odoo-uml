@@ -1,0 +1,42 @@
+@startuml classes_payment_flutterwave
+set namespaceSeparator none
+class "FlutterwaveCommon" as odoo_src.odoo.addons.payment_flutterwave.tests.common.FlutterwaveCommon {
+  setUpClass()
+}
+class "FlutterwaveController" as odoo_src.odoo.addons.payment_flutterwave.controllers.main.FlutterwaveController {
+  flutterwave_return_from_authorization(response)
+  flutterwave_return_from_checkout()
+  flutterwave_webhook()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_flutterwave.models.payment_provider.PaymentProvider {
+  code
+  flutterwave_public_key
+  flutterwave_secret_key
+  flutterwave_webhook_secret
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment_flutterwave.models.payment_token.PaymentToken {
+  flutterwave_customer_email
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_flutterwave.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_flutterwave.tests.test_payment_provider.TestPaymentProvider {
+  test_incompatible_with_unsupported_currencies()
+  test_incompatible_with_validation_transactions()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_flutterwave.tests.test_payment_transaction.TestPaymentTransaction {
+  test_no_input_missing_from_redirect_form()
+  test_no_item_missing_from_rendering_values()
+  test_processing_notification_data_confirms_transaction()
+  test_processing_notification_data_tokenizes_transaction()
+}
+class "TestProcessingFlows" as odoo_src.odoo.addons.payment_flutterwave.tests.test_processing_flows.TestProcessingFlows {
+  test_accept_webhook_notification_with_valid_signature()
+  test_redirect_notification_triggers_processing()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_webhook_notification_triggers_processing()
+  test_webhook_notification_triggers_signature_check()
+}
+@enduml

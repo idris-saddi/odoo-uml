@@ -1,0 +1,39 @@
+@startuml classes_l10n_ke_edi_tremol
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_ke_edi_tremol.models.account_move.AccountMove {
+  l10n_ke_cu_datetime
+  l10n_ke_cu_invoice_number
+  l10n_ke_cu_qrcode
+  l10n_ke_cu_serial_number
+  l10n_ke_cu_show_send_button
+  l10n_ke_action_cu_post()
+  l10n_ke_cu_responses(responses)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_ke_edi_tremol.models.account_move_send.AccountMoveSend {
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.l10n_ke_edi_tremol.wizard.account_move_send_wizard.AccountMoveSendWizard {
+  action_send_and_print(allow_fallback_pdf)
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ke_edi_tremol.models.res_company.ResCompany {
+  l10n_ke_cu_proxy_address
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_ke_edi_tremol.models.res_config_settings.ResConfigSettings {
+  l10n_ke_cu_proxy_address
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ke_edi_tremol.models.res_partner.ResPartner {
+  l10n_ke_exemption_number
+}
+class "TestKEAccountMoveSend" as odoo_src.odoo.addons.l10n_ke_edi_tremol.tests.test_account_move_send.TestKEAccountMoveSend {
+  setUpClass()
+  test_not_sent_to_fiscal_device_but_allow_fallback()
+  test_not_sent_to_fiscal_device_raises()
+  test_sent_to_fiscal_device()
+}
+class "TestKeMoveExport" as odoo_src.odoo.addons.l10n_ke_edi_tremol.tests.test_move_export.TestKeMoveExport {
+  line_dict_to_bytes(line_dict)
+  setUpClass()
+  test_export_global_discount_invoice()
+  test_export_multi_tax_line_invoice()
+  test_export_simple_invoice()
+}
+@enduml

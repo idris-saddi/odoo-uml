@@ -1,0 +1,76 @@
+@startuml classes_crm_iap_mine
+set namespaceSeparator none
+class "CRMHelpers" as odoo_src.odoo.addons.crm_iap_mine.models.crm_iap_lead_helpers.CRMHelpers {
+  lead_vals_from_response(lead_type, team_id, tag_ids, user_id, company_data, people_data)
+  notify_no_more_credit(service_name, model_name, notification_parameter)
+}
+class "CRMLeadMiningRequest" as odoo_src.odoo.addons.crm_iap_mine.models.crm_iap_lead_mining_request.CRMLeadMiningRequest {
+  available_state_ids
+  company_size_max
+  company_size_min
+  contact_filter_type
+  contact_number
+  country_ids
+  error_type
+  filter_on_size
+  industry_ids
+  lead_contacts_credits
+  lead_count
+  lead_credits
+  lead_ids
+  lead_number
+  lead_total_credits
+  lead_type
+  name
+  preferred_role_id
+  role_ids
+  search_type
+  seniority_id
+  state
+  state_ids
+  tag_ids
+  team_id
+  user_id
+  action_buy_credits()
+  action_draft()
+  action_get_lead_action()
+  action_get_opportunity_action()
+  action_submit()
+  get_empty_list_help(help_message)
+}
+class "CrmIapLeadIndustry" as odoo_src.odoo.addons.crm_iap_mine.models.crm_iap_lead_industry.CrmIapLeadIndustry {
+  color
+  name
+  reveal_ids
+  sequence
+}
+class "Lead" as odoo_src.odoo.addons.crm_iap_mine.models.crm_lead.Lead {
+  lead_mining_request_id
+  action_generate_leads()
+}
+class "MockIAPReveal" as odoo_src.odoo.addons.crm_iap_mine.tests.common.MockIAPReveal {
+  mine
+  assertMineCallParams(params)
+  assertMinePayload(mine, payload)
+  mock_IAP_mine(mine, name_list, default_data, sim_error)
+  setUpClass()
+}
+class "PeopleRole" as odoo_src.odoo.addons.crm_iap_mine.models.crm_iap_lead_role.PeopleRole {
+  color
+  name
+  reveal_id
+}
+class "PeopleSeniority" as odoo_src.odoo.addons.crm_iap_mine.models.crm_iap_lead_seniority.PeopleSeniority {
+  name
+  reveal_id
+}
+class "TestLeadMine" as odoo_src.odoo.addons.crm_iap_mine.tests.test_lead_mine.TestLeadMine {
+  setUpClass()
+  tearDownClass()
+  test_mine_error_credit()
+  test_mine_error_jsonrpc_exception()
+  test_mine_error_no_result()
+  test_mine_wcompany()
+  test_mine_wpeople()
+}
+@enduml

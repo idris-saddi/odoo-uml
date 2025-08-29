@@ -1,0 +1,300 @@
+@startuml classes_hr_expense
+set namespaceSeparator none
+class "AccountAnalyticAccount" as odoo_src.odoo.addons.hr_expense.models.analytic.AccountAnalyticAccount {
+}
+class "AccountAnalyticApplicability" as odoo_src.odoo.addons.hr_expense.models.analytic.AccountAnalyticApplicability {
+  business_domain
+}
+class "AccountMove" as odoo_src.odoo.addons.hr_expense.models.account_move.AccountMove {
+  expense_sheet_id
+  show_commercial_partner_warning
+  action_open_expense_report()
+  button_cancel()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.hr_expense.models.account_move_line.AccountMoveLine {
+  expense_id
+}
+class "AccountPayment" as odoo_src.odoo.addons.hr_expense.models.account_payment.AccountPayment {
+  expense_sheet_id
+  action_open_expense_report()
+  write(vals)
+}
+class "AccountPaymentRegister" as odoo_src.odoo.addons.hr_expense.wizard.account_payment_register.AccountPaymentRegister {
+}
+class "AccountTax" as odoo_src.odoo.addons.hr_expense.models.account_tax.AccountTax {
+}
+class "Employee" as odoo_src.odoo.addons.hr_expense.models.hr_employee.Employee {
+  expense_manager_id
+}
+class "EmployeeBase" as odoo_src.odoo.addons.hr_expense.models.hr_employee.EmployeeBase {
+  filter_for_expense
+}
+class "EmployeePublic" as odoo_src.odoo.addons.hr_expense.models.hr_employee.EmployeePublic {
+  expense_manager_id
+}
+class "HrDepartment" as odoo_src.odoo.addons.hr_expense.models.hr_department.HrDepartment {
+  expense_sheets_to_approve_count
+}
+class "HrExpense" as odoo_src.odoo.addons.hr_expense.models.hr_expense.HrExpense {
+  account_id
+  accounting_date
+  approved_by
+  approved_on
+  attachment_ids
+  company_currency_id
+  company_id
+  currency_id
+  currency_rate
+  date
+  description
+  duplicate_expense_ids
+  employee_id
+  is_editable
+  is_multiple_currency
+  label_currency_rate
+  message_main_attachment_checksum
+  name
+  nb_attachment
+  payment_mode
+  price_unit
+  product_description
+  product_has_cost
+  product_has_tax
+  product_id
+  product_uom_category_id
+  product_uom_id
+  quantity
+  same_receipt_expense_ids
+  sheet_id
+  state
+  tax_amount
+  tax_amount_currency
+  tax_ids
+  total_amount
+  total_amount_currency
+  untaxed_amount_currency
+  vendor_id
+  action_approve_duplicates()
+  action_get_attachment_view()
+  action_show_same_receipt_expense_ids()
+  action_split_wizard()
+  action_submit_expenses()
+  action_view_sheet()
+  attach_document()
+  check_amount_not_zero(vals)
+  create(vals_list)
+  create_expense_from_attachments(attachment_ids, view_type)
+  get_empty_list_help(help_message)
+  get_expense_attachments()
+  get_expense_dashboard()
+  get_expenses_to_submit()
+  message_new(msg_dict, custom_values)
+  unlink()
+  write(vals)
+}
+class "HrExpenseApproveDuplicate" as odoo_src.odoo.addons.hr_expense.wizard.hr_expense_approve_duplicate.HrExpenseApproveDuplicate {
+  expense_ids
+  sheet_ids
+  action_approve()
+  action_refuse()
+  default_get(fields)
+}
+class "HrExpenseRefuseWizard" as odoo_src.odoo.addons.hr_expense.wizard.hr_expense_refuse_reason.HrExpenseRefuseWizard {
+  reason
+  sheet_ids
+  action_refuse()
+  default_get(fields)
+}
+class "HrExpenseSheet" as odoo_src.odoo.addons.hr_expense.models.hr_expense_sheet.HrExpenseSheet {
+  account_move_ids
+  accounting_date
+  amount_residual
+  approval_date
+  approval_state
+  attachment_ids
+  can_approve
+  can_reset
+  cannot_approve_reason
+  company_currency_id
+  company_id
+  currency_id
+  department_id
+  employee_id
+  employee_journal_id
+  expense_line_ids
+  is_editable
+  is_multiple_currency
+  journal_id
+  message_main_attachment_id
+  name
+  nb_account_move
+  nb_expense
+  payment_method_line_id
+  payment_mode
+  payment_state
+  product_ids
+  selectable_payment_method_line_ids
+  state
+  total_amount
+  total_tax_amount
+  untaxed_amount
+  user_id
+  action_approve_expense_sheets()
+  action_open_account_moves()
+  action_open_expense_view()
+  action_refuse_expense_sheets()
+  action_register_payment()
+  action_reset_expense_sheets()
+  action_sheet_move_post()
+  action_submit_sheet()
+  activity_update()
+  create(vals_list)
+  set_to_paid()
+  set_to_posted()
+  write(values)
+}
+class "HrExpenseSplit" as odoo_src.odoo.addons.hr_expense.wizard.hr_expense_split.HrExpenseSplit {
+  company_id
+  currency_id
+  employee_id
+  expense_id
+  name
+  product_has_cost
+  product_has_tax
+  product_id
+  tax_amount_currency
+  tax_ids
+  total_amount_currency
+  wizard_id
+  default_get(fields)
+}
+class "HrExpenseSplitWizard" as odoo_src.odoo.addons.hr_expense.wizard.hr_expense_split_wizard.HrExpenseSplitWizard {
+  currency_id
+  expense_id
+  expense_split_line_ids
+  split_possible
+  tax_amount_currency
+  total_amount_currency
+  total_amount_currency_original
+  action_split_expense()
+}
+class "IrActionsReport" as odoo_src.odoo.addons.hr_expense.models.ir_actions_report.IrActionsReport {
+}
+class "IrAttachment" as odoo_src.odoo.addons.hr_expense.models.ir_attachment.IrAttachment {
+  create(vals_list)
+  unlink()
+}
+class "ProductProduct" as odoo_src.odoo.addons.hr_expense.models.product_product.ProductProduct {
+  standard_price_update_warning
+  write(vals)
+}
+class "ProductTemplate" as odoo_src.odoo.addons.hr_expense.models.product_template.ProductTemplate {
+  can_be_expensed
+  default_get(fields)
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_expense.models.res_company.ResCompany {
+  company_expense_allowed_payment_method_line_ids
+  expense_journal_id
+  expense_outstanding_account_id
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_expense.models.res_config_settings.ResConfigSettings {
+  company_expense_allowed_payment_method_line_ids
+  expense_journal_id
+  expense_outstanding_account_id
+  hr_expense_alias_domain_id
+  hr_expense_alias_prefix
+  hr_expense_use_mailgateway
+  module_hr_expense_extract
+  module_hr_payroll_expense
+  get_values()
+  set_values()
+}
+class "TestExpenseCommon" as odoo_src.odoo.addons.hr_expense.tests.common.TestExpenseCommon {
+  create_expense(values)
+  create_expense_report(values)
+  get_new_payment(expense_sheet, amount)
+  setUpClass()
+}
+class "TestExpenses" as odoo_src.odoo.addons.hr_expense.tests.test_expenses.TestExpenses {
+  expense_1
+  expense_2
+  expense_cat_A
+  expense_cat_B
+  expense_cat_C
+  partner_bank_account_1
+  partner_bank_account_2
+  product_expensed
+  product_not_expensed
+  test_accounting_date_reset_after_draft_reset()
+  test_attachments_in_move_from_company_expense()
+  test_attachments_in_move_from_own_expense()
+  test_computation_expense_report_date_based_most_recent_expense_today()
+  test_computation_expense_report_date_based_user_input()
+  test_computation_expense_report_date_with_most_recent_expense_last_month()
+  test_computation_expense_report_date_with_most_recent_expense_last_month_with_lock_date()
+  test_computation_expense_report_date_with_most_recent_expense_within_month_early()
+  test_computation_expense_report_date_with_most_recent_expense_within_month_later()
+  test_compute_standard_price_update_warning_product_with_and_without_expense()
+  test_corner_case_defaults_values_from_product()
+  test_corner_case_expense_prevent_empty_sheet_approval_actions()
+  test_corner_case_expense_reported_cannot_be_zero()
+  test_create_report_name()
+  test_expense_bank_account_of_employee_on_entry_and_register_payment()
+  test_expense_by_company_with_caba_tax()
+  test_expense_corner_case_changing_employee()
+  test_expense_main_flow()
+  test_expense_mandatory_analytic_plan_product_category()
+  test_expense_multi_currencies()
+  test_expense_no_stealing_from_employees()
+  test_expense_payment_method()
+  test_expense_set_quantity_to_0()
+  test_expense_set_total_amount_to_0()
+  test_expense_sheet_attachments_sync()
+  test_expense_sheet_journal_id()
+  test_expense_sheet_multi_company()
+  test_expense_sheet_with_line_ids()
+  test_expense_split_flow()
+  test_expense_standard_price_update_warning()
+  test_expense_vendor()
+  test_foreign_currencies_total()
+  test_move_creation_with_quantity()
+  test_payment_edit_fields()
+  test_tax_is_used_when_in_transactions()
+  test_update_expense_price_on_product_standard_price()
+}
+class "TestExpensesAccessRights" as odoo_src.odoo.addons.hr_expense.tests.test_expenses_access_rights.TestExpensesAccessRights {
+  test_corner_case_expense_sheet_only_accountant_can_unlink_expenses()
+  test_expense_access_rights()
+  test_expense_sheet_access_rights()
+  test_expense_sheet_access_rights_user()
+}
+class "TestExpensesMailImport" as odoo_src.odoo.addons.hr_expense.tests.test_expenses_mail_import.TestExpensesMailImport {
+  test_import_expense_from_email()
+  test_import_expense_from_email_employee_without_user()
+  test_import_expense_from_email_no_product()
+  test_import_expense_from_email_several_employees()
+  test_import_expense_from_mail_get_default_expense_sheet_values_errors()
+  test_import_expense_from_mail_parsing_subjects()
+}
+class "TestExpensesStates" as odoo_src.odoo.addons.hr_expense.tests.test_expenses_states.TestExpensesStates {
+  setUpClass()
+  test_expense_state_synchro_1_regular_flow()
+  test_expense_state_synchro_2_employee_specific_flow()
+  test_expense_state_synchro_3_company_specific_flow()
+}
+class "TestExpensesTour" as odoo_src.odoo.addons.hr_expense.tests.test_expenses_tour.TestExpensesTour {
+  test_tour_expenses()
+}
+class "TestUi" as odoo_src.odoo.addons.hr_expense.tests.test_ui.TestUi {
+  browser_size : str
+  test_expense_manager_can_always_set_employee()
+  test_not_create_zero_amount_expense_in_expense_sheet()
+  test_show_expense_receipt_on_expense_line_click()
+}
+class "User" as odoo_src.odoo.addons.hr_expense.models.hr_employee.User {
+  SELF_READABLE_FIELDS
+  expense_manager_id
+}
+class "WebManifest" as odoo_src.odoo.addons.hr_expense.controllers.webmanifest.WebManifest {
+}
+@enduml

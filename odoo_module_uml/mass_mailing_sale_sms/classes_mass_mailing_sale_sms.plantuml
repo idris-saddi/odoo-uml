@@ -1,0 +1,6 @@
+@startuml classes_mass_mailing_sale_sms
+set namespaceSeparator none
+class "UtmCampaign" as odoo_src.odoo.addons.mass_mailing_sale_sms.models.utm.UtmCampaign {
+  ab_testing_sms_winner_selection
+}
+@enduml

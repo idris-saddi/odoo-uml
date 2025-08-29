@@ -1,0 +1,15 @@
+@startuml classes_l10n_in_sale
+set namespaceSeparator none
+class "SaleAdvancePaymentInv" as odoo_src.odoo.addons.l10n_in_sale.wizard.sale_make_invoice_advance.SaleAdvancePaymentInv {
+}
+class "SaleOrder" as odoo_src.odoo.addons.l10n_in_sale.models.sale_order.SaleOrder {
+  l10n_in_gst_treatment
+  l10n_in_reseller_partner_id
+}
+class "TestSaleFiscal" as odoo_src.odoo.addons.l10n_in_sale.tests.test_l10n_in_sale_fiscal_position.TestSaleFiscal {
+  setUpClass()
+  test_foreign_partner_without_state_fiscal_position()
+  test_l10n_in_sale_fiscal_position()
+  test_prepare_invoice_values_returns_reseller_id_as_int()
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml classes_l10n_in_withholding_payment
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_withholding_payment.models.account_move.AccountMove {
+  l10n_in_withholding_ref_payment_id
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_in_withholding_payment.models.account_payment.AccountPayment {
+  l10n_in_total_withholding_amount
+  l10n_in_withhold_move_ids
+}
+class "L10nInWithholdWizard" as odoo_src.odoo.addons.l10n_in_withholding_payment.wizard.l10n_in_withhold_wizard.L10nInWithholdWizard {
+}
+@enduml

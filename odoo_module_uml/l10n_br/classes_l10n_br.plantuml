@@ -1,0 +1,52 @@
+@startuml classes_l10n_br
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_br.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_br.models.template_br.AccountChartTemplate {
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.l10n_br.models.account_fiscal_position.AccountFiscalPosition {
+  l10n_br_fp_type
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_br.models.account_journal.AccountJournal {
+  l10n_br_invoice_serial
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_br.models.account_move.AccountMove {
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_br.wizard.account_move_reversal.AccountMoveReversal {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_br.models.account.AccountTax {
+  amount_mva
+  base_reduction
+  tax_discount
+}
+class "L10nBrZipRange" as odoo_src.odoo.addons.l10n_br.models.l10n_br_zip_range.L10nBrZipRange {
+  city_id
+  end
+  start
+}
+class "ResCity" as odoo_src.odoo.addons.l10n_br.models.res_city.ResCity {
+  l10n_br_zip_range_ids
+  l10n_br_zip_ranges
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_br.models.res_company.ResCompany {
+  l10n_br_cpf_code
+  l10n_br_ie_code
+  l10n_br_im_code
+  l10n_br_nire_code
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_br.models.res_partner.ResPartner {
+  l10n_br_ie_code
+  l10n_br_im_code
+  l10n_br_isuf_code
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_br.models.res_partner_bank.ResPartnerBank {
+  proxy_type
+}
+class "TestL10nBrPix" as odoo_src.odoo.addons.l10n_br.tests.test_l10n_br_pix.TestL10nBrPix {
+  setUpClass()
+  test_constraints()
+  test_get_qr_vals()
+  test_get_qr_vals_for_pos_default_qr()
+  test_get_qr_vals_without_reference()
+}
+@enduml

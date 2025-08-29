@@ -1,0 +1,14 @@
+@startuml classes_l10n_sa_edi_pos
+set namespaceSeparator none
+class "AccountEdiXmlUBL21Zatca" as odoo_src.odoo.addons.l10n_sa_edi_pos.models.account_edi_xml_ubl_21_zatca.AccountEdiXmlUBL21Zatca {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sa_edi_pos.models.account_move.AccountMove {
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_sa_edi_pos.models.pos_config.PosConfig {
+  open_ui()
+}
+class "PosOrder" as odoo_src.odoo.addons.l10n_sa_edi_pos.models.pos_order.PosOrder {
+  l10n_sa_invoice_edi_state
+  l10n_sa_invoice_qr_code_str
+}
+@enduml

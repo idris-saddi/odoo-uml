@@ -1,0 +1,17 @@
+@startuml classes_l10n_hk
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_hk.models.template_hk.AccountChartTemplate {
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_hk.models.res_bank.ResPartnerBank {
+  proxy_type
+}
+class "TestL10nHKEmvQrCode" as odoo_src.odoo.addons.l10n_hk.tests.test_l10n_hk_emv_qr.TestL10nHKEmvQrCode {
+  setUpClass()
+  setup_armageddon_tax(tax_name, company_data)
+  test_emv_qr_code_generation()
+  test_emv_qr_vals()
+  test_emv_qr_vals_with_non_integer_amount()
+  test_invoice_default_code()
+  test_invoice_wrong_method()
+}
+@enduml

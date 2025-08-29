@@ -1,0 +1,19 @@
+@startuml classes_crm_mail_plugin
+set namespaceSeparator none
+class "CrmClient" as odoo_src.odoo.addons.crm_mail_plugin.controllers.crm_client.CrmClient {
+  crm_lead_create(partner_id, email_body, email_subject)
+  crm_lead_get_by_partner_id(partner, limit, offset)
+  crm_lead_open(lead_id)
+  crm_lead_redirect_create_form_view(partner_id)
+  log_single_mail_content(lead, message)
+}
+class "Lead" as odoo_src.odoo.addons.crm_mail_plugin.models.crm_lead.Lead {
+}
+class "MailPluginController" as odoo_src.odoo.addons.crm_mail_plugin.controllers.mail_plugin.MailPluginController {
+}
+class "TestCrmMailPlugin" as odoo_src.odoo.addons.crm_mail_plugin.tests.test_crm_mail_plugin.TestCrmMailPlugin {
+  test_crm_lead_create_multi_company()
+  test_get_contact_data()
+}
+odoo_src.odoo.addons.crm_mail_plugin.controllers.crm_client.CrmClient --|> odoo_src.odoo.addons.crm_mail_plugin.controllers.mail_plugin.MailPluginController
+@enduml

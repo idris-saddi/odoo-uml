@@ -1,0 +1,12 @@
+@startuml classes_mrp_landed_costs
+set namespaceSeparator none
+class "StockLandedCost" as odoo_src.odoo.addons.mrp_landed_costs.models.stock_landed_cost.StockLandedCost {
+  mrp_production_ids
+  target_model
+}
+class "TestStockLandedCostsMrp" as odoo_src.odoo.addons.mrp_landed_costs.tests.test_stock_landed_costs_mrp.TestStockLandedCostsMrp {
+  setUpClass()
+  test_landed_cost_on_mrp()
+  test_landed_cost_on_mrp_02()
+}
+@enduml

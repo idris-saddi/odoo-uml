@@ -1,0 +1,21 @@
+@startuml classes_event_sms
+set namespaceSeparator none
+class "EventMailRegistration" as odoo_src.odoo.addons.event_sms.models.event_mail_registration.EventMailRegistration {
+}
+class "EventMailScheduler" as odoo_src.odoo.addons.event_sms.models.event_mail.EventMailScheduler {
+  notification_type
+  template_ref
+}
+class "EventTypeMail" as odoo_src.odoo.addons.event_sms.models.event_mail.EventTypeMail {
+  notification_type
+  template_ref
+}
+class "SmsTemplate" as odoo_src.odoo.addons.event_sms.models.sms_template.SmsTemplate {
+  unlink()
+}
+class "TestSMSSchedule" as odoo_src.odoo.addons.event_sms.tests.test_sms_schedule.TestSMSSchedule {
+  setUpClass()
+  test_sms_schedule()
+  test_sms_schedule_fail_registration_template_removed()
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml classes_l10n_in_purchase
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_purchase.models.account_move.AccountMove {
+  l10n_in_gst_treatment
+}
+class "PurchaseOrder" as odoo_src.odoo.addons.l10n_in_purchase.models.purchase_order.PurchaseOrder {
+  l10n_in_gst_treatment
+}
+@enduml

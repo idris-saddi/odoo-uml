@@ -1,0 +1,91 @@
+@startuml classes_l10n_sa_edi
+set namespaceSeparator none
+class "AccountDebitNote" as odoo_src.odoo.addons.l10n_sa_edi.wizard.account_debit_note.AccountDebitNote {
+  create_debit()
+}
+class "AccountEdiDocument" as odoo_src.odoo.addons.l10n_sa_edi.models.account_edi_document.AccountEdiDocument {
+}
+class "AccountEdiFormat" as odoo_src.odoo.addons.l10n_sa_edi.models.account_edi_format.AccountEdiFormat {
+}
+class "AccountEdiXmlUBL21Zatca" as odoo_src.odoo.addons.l10n_sa_edi.models.account_edi_xml_ubl_21_zatca.AccountEdiXmlUBL21Zatca {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_sa_edi.models.account_journal.AccountJournal {
+  l10n_sa_chain_sequence_id
+  l10n_sa_compliance_checks_passed
+  l10n_sa_compliance_csid_certificate_id
+  l10n_sa_compliance_csid_json
+  l10n_sa_csr
+  l10n_sa_csr_errors
+  l10n_sa_latest_submission_hash
+  l10n_sa_production_csid_certificate_id
+  l10n_sa_production_csid_json
+  l10n_sa_production_csid_validity
+  l10n_sa_serial_number
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sa_edi.models.account_move.AccountMove {
+  l10n_sa_chain_index
+  l10n_sa_invoice_signature
+  l10n_sa_uuid
+  action_post()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_sa_edi.models.account_move.AccountMoveLine {
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_sa_edi.wizard.account_move_reversal.AccountMoveReversal {
+  reverse_moves(is_modify)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_sa_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_sa_edi.models.account_tax.AccountTax {
+  l10n_sa_exemption_reason_code
+  l10n_sa_is_retention
+  onchange_amount()
+}
+class "Certificate" as odoo_src.odoo.addons.l10n_sa_edi.models.certificate.Certificate {
+}
+class "IrAttachment" as odoo_src.odoo.addons.l10n_sa_edi.models.ir_attachment.IrAttachment {
+}
+class "RequestZATCAOtp" as odoo_src.odoo.addons.l10n_sa_edi.wizard.l10n_sa_edi_otp_wizard.RequestZATCAOtp {
+  journal_id
+  l10n_sa_otp
+  l10n_sa_renewal
+  default_get(fields)
+  validate()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_sa_edi.models.res_company.ResCompany {
+  l10n_sa_additional_identification_number
+  l10n_sa_additional_identification_scheme
+  l10n_sa_api_mode
+  l10n_sa_edi_building_number
+  l10n_sa_edi_plot_identification
+  l10n_sa_private_key_id
+  write(vals)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_sa_edi.models.res_config_settings.ResConfigSettings {
+  l10n_sa_api_mode
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_sa_edi.models.res_partner.ResPartner {
+  l10n_sa_additional_identification_number
+  l10n_sa_additional_identification_scheme
+  l10n_sa_edi_building_number
+  l10n_sa_edi_plot_identification
+}
+class "TestEdiZatca" as odoo_src.odoo.addons.l10n_sa_edi.tests.test_edi_zatca.TestEdiZatca {
+  testCreditNoteSimplified()
+  testCreditNoteStandard()
+  testDebitNoteSimplified()
+  testDebitNoteStandard()
+  testInvoiceSimplified()
+  testInvoiceStandard()
+  testInvoiceWithDownpayment()
+  testInvoiceWithRetention()
+}
+class "TestSAEdiAccountMove" as odoo_src.odoo.addons.l10n_sa_edi.tests.test_account_move.TestSAEdiAccountMove {
+  setUpClass()
+  test_invoice_with_mismatched_companies()
+}
+class "TestSaEdiCommon" as odoo_src.odoo.addons.l10n_sa_edi.tests.common.TestSaEdiCommon {
+  setUpClass()
+}
+odoo_src.odoo.addons.l10n_sa_edi.tests.test_account_move.TestSAEdiAccountMove --|> odoo_src.odoo.addons.l10n_sa_edi.tests.common.TestSaEdiCommon
+odoo_src.odoo.addons.l10n_sa_edi.tests.test_edi_zatca.TestEdiZatca --|> odoo_src.odoo.addons.l10n_sa_edi.tests.common.TestSaEdiCommon
+@enduml

@@ -1,0 +1,31 @@
+@startuml classes_hr_homeworking_calendar
+set namespaceSeparator none
+class "HomeworkLocationWizard" as odoo_src.odoo.addons.hr_homeworking_calendar.wizard.homework_location_wizard.HomeworkLocationWizard {
+  date
+  day_week_string
+  employee_id
+  employee_name
+  user_can_edit
+  weekly
+  work_location_id
+  work_location_name
+  work_location_type
+  set_employee_location()
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_homeworking_calendar.models.hr_employee.HrEmployeeBase {
+}
+class "ResPartner" as odoo_src.odoo.addons.hr_homeworking_calendar.models.res_partner.ResPartner {
+  get_worklocation(start_date, end_date)
+}
+class "TestHrHomeworkingCommon" as odoo_src.odoo.addons.hr_homeworking_calendar.tests.common.TestHrHomeworkingCommon {
+  setUpClass()
+}
+class "TestHrHomeworkingHrEmployeeLocation" as odoo_src.odoo.addons.hr_homeworking_calendar.tests.test_hr_employee_location.TestHrHomeworkingHrEmployeeLocation {
+  setUpClass()
+  test_create_exception_on_top_of_exception_keeps_a_single_record()
+  test_set_default_day_location_as_exception_will_delete_exception()
+  test_set_location_with_weekly_option_changes_employee_location()
+  test_set_location_without_weekly_option_should_create_an_exception()
+  test_set_same_location_as_default_one_should_not_create_exception()
+}
+@enduml

@@ -1,0 +1,26 @@
+@startuml classes_cloud_storage_google
+set namespaceSeparator none
+class "CloudStorageSettings" as odoo_src.odoo.addons.cloud_storage_google.models.res_config_settings.CloudStorageSettings {
+  cloud_storage_google_account_info
+  cloud_storage_google_bucket_name
+  cloud_storage_google_service_account_key
+  cloud_storage_provider
+  get_values()
+}
+class "IrAttachment" as odoo_src.odoo.addons.cloud_storage_google.models.ir_attachment.IrAttachment {
+}
+class "TestCloudStorageAttachmentController" as odoo_src.odoo.addons.cloud_storage_google.tests.test_cloud_storage_google_attachment_controller.TestCloudStorageAttachmentController {
+  test_cloud_storage_google_attachment_upload()
+}
+class "TestCloudStorageGoogle" as odoo_src.odoo.addons.cloud_storage_google.tests.test_cloud_storage_google.TestCloudStorageGoogle {
+  test_generate_signed_url()
+  test_uninstall_fail()
+  test_uninstall_success()
+}
+class "TestCloudStorageGoogleCommon" as odoo_src.odoo.addons.cloud_storage_google.tests.test_cloud_storage_google.TestCloudStorageGoogleCommon {
+  DUMMY_GOOGLE_ACCOUNT_INFO : str
+  bucket_name : str
+  setUp()
+}
+odoo_src.odoo.addons.cloud_storage_google.tests.test_cloud_storage_google.TestCloudStorageGoogle --|> odoo_src.odoo.addons.cloud_storage_google.tests.test_cloud_storage_google.TestCloudStorageGoogleCommon
+@enduml

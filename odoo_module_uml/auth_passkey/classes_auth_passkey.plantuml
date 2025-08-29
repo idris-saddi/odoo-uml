@@ -1,0 +1,45 @@
+@startuml classes_auth_passkey
+set namespaceSeparator none
+class "CheckIdentityPasskeys" as odoo_src.odoo.addons.auth_passkey.models.res_users_identitycheck.CheckIdentityPasskeys {
+  auth_method
+  password : str
+  action_use_password()
+}
+class "PassKey" as odoo_src.odoo.addons.auth_passkey.models.auth_passkey_key.PassKey {
+  credential_identifier
+  name
+  public_key
+  sign_count
+  action_delete_passkey()
+  action_rename_passkey()
+  init()
+  unlink()
+}
+class "PassKeyCreate" as odoo_src.odoo.addons.auth_passkey.models.auth_passkey_key.PassKeyCreate {
+  name
+  make_key(registration)
+}
+class "PasskeyTest" as odoo_src.odoo.addons.auth_passkey.tests.test_passkey_demo.PasskeyTest {
+  patch_start_auth(challenge)
+  patch_start_registration(challenge)
+  rpc(model, method)
+  setUpClass()
+  test_authentication()
+  test_check_identity()
+  test_check_user_verification()
+  test_registration()
+}
+class "PasskeyTestTours" as odoo_src.odoo.addons.auth_passkey.tests.test_passkey_demo.PasskeyTestTours {
+  test_passkey_backend()
+  test_passkey_login()
+}
+class "UsersPasskey" as odoo_src.odoo.addons.auth_passkey.models.res_users.UsersPasskey {
+  SELF_READABLE_FIELDS
+  auth_passkey_key_ids
+  action_create_passkey()
+}
+class "WebauthnController" as odoo_src.odoo.addons.auth_passkey.controllers.main.WebauthnController {
+  json_start_authentication()
+}
+odoo_src.odoo.addons.auth_passkey.tests.test_passkey_demo.PasskeyTestTours --|> odoo_src.odoo.addons.auth_passkey.tests.test_passkey_demo.PasskeyTest
+@enduml

@@ -1,0 +1,89 @@
+@startuml classes_l10n_ar_withholding
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar_withholding.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ar_withholding.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ar_withholding.models.account_move.AccountMove {
+  l10n_ar_withholding_ids
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_ar_withholding.models.account_payment.AccountPayment {
+  l10n_ar_withholding_ids
+}
+class "AccountPaymentRegister" as odoo_src.odoo.addons.l10n_ar_withholding.wizards.account_payment_register.AccountPaymentRegister {
+  l10n_ar_adjustment_warning
+  l10n_ar_net_amount
+  l10n_ar_withholding_ids
+  action_create_payments()
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_ar_withholding.models.account_tax.AccountTax {
+  l10n_ar_code
+  l10n_ar_minimum_threshold
+  l10n_ar_non_taxable_amount
+  l10n_ar_scale_id
+  l10n_ar_state_id
+  l10n_ar_tax_type
+  l10n_ar_type_tax_use
+  l10n_ar_withholding_payment_type
+  l10n_ar_withholding_sequence_id
+}
+class "L10nArEarningsScale" as odoo_src.odoo.addons.l10n_ar_withholding.models.l10n_ar_earnings_scale.L10nArEarningsScale {
+  line_ids
+  name
+}
+class "L10nArEarningsScaleLine" as odoo_src.odoo.addons.l10n_ar_withholding.models.l10n_ar_earnings_scale.L10nArEarningsScaleLine {
+  currency_id
+  excess_amount
+  fixed_amount
+  from_amount
+  percentage
+  scale_id
+  to_amount
+}
+class "L10nArPartnerTax" as odoo_src.odoo.addons.l10n_ar_withholding.models.l10n_ar_partner_tax.L10nArPartnerTax {
+  company_id
+  from_date
+  partner_id
+  ref
+  tax_id
+  to_date
+  check_partner_tax_dates()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ar_withholding.models.res_company.ResCompany {
+  l10n_ar_tax_base_account_id
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_ar_withholding.models.res_config_settings.ResConfigSettings {
+  l10n_ar_tax_base_account_id
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ar_withholding.models.res_partner.ResPartner {
+  l10n_ar_partner_tax_ids
+}
+class "TestL10nArWithholdingArRi" as odoo_src.odoo.addons.l10n_ar_withholding.tests.test_withholding_ar_ri.TestL10nArWithholdingArRi {
+  in_invoice_2_wht(l10n_latam_document_number)
+  in_invoice_3_wht()
+  in_invoice_4_wht()
+  in_invoice_wht(l10n_latam_document_number)
+  new_payment_register(move_ids, taxes)
+  setUpClass()
+  test_01_simple_full_payment()
+  test_02_two_payments_same_invoice()
+  test_03_two_withholdings_one_payment()
+  test_04_two_withholdings_different_currency()
+  test_05_earnings_withholding_applied_with_scale()
+  test_06_earnings_withholding_applied()
+  test_07_earnings_partial_payment_withholding_applied_with_scale()
+  test_08_earnings_withholding_applied_with_scale_and_minimun_withholdable_amount_set()
+  test_09_foreign_invoice()
+  test_10_foreign_invoice_and_payment()
+}
+class "l10nArPaymentRegisterWithholding" as odoo_src.odoo.addons.l10n_ar_withholding.wizards.l10n_ar_payment_register_withholding.l10nArPaymentRegisterWithholding {
+  amount
+  base_amount
+  company_id
+  currency_id
+  name
+  payment_register_id
+  tax_id
+  withholding_sequence_id
+}
+@enduml

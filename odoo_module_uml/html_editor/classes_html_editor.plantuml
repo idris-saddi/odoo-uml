@@ -1,0 +1,32 @@
+@startuml classes_html_editor
+set namespaceSeparator none
+class "HTML_Editor" as odoo_src.odoo.addons.html_editor.controllers.main.HTML_Editor {
+  add_data(name, data, is_image, quality, width, height, res_id, res_model)
+  add_url(url, res_id, res_model)
+  bus_broadcast(model_name, field_name, res_id, bus_data)
+  generate_text(prompt, conversation_history)
+  get_ice_servers()
+  get_image_info(src)
+  link_preview_metadata(preview_url)
+  link_preview_metadata_internal(preview_url)
+  modify_image(attachment, res_model, res_id, name, data, original_id, mimetype, alt_data)
+  replace_animation_duration(shape_animation_speed: float, svg: str)
+  save_library_media(media)
+  shape(module, filename)
+  video_url_data(video_url, autoplay, loop, hide_controls, hide_fullscreen, hide_dm_logo, hide_dm_share)
+}
+class "IrAttachment" as odoo_src.odoo.addons.html_editor.models.ir_attachment.IrAttachment {
+  image_height
+  image_src
+  image_width
+  local_url
+  original_id
+}
+class "TestController" as odoo_src.odoo.addons.html_editor.tests.test_controller.TestController {
+  setUpClass()
+  test_01_upload_document()
+  test_03_get_image_info()
+  test_04_admin_attachment()
+  test_05_internal_link_preview()
+}
+@enduml

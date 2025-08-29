@@ -1,0 +1,3746 @@
+@startuml classes_base
+set namespaceSeparator none
+class "APIKeyDescription" as odoo_src.odoo.addons.base.models.res_users.APIKeyDescription {
+  duration
+  expiration_date
+  name
+  check_access_make_key()
+  create(vals_list)
+  make_key()
+}
+class "APIKeyShow" as odoo_src.odoo.addons.base.models.res_users.APIKeyShow {
+  id
+  key
+}
+class "APIKeys" as odoo_src.odoo.addons.base.models.res_users.APIKeys {
+  create_date
+  expiration_date
+  name
+  scope
+  user_id
+  init()
+  remove()
+}
+class "APIKeysUser" as odoo_src.odoo.addons.base.models.res_users.APIKeysUser {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  api_key_ids
+  api_key_wizard()
+}
+class "<color:red>AssetError</color>" as odoo_src.odoo.addons.base.models.assetsbundle.AssetError {
+}
+class "<color:red>AssetNotFound</color>" as odoo_src.odoo.addons.base.models.assetsbundle.AssetNotFound {
+}
+class "AssetPaths" as odoo_src.odoo.addons.base.models.ir_asset.AssetPaths {
+  list : list
+  memo : set
+  append(paths, bundle)
+  index(path, bundle)
+  insert(paths, bundle, index)
+  remove(paths_to_remove, bundle)
+}
+class "AssetsBundle" as odoo_src.odoo.addons.base.models.assetsbundle.AssetsBundle {
+  TRACKED_BUNDLES : list
+  assets_params : dict
+  css_errors : list
+  env : NoneType
+  external_assets
+  files
+  has_css : bool
+  has_js : bool
+  is_debug_assets : bool
+  javascripts : list
+  name
+  rtl : bool
+  rx_css_import
+  rx_css_split
+  rx_preprocess_imports
+  stylesheets : list
+  templates : list
+  compile_css(compiler, source)
+  css()
+  css_with_sourcemap(content_import_rules)
+  generate_xml_bundle()
+  get_asset_url(unique, extension, ignore_params)
+  get_attachments(extension, ignore_version)
+  get_checksum(asset_type)
+  get_link(asset_type)
+  get_links()
+  get_preprocessor_error(stderr, source)
+  get_rtlcss_error(stderr, source)
+  get_version(asset_type)
+  is_css(extension)
+  js()
+  js_with_sourcemap(template_bundle)
+  preprocess_css(debug, old_attachments)
+  run_rtlcss(source)
+  save_attachment(extension, content)
+  xml()
+}
+class "AutoVacuum" as odoo_src.odoo.addons.base.models.ir_autovacuum.AutoVacuum {
+}
+class "AvatarMixin" as odoo_src.odoo.addons.base.models.avatar_mixin.AvatarMixin {
+  avatar_1024
+  avatar_128
+  avatar_1920
+  avatar_256
+  avatar_512
+}
+class "<color:red>BadModuleState</color>" as odoo_src.odoo.addons.base.models.ir_cron.BadModuleState {
+}
+class "<color:red>BadVersion</color>" as odoo_src.odoo.addons.base.models.ir_cron.BadVersion {
+}
+class "Bank" as odoo_src.odoo.addons.base.models.res_bank.Bank {
+  active
+  bic
+  city
+  country
+  country_code
+  email
+  name
+  phone
+  state
+  street
+  street2
+  zip
+}
+class "BarcodeConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.BarcodeConverter {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "Base" as odoo_src.odoo.addons.base.models.ir_model.Base {
+}
+class "BaseCommon" as odoo_src.odoo.addons.base.tests.common.BaseCommon {
+  default_env_context()
+  get_default_groups()
+  setUpClass()
+  setup_independent_company()
+  setup_independent_user()
+  setup_main_company(currency_code)
+  setup_other_currency(code)
+}
+class "BaseLanguageExport" as odoo_src.odoo.addons.base.wizard.base_export_language.BaseLanguageExport {
+  data
+  domain
+  export_type
+  format
+  lang
+  model_id
+  model_name
+  modules
+  name
+  state
+  act_getfile()
+}
+class "BaseLanguageImport" as odoo_src.odoo.addons.base.wizard.base_import_language.BaseLanguageImport {
+  code
+  data
+  filename
+  name
+  overwrite
+  import_lang()
+}
+class "BaseLanguageInstall" as odoo_src.odoo.addons.base.wizard.base_language_install.BaseLanguageInstall {
+  first_lang_id
+  lang_ids
+  overwrite
+  lang_install()
+  reload()
+  switch_lang()
+}
+class "BaseModuleUninstall" as odoo_src.odoo.addons.base.wizard.base_module_uninstall.BaseModuleUninstall {
+  model_ids
+  module_id
+  module_ids
+  show_all
+  action_uninstall()
+}
+class "BaseModuleUpdate" as odoo_src.odoo.addons.base.wizard.base_module_update.BaseModuleUpdate {
+  added
+  state
+  updated
+  action_module_open()
+  update_module()
+}
+class "BaseModuleUpgrade" as odoo_src.odoo.addons.base.wizard.base_module_upgrade.BaseModuleUpgrade {
+  module_info
+  config()
+  get_module_list()
+  get_view(view_id, view_type)
+  upgrade_module()
+  upgrade_module_cancel()
+}
+class "BaseUsersCommon" as odoo_src.odoo.addons.base.tests.common.BaseUsersCommon {
+  setUpClass()
+}
+class "Box" as odoo_src.odoo.addons.base.tests.test_reports.Box {
+  bottom
+  end_left
+  end_top
+  height
+  left
+  page_height
+  page_width
+  right
+  top
+  width
+  x1
+  x2
+  y1
+  y2
+}
+class "Certificate" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.Certificate {
+  cert : Path
+  key
+}
+class "ChangePasswordOwn" as odoo_src.odoo.addons.base.models.res_users.ChangePasswordOwn {
+  confirm_password
+  new_password
+  change_password()
+}
+class "ChangePasswordUser" as odoo_src.odoo.addons.base.models.res_users.ChangePasswordUser {
+  new_passwd
+  user_id
+  user_login
+  wizard_id
+  change_password_button()
+}
+class "ChangePasswordWizard" as odoo_src.odoo.addons.base.models.res_users.ChangePasswordWizard {
+  user_ids
+  change_password_button()
+}
+class "CheckIdentity" as odoo_src.odoo.addons.base.models.res_users.CheckIdentity {
+  auth_method
+  password
+  request
+  run_check()
+}
+class "CompRegexTest" as odoo_src.odoo.addons.base.tests.test_views.CompRegexTest {
+  test_comp_regex()
+}
+class "Company" as odoo_src.odoo.addons.base.models.res_company.Company {
+  active
+  all_child_ids
+  bank_ids
+  child_ids
+  city
+  color
+  company_details
+  company_registry
+  country_code
+  country_id
+  currency_id
+  email
+  external_report_layout_id
+  font
+  is_company_details_empty
+  layout_background
+  layout_background_image
+  logo
+  logo_web
+  mobile
+  name
+  paperformat_id
+  parent_id
+  parent_ids
+  parent_path
+  partner_id
+  phone
+  primary_color
+  report_footer
+  report_header
+  root_id
+  secondary_color
+  sequence
+  state_id
+  street
+  street2
+  uninstalled_l10n_module_ids
+  user_ids
+  uses_default_logo
+  vat
+  website
+  zip
+  action_all_company_branches()
+  cache_invalidation_fields()
+  copy(default)
+  create(vals_list)
+  init()
+  install_l10n_modules()
+  unlink()
+  write(values)
+}
+class "<color:red>CompileError</color>" as odoo_src.odoo.addons.base.models.assetsbundle.CompileError {
+}
+class "CompletionStatus" as odoo_src.odoo.addons.base.models.ir_cron.CompletionStatus {
+  FAILED : str
+  FULLY_DONE : str
+  PARTIALLY_DONE : str
+}
+class "Contact" as odoo_src.odoo.addons.base.models.ir_qweb_fields.Contact {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "<color:red>ConversionNotFound</color>" as odoo_src.odoo.addons.base.models.ir_fields.ConversionNotFound {
+}
+class "Country" as odoo_src.odoo.addons.base.models.res_country.Country {
+  address_format
+  address_view_id
+  code
+  country_group_ids
+  currency_id
+  image_url
+  name
+  name_position
+  phone_code
+  state_ids
+  state_required
+  vat_label
+  zip_required
+  create(vals_list)
+  get_address_fields()
+  name_search(name, args, operator, limit)
+  write(vals)
+}
+class "CountryGroup" as odoo_src.odoo.addons.base.models.res_country.CountryGroup {
+  country_ids
+  name
+}
+class "CountryState" as odoo_src.odoo.addons.base.models.res_country.CountryState {
+  code
+  country_id
+  name
+  name_search(name, args, operator, limit)
+}
+class "CronMixinCase" as odoo_src.odoo.addons.base.tests.test_ir_cron.CronMixinCase {
+  capture_triggers(cron_id)
+}
+class "CryptContext" as odoo_src.odoo.addons.base.models.res_users.CryptContext {
+  hash
+  identify
+  verify
+  verify_and_update
+  copy()
+  schemes()
+  update()
+}
+class "Currency" as odoo_src.odoo.addons.base.models.res_currency.Currency {
+  active
+  currency_subunit_label
+  currency_unit_label
+  date
+  decimal_places
+  full_name
+  inverse_rate
+  is_current_company_currency
+  iso_numeric
+  name
+  position
+  rate
+  rate_ids
+  rate_string
+  rounding
+  symbol
+  amount_to_text(amount)
+  compare_amounts(amount1, amount2)
+  create(vals_list)
+  format(amount)
+  is_zero(amount)
+  round(amount)
+  unlink()
+  write(vals)
+}
+class "CurrencyRate" as odoo_src.odoo.addons.base.models.res_currency.CurrencyRate {
+  company_id
+  company_rate
+  currency_id
+  inverse_company_rate
+  name
+  rate
+  create(vals_list)
+  write(vals)
+}
+class "CustomFilter" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD.setUpClass.CustomFilter {
+  filter(record)
+}
+class "CustomModel" as odoo_src.odoo.addons.base.models.ir_model.IrModel._instanciate.CustomModel {
+}
+class "DateConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.DateConverter {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "DateTimeConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.DateTimeConverter {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "DecimalPrecision" as odoo_src.odoo.addons.base.models.decimal_precision.DecimalPrecision {
+  digits
+  name
+  create(vals_list)
+  precision_get(application)
+  unlink()
+  write(data)
+}
+class "DemoFailure" as odoo_src.odoo.addons.base.models.ir_demo_failure.DemoFailure {
+  error
+  module_id
+  wizard_id
+}
+class "DemoFailureWizard" as odoo_src.odoo.addons.base.models.ir_demo_failure.DemoFailureWizard {
+  failure_ids
+  failures_count
+  done()
+}
+class "Dummycontroller" as odoo_src.odoo.addons.base.tests.test_http_case.TestRequestRemaining.test_requests_a.Dummycontroller {
+  wait()
+}
+class "DurationConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.DurationConverter {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "EmailConfigCase" as odoo_src.odoo.addons.base.tests.test_ir_mail_server.EmailConfigCase {
+  test_default_email_from()
+}
+class "EnableProfilingWizard" as odoo_src.odoo.addons.base.models.ir_profile.EnableProfilingWizard {
+  duration
+  expiration
+  submit()
+}
+class "FakeClass" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_set_tags_empty.FakeClass {
+}
+class "FakeClass" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_set_tags_not_decorated.FakeClass {
+}
+class "FakeClass" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_set_tags_single_tag.FakeClass {
+}
+class "FakeClass" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_set_tags_multiple_tags.FakeClass {
+}
+class "FakeClassA" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassA {
+}
+class "FakeClassA" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_untagging.FakeClassA {
+}
+class "FakeClassA" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_parental_advisory.FakeClassA {
+}
+class "FakeClassA" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_parser_parameters.FakeClassA {
+}
+class "FakeClassB" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_untagging.FakeClassB {
+}
+class "FakeClassB" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_parental_advisory.FakeClassB {
+  test_tags : set
+}
+class "FakeClassC" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassC {
+}
+class "FakeClassC" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_untagging.FakeClassC {
+}
+class "FakeClassD" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassD {
+}
+class "FakeField" as odoo_src.odoo.addons.base.models.ir_fields.FakeField {
+  comodel_name : str
+  name : str
+}
+class "FasterRule" as odoo_src.odoo.addons.base.models.ir_http.FasterRule {
+  merge_slashes : bool
+}
+class "FieldConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.FieldConverter {
+  attributes(record, field_name, options, values)
+  get_available_options()
+  record_to_html(record, field_name, options)
+  user_lang()
+  value_to_html(value, options)
+}
+class "FiltersCase" as odoo_src.odoo.addons.base.tests.test_ir_filters.FiltersCase {
+  USER_ID
+  USER_NG
+  build(model)
+  setUp()
+}
+class "FloatConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.FloatConverter {
+  get_available_options()
+  record_to_html(record, field_name, options)
+  value_to_html(value, options)
+}
+class "FloatTimeConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.FloatTimeConverter {
+  value_to_html(value, options)
+}
+class "FormatAddressCase" as odoo_src.odoo.addons.base.tests.test_format_address_mixin.FormatAddressCase {
+  assertAddressView(model)
+}
+class "FormatAddressMixin" as odoo_src.odoo.addons.base.models.res_partner.FormatAddressMixin {
+}
+class "FormatVATLabelMixin" as odoo_src.odoo.addons.base.models.res_partner.FormatVATLabelMixin {
+}
+class "Groups" as odoo_src.odoo.addons.base.models.res_users.Groups {
+  api_key_duration
+  category_id
+  color
+  comment
+  full_name
+  menu_access
+  model_access
+  name
+  rule_groups
+  share
+  users
+  view_access
+  copy_data(default)
+  write(vals)
+}
+class "GroupsImplied" as odoo_src.odoo.addons.base.models.res_users.GroupsImplied {
+  implied_ids
+  trans_implied_ids
+  create(vals_list)
+  unlink()
+  write(values)
+}
+class "GroupsView" as odoo_src.odoo.addons.base.models.res_users.GroupsView {
+  create(vals_list)
+  get_application_groups(domain)
+  get_groups_by_application()
+  unlink()
+  write(values)
+}
+class "HTMLConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.HTMLConverter {
+  value_to_html(value, options)
+}
+class "HttpCaseWithUserDemo" as odoo_src.odoo.addons.base.tests.common.HttpCaseWithUserDemo {
+  setUpClass()
+}
+class "HttpCaseWithUserPortal" as odoo_src.odoo.addons.base.tests.common.HttpCaseWithUserPortal {
+  setUpClass()
+}
+class "I18nTest" as odoo_src.odoo.addons.base.tests.test_i18n.I18nTest {
+  test_format_list()
+  test_py_to_js_locale()
+}
+class "IdentificationFieldsNoFoldPolicy" as odoo_src.odoo.addons.base.models.ir_mail_server.IdentificationFieldsNoFoldPolicy {
+}
+class "ImageConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.ImageConverter {
+  value_to_html(value, options)
+}
+class "ImageMixin" as odoo_src.odoo.addons.base.models.image_mixin.ImageMixin {
+  image_1024
+  image_128
+  image_1920
+  image_256
+  image_512
+}
+class "ImageUrlConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.ImageUrlConverter {
+  value_to_html(value, options)
+}
+class "<color:red>ImportWarning</color>" as odoo_src.odoo.addons.base.models.ir_fields.ImportWarning {
+}
+class "IntegerConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.IntegerConverter {
+  get_available_options()
+  value_to_html(value, options)
+}
+class "IrActions" as odoo_src.odoo.addons.base.models.ir_actions.IrActions {
+  binding_model_id
+  binding_type
+  binding_view_types
+  help
+  name
+  path
+  type
+  xml_id
+  create(vals_list)
+  get_bindings(model_name)
+  unlink()
+  write(vals)
+}
+class "IrActionsActClient" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsActClient {
+  context
+  params
+  params_store
+  res_model
+  tag
+  target
+  type
+}
+class "IrActionsActUrl" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsActUrl {
+  target
+  type
+  url
+}
+class "IrActionsActWindow" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsActWindow {
+  context
+  domain
+  embedded_action_ids
+  filter
+  groups_id
+  limit
+  mobile_view_mode
+  res_id
+  res_model
+  search_view_id
+  target
+  type
+  usage
+  view_id
+  view_ids
+  view_mode
+  views
+  create(vals_list)
+  exists()
+  read(fields, load)
+  unlink()
+}
+class "IrActionsActWindowView" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsActWindowView {
+  act_window_id
+  multi
+  sequence
+  view_id
+  view_mode
+}
+class "IrActionsActWindowclose" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsActWindowclose {
+  type
+}
+class "IrActionsReport" as odoo_src.odoo.addons.base.models.ir_actions_report.IrActionsReport {
+  attachment
+  attachment_use
+  binding_type
+  domain
+  groups_id
+  model
+  model_id
+  multi
+  paperformat_id
+  print_report_name
+  report_file
+  report_name
+  report_type
+  type
+  associated_view()
+  barcode(barcode_type, value)
+  create_action()
+  get_available_barcode_masks()
+  get_paperformat()
+  get_paperformat_by_xmlid(xml_id)
+  get_valid_action_reports(model, record_ids)
+  get_wkhtmltopdf_state()
+  report_action(docids, data, config)
+  retrieve_attachment(record)
+  unlink_action()
+}
+class "IrActionsServer" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsServer {
+  DEFAULT_PYTHON_CODE : str
+  available_model_ids
+  child_ids
+  code
+  crud_model_id
+  crud_model_name
+  evaluation_type
+  groups_id
+  link_field_id
+  model_id
+  model_name
+  name
+  resource_ref
+  selection_value
+  sequence
+  state
+  type
+  update_boolean_value
+  update_field_id
+  update_field_type
+  update_m2m_operation
+  update_path
+  update_related_model_id
+  usage
+  value
+  value_field_to_show
+  webhook_field_ids
+  webhook_sample_payload
+  webhook_url
+  copy_data(default)
+  create_action()
+  run()
+  unlink_action()
+}
+class "IrActionsTodo" as odoo_src.odoo.addons.base.models.ir_actions.IrActionsTodo {
+  action_id
+  name
+  sequence
+  state
+  action_launch()
+  action_open()
+  create(vals_list)
+  ensure_one_open_todo()
+  unlink()
+  write(vals)
+}
+class "IrAsset" as odoo_src.odoo.addons.base.models.ir_asset.IrAsset {
+  active
+  bundle
+  directive
+  name
+  path
+  sequence
+  target
+  create(vals_list)
+  unlink()
+  write(values)
+}
+class "IrAttachment" as odoo_src.odoo.addons.base.models.ir_attachment.IrAttachment {
+  access_token
+  checksum
+  company_id
+  datas
+  db_datas
+  description
+  file_size
+  index_content
+  mimetype
+  name
+  public
+  raw
+  res_field
+  res_id
+  res_model
+  res_name
+  store_fname
+  type
+  url
+  action_get()
+  check(mode, values)
+  copy_data(default)
+  create(vals_list)
+  create_unique(values_list)
+  force_storage()
+  generate_access_token()
+  get_serving_groups()
+  regenerate_assets_bundles()
+  unlink()
+  validate_access(access_token)
+  write(vals)
+}
+class "IrBinary" as odoo_src.odoo.addons.base.models.ir_binary.IrBinary {
+}
+class "IrConfigParameter" as odoo_src.odoo.addons.base.models.ir_config_parameter.IrConfigParameter {
+  key
+  value
+  create(vals_list)
+  get_param(key, default)
+  init(force)
+  set_param(key, value)
+  unlink()
+  unlink_default_parameters()
+  write(vals)
+}
+class "IrDefault" as odoo_src.odoo.addons.base.models.ir_default.IrDefault {
+  company_id
+  condition
+  field_id
+  json_value
+  user_id
+  create(vals_list)
+  discard_records(records)
+  discard_values(model_name, field_name, values)
+  set(model_name, field_name, value, user_id, company_id, condition)
+  unlink()
+  write(vals)
+}
+class "IrDemo" as odoo_src.odoo.addons.base.models.ir_demo.IrDemo {
+  install_demo()
+}
+class "IrEmbeddedActions" as odoo_src.odoo.addons.base.models.ir_embedded_actions.IrEmbeddedActions {
+  action_id
+  context
+  default_view_mode
+  domain
+  filter_ids
+  groups_ids
+  is_deletable
+  is_visible
+  name
+  parent_action_id
+  parent_res_id
+  parent_res_model
+  python_method
+  sequence
+  user_id
+  create(vals_list)
+}
+class "IrExports" as odoo_src.odoo.addons.base.models.ir_exports.IrExports {
+  export_fields
+  name
+  resource
+}
+class "IrExportsLine" as odoo_src.odoo.addons.base.models.ir_exports.IrExportsLine {
+  export_id
+  name
+}
+class "IrFieldsConverter" as odoo_src.odoo.addons.base.models.ir_fields.IrFieldsConverter {
+  db_id_for(model, field, subfield, value)
+  for_model(model, fromtype)
+  to_field(model, field, fromtype)
+}
+class "IrFilters" as odoo_src.odoo.addons.base.models.ir_filters.IrFilters {
+  action_id
+  active
+  context
+  domain
+  embedded_action_id
+  embedded_parent_res_id
+  is_default
+  model_id
+  name
+  sort
+  user_id
+  copy_data(default)
+  create_or_replace(vals)
+  get_filters(model, action_id, embedded_action_id, embedded_parent_res_id)
+  write(vals)
+}
+class "IrHttp" as odoo_src.odoo.addons.base.models.ir_http.IrHttp {
+  get_translations_for_webclient(modules, lang)
+  get_web_translations_hash(modules, lang)
+  routing_map(key)
+}
+class "IrLogging" as odoo_src.odoo.addons.base.models.ir_logging.IrLogging {
+  create_date
+  create_uid
+  dbname
+  func
+  level
+  line
+  message
+  name
+  path
+  type
+  write_date
+  write_uid
+  init()
+}
+class "IrMailServer" as odoo_src.odoo.addons.base.models.ir_mail_server.IrMailServer {
+  NO_FOUND_FROM : str
+  NO_FOUND_SMTP_FROM : str
+  NO_VALID_FROM : str
+  NO_VALID_RECIPIENT : str
+  active
+  from_filter
+  max_email_size
+  name
+  sequence
+  smtp_authentication
+  smtp_authentication_info
+  smtp_debug
+  smtp_encryption
+  smtp_host
+  smtp_pass
+  smtp_port
+  smtp_ssl_certificate
+  smtp_ssl_private_key
+  smtp_user
+  action_retrieve_max_email_size()
+  build_email(email_from, email_to, subject, body, email_cc, email_bcc, reply_to, attachments, message_id, references, object_id, subtype, headers, body_alternative, subtype_alternative)
+  connect(host, port, user, password, encryption, smtp_from, ssl_certificate, ssl_private_key, smtp_debug, mail_server_id, allow_archived)
+  send_email(message, mail_server_id, smtp_server, smtp_port, smtp_user, smtp_password, smtp_encryption, smtp_ssl_certificate, smtp_ssl_private_key, smtp_debug, smtp_session)
+  test_smtp_connection(autodetect_max_email_size)
+  write(vals)
+}
+class "IrModel" as odoo_src.odoo.addons.base.models.ir_model.IrModel {
+  access_ids
+  count
+  field_id
+  info
+  inherited_model_ids
+  model
+  modules
+  name
+  order
+  rule_ids
+  state
+  transient
+  view_ids
+  create(vals_list)
+  name_create(name)
+  unlink()
+  write(vals)
+}
+class "IrModelAccess" as odoo_src.odoo.addons.base.models.ir_model.IrModelAccess {
+  active
+  group_id
+  model_id
+  name
+  perm_create
+  perm_read
+  perm_unlink
+  perm_write
+  call_cache_clearing_methods()
+  check(model, mode, raise_exception)
+  create(vals_list)
+  group_names_with_access(model_name, access_mode)
+  unlink()
+  write(values)
+}
+class "IrModelConstraint" as odoo_src.odoo.addons.base.models.ir_model.IrModelConstraint {
+  create_date
+  definition
+  message
+  model
+  module
+  name
+  type
+  write_date
+  copy_data(default)
+  unlink()
+}
+class "IrModelData" as odoo_src.odoo.addons.base.models.ir_model.IrModelData {
+  complete_name
+  model
+  module
+  name
+  noupdate
+  reference
+  res_id
+  check_object_reference(module, xml_id, raise_on_access_error)
+  copy_data(default)
+  create(vals_list)
+  toggle_noupdate(model, res_id)
+  unlink()
+  write(values)
+}
+class "IrModelFields" as odoo_src.odoo.addons.base.models.ir_model.IrModelFields {
+  column1
+  column2
+  company_dependent
+  complete_name
+  compute
+  copied
+  currency_field
+  depends
+  domain
+  field_description
+  group_expand
+  groups
+  help
+  index
+  model
+  model_id
+  modules
+  name
+  on_delete
+  readonly
+  related
+  related_field_id
+  relation
+  relation_field
+  relation_field_id
+  relation_table
+  required
+  sanitize
+  sanitize_attributes
+  sanitize_form
+  sanitize_overridable
+  sanitize_style
+  sanitize_tags
+  selectable
+  selection
+  selection_ids
+  size
+  state
+  store
+  strip_classes
+  strip_style
+  translate
+  ttype
+  create(vals_list)
+  get_field_help(model_name)
+  get_field_selection(model_name, field_name)
+  get_field_string(model_name)
+  unlink()
+  write(vals)
+}
+class "IrModelReferenceReport" as odoo_src.odoo.addons.base.report.report_base_report_irmodulereference.IrModelReferenceReport {
+}
+class "IrModelRelation" as odoo_src.odoo.addons.base.models.ir_model.IrModelRelation {
+  create_date
+  model
+  module
+  name
+  write_date
+}
+class "IrModelSelection" as odoo_src.odoo.addons.base.models.ir_model.IrModelSelection {
+  field_id
+  name
+  sequence
+  value
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "IrModuleCase" as odoo_src.odoo.addons.base.tests.test_ir_module.IrModuleCase {
+  test_missing_module_icon()
+  test_module_wrong_icon()
+  test_new_module_icon()
+}
+class "IrProfile" as odoo_src.odoo.addons.base.models.ir_profile.IrProfile {
+  create_date
+  duration
+  entry_count
+  init_stack_trace
+  name
+  qweb
+  session
+  speedscope
+  speedscope_url
+  sql
+  sql_count
+  traces_async
+  traces_sync
+  set_profiling(profile, collectors, params)
+}
+class "IrQWeb" as odoo_src.odoo.addons.base.models.ir_qweb.IrQWeb {
+}
+class "IrRule" as odoo_src.odoo.addons.base.models.ir_rule.IrRule {
+  active
+  domain_force
+  groups
+  model_id
+  name
+  perm_create
+  perm_read
+  perm_unlink
+  perm_write
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "IrSequence" as odoo_src.odoo.addons.base.models.ir_sequence.IrSequence {
+  active
+  code
+  company_id
+  date_range_ids
+  implementation
+  name
+  number_increment
+  number_next
+  number_next_actual
+  padding
+  prefix
+  suffix
+  use_date_range
+  create(vals_list)
+  get(code)
+  get_id(sequence_code_or_id, code_or_id)
+  get_next_char(number_next)
+  next_by_code(sequence_code, sequence_date)
+  next_by_id(sequence_date)
+  unlink()
+  write(values)
+}
+class "IrSequenceDateRange" as odoo_src.odoo.addons.base.models.ir_sequence.IrSequenceDateRange {
+  date_from
+  date_to
+  number_next
+  number_next_actual
+  sequence_id
+  create(vals_list)
+  default_get(fields)
+  unlink()
+  write(values)
+}
+class "IrUiMenu" as odoo_src.odoo.addons.base.models.ir_ui_menu.IrUiMenu {
+  action
+  active
+  child_id
+  complete_name
+  groups_id
+  name
+  parent_id
+  parent_path
+  sequence
+  web_icon
+  web_icon_data
+  copy(default)
+  create(vals_list)
+  get_user_roots()
+  load_menus(debug)
+  load_menus_root()
+  search_count(domain, limit)
+  search_fetch(domain, field_names, offset, limit, order)
+  unlink()
+  write(values)
+}
+class "JavascriptAsset" as odoo_src.odoo.addons.base.models.assetsbundle.JavascriptAsset {
+  bundle_version
+  content
+  is_transpiled
+  generate_error(msg)
+  minify()
+  with_header(content, minimal)
+}
+class "Lang" as odoo_src.odoo.addons.base.models.res_lang.Lang {
+  CACHED_FIELDS
+  active
+  code
+  date_format
+  decimal_point
+  direction
+  flag_image
+  flag_image_url
+  grouping
+  iso_code
+  name
+  short_time_format
+  thousands_sep
+  time_format
+  url_code
+  week_start
+  action_activate_langs()
+  copy_data(default)
+  create(vals_list)
+  format(percent: str, value, grouping: bool) -> str
+  get_installed() -> list[tuple[str, str]]
+  install_lang()
+  toggle_active()
+  unlink()
+  write(vals)
+}
+class "LangData" as odoo_src.odoo.addons.base.models.res_lang.LangData {
+}
+class "LangDataDict" as odoo_src.odoo.addons.base.models.res_lang.LangDataDict {
+}
+class "LazyCompiledBuilder" as odoo_src.odoo.addons.base.models.ir_http.LazyCompiledBuilder {
+  rule
+}
+class "LessStylesheetAsset" as odoo_src.odoo.addons.base.models.assetsbundle.LessStylesheetAsset {
+  get_command()
+}
+class "LoggerProxy" as odoo_src.odoo.addons.base.models.ir_actions.LoggerProxy {
+  error(message)
+  exception(message)
+  info(message)
+  log(level, message)
+  warning(message)
+}
+class "<color:red>MailDeliveryException</color>" as odoo_src.odoo.addons.base.models.ir_mail_server.MailDeliveryException {
+}
+class "ManyToManyConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.ManyToManyConverter {
+  value_to_html(value, options)
+}
+class "ManyToOneConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.ManyToOneConverter {
+  value_to_html(value, options)
+}
+class "MergePartnerAutomatic" as odoo_src.odoo.addons.base.wizard.base_partner_merge.MergePartnerAutomatic {
+  current_line_id
+  dst_partner_id
+  exclude_contact
+  exclude_journal_item
+  group_by_email
+  group_by_is_company
+  group_by_name
+  group_by_parent_id
+  group_by_vat
+  line_ids
+  maximum_group
+  number_group
+  partner_ids
+  state
+  action_merge()
+  action_skip()
+  action_start_automatic_process()
+  action_start_manual_process()
+  action_update_all_process()
+  default_get(fields)
+  parent_migration_process_cb()
+}
+class "MergePartnerLine" as odoo_src.odoo.addons.base.wizard.base_partner_merge.MergePartnerLine {
+  aggr_ids
+  min_id
+  wizard_id
+}
+class "MockEnv" as odoo_src.odoo.addons.base.models.ir_qweb.render.MockEnv {
+  context : dict
+}
+class "MockIrQWeb" as odoo_src.odoo.addons.base.models.ir_qweb.render.MockIrQWeb {
+  pool
+}
+class "MockPool" as odoo_src.odoo.addons.base.models.ir_qweb.render.MockPool {
+  cache
+  cache_name
+  db_name : NoneType
+}
+class "MockSmtplibCase" as odoo_src.odoo.addons.base.tests.common.MockSmtplibCase {
+  connect_mocked
+  emails : list
+  find_mail_server_mocked
+  testing_smtp_session
+  assertSMTPEmailsSent(smtp_from, smtp_to_list, message_from, msg_from, mail_server, from_filter, emails_count, msg_cc_lst, msg_to_lst)
+  mock_smtplib_connection()
+}
+class "Model" as odoo_src.odoo.addons.base.models.ir_ui_view.Model {
+  get_empty_list_help(help_message)
+  get_formview_action(access_uid)
+  get_formview_id(access_uid)
+  get_view(view_id, view_type)
+  get_views(views, options)
+  view_header_get(view_id, view_type)
+}
+class "ModelConverter" as odoo_src.odoo.addons.base.models.ir_http.ModelConverter {
+  model : bool
+  regex : str
+  slug
+  unslug
+  to_python(value: str) -> models.BaseModel
+  to_url(value: models.BaseModel) -> str
+}
+class "ModelInherit" as odoo_src.odoo.addons.base.models.ir_model.ModelInherit {
+  model_id
+  parent_field_id
+  parent_id
+}
+class "ModelsConverter" as odoo_src.odoo.addons.base.models.ir_http.ModelsConverter {
+  model : bool
+  regex : str
+  to_python(value: str) -> models.BaseModel
+  to_url(value: models.BaseModel) -> str
+}
+class "Module" as odoo_src.odoo.addons.base.models.ir_module.Module {
+  application
+  author
+  auto_install
+  category_id
+  contributors
+  country_ids
+  demo
+  dependencies_id
+  description
+  description_html
+  exclusion_ids
+  has_iap
+  icon
+  icon_flag
+  icon_image
+  installed_version
+  latest_version
+  license
+  maintainer
+  menus_by_module
+  name
+  published_version
+  reports_by_module
+  sequence
+  shortdesc
+  state
+  summary
+  to_buy
+  url
+  views_by_module
+  website
+  button_immediate_install()
+  button_immediate_uninstall()
+  button_immediate_upgrade()
+  button_install()
+  button_install_cancel()
+  button_uninstall()
+  button_uninstall_cancel()
+  button_uninstall_wizard()
+  button_upgrade()
+  button_upgrade_cancel()
+  check_external_dependencies(module_name, newstate)
+  create(vals_list)
+  downstream_dependencies(known_deps, exclude_states)
+  get_module_info(name)
+  get_values_from_terp(terp)
+  module_uninstall()
+  next()
+  search_panel_select_range(field_name)
+  unlink()
+  update_list()
+  upstream_dependencies(known_deps, exclude_states)
+}
+class "ModuleCategory" as odoo_src.odoo.addons.base.models.ir_module.ModuleCategory {
+  child_ids
+  description
+  exclusive
+  module_ids
+  name
+  parent_id
+  sequence
+  visible
+  xml_id
+}
+class "ModuleCategory" as odoo_src.odoo.addons.base.models.res_users.ModuleCategory {
+  unlink()
+  write(values)
+}
+class "ModuleDependency" as odoo_src.odoo.addons.base.models.ir_module.ModuleDependency {
+  auto_install_required
+  depend_id
+  module_id
+  name
+  state
+  all_dependencies(module_names)
+}
+class "ModuleExclusion" as odoo_src.odoo.addons.base.models.ir_module.ModuleExclusion {
+  exclusion_id
+  module_id
+  name
+  state
+}
+class "MonetaryConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.MonetaryConverter {
+  get_available_options()
+  record_to_html(record, field_name, options)
+  value_to_html(value, options)
+}
+class "MyFilterMessages" as odoo_src.odoo.addons.base.models.ir_module.MyFilterMessages {
+  default_priority : int
+  apply()
+}
+class "MyWriter" as odoo_src.odoo.addons.base.models.ir_module.MyWriter {
+  get_transforms()
+}
+class "NameManager" as odoo_src.odoo.addons.base.models.ir_ui_view.NameManager {
+  available_actions : set
+  available_fields : defaultdict
+  available_names : set
+  children : list
+  env
+  field_groups : dict
+  group_definitions
+  model
+  model_groups : NoneType
+  must_exist_actions : dict
+  must_exist_groups : dict
+  parent : NoneType
+  used_fields : defaultdict
+  used_names : dict
+  check(view)
+  field_info()
+  get_missing_fields()
+  has_action(name)
+  has_field(node, name, node_info, info)
+  must_exist_action(action_id, node)
+  must_exist_group(name, node)
+  must_have_fields(node, names, node_info, use)
+  must_have_name(name, use)
+  update_available_fields()
+}
+class "Obj" as odoo_src.odoo.addons.base.tests.test_func.TestLazy.test_lazy_compare.Obj {
+  num
+}
+class "OdooMarshaller" as odoo_src.odoo.addons.base.controllers.rpc.OdooMarshaller {
+  dispatch : dict
+  dump_bytes(value, write)
+  dump_date(value, write)
+  dump_datetime(value, write)
+  dump_frozen_dict(value, write)
+  dump_lazy(value, write)
+  dump_unicode(value, write)
+}
+class "Partner" as odoo_src.odoo.addons.base.models.res_partner.Partner {
+  active
+  active_lang_count
+  bank_ids
+  barcode
+  category_id
+  child_ids
+  city
+  color
+  comment
+  commercial_company_name
+  commercial_partner_id
+  company_id
+  company_name
+  company_registry
+  company_registry_label
+  company_type
+  complete_name
+  contact_address
+  country_code
+  country_id
+  email
+  email_formatted
+  employee
+  function
+  image_1920 : bool
+  industry_id
+  is_company
+  is_public
+  lang
+  mobile
+  name
+  parent_id
+  parent_name
+  partner_latitude
+  partner_longitude
+  partner_share
+  phone
+  ref
+  same_company_registry_partner_id
+  same_vat_partner_id
+  self
+  state_id
+  street
+  street2
+  title
+  type
+  tz
+  tz_offset
+  user_id
+  user_ids
+  vat
+  vat_label
+  website
+  zip
+  address_get(adr_pref)
+  copy_data(default)
+  create(vals_list)
+  create_company()
+  default_get(default_fields)
+  find_or_create(email, assert_valid_email)
+  get_import_templates()
+  name_create(name)
+  onchange_company_type()
+  onchange_email()
+  onchange_parent_id()
+  open_commercial_entity()
+  update_address(vals)
+  view_header_get(view_id, view_type)
+  write(vals)
+}
+class "PartnerCategory" as odoo_src.odoo.addons.base.models.res_partner.PartnerCategory {
+  active
+  child_ids
+  color
+  name
+  parent_id
+  parent_path
+  partner_ids
+}
+class "PartnerTitle" as odoo_src.odoo.addons.base.models.res_partner.PartnerTitle {
+  name
+  shortcut
+}
+class "PreprocessedCSS" as odoo_src.odoo.addons.base.models.assetsbundle.PreprocessedCSS {
+  rx_import : NoneType
+  compile(source)
+  {abstract}get_command()
+}
+class "<color:red>QWebException</color>" as odoo_src.odoo.addons.base.models.ir_qweb.QWebException {
+  code : NoneType, str
+  html : NoneType
+  name : NoneType
+  path : NoneType
+  ref : NoneType
+  stack : str
+  title
+}
+class "QueryTestCase" as odoo_src.odoo.addons.base.tests.test_osv.QueryTestCase {
+  test_basic_query()
+  test_long_aliases()
+  test_mixed_query_chained_explicit_implicit_joins()
+  test_query_chained_explicit_joins()
+  test_raise_missing_lhs()
+  test_table_expression()
+}
+class "QwebView" as odoo_src.odoo.addons.base.models.ir_qweb_fields.QwebView {
+  record_to_html(record, field_name, options)
+}
+class "RPC" as odoo_src.odoo.addons.base.controllers.rpc.RPC {
+  jsonrpc(service, method, args)
+  xmlrpc_1(service)
+  xmlrpc_2(service)
+}
+class "RelativeDatetimeConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.RelativeDatetimeConverter {
+  get_available_options()
+  record_to_html(record, field_name, options)
+  value_to_html(value, options)
+}
+class "ReportLayout" as odoo_src.odoo.addons.base.models.report_layout.ReportLayout {
+  image
+  name
+  pdf
+  sequence
+  view_id
+}
+class "RequestUID" as odoo_src.odoo.addons.base.models.ir_http.RequestUID {
+}
+class "ResConfigConfigurable" as odoo_src.odoo.addons.base.models.res_config.ResConfigConfigurable {
+  action_cancel()
+  action_next()
+  action_skip()
+  {abstract}cancel()
+  {abstract}execute()
+  next()
+  start()
+}
+class "ResConfigModuleInstallationMixin" as odoo_src.odoo.addons.base.models.res_config.ResConfigModuleInstallationMixin {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.base.models.res_config.ResConfigSettings {
+  display_name
+  action_open_template_user()
+  cancel()
+  copy(default)
+  create(vals_list)
+  default_get(fields)
+  execute()
+  get_config_warning(msg)
+  get_option_name(full_field_name)
+  get_option_path(menu_xml_id)
+  get_values()
+  onchange_module(field_value, module_name)
+  set_values()
+}
+class "ResDevice" as odoo_src.odoo.addons.base.models.res_device.ResDevice {
+  init()
+  revoke()
+}
+class "ResDeviceLog" as odoo_src.odoo.addons.base.models.res_device.ResDeviceLog {
+  browser
+  city
+  country
+  device_type
+  first_activity
+  ip_address
+  is_current
+  last_activity
+  linked_ip_addresses
+  platform
+  revoked
+  session_identifier
+  user_id
+  init()
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.base.models.res_bank.ResPartnerBank {
+  acc_holder_name
+  acc_number
+  acc_type
+  active
+  allow_out_payment
+  bank_bic
+  bank_id
+  bank_name
+  company_id
+  country_code
+  currency_id
+  partner_id
+  sanitized_acc_number
+  sequence
+  action_archive_bank()
+  get_supported_account_types()
+  retrieve_acc_type(acc_number)
+  unlink()
+}
+class "ResPartnerIndustry" as odoo_src.odoo.addons.base.models.res_partner.ResPartnerIndustry {
+  active
+  full_name
+  name
+}
+class "ResUsersDeletion" as odoo_src.odoo.addons.base.models.res_users_deletion.ResUsersDeletion {
+  state
+  user_id
+  user_id_int
+}
+class "ResUsersLog" as odoo_src.odoo.addons.base.models.res_users.ResUsersLog {
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.base.models.res_users_settings.ResUsersSettings {
+  user_id
+  set_res_users_settings(new_settings)
+}
+class "ResetViewArchWizard" as odoo_src.odoo.addons.base.models.ir_ui_view.ResetViewArchWizard {
+  arch_diff
+  arch_to_compare
+  compare_view_id
+  has_diff
+  reset_mode
+  view_id
+  view_name
+  default_get(fields)
+  reset_view_button()
+}
+class "SMTPConnection" as odoo_src.odoo.addons.base.models.ir_mail_server.SMTPConnection {
+  from_filter
+  smtp_from : NoneType
+}
+class "SassStylesheetAsset" as odoo_src.odoo.addons.base.models.assetsbundle.SassStylesheetAsset {
+  indent : NoneType
+  reindent : str
+  rx_indent
+  get_command()
+  get_source()
+  minify()
+}
+class "SavepointCaseWithUserDemo" as odoo_src.odoo.addons.base.tests.common.SavepointCaseWithUserDemo {
+  setUpClass()
+}
+class "ScssStylesheetAsset" as odoo_src.odoo.addons.base.models.assetsbundle.ScssStylesheetAsset {
+  bootstrap_path
+  output_style : str
+  precision : int
+  compile(source)
+  get_command()
+}
+class "SelectionConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.SelectionConverter {
+  get_available_options()
+  record_to_html(record, field_name, options)
+  value_to_html(value, options)
+}
+class "Session" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD.setUpClass.Session {
+  login_data
+}
+class "SignedIntConverter" as odoo_src.odoo.addons.base.models.ir_http.SignedIntConverter {
+  num_convert : int
+  regex : str
+}
+class "StylesheetAsset" as odoo_src.odoo.addons.base.models.assetsbundle.StylesheetAsset {
+  bundle_version
+  rtl : bool
+  rx_charset
+  rx_import
+  rx_sourceMap
+  rx_url
+  get_source()
+  minify()
+  unique_descriptor()
+}
+class "TEST_SMTP" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD.setUpClass.TEST_SMTP {
+  starttls()
+}
+class "TEST_SMTP_SSL" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD.setUpClass.TEST_SMTP_SSL {
+}
+class "Test01ClassCleanups" as odoo_src.odoo.addons.base.tests.test_test_suite.Test01ClassCleanups {
+  cleanup : bool
+  executed : bool
+  setUpClass()
+  {abstract}test_dummy()
+}
+class "Test02ClassCleanupsCheck" as odoo_src.odoo.addons.base.tests.test_test_suite.Test02ClassCleanupsCheck {
+  test_classcleanups()
+}
+class "TestACL" as odoo_src.odoo.addons.base.tests.test_acl.TestACL {
+  setUpClass()
+  test_field_crud_restriction()
+  test_field_visibility_restriction()
+  test_fields_browse_restriction()
+  test_get_views_fields()
+  test_m2o_field_create_edit()
+  test_view_create_edit_button()
+}
+class "TestAPI" as odoo_src.odoo.addons.base.tests.test_api.TestAPI {
+  assertIsNull(value, model)
+  assertIsRecord(value, model)
+  assertIsRecordset(value, model)
+  setUpClass()
+  test_00_query()
+  test_01_query_offset()
+  test_02_query_limit()
+  test_03_query_offset_limit()
+  test_04_query_count()
+  test_05_immutable()
+  test_06_fields()
+  test_07_null()
+  test_40_new_new()
+  test_45_new_new()
+  test_50_environment()
+  test_56_environment_uid_origin()
+  test_60_cache()
+  test_60_prefetch()
+  test_60_prefetch_model()
+  test_60_prefetch_read()
+  test_60_reversed()
+  test_70_one()
+  test_80_contains()
+  test_80_filter()
+  test_80_lazy_contains()
+  test_80_lazy_set_operations()
+  test_80_map()
+  test_80_set_operations()
+  test_80_sorted()
+  test_group_on()
+}
+class "TestAPIKeys" as odoo_src.odoo.addons.base.tests.test_xmlrpc.TestAPIKeys {
+  setUp()
+  setUpClass()
+  test_delete()
+  test_disabled()
+  test_key()
+  test_trivial()
+  test_wrongpw()
+}
+class "TestAccessRights" as odoo_src.odoo.addons.base.tests.test_views.TestAccessRights {
+  test_access()
+}
+class "TestAddonsFileAccess" as odoo_src.odoo.addons.base.tests.test_misc.TestAddonsFileAccess {
+  assertCanRead(path, needle, mode, filter_ext)
+  assertCannotAccess(path, ExceptionType, filter_ext)
+  assertCannotRead(path, ExceptionType, filter_ext)
+  test_file_open()
+  test_file_path()
+}
+class "TestAggregatePdfReports" as odoo_src.odoo.addons.base.tests.test_reports.TestAggregatePdfReports {
+  assert_report_creation(report_ref, records, record_to_report)
+  setUpClass()
+  test_aggregate_report_with_some_resources_reloaded_from_attachment()
+  test_aggregate_report_with_some_resources_reloaded_from_attachment_with_multiple_page_report()
+}
+class "TestAllFilters" as odoo_src.odoo.addons.base.tests.test_ir_filters.TestAllFilters {
+  check_filter(name, model, domain, fields, groupby, order, context)
+  test_filters()
+}
+class "TestAllViews" as odoo_src.odoo.addons.base.tests.test_views.TestAllViews {
+  test_views()
+}
+class "TestAnyfy" as odoo_src.odoo.addons.base.tests.test_expression.TestAnyfy {
+  test_and_multiple_fields()
+  test_and_multiple_many2one_with_subfield()
+  test_and_multiple_one2many_with_subfield()
+  test_not_and_multiple_many2one_field_with_subfield()
+  test_not_and_multiple_one2many_field_with_subfield()
+  test_not_or_multiple_fields()
+  test_not_or_multiple_many2one_field_with_subfield()
+  test_not_or_multiple_one2many_field_with_subfield()
+  test_not_single_field()
+  test_not_single_many2one_with_subfield()
+  test_not_single_one2many_with_subfield()
+  test_or_multiple_fields()
+  test_or_multiple_many2one_with_subfield()
+  test_or_multiple_one2many_with_subfield()
+  test_single_field()
+  test_single_many2one_with_subfield()
+  test_single_one2many_with_subfield()
+  test_true_leaf_as_list()
+}
+class "TestApplyInheritanceMoveSpecs" as odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceMoveSpecs {
+  base_arch
+  wrapped_arch
+  apply_spec(arch, spec)
+  setUp()
+  test_incorrect_move_1()
+  test_incorrect_move_2()
+  test_incorrect_move_3()
+  test_move_after()
+  test_move_before()
+  test_move_inside()
+  test_move_replace()
+  test_move_with_other_1()
+  test_move_with_other_2()
+  test_move_with_tail()
+}
+class "TestApplyInheritanceSpecs" as odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceSpecs {
+  adv_arch
+  base_arch
+  setUp()
+  test_delete()
+  test_incorrect_version()
+  test_insert_after()
+  test_insert_before()
+  test_insert_inside()
+  test_invalid_position()
+  test_replace_inner()
+  test_replace_outer()
+  test_target_not_found()
+  test_unpack_data()
+}
+class "TestApplyInheritanceWrapSpecs" as odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceWrapSpecs {
+  base_arch
+  apply_spec(spec)
+  setUp()
+  test_replace()
+}
+class "TestApplyInheritedArchs" as odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritedArchs {
+}
+class "TestAutoJoin" as odoo_src.odoo.addons.base.tests.test_expression.TestAutoJoin {
+  test_auto_join()
+  test_nullfields()
+}
+class "TestAvatarMixin" as odoo_src.odoo.addons.base.tests.test_avatar_mixin.TestAvatarMixin {
+  external_partner
+  user_without_image
+  user_without_name
+  setUp()
+  test_content_of_generated_partner_avatar()
+  test_external_partner_has_default_placeholder_image_as_avatar()
+  test_partner_and_user_have_the_same_avatar()
+  test_partner_has_avatar_even_if_it_has_no_image()
+  test_partner_without_name_has_default_placeholder_image_as_avatar()
+}
+class "TestBarcode" as odoo_src.odoo.addons.base.tests.test_barcode.TestBarcode {
+  test_barcode_check_digit()
+  test_barcode_encoding()
+}
+class "TestCallbacks" as odoo_src.odoo.addons.base.tests.test_misc.TestCallbacks {
+  test_aggregate()
+  test_callback()
+  test_reentrant()
+}
+class "TestChromeBrowser" as odoo_src.odoo.addons.base.tests.test_http_case.TestChromeBrowser {
+  browser
+  setUp()
+  test_screencasts()
+}
+class "TestChromeBrowserOddDimensions" as odoo_src.odoo.addons.base.tests.test_http_case.TestChromeBrowserOddDimensions {
+  browser_size : str
+}
+class "TestClassSetup" as odoo_src.odoo.addons.base.tests.test_test_suite.TestClassSetup {
+  setUpClass()
+  {abstract}test_method()
+}
+class "TestClassTeardown" as odoo_src.odoo.addons.base.tests.test_test_suite.TestClassTeardown {
+  tearDownClass()
+  {abstract}test_method()
+}
+class "TestClocCustomization" as odoo_src.odoo.addons.base.tests.test_cloc.TestClocCustomization {
+  create_field(name)
+  create_server_action(name)
+  create_xml_id(module, name, rec)
+  test_cloc_exclude_xml_id()
+  test_field_no_xml_id()
+  test_ignore_auto_generated_computed_field()
+  test_several_xml_id()
+}
+class "TestClocParser" as odoo_src.odoo.addons.base.tests.test_cloc.TestClocParser {
+  test_parser()
+}
+class "TestClocStdNoCusto" as odoo_src.odoo.addons.base.tests.test_cloc.TestClocStdNoCusto {
+  test_no_custo_install()
+}
+class "TestCommand" as odoo_src.odoo.addons.base.tests.test_upgrade_code.TestCommand {
+  run_command()
+  setUpClass()
+  test_upgrade_code_example()
+  test_upgrade_code_help()
+  test_upgrade_code_standalone()
+}
+class "TestCommonCustomFields" as odoo_src.odoo.addons.base.tests.test_ir_actions.TestCommonCustomFields {
+  COMODEL : str
+  MODEL : str
+  create_field(name)
+  create_view(name)
+  setUp()
+}
+class "TestCompany" as odoo_src.odoo.addons.base.tests.test_res_company.TestCompany {
+  test_check_active()
+  test_create_branch_with_default_parent_id()
+  test_logo_check()
+}
+class "TestCompanyDependent" as odoo_src.odoo.addons.base.tests.test_orm.TestCompanyDependent {
+  test_orm_ondelete_restrict()
+}
+class "TestConfigManager" as odoo_src.odoo.addons.base.tests.test_configmanager.TestConfigManager {
+  maxDiff : NoneType
+  setUp()
+  test_01_default_config()
+  test_02_config_file()
+  test_03_save_default_options()
+  test_04_odoo16_config_file()
+  test_05_repeat_parse_config()
+  test_06_cli()
+}
+class "TestCursorHooks" as odoo_src.odoo.addons.base.tests.test_db_cursor.TestCursorHooks {
+  log : list
+  prepare_hooks(cr)
+  setUp()
+  test_hooks_on_cursor()
+  test_hooks_on_testcursor()
+}
+class "TestCursorHooksTransactionCaseCleanup" as odoo_src.odoo.addons.base.tests.test_db_cursor.TestCursorHooksTransactionCaseCleanup {
+  assertHookData()
+  {abstract}initial_callback()
+  {abstract}other_callback()
+  setUpClass()
+  test_1_isolation()
+  test_2_isolation()
+  test_3_isolation()
+  test_4_isolation()
+  test_5_isolation()
+}
+class "TestCustomFields" as odoo_src.odoo.addons.base.tests.test_ir_actions.TestCustomFields {
+  test_create_binary()
+  test_create_custom()
+  test_create_unique()
+  test_create_valid()
+  test_related_field()
+  test_relation_of_a_custom_field()
+  test_remove_with_view()
+  test_remove_without_view()
+  test_rename_custom()
+  test_rename_unique()
+  test_rename_valid()
+  test_rename_with_view()
+  test_rename_without_view()
+  test_selection()
+  test_unlink_base()
+  test_unlink_inherited_custom()
+  test_unlink_with_dependant()
+  test_unlink_with_inverse()
+}
+class "TestCustomFieldsPostInstall" as odoo_src.odoo.addons.base.tests.test_ir_actions.TestCustomFieldsPostInstall {
+  test_add_field_valid()
+}
+class "TestDateRangeFunction" as odoo_src.odoo.addons.base.tests.test_misc.TestDateRangeFunction {
+  test_date_range_with_date()
+  test_date_range_with_hour()
+  test_date_range_with_inconsistent_datetimes()
+  test_date_range_with_mismatching_zones()
+  test_date_range_with_naive_datetimes()
+  test_date_range_with_timezone_aware_datetimes_other_than_utc()
+}
+class "TestDateUtils" as odoo_src.odoo.addons.base.tests.test_date_utils.TestDateUtils {
+  test_fiscal_year()
+}
+class "TestDebugger" as odoo_src.odoo.addons.base.tests.test_views.TestDebugger {
+  test_t_debug_in_qweb_based_views()
+}
+class "TestDefaultView" as odoo_src.odoo.addons.base.tests.test_views.TestDefaultView {
+  testDefaultViewBase()
+  testDefaultViewPrimary()
+}
+class "TestDictTools" as odoo_src.odoo.addons.base.tests.test_misc.TestDictTools {
+  test_readonly_dict()
+}
+class "TestEmailTools" as odoo_src.odoo.addons.base.tests.test_mail.TestEmailTools {
+  setUpClass()
+  test_email_anonymize()
+  test_email_domain_normalize()
+  test_email_formataddr()
+  test_email_normalize()
+  test_email_re()
+  test_email_split()
+  test_email_split_and_format()
+  test_email_split_tuples()
+  test_extract_rfc2822_addresses()
+  test_single_email_re()
+}
+class "TestEmbeddedActionsBase" as odoo_src.odoo.addons.base.tests.test_ir_embedded_actions.TestEmbeddedActionsBase {
+  context : dict
+  get_embedded_actions_ids(parent_action)
+  setUpClass()
+  test_can_delete_custom_embedded_action()
+  test_cannot_delete_default_embedded_action()
+  test_create_embedded_action_with_action_and_python_method()
+  test_domain_on_embedded_action()
+  test_groups_on_embedded_action()
+  test_parent_has_embedded_actions()
+}
+class "TestEmbeddedFilters" as odoo_src.odoo.addons.base.tests.test_ir_filters.TestEmbeddedFilters {
+  USER_ID
+  USER_NG
+  action_1
+  embedded_action_1
+  embedded_action_2
+  parent_action
+  setUp()
+  test_global_filters_with_embedded_action()
+  test_global_filters_with_no_embedded_action()
+}
+class "TestEvalContext" as odoo_src.odoo.addons.base.tests.test_ir_model.TestEvalContext {
+  test_module_usage()
+}
+class "TestEveryModel" as odoo_src.odoo.addons.base.tests.test_display_name.TestEveryModel {
+  test_display_name_new_record()
+}
+class "TestExpression" as odoo_src.odoo.addons.base.tests.test_expression.TestExpression {
+  setUpClass()
+  test_00_in_not_in_m2m()
+  test_05_not_str_m2m()
+  test_09_hierarchy_filtered_domain()
+  test_10_eq_lt_gt_lte_gte()
+  test_10_equivalent_id()
+  test_10_hierarchy_access()
+  test_10_hierarchy_in_m2m()
+  test_15_equivalent_one2many_1()
+  test_15_equivalent_one2many_2()
+  test_15_m2o()
+  test_15_o2m()
+  test_15_o2m_subselect()
+  test_20_expression_parse()
+  test_30_normalize_domain()
+  test_35_negating_thruty_leafs()
+  test_40_negating_long_expression()
+  test_40_negating_traversal()
+  test_accent()
+  test_active()
+  test_filtered_domain_any_operator()
+  test_filtered_domain_order()
+  test_filtered_domain_order2()
+  test_in_boolean()
+  test_in_operator()
+  test_invalid()
+  test_like_cast()
+  test_like_complement_m2o_access()
+  test_like_filtered()
+  test_like_wildcards()
+  test_lp1071710()
+  test_or_with_implicit_and()
+  test_proper_combine_unit_leaves()
+  test_pure_function()
+  test_translate_search()
+}
+class "TestExpression2" as odoo_src.odoo.addons.base.tests.test_expression.TestExpression2 {
+  test_long_table_alias()
+}
+class "TestExternalAPI" as odoo_src.odoo.addons.base.tests.test_api.TestExternalAPI {
+  test_call_kw()
+}
+class "TestFloatPrecision" as odoo_src.odoo.addons.base.tests.test_float.TestFloatPrecision {
+  test_amount_to_text_10()
+  test_float_split_05()
+  test_rounding_02()
+  test_rounding_03()
+  test_rounding_04()
+  test_rounding_invalid()
+}
+class "TestFormCreate" as odoo_src.odoo.addons.base.tests.test_form_create.TestFormCreate {
+  test_create_res_bank()
+  test_create_res_company()
+  test_create_res_country()
+  test_create_res_group()
+  test_create_res_lang()
+  test_create_res_partner()
+  test_create_res_users()
+}
+class "TestFormatLang" as odoo_src.odoo.addons.base.tests.test_misc.TestFormatLang {
+  test_currency_object()
+  test_decimal_precision()
+  test_decimal_precision_and_currency_object()
+  test_grouping()
+  test_rounding_method()
+  test_rounding_method_and_rounding_unit()
+  test_rounding_unit()
+  test_value_and_digits()
+}
+class "TestFormatLangDate" as odoo_src.odoo.addons.base.tests.test_misc.TestFormatLangDate {
+  test_00_accepted_types()
+  test_01_code_and_format()
+  test_02_tz()
+}
+class "TestFrozendict" as odoo_src.odoo.addons.base.tests.test_func.TestFrozendict {
+  test_frozendict_hash()
+  test_frozendict_immutable()
+}
+class "TestGetFilters" as odoo_src.odoo.addons.base.tests.test_ir_filters.TestGetFilters {
+  test_global_filters()
+  test_no_third_party_filters()
+  test_own_filters()
+}
+class "TestGlobalDefaults" as odoo_src.odoo.addons.base.tests.test_ir_filters.TestGlobalDefaults {
+  test_new_filter_existing_default()
+  test_new_filter_not_default()
+  test_update_default_filter()
+  test_update_filter_set_default()
+}
+class "TestGroups" as odoo_src.odoo.addons.base.tests.test_base.TestGroups {
+  test_apply_groups()
+  test_remove_groups()
+  test_res_group_copy()
+  test_res_group_has_cycle()
+  test_res_groups_fullname_search()
+}
+class "TestGroupsObject" as odoo_src.odoo.addons.base.tests.test_groups.TestGroupsObject {
+  setUpClass()
+  test_groups_10_hudge_combine()
+  test_groups_11_invert_intersect()
+  test_groups_1_base()
+  test_groups_2_and()
+  test_groups_3_or()
+  test_groups_3_or_and()
+  test_groups_4_gt_lt()
+  test_groups_5_invert()
+  test_groups_6_invert_gt_lt()
+  test_groups_7_various()
+  test_groups_8_reduce()
+  test_groups_9_distinct()
+  test_groups_key()
+  test_groups_matches()
+  test_groups_unknown()
+}
+class "TestGroupsOdoo" as odoo_src.odoo.addons.base.tests.test_groups.TestGroupsOdoo {
+  parse_repr(group_repr)
+  setUpClass()
+  test_groups_1_base()
+  test_groups_2_from_commat_separator()
+  test_groups_3_from_ref()
+  test_groups_4_full_empty()
+  test_groups_5_contains_user()
+  test_groups_6_distinct()
+}
+class "TestHTMLTranslation" as odoo_src.odoo.addons.base.tests.test_translate.TestHTMLTranslation {
+  test_delay_translations_no_term()
+  test_write_non_existing()
+}
+class "TestHTTPCursor" as odoo_src.odoo.addons.base.tests.test_db_cursor.TestHTTPCursor {
+  test_call_kw_readonly()
+  test_cursor_keeps_readwriteness()
+}
+class "TestHasGroup" as odoo_src.odoo.addons.base.tests.test_user_has_group.TestHasGroup {
+  group0 : str
+  group1 : str
+  grp_internal
+  grp_internal_xml_id : str
+  grp_portal
+  grp_portal_xml_id : str
+  grp_public
+  grp_public_xml_id : str
+  test_user
+  setUp()
+  test_demote_user()
+  test_env_uid()
+  test_has_group_cleared_cache_on_write()
+  test_has_group_with_new_id()
+  test_implied_groups()
+  test_other_user()
+  test_portal_creation()
+  test_portal_write()
+  test_record()
+  test_two_user_types()
+  test_two_user_types_implied_groups()
+}
+class "TestHtmlTools" as odoo_src.odoo.addons.base.tests.test_mail.TestHtmlTools {
+  test_append_to_html()
+  test_html_html_to_inner_content()
+  test_is_html_empty()
+  test_nl2br_enclose()
+  test_plaintext2html()
+  test_prepend_html_content()
+}
+class "TestHttpCase" as odoo_src.odoo.addons.base.tests.test_http_case.TestHttpCase {
+  test_console_error_object()
+  test_console_error_string()
+  test_console_log_object()
+}
+class "TestImage" as odoo_src.odoo.addons.base.tests.test_image.TestImage {
+  bg_color : tuple
+  fill_color : tuple
+  img_1080x1920_png
+  img_1920x1080_jpeg
+  img_1920x1080_png
+  img_1x1_png
+  img_exif_jpg
+  img_svg : bytes
+  setUp()
+  test_00_base64_to_image()
+  test_01_image_to_base64()
+  test_02_image_fix_orientation()
+  test_03_image_fix_orientation_exif()
+  test_10_image_process_source()
+  test_11_image_process_size()
+  test_12_image_process_verify_resolution()
+  test_13_image_process_quality()
+  test_14_image_process_crop()
+  test_15_image_process_colorize()
+  test_16_image_process_format()
+  test_17_get_webp_size()
+  test_20_image_data_uri()
+  test_21_image_guess_size_from_field_name()
+  test_ptype_image_to_jpeg()
+}
+class "TestInherits" as odoo_src.odoo.addons.base.tests.test_orm.TestInherits {
+  test_copy()
+  test_copy_with_ancestor()
+  test_create()
+  test_create_with_ancestor()
+  test_default()
+  test_read()
+  test_write_date()
+}
+class "TestInvisibleField" as odoo_src.odoo.addons.base.tests.test_views.TestInvisibleField {
+  test_uncommented_invisible_field()
+}
+class "TestIrAttachment" as odoo_src.odoo.addons.base.tests.test_ir_attachment.TestIrAttachment {
+  Attachment
+  blob1 : bytes
+  blob1_b64
+  blob1_fname : str
+  blob1_hash : str
+  blob2 : bytes
+  blob2_b64
+  filestore
+  assertApproximately(value, expectedSize, delta)
+  setUp()
+  test_01_store_in_db()
+  test_02_store_on_disk()
+  test_03_no_duplication()
+  test_04_keep_file()
+  test_05_change_data_change_file()
+  test_07_write_mimetype()
+  test_08_neuter_xml_mimetype()
+  test_09_dont_neuter_xml_mimetype_for_admin()
+  test_10_image_autoresize()
+  test_11_copy()
+  test_12_gc()
+  test_13_rollback()
+  test_14_invalid_mimetype_with_correct_file_extension_no_post_processing()
+}
+class "TestIrConfigParameter" as odoo_src.odoo.addons.base.tests.test_config_parameter.TestIrConfigParameter {
+  test_default_parameters()
+}
+class "TestIrCron" as odoo_src.odoo.addons.base.tests.test_ir_cron.TestIrCron {
+  setUp()
+  setUpClass()
+  test_acquire_processed_job()
+  test_cron_deactivate()
+  test_cron_direct_trigger()
+  test_cron_failed_increase()
+  test_cron_keep_future_triggers()
+  test_cron_no_job_ready()
+  test_cron_process_job()
+  test_cron_ready_by_nextcall()
+  test_cron_ready_by_trigger()
+  test_cron_ready_jobs_order()
+  test_cron_retrigger()
+  test_cron_skip_unactive_triggers()
+  test_cron_timeout_failure()
+  test_cron_timeout_success()
+  test_cron_unactive_never_ready()
+}
+class "TestIrDefault" as odoo_src.odoo.addons.base.tests.test_ir_default.TestIrDefault {
+  test_conditions()
+  test_defaults()
+  test_invalid()
+  test_json_format_invalid()
+  test_multi_company_defaults()
+  test_removal()
+}
+class "TestIrHttpPerformances" as odoo_src.odoo.addons.base.tests.test_ir_http.TestIrHttpPerformances {
+  test_routing_map_performance()
+}
+class "TestIrMailServer" as odoo_src.odoo.addons.base.tests.test_ir_mail_server.TestIrMailServer {
+  setUpClass()
+  test_assert_base_values()
+  test_bpo_34424_35805()
+  test_content_alternative_correct_order()
+  test_content_mail_body()
+  test_eml_attachment_encoding()
+  test_mail_server_auth_cert_requires_tls()
+  test_mail_server_config_bin()
+  test_mail_server_config_cli()
+  test_mail_server_get_test_email_from()
+  test_mail_server_match_from_filter()
+  test_mail_server_priorities()
+  test_mail_server_send_email()
+  test_mail_server_send_email_IDNA()
+  test_mail_server_send_email_context_force()
+}
+class "TestIrMailServerSMTPD" as odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD {
+  getaddrinfo(host, port)
+  setUp()
+  setUpClass()
+  start_smtpd(encryption, ssl_context, auth_required, stop_on_cleanup)
+  test_authentication_certificate_matrix()
+  test_authentication_login_matrix()
+  test_encryption_matrix()
+  test_man_in_the_middle_matrix()
+}
+class "TestIrModel" as odoo_src.odoo.addons.base.tests.test_ir_model.TestIrModel {
+  setUp()
+  setUpClass()
+  test_group_expansion()
+  test_model_order_constraint()
+  test_model_order_search()
+  test_monetary_currency_field()
+  test_rec_name_deletion()
+}
+class "TestIrModelEdition" as odoo_src.odoo.addons.base.tests.test_ir_model.TestIrModelEdition {
+  test_delete_manual_models_with_base_fields()
+  test_ir_model_fields_name_create()
+  test_new_ir_model_fields_related()
+}
+class "TestIrModelFieldsTranslation" as odoo_src.odoo.addons.base.tests.test_ir_model.TestIrModelFieldsTranslation {
+  test_ir_model_fields_translation()
+}
+class "TestIrModelInherit" as odoo_src.odoo.addons.base.tests.test_ir_model.TestIrModelInherit {
+  test_delegate_field()
+  test_inherit()
+  test_inherits()
+}
+class "TestIrRule" as odoo_src.odoo.addons.base.tests.test_acl.TestIrRule {
+  test_ir_rule()
+}
+class "TestIrSequenceChangeImplementation" as odoo_src.odoo.addons.base.tests.test_ir_sequence.TestIrSequenceChangeImplementation {
+  tearDownClass()
+  test_ir_sequence_1_create()
+  test_ir_sequence_2_write()
+  test_ir_sequence_3_unlink()
+}
+class "TestIrSequenceDateRangeChangeImplementation" as odoo_src.odoo.addons.base.tests.test_ir_sequence_date_range.TestIrSequenceDateRangeChangeImplementation {
+  test_ir_sequence_date_range_1_create()
+  test_ir_sequence_date_range_2_use()
+  test_ir_sequence_date_range_3_write()
+  test_ir_sequence_date_range_4_unlink()
+}
+class "TestIrSequenceDateRangeNoGap" as odoo_src.odoo.addons.base.tests.test_ir_sequence_date_range.TestIrSequenceDateRangeNoGap {
+  test_ir_sequence_date_range_1_create_no_gap()
+  test_ir_sequence_date_range_2_change_dates()
+  test_ir_sequence_date_range_3_unlink()
+}
+class "TestIrSequenceDateRangeStandard" as odoo_src.odoo.addons.base.tests.test_ir_sequence_date_range.TestIrSequenceDateRangeStandard {
+  test_ir_sequence_date_range_1_create()
+  test_ir_sequence_date_range_2_change_dates()
+  test_ir_sequence_date_range_3_unlink()
+}
+class "TestIrSequenceGenerate" as odoo_src.odoo.addons.base.tests.test_ir_sequence.TestIrSequenceGenerate {
+  tearDownClass()
+  test_ir_sequence_create()
+  test_ir_sequence_create_no_gap()
+  test_ir_sequence_prefix()
+  test_ir_sequence_suffix()
+}
+class "TestIrSequenceInit" as odoo_src.odoo.addons.base.tests.test_ir_sequence.TestIrSequenceInit {
+  test_00()
+}
+class "TestIrSequenceNoGap" as odoo_src.odoo.addons.base.tests.test_ir_sequence.TestIrSequenceNoGap {
+  tearDownClass()
+  test_ir_sequence_create_no_gap()
+  test_ir_sequence_draw_no_gap()
+  test_ir_sequence_draw_twice_no_gap()
+}
+class "TestIrSequenceStandard" as odoo_src.odoo.addons.base.tests.test_ir_sequence.TestIrSequenceStandard {
+  tearDownClass()
+  test_ir_sequence_create()
+  test_ir_sequence_draw()
+  test_ir_sequence_draw_twice()
+  test_ir_sequence_search()
+}
+class "TestLanguageInstall" as odoo_src.odoo.addons.base.tests.test_translate.TestLanguageInstall {
+  test_language_install()
+}
+class "TestLanguageInstallPerformance" as odoo_src.odoo.addons.base.tests.test_translate.TestLanguageInstallPerformance {
+  test_language_install()
+}
+class "TestLazy" as odoo_src.odoo.addons.base.tests.test_func.TestLazy {
+  test_lazy_compare()
+}
+class "TestMailTools" as odoo_src.odoo.addons.base.tests.test_mail.TestMailTools {
+  test_html2plaintext()
+}
+class "TestMany2many" as odoo_src.odoo.addons.base.tests.test_expression.TestMany2many {
+  User
+  company
+  setUp()
+  test_autojoin()
+  test_empty()
+  test_name_search()
+  test_regular()
+}
+class "TestMany2one" as odoo_src.odoo.addons.base.tests.test_expression.TestMany2one {
+  Partner
+  User
+  company
+  setUp()
+  test_autojoin()
+  test_complement_regular()
+  test_explicit_subquery()
+  test_inherited()
+  test_name_search()
+  test_name_search_undefined()
+  test_regular()
+}
+class "TestMenu" as odoo_src.odoo.addons.base.tests.test_menu.TestMenu {
+  test_00_menu_deletion()
+}
+class "TestMergePartner" as odoo_src.odoo.addons.base.tests.test_res_partner_merge.TestMergePartner {
+  Bank
+  Partner
+  attachment1
+  attachment2
+  attachment_bank1
+  attachment_bank2
+  attachment_bank3
+  bank1
+  bank2
+  bank3
+  partner1
+  partner2
+  partner3
+  setUp()
+  test_merge_partners_with_duplicate_bank_accounts()
+  test_merge_partners_with_duplicate_bank_accounts_with_destination()
+  test_merge_partners_with_references()
+  test_merge_partners_with_unique_bank_accounts()
+  test_merge_partners_without_bank_accounts()
+}
+class "TestMergeSequences" as odoo_src.odoo.addons.base.tests.test_misc.TestMergeSequences {
+  test_merge_sequences()
+}
+class "TestMiscToken" as odoo_src.odoo.addons.base.tests.test_misc.TestMiscToken {
+  test_None_payload()
+  test_expired_token()
+  test_list_payload()
+  test_long_payload()
+  test_modified_payload()
+}
+class "TestModelDeprecations" as odoo_src.odoo.addons.base.tests.test_deprecation.TestModelDeprecations {
+  test_model_attributes()
+  test_name_get()
+}
+class "TestModuleCategory" as odoo_src.odoo.addons.base.tests.test_ir_module_category.TestModuleCategory {
+  test_parent_circular_dependencies()
+}
+class "TestModuleManifest" as odoo_src.odoo.addons.base.tests.test_module.TestModuleManifest {
+  maxDiff : NoneType
+  module_name
+  module_root : bytes, str
+  setUp()
+  setUpClass()
+  test_change_manifest()
+  test_default_manifest()
+  test_missing_license()
+  test_missing_manifest()
+}
+class "TestNeutralize" as odoo_src.odoo.addons.base.tests.test_neutralize.TestNeutralize {
+  test_10_neutralize()
+}
+class "TestNoModel" as odoo_src.odoo.addons.base.tests.test_views.TestNoModel {
+  arch
+  text_para
+  test_create_view_nomodel()
+  test_qweb_translation()
+}
+class "TestNodeLocator" as odoo_src.odoo.addons.base.tests.test_views.TestNodeLocator {
+  test_attribute_filter()
+  test_attribute_mismatch()
+  test_match_field()
+  test_match_other()
+  test_match_xpath()
+  test_no_match_field()
+  test_no_match_other()
+  test_no_match_xpath()
+  test_version_mismatch()
+}
+class "TestNum2WordsAr" as odoo_src.odoo.addons.base.tests.test_num2words_ar.TestNum2WordsAr {
+  setUpClass()
+  test_decimal_multiple_of_thousands()
+  test_multiple_of_thousands()
+}
+class "TestORM" as odoo_src.odoo.addons.base.tests.test_orm.TestORM {
+  test_access_deleted_records()
+  test_access_filtered_records()
+  test_access_partial_deletion()
+  test_create_multi()
+  test_exists()
+  test_m2m_store_trigger()
+  test_read()
+  test_search_read()
+  test_write_duplicate()
+}
+class "TestOne2many" as odoo_src.odoo.addons.base.tests.test_expression.TestOne2many {
+  Partner
+  partner
+  setUp()
+  test_autojoin()
+  test_autojoin_mixed()
+  test_empty()
+  test_name_search()
+  test_regular()
+}
+class "TestOptionalViews" as odoo_src.odoo.addons.base.tests.test_views.TestOptionalViews {
+  v0
+  v1
+  v2
+  v3
+  setUp()
+  test_applied()
+  test_applied_state_toggle()
+}
+class "TestOrmCache" as odoo_src.odoo.addons.base.tests.test_ormcache.TestOrmCache {
+  setUpClass()
+  test_invalidation()
+  test_invalidation_thread_local()
+  test_ormcache()
+  test_signaling_01_multiple()
+  test_signaling_01_single()
+}
+class "TestOverrides" as odoo_src.odoo.addons.base.tests.test_overrides.TestOverrides {
+  test_creates()
+  test_default_get()
+  test_unlink()
+  test_writes()
+}
+class "TestOwnDefaults" as odoo_src.odoo.addons.base.tests.test_ir_filters.TestOwnDefaults {
+  test_new_filter_existing_default()
+  test_new_filter_not_default()
+  test_new_no_filter()
+  test_update_filter_set_default()
+}
+class "TestParentStore" as odoo_src.odoo.addons.base.tests.test_base.TestParentStore {
+  cat0
+  cat1
+  cat2
+  cat21
+  root
+  setUp()
+  test_duplicate_children_01()
+  test_duplicate_children_02()
+  test_duplicate_children_03()
+  test_duplicate_parent()
+}
+class "TestPartner" as odoo_src.odoo.addons.base.tests.test_res_partner.TestPartner {
+  mockPartnerCalls()
+  test_archive_internal_partners()
+  test_display_name_translation()
+  test_email_formatted()
+  test_find_or_create()
+  test_is_public()
+  test_lang_computation_code()
+  test_name_create()
+  test_name_search()
+  test_name_search_with_user()
+  test_partner_merge_wizard_dst_partner_id()
+}
+class "TestPartnerAddressCompany" as odoo_src.odoo.addons.base.tests.test_res_partner.TestPartnerAddressCompany {
+  setUpClass()
+  test_accessibility_of_company_partner_from_branch()
+  test_address()
+  test_address_first_contact_sync()
+  test_address_get()
+  test_commercial_field_sync()
+  test_commercial_partner_nullcompany()
+  test_company_change_propagation()
+  test_company_dependent_commercial_sync()
+  test_display_address_missing_key()
+  test_display_name()
+}
+class "TestPartnerForm" as odoo_src.odoo.addons.base.tests.test_res_partner.TestPartnerForm {
+  test_lang_computation_form_view()
+  test_onchange_parent_sync_user()
+}
+class "TestPartnerFormatAddress" as odoo_src.odoo.addons.base.tests.test_format_address_mixin.TestPartnerFormatAddress {
+  test_address_view()
+}
+class "TestPartnerRecursion" as odoo_src.odoo.addons.base.tests.test_res_partner.TestPartnerRecursion {
+  p1
+  p2
+  p3
+  setUp()
+  test_100_res_partner_recursion()
+  test_101_res_partner_recursion()
+  test_102_res_partner_recursion()
+  test_103_res_partner_recursion()
+  test_104_res_partner_recursion_indirect_cycle()
+  test_105_res_partner_recursion()
+  test_110_res_partner_recursion_multi_update()
+  test_111_res_partner_recursion_infinite_loop()
+}
+class "TestPdf" as odoo_src.odoo.addons.base.tests.test_pdf.TestPdf {
+  file
+  minimal_pdf_reader
+  minimal_reader_buffer : BytesIO
+  setUp()
+  tearDown()
+  test_branded_file_writer()
+  test_merge_pdf()
+  test_odoo_pdf_file_reader()
+  test_odoo_pdf_file_reader_with_owner_encryption()
+  test_odoo_pdf_file_writer()
+  test_reshaping_arabic_text()
+  test_reshaping_non_arabic_text()
+}
+class "TestPerformance" as odoo_src.odoo.addons.base.tests.test_profiler.TestPerformance {
+  test_collector_max_frequency()
+  test_frequencies_1ms_sleep()
+  test_traces_async_memory_optimisation()
+}
+class "TestPermissions" as odoo_src.odoo.addons.base.tests.test_ir_attachment.TestPermissions {
+  Attachments
+  attachment
+  env
+  rule
+  vals : dict
+  setUp()
+  test_basic_modifications()
+  test_cross_record_copies()
+  test_field_read_permission()
+  test_read_permission()
+  test_with_write_permissions()
+}
+class "TestPrettifyDomain" as odoo_src.odoo.addons.base.tests.test_expression.TestPrettifyDomain {
+  test_prettify_domain()
+}
+class "TestProfileAccess" as odoo_src.odoo.addons.base.tests.test_profiler.TestProfileAccess {
+  setUpClass()
+  test_admin_has_access()
+  test_user_no_access()
+}
+class "TestProfiling" as odoo_src.odoo.addons.base.tests.test_profiler.TestProfiling {
+  test_default_recorders()
+  test_default_values()
+  test_env_profiler_database()
+  test_env_profiler_description()
+  test_execution_context_nested()
+  test_execution_context_save()
+  test_profiler_return()
+  test_qweb_recorder()
+}
+class "TestQWebBasic" as odoo_src.odoo.addons.base.tests.test_qweb.TestQWebBasic {
+  test_att_escaping_1()
+  test_att_escaping_2()
+  test_att_no_propagation_1()
+  test_att_no_propagation_2()
+  test_attf_escaping_1()
+  test_attf_escaping_2()
+  test_attf_escaping_3()
+  test_call_error()
+  test_call_set()
+  test_compile_expr()
+  test_compile_expr_security()
+  test_error_message_1()
+  test_error_message_2()
+  test_error_message_3()
+  test_error_message_4()
+  test_error_message_5()
+  test_error_message_6()
+  test_error_message_7()
+  test_error_message_8()
+  test_esc_markup()
+  test_foreach_as_error_1()
+  test_foreach_as_error_2()
+  test_foreach_as_error_3()
+  test_foreach_iter_dict()
+  test_foreach_iter_list()
+  test_if_comment()
+  test_if_from_body()
+  test_if_spaces()
+  test_out()
+  test_out_default_value()
+  test_out_escape_text()
+  test_out_format_1()
+  test_out_format_2()
+  test_out_format_3()
+  test_out_format_4()
+  test_out_format_5()
+  test_out_format_6()
+  test_out_markup()
+  test_render_barcode()
+  test_render_comment_tail()
+  test_render_comments()
+  test_render_processing_instructions()
+  test_render_t_call_propagates_t_lang()
+  test_render_widget_contact()
+  test_render_widget_duration_fallback()
+  test_set_1()
+  test_set_2()
+  test_set_3()
+  test_set_body_1()
+  test_set_body_2()
+  test_set_error_1()
+  test_set_error_2()
+  test_space_remove_technical_all()
+  test_space_remove_technical_space_t_foreach()
+  test_void_element()
+}
+class "TestQWebNS" as odoo_src.odoo.addons.base.tests.test_qweb.TestQWebNS {
+  test_render_dynamic_xml_with_code_error()
+  test_render_dynamic_xml_with_namespace_2()
+  test_render_dynamic_xml_with_namespace_t_attf()
+  test_render_dynamic_xml_with_namespace_t_attf_with_useless_distributed_namespace()
+  test_render_dynamic_xml_with_namespace_t_esc()
+  test_render_dynamic_xml_with_namespace_t_esc_with_useless_distributed_namespace()
+  test_render_dynamic_xml_with_namespaced_attributes()
+  test_render_static_xml_with_extension()
+  test_render_static_xml_with_namespace()
+  test_render_static_xml_with_namespace_2()
+  test_render_static_xml_with_namespace_3()
+  test_render_static_xml_with_namespace_dynamic()
+  test_render_static_xml_with_namespace_dynamic_2()
+  test_render_static_xml_with_namespaced_attributes()
+  test_render_static_xml_with_t_call()
+  test_render_static_xml_with_useless_distributed_namespace()
+  test_render_static_xml_with_void_element()
+}
+class "TestQWebRender" as odoo_src.odoo.addons.base.tests.test_views.TestQWebRender {
+  test_render()
+}
+class "TestQWebTField" as odoo_src.odoo.addons.base.tests.test_qweb.TestQWebTField {
+  engine
+  env_branding
+  setUp()
+  test_default_value()
+  test_i18n()
+  test_no_value_no_default_value()
+  test_reject_crummy_tags()
+  test_reject_t_tag()
+  test_render_t_options()
+  test_trivial()
+  test_xss_breakout()
+}
+class "TestQueries" as odoo_src.odoo.addons.base.tests.test_expression.TestQueries {
+  test_access_rules()
+  test_count()
+  test_count_limit()
+  test_logic()
+  test_order()
+  test_rec_names_search()
+  test_translated_field()
+}
+class "TestQuery" as odoo_src.odoo.addons.base.tests.test_osv.TestQuery {
+  test_auto()
+  test_records_as_query()
+}
+class "TestQwebCache" as odoo_src.odoo.addons.base.tests.test_qweb.TestQwebCache {
+  test_render_nodb()
+  test_render_xml_cache_and_inherit_view()
+  test_render_xml_cache_base()
+  test_render_xml_cache_contains_nocache()
+  test_render_xml_cache_different()
+  test_render_xml_cache_nocache_cache()
+  test_render_xml_cache_nocache_cache_on_same_tag()
+  test_render_xml_cache_with_t_set_in_cache()
+  test_render_xml_cache_with_t_set_out_of_cache()
+  test_render_xml_cache_with_t_set_wrap_t_cache()
+  test_render_xml_conditional_cache()
+  test_render_xml_dont_use_cache_base()
+  test_render_xml_dont_use_cache_contains_nocache()
+  test_render_xml_dont_use_cache_different()
+  test_render_xml_dont_use_cache_false_recursive()
+  test_render_xml_dont_use_cache_recursive()
+  test_render_xml_nocache_in_cache_in_cache()
+  test_render_xml_nocache_use_the_root_values()
+  test_render_xml_nocache_use_the_root_values_and_cached_values()
+  test_render_xml_nocache_use_the_root_values_and_cached_values_error()
+  test_render_xml_t_set_wrap_t_cache()
+}
+class "TestQwebFieldContact" as odoo_src.odoo.addons.base.tests.test_qweb_field.TestQwebFieldContact {
+  setUpClass()
+  test_value_to_html_with_website_and_phone()
+  test_value_to_html_without_phone()
+}
+class "TestQwebFieldInteger" as odoo_src.odoo.addons.base.tests.test_qweb_field.TestQwebFieldInteger {
+  test_integer_value_to_html()
+  value_to_html(value, options)
+}
+class "TestQwebFieldTime" as odoo_src.odoo.addons.base.tests.test_qweb_field.TestQwebFieldTime {
+  test_time_value_to_html()
+  value_to_html(value, options)
+}
+class "TestRealCursor" as odoo_src.odoo.addons.base.tests.test_db_cursor.TestRealCursor {
+  test_connection_readonly()
+  test_execute_bad_params()
+  test_multiple_close_call_cursor()
+  test_transaction_isolation_cursor()
+  test_using_closed_cursor()
+}
+class "TestRecordCache" as odoo_src.odoo.addons.base.tests.test_cache.TestRecordCache {
+  test_cache()
+  test_memory()
+}
+class "TestRemoveAccents" as odoo_src.odoo.addons.base.tests.test_misc.TestRemoveAccents {
+  test_empty_string()
+  test_latin()
+  test_non_latin()
+}
+class "TestRenderAllViews" as odoo_src.odoo.addons.base.tests.test_views.TestRenderAllViews {
+  test_render_all_views()
+}
+class "TestReports" as odoo_src.odoo.addons.base.tests.test_reports.TestReports {
+  test_report_reload_from_attachment()
+  test_reports()
+}
+class "TestReportsRendering" as odoo_src.odoo.addons.base.tests.test_reports.TestReportsRendering {
+  test_format_A4()
+  test_format_landscape()
+  test_format_letter()
+  test_layout()
+  test_pdf_render_page_overflow()
+  test_report_pdf_page_break()
+  test_thead_tbody_repeat()
+}
+class "TestReportsRenderingCommon" as odoo_src.odoo.addons.base.tests.test_reports.TestReportsRenderingCommon {
+  last_pdf_content : NoneType
+  last_pdf_content_saved : bool
+  partners
+  report
+  report_view
+  assertPageFormat(paper_format, orientation)
+  create_pdf(partners, header_content, page_content, footer_content)
+  get_paper_format(mediabox)
+  save_pdf()
+  setUp()
+}
+class "TestReportsRenderingLimitations" as odoo_src.odoo.addons.base.tests.test_reports.TestReportsRenderingLimitations {
+  test_no_clip()
+}
+class "TestRequestRemaining" as odoo_src.odoo.addons.base.tests.test_http_case.TestRequestRemaining {
+  setUpClass()
+  test_requests_a()
+  test_requests_b()
+}
+class "TestResConfig" as odoo_src.odoo.addons.base.tests.test_res_config.TestResConfig {
+  ResConfig
+  error_msg : str
+  error_msg_wo_menu : str
+  expected_action_id
+  expected_final_error_msg
+  expected_final_error_msg_wo_menu
+  expected_name
+  expected_path
+  full_field_name : str
+  menu_xml_id : str
+  setUp()
+  test_00_get_option_path()
+  test_10_get_option_name()
+  test_20_get_config_warning()
+  test_30_get_config_warning_wo_menu()
+  test_40_view_expected_architecture()
+  test_50_view_expected_architecture_t_node_groups()
+}
+class "TestResConfigExecute" as odoo_src.odoo.addons.base.tests.test_res_config.TestResConfigExecute {
+  settings_view
+  test_01_execute_res_config()
+  test_settings_access()
+}
+class "TestResCountryState" as odoo_src.odoo.addons.base.tests.test_res_country.TestResCountryState {
+  test_find_by_name()
+}
+class "TestResCurrency" as odoo_src.odoo.addons.base.tests.test_res_currency.TestResCurrency {
+  test_currency_cache()
+  test_res_currency_name_search()
+  test_view_company_rate_label()
+}
+class "TestResPartnerBank" as odoo_src.odoo.addons.base.tests.test_res_partner_bank.TestResPartnerBank {
+  test_sanitized_acc_number()
+}
+class "TestRetry" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry {
+  test_log_levels()
+  test_retry_success()
+}
+class "TestRetry1Disable" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry1Disable {
+  test_retry_0_retry_success()
+  test_retry_1_fails()
+  test_retry_2_fails()
+  test_retry_3_fails()
+}
+class "TestRetry2Disable" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry2Disable {
+  test_retry_second_class_fails()
+}
+class "TestRetryCommitedCursor" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommitedCursor {
+  test_broken_cursor()
+}
+class "TestRetryCommitedCursorError" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommitedCursorError {
+  test_broken_cursor()
+}
+class "TestRetryCommon" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon {
+  count
+  get_tests_run_count()
+  setUpClass()
+  update_count()
+}
+class "TestRetryFailures" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryFailures {
+  test_retry_failure_assert()
+  test_retry_failure_log()
+}
+class "TestRetryRollbackedCursor" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryRollbackedCursor {
+  test_broken_cursor()
+}
+class "TestRetryRollbackedCursorError" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryRollbackedCursorError {
+  test_broken_cursor()
+}
+class "TestRetrySubtest" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetrySubtest {
+  test_retry_subtest_success_all()
+  test_retry_subtest_success_one()
+}
+class "TestRetrySubtestFailures" as odoo_src.odoo.addons.base.tests.test_test_retry.TestRetrySubtestFailures {
+  test_retry_subtest_failure_all()
+  test_retry_subtest_failure_one()
+}
+class "TestRunbotLog" as odoo_src.odoo.addons.base.tests.test_http_case.TestRunbotLog {
+  test_runbot_js_log()
+}
+class "TestRunnerLogging" as odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLogging {
+  expected_logs : list
+  setUp()
+  test_assertQueryCount()
+  test_assertQueryCount_with_decorators()
+  test_call_stack()
+  test_call_stack_context_manager()
+  test_call_stack_subtest()
+  test_handle_error()
+  test_has_add_error()
+  test_raise()
+  test_raise_subtest()
+  test_reraise()
+  test_subtest_sub_call()
+  test_traverse_contextmanager()
+  test_with_decorators()
+}
+class "TestRunnerLoggingCommon" as odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingCommon {
+  expected_first_frame_methods : NoneType
+  expected_logs : NoneType
+  test_result
+  setUp()
+}
+class "TestRunnerLoggingSetup" as odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingSetup {
+  expected_first_frame_methods : list
+  setUp()
+  tearDown()
+  test_raises_setup()
+}
+class "TestRunnerLoggingTeardown" as odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingTeardown {
+  expected_first_frame_methods : list
+  setUp()
+  tearDown()
+  test_raises_teardown()
+}
+class "TestSQL" as odoo_src.odoo.addons.base.tests.test_sql.TestSQL {
+  test_complex_sql()
+  test_sql_bool()
+  test_sql_empty()
+  test_sql_equality()
+  test_sql_idempotence()
+  test_sql_identifier()
+  test_sql_join()
+  test_sql_unpacking()
+  test_sql_with_literal_parameters()
+  test_sql_with_named_parameters()
+  test_sql_with_no_parameter()
+  test_sql_with_sql_parameters()
+  test_sql_with_wrong_pattern()
+}
+class "TestSafeEval" as odoo_src.odoo.addons.base.tests.test_base.TestSafeEval {
+  test_01_safe_eval()
+  test_02_literal_eval()
+  test_03_literal_eval_arithmetic()
+  test_04_literal_eval_forbidden()
+  test_05_safe_eval_forbiddon()
+  test_const()
+  test_expr()
+  test_expr_eval_opcodes()
+  test_safe_eval_exec_opcodes()
+  test_safe_eval_opcodes()
+}
+class "TestSanitizer" as odoo_src.odoo.addons.base.tests.test_mail.TestSanitizer {
+  test_abrupt_close()
+  test_abrut_malformed()
+  test_basic_sanitizer()
+  test_cid_with_at()
+  test_comment_malformed()
+  test_comment_multiline()
+  test_edi_source()
+  test_evil_malicious_code()
+  test_html()
+  test_misc()
+  test_outlook_mail_sanitize()
+  test_quote_basic_text()
+  test_quote_blockquote()
+  test_quote_bugs()
+  test_quote_gmail()
+  test_quote_hotmail_html()
+  test_quote_outlook_html()
+  test_quote_signature()
+  test_quote_signature_container_propagation()
+  test_quote_text()
+  test_quote_thunderbird()
+  test_quote_thunderbird_html()
+  test_quote_yahoo_html()
+  test_sanitize_unescape_emails()
+  test_style_class()
+  test_style_class_only()
+  test_style_parsing()
+}
+class "TestSelector" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelector {
+  test_selector_parser()
+}
+class "TestSelectorSelection" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection {
+  test_negative_parameters_translate()
+  test_selector_parser_parameters()
+  test_selector_selection()
+}
+class "TestServerActions" as odoo_src.odoo.addons.base.tests.test_ir_actions.TestServerActions {
+  action2
+  context : dict
+  test_00_action()
+  test_00_server_action()
+  test_10_code()
+  test_20_crud_create()
+  test_20_crud_create_link_many2many()
+  test_20_crud_create_link_many2one()
+  test_20_crud_create_link_one2many()
+  test_30_crud_write()
+  test_35_crud_write_selection()
+  test_36_crud_write_m2m_ops()
+  test_37_field_path_traversal()
+  test_39_boolean_update()
+  test_40_multi()
+  test_50_groups()
+  test_60_sort()
+  test_70_copy_action()
+  test_80_permission()
+  test_90_convert_to_float()
+  test_90_webhook()
+  test_object_write_equation()
+}
+class "TestServerActionsBase" as odoo_src.odoo.addons.base.tests.test_ir_actions.TestServerActionsBase {
+  action
+  comment_html : str
+  context : dict
+  res_country_code_field
+  res_country_model
+  res_country_name_field
+  res_country_name_position_field
+  res_partner_category_field
+  res_partner_category_model
+  res_partner_category_name_field
+  res_partner_children_field
+  res_partner_city_field
+  res_partner_country_field
+  res_partner_model
+  res_partner_name_field
+  res_partner_parent_field
+  test_country
+  test_partner
+  test_server_action
+  setUp()
+}
+class "TestSetTags" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags {
+  test_inheritance()
+  test_parental_advisory()
+  test_set_tags_empty()
+  test_set_tags_multiple_tags()
+  test_set_tags_not_decorated()
+  test_set_tags_single_tag()
+  test_untagging()
+}
+class "TestSingleTransactionCase" as odoo_src.odoo.addons.base.tests.test_basecase.TestSingleTransactionCase {
+  test_00()
+  test_01()
+  test_20a()
+  test_20b()
+}
+class "TestSkipClass" as odoo_src.odoo.addons.base.tests.test_test_suite.TestSkipClass {
+  test_classcleanups()
+}
+class "TestSkipMethof" as odoo_src.odoo.addons.base.tests.test_test_suite.TestSkipMethof {
+  test_skip_method()
+}
+class "TestSpeedscope" as odoo_src.odoo.addons.base.tests.test_profiler.TestSpeedscope {
+  example_profile()
+  test_convert_empty()
+  test_converts_context()
+  test_converts_context_lower()
+  test_converts_context_nested()
+  test_converts_init_stack_trace()
+  test_converts_no_context()
+  test_converts_profile_no_end()
+  test_converts_profile_simple()
+  test_end_priority()
+}
+class "TestSplitTable" as odoo_src.odoo.addons.base.tests.test_split_table.TestSplitTable {
+  test_split_table()
+}
+class "TestSqlTools" as odoo_src.odoo.addons.base.tests.test_sql.TestSqlTools {
+  test_add_constraint()
+}
+class "TestSubtests" as odoo_src.odoo.addons.base.tests.test_test_suite.TestSubtests {
+  test_nested_subtests()
+}
+class "TestSyncRecorder" as odoo_src.odoo.addons.base.tests.test_profiler.TestSyncRecorder {
+  test_sync_recorder()
+}
+class "TestTZ" as odoo_src.odoo.addons.base.tests.test_tz.TestTZ {
+  test_cannot_set_deprecated_timezone()
+  test_dont_adapt_available_tz()
+  test_partner_with_old_tz()
+  test_tz_legacy()
+}
+class "TestTemplating" as odoo_src.odoo.addons.base.tests.test_views.TestTemplating {
+  setUp()
+  test_branding_attribute_groups()
+  test_branding_distribute_inner()
+  test_branding_inherit()
+  test_branding_inherit_multi_replace_node()
+  test_branding_inherit_multi_replace_node2()
+  test_branding_inherit_remove_added_from_inheritance()
+  test_branding_inherit_remove_node()
+  test_branding_inherit_remove_node2()
+  test_branding_inherit_remove_node_processing_instruction()
+  test_branding_inherit_replace_node()
+  test_branding_inherit_replace_node2()
+  test_branding_inherit_top_t_field()
+  test_branding_primary_inherit()
+  test_branding_t0()
+  test_call_no_branding()
+  test_esc_no_branding()
+  test_ignore_unbrand()
+}
+class "TestTestClass" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestTestClass {
+  get_log_metadata()
+  test_canonical_tag()
+}
+class "TestTestCursor" as odoo_src.odoo.addons.base.tests.test_db_cursor.TestTestCursor {
+  cr
+  env
+  record
+  check(record, value)
+  flush(record)
+  setUp()
+  test_borrow_connection()
+  test_interleaving()
+  test_single_cursor()
+  test_sub_commit()
+  test_sub_rollback()
+  write(record, value)
+}
+class "TestTestSuite" as odoo_src.odoo.addons.base.tests.test_test_suite.TestTestSuite {
+  test_test_suite()
+}
+class "TestTransactionCase" as odoo_src.odoo.addons.base.tests.test_basecase.TestTransactionCase {
+  test_00()
+  test_01()
+  test_20a()
+}
+class "TestTransactionEnvs" as odoo_src.odoo.addons.base.tests.test_transactions.TestTransactionEnvs {
+  do_stuff_with_env()
+  test_transation_envs_ordered()
+  test_transation_envs_weakrefs()
+  test_transation_envs_weakrefs_call()
+  test_transation_envs_weakrefs_return()
+}
+class "TestTranslation" as odoo_src.odoo.addons.base.tests.test_translate.TestTranslation {
+  setUpClass()
+  test_101_create_translated_record()
+  test_101_translation_read()
+  test_102_duplicate_record()
+  test_103_duplicate_record_fr()
+  test_104_orderby_translated_field()
+  test_105_duplicate_record_multi_no_en()
+  test_107_duplicate_record_en()
+  test_108_search_en()
+  test_109_search_fr()
+  test_110_search_es()
+  test_111_prefetch_langs()
+}
+class "TestTranslationExport" as odoo_src.odoo.addons.base.tests.test_translate.TestTranslationExport {
+  test_export_translatable_resources()
+}
+class "TestTranslationTrigramIndexPatterns" as odoo_src.odoo.addons.base.tests.test_translate.TestTranslationTrigramIndexPatterns {
+  test_pattern_conversion()
+  test_value_conversion()
+}
+class "TestTranslationWrite" as odoo_src.odoo.addons.base.tests.test_translate.TestTranslationWrite {
+  setUpClass()
+  test_00()
+  test_01_invalid_lang()
+  test_03_fr_single()
+  test_04_fr_multi()
+  test_04_fr_multi_no_en()
+  test_05_remove_multi_false()
+  test_create_empty_false()
+  test_field_selection()
+  test_load_views()
+  test_update_field_translations()
+  test_update_field_translations_for_empty()
+  test_write_empty_and_value()
+}
+class "TestUninstall" as odoo_src.odoo.addons.base.tests.test_uninstall.TestUninstall {
+  test_01_install()
+  test_02_uninstall()
+}
+class "TestUrlValidate" as odoo_src.odoo.addons.base.tests.test_misc.TestUrlValidate {
+  test_url_validate()
+}
+class "TestUsers" as odoo_src.odoo.addons.base.tests.test_res_users.TestUsers {
+  cron
+  test_change_user_company()
+  test_context_get_lang()
+  test_deactivate_portal_users_access()
+  test_deactivate_portal_users_archive_and_remove()
+  test_name_search()
+  test_user_home_action_restriction()
+  test_user_partner()
+}
+class "TestUsers2" as odoo_src.odoo.addons.base.tests.test_res_users.TestUsers2 {
+  setUpClass()
+  test_change_user_login()
+  test_read_list_with_reified_field()
+  test_reified_groups()
+  test_reified_groups_on_change()
+  test_selection_groups()
+  test_self_readable_writeable_fields_preferences_form()
+  test_update_user_groups_view()
+}
+class "TestUsersGroupWarning" as odoo_src.odoo.addons.base.tests.test_res_users.TestUsersGroupWarning {
+  setUpClass()
+  test_user_group_empty_group_warning()
+  test_user_group_inheritance_warning()
+  test_user_group_inheritance_warning_multi()
+  test_user_group_least_possible_inheritance_warning()
+  test_user_group_parent_inheritance_no_warning()
+}
+class "TestUsersIdentitycheck" as odoo_src.odoo.addons.base.tests.test_res_users.TestUsersIdentitycheck {
+  test_revoke_all_devices()
+}
+class "TestUsersTweaks" as odoo_src.odoo.addons.base.tests.test_res_users.TestUsersTweaks {
+  test_superuser()
+}
+class "TestValidationTools" as odoo_src.odoo.addons.base.tests.test_views.TestValidationTools {
+  test_get_expression_identities()
+}
+class "TestViewCombined" as odoo_src.odoo.addons.base.tests.test_views.TestViewCombined {
+  a1
+  a2
+  a3
+  a4
+  b1
+  b2
+  c1
+  c2
+  c3
+  d1
+  setUp()
+  test_basic_read()
+  test_cross_model_double()
+  test_cross_model_simple()
+  test_inherit_python_expression()
+  test_primary_after_extensions()
+  test_read_from_child()
+  test_read_from_child_primary()
+}
+class "TestViewInheritance" as odoo_src.odoo.addons.base.tests.test_views.TestViewInheritance {
+  a
+  a1
+  a11
+  a2
+  a22
+  b
+  c
+  d
+  d1
+  model : str
+  view_ids : dict
+  arch_for(name, view_type, parent)
+  get_views(names)
+  makeView(name, parent, arch)
+  setUp()
+  test_default_view()
+  test_get_combined_arch_query_count()
+  test_get_inheriting_views()
+  test_no_arch()
+  test_no_default_view()
+  test_no_recursion()
+  test_view_validate_attrs_groups_query_count()
+  test_view_validate_button_action_query_count()
+  test_write_arch()
+}
+class "TestViewTranslations" as odoo_src.odoo.addons.base.tests.test_views.TestViewTranslations {
+  create_view(archf, terms)
+  setUpClass()
+  test_cache_consistency()
+  test_no_groups_for_inherited()
+  test_sync()
+  test_sync_update()
+  test_sync_xml()
+}
+class "TestViews" as odoo_src.odoo.addons.base.tests.test_views.TestViews {
+  View
+  test_attrs_groups_behavior()
+  test_attrs_groups_validation()
+  test_attrs_missing_field()
+  test_button()
+  test_check_xml_on_reenable()
+  test_col_colspan_numerical()
+  test_context_in_subsubview_with_parent()
+  test_context_in_subview()
+  test_context_in_subview_with_parent()
+  test_context_in_view()
+  test_custom_view_validation()
+  test_domain_boolean_case()
+  test_domain_field_no_comodel()
+  test_domain_field_searchable()
+  test_domain_id_case()
+  test_domain_in_filter()
+  test_domain_in_subview()
+  test_domain_in_subview_with_parent()
+  test_domain_in_view()
+  test_domain_invalid_in_filter()
+  test_domain_on_field_in_noneditable_subview()
+  test_domain_on_field_in_subview()
+  test_domain_on_field_in_subview_with_parent()
+  test_domain_on_field_in_view()
+  test_domain_on_readonly_field_in_subview()
+  test_domain_on_readonly_field_in_view()
+  test_domain_unknown_field()
+  test_empty_groups_attrib()
+  test_for_in_label()
+  test_forbidden_data_tooltip_attributes_in_form()
+  test_forbidden_data_tooltip_attributes_in_kanban()
+  test_forbidden_owl_directives_in_form()
+  test_forbidden_owl_directives_in_kanban()
+  test_forbidden_use_of___comp___in_kanban()
+  test_graph_attributes()
+  test_graph_fields()
+  test_group_by_in_filter()
+  test_groups_field()
+  test_invalid_field()
+  test_invalid_subfield()
+  test_invisible_groups_with_groups_in_model()
+  test_nonexistent_attribute_removal()
+  test_partial_validation()
+  test_searchpanel()
+  test_tree()
+  test_tree_groupby()
+  test_tree_groupby_many2one()
+  test_valid_accessibility_icon_text()
+  test_valid_alerts()
+  test_valid_alternative_image_text()
+  test_valid_dialog()
+  test_valid_focusable_button()
+  test_valid_prohibited_none_role()
+  test_valid_simili_button()
+  test_valid_simili_dropdown()
+  test_valid_simili_progressbar()
+  test_valid_simili_tab()
+  test_valid_simili_tablist()
+  test_valid_simili_tabpanel()
+  test_view_inheritance()
+  test_view_inheritance_divergent_models()
+  test_view_inheritance_text_after()
+  test_view_inheritance_text_before()
+  test_view_inheritance_text_inside()
+  test_view_ref()
+  test_view_root_node_matches_view_type()
+}
+class "TestXMLDuplicateTranslations" as odoo_src.odoo.addons.base.tests.test_translate.TestXMLDuplicateTranslations {
+  setUpClass()
+  test_copy()
+  test_get_field_translations()
+  test_update_field_translations_again()
+  test_update_field_translations_result()
+  test_write()
+}
+class "TestXMLID" as odoo_src.odoo.addons.base.tests.test_ir_model.TestXMLID {
+  get_data(xml_id)
+  test_create()
+  test_create_external_id_with_space()
+  test_create_inherits()
+  test_create_noupdate()
+  test_create_noupdate_multi()
+  test_create_order()
+  test_create_xmlids()
+  test_recreate()
+  test_update_xmlid()
+}
+class "TestXMLRPC" as odoo_src.odoo.addons.base.tests.test_xmlrpc.TestXMLRPC {
+  admin_uid
+  setUp()
+  test_01_xmlrpc_login()
+  test_jsonrpc_name_search()
+  test_jsonrpc_read_group()
+  test_xmlrpc_attachment_raw()
+  test_xmlrpc_datetime()
+  test_xmlrpc_defaultdict_marshalling()
+  test_xmlrpc_frozendict_marshalling()
+  test_xmlrpc_html_field()
+  test_xmlrpc_ir_model_search()
+  test_xmlrpc_name_search()
+  test_xmlrpc_read_group()
+  test_xmlrpc_remove_control_characters()
+  xmlrpc(model, method)
+}
+class "TestXMLTranslation" as odoo_src.odoo.addons.base.tests.test_translate.TestXMLTranslation {
+  create_view(archf, terms)
+  setUpClass()
+  test_cache_consistency()
+  test_copy()
+  test_delay_translations()
+  test_delay_translations_no_term()
+  test_spaces()
+  test_sync()
+  test_sync_text_to_xml()
+  test_sync_xml()
+  test_sync_xml_attribute()
+  test_sync_xml_close_terms()
+  test_sync_xml_collision()
+  test_sync_xml_inline_modifiers()
+  test_sync_xml_no_en()
+  test_sync_xml_upgrade()
+  test_update_field_translations()
+  test_update_field_translations_empty_str()
+  test_update_field_translations_partially()
+  test_update_field_translations_source_lang()
+  test_update_field_translations_typofix()
+}
+class "TestXPathExtentions" as odoo_src.odoo.addons.base.tests.test_views.TestXPathExtentions {
+  test_hasclass()
+}
+class "Test_A" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_selection.Test_A {
+}
+class "Test_B" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_selection.Test_B {
+}
+class "Test_C" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_selection.Test_C {
+}
+class "Test_D" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_selection.Test_D {
+}
+class "Test_E" as odoo_src.odoo.addons.base.tests.test_tests_tags.TestSelectorSelection.test_selector_selection.Test_E {
+}
+class "TestingSMTPSession" as odoo_src.odoo.addons.base.tests.common.MockSmtplibCase.mock_smtplib_connection.TestingSMTPSession {
+  {abstract}ehlo_or_helo_if_needed()
+  {abstract}login(user, password)
+  {abstract}quit()
+  send_message(message, smtp_from, smtp_to_list)
+  {abstract}set_debuglevel(smtp_debug)
+  {abstract}starttls(keyfile, certfile, context)
+}
+class "TextConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.TextConverter {
+  value_to_html(value, options)
+}
+class "TimeConverter" as odoo_src.odoo.addons.base.models.ir_qweb_fields.TimeConverter {
+  value_to_html(value, options)
+}
+class "TransactionCaseWithUserDemo" as odoo_src.odoo.addons.base.tests.common.TransactionCaseWithUserDemo {
+  setUpClass()
+}
+class "TransactionCaseWithUserPortal" as odoo_src.odoo.addons.base.tests.common.TransactionCaseWithUserPortal {
+  setUpClass()
+}
+class "TransactionExpressionCase" as odoo_src.odoo.addons.base.tests.test_expression.TransactionExpressionCase {
+}
+class "TranslationToolsTestCase" as odoo_src.odoo.addons.base.tests.test_translate.TranslationToolsTestCase {
+  assertItemsEqual(a, b, msg)
+  test_quote_unquote()
+  test_translate_html()
+  test_translate_html_i()
+  test_translate_html_nbsp()
+  test_translate_xml_a()
+  test_translate_xml_attribute()
+  test_translate_xml_base()
+  test_translate_xml_illegal_translations()
+  test_translate_xml_inline1()
+  test_translate_xml_inline2()
+  test_translate_xml_inline3()
+  test_translate_xml_inline4()
+  test_translate_xml_inline5()
+  test_translate_xml_invalid_translations()
+  test_translate_xml_off()
+  test_translate_xml_t()
+  test_translate_xml_text()
+  test_translate_xml_text_entity()
+  test_translate_xml_unicode()
+  test_translate_xml_with_namespace()
+}
+class "Unknown" as odoo_src.odoo.addons.base.models.ir_model.Unknown {
+}
+class "Users" as odoo_src.odoo.addons.base.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  accesses_count
+  action_id
+  active
+  active_partner
+  companies_count
+  company_id
+  company_ids
+  device_ids
+  email
+  groups_count
+  groups_id
+  log_ids
+  login
+  login_date
+  name
+  new_password
+  partner_id
+  password
+  res_users_settings_id
+  res_users_settings_ids
+  rules_count
+  share
+  signature
+  tz_offset
+  action_get()
+  action_revoke_all_devices()
+  action_show_accesses()
+  action_show_groups()
+  action_show_rules()
+  authenticate(db, credential, user_agent_env)
+  change_password(old_passwd, new_passwd)
+  check(db, uid, passwd)
+  check_field_access_rights(operation, field_names)
+  context_get()
+  copy_data(default)
+  create(vals_list)
+  get_company_currency_id()
+  has_group(group_ext_id: str) -> bool
+  has_groups(group_spec: str) -> bool
+  init()
+  name_search(name, args, operator, limit)
+  on_change_login()
+  onchange(values, field_names, fields_spec)
+  onchange_parent_id()
+  preference_change_password()
+  preference_save()
+  read(fields, load)
+  toggle_active()
+  write(values)
+}
+class "UsersImplied" as odoo_src.odoo.addons.base.models.res_users.UsersImplied {
+  create(vals_list)
+  write(values)
+}
+class "UsersView" as odoo_src.odoo.addons.base.models.res_users.UsersView {
+  user_group_warning
+  create(vals_list)
+  default_get(fields)
+  fields_get(allfields, attributes)
+  new(values, origin, ref)
+  onchange(values, field_names, fields_spec)
+  read(fields, load)
+  write(values)
+}
+class "View" as odoo_src.odoo.addons.base.models.ir_ui_view.View {
+  active
+  arch
+  arch_base
+  arch_db
+  arch_fs
+  arch_prev
+  arch_updated
+  groups_id
+  inherit_children_ids
+  inherit_id
+  key
+  mode
+  model
+  model_data_id
+  model_id
+  name
+  priority
+  type
+  warning_info
+  xml_id
+  apply_inheritance_specs(source, specs_tree, pre_locate)
+  copy_data(default)
+  create(vals_list)
+  default_view(model, view_type)
+  distribute_branding(e, branding, parent_xpath, index_map)
+  get_combined_arch()
+  inherit_branding(specs_tree)
+  is_node_branded(node)
+  locate_node(arch, spec)
+  postprocess_and_fields(node, model)
+  render_public_asset(template, values)
+  reset_arch(mode)
+  unlink()
+  write(vals)
+}
+class "ViewCase" as odoo_src.odoo.addons.base.tests.test_views.ViewCase {
+  View
+  assertInvalid(arch, expected_message, name, inherit_id, model)
+  assertValid(arch, name, inherit_id, model)
+  assertWarning(arch, expected_message, name, model)
+  setUp()
+}
+class "ViewCustom" as odoo_src.odoo.addons.base.models.ir_ui_view.ViewCustom {
+  arch
+  ref_id
+  user_id
+}
+class "ViewModeField" as odoo_src.odoo.addons.base.tests.test_views.ViewModeField {
+  testChangeInheritOfPrimary()
+  testDefaultExtensionToPrimary()
+  testInheritPrimaryToExtension()
+  testModeExplicit()
+  testModeImplicitValue()
+  testPurePrimaryToExtension()
+}
+class "ViewModifiers" as odoo_src.odoo.addons.base.tests.test_views.ViewModifiers {
+  test_01_modifiers()
+  test_03_modifier_attribute_is_boolean()
+  test_04_modifier_attribute_using_context()
+  test_05_modifier_attribute_priority()
+  test_10_raise_for_old_attributes()
+  test_11_attrs_field()
+  test_12_invalid_syntax()
+  test_13_attrs_states_invisible_to_modifier()
+  test_14_attrs_subfield()
+  test_15_attrs_subfield_with_parent()
+  test_16_attrs_groups_behavior()
+  test_17_attrs_groups_validation()
+  test_18_test_missing_group()
+}
+class "ViewXMLID" as odoo_src.odoo.addons.base.tests.test_views.ViewXMLID {
+  test_model_data_id()
+}
+class "WebAsset" as odoo_src.odoo.addons.base.models.assetsbundle.WebAsset {
+  bundle
+  content
+  inline : NoneType
+  last_modified
+  url : NoneType
+  generate_error(msg)
+  id()
+  minify()
+  name()
+  stat()
+  unique_descriptor()
+  with_header(content)
+}
+class "WizardModelMenu" as odoo_src.odoo.addons.base.models.ir_model.WizardModelMenu {
+  menu_id
+  name
+  menu_create()
+}
+class "WriteToLogger" as odoo_src.odoo.addons.base.models.ir_mail_server.WriteToLogger {
+  write(s)
+}
+class "XMLAsset" as odoo_src.odoo.addons.base.models.assetsbundle.XMLAsset {
+  bundle_version
+  generate_error(msg)
+  with_header(content)
+}
+class "<color:red>XMLAssetError</color>" as odoo_src.odoo.addons.base.models.assetsbundle.XMLAssetError {
+}
+class "_FakeSMTP" as odoo_src.odoo.addons.base.tests.test_ir_mail_server._FakeSMTP {
+  from_filter : str
+  messages : list
+  send_message(message, smtp_from, smtp_to_list, mail_options, rcpt_options)
+  sendmail(smtp_from, smtp_to_list, message_str, mail_options, rcpt_options)
+}
+class "ir_cron" as odoo_src.odoo.addons.base.models.ir_cron.ir_cron {
+  active
+  cron_name
+  failure_count
+  first_failure_date
+  interval_number
+  interval_type
+  ir_actions_server_id
+  lastcall
+  nextcall
+  priority
+  user_id
+  create(vals_list)
+  default_get(fields_list)
+  method_direct_trigger()
+  toggle(model, domain)
+  try_write(values)
+  unlink()
+  write(vals)
+}
+class "ir_cron_progress" as odoo_src.odoo.addons.base.models.ir_cron.ir_cron_progress {
+  cron_id
+  deactivate
+  done
+  remaining
+  timed_out_counter
+}
+class "ir_cron_trigger" as odoo_src.odoo.addons.base.models.ir_cron.ir_cron_trigger {
+  call_at
+  cron_id
+}
+class "report_paperformat" as odoo_src.odoo.addons.base.models.report_paperformat.report_paperformat {
+  css_margins
+  default
+  disable_shrinking
+  dpi
+  format
+  header_line
+  header_spacing
+  margin_bottom
+  margin_left
+  margin_right
+  margin_top
+  name
+  orientation
+  page_height
+  page_width
+  print_page_height
+  print_page_width
+  report_ids
+}
+class "test_guess_mimetype" as odoo_src.odoo.addons.base.tests.test_mimetypes.test_guess_mimetype {
+  test_default_mimetype()
+  test_default_mimetype_empty()
+  test_mimetype_bmp()
+  test_mimetype_fix_extension()
+  test_mimetype_get_extension()
+  test_mimetype_gif()
+  test_mimetype_jpg()
+  test_mimetype_octet_stream()
+  test_mimetype_png()
+  test_mimetype_svg()
+  test_mimetype_txt()
+  test_mimetype_webp()
+  test_mimetype_xml()
+  test_mimetype_zip()
+}
+class "test_res_lang" as odoo_src.odoo.addons.base.tests.test_res_lang.test_res_lang {
+  test_00_intersperse()
+  test_get_data()
+  test_inactive_users_lang_deactivation()
+  test_lang_url_code_shortening()
+}
+class "test_search" as odoo_src.odoo.addons.base.tests.test_search.test_search {
+  patch_order(model, order)
+  test_00_search_order()
+  test_10_inherits_m2order()
+  test_11_indirect_inherits_m2o_order()
+  test_12_m2o_order_loop_self()
+  test_13_m2o_order_loop_multi()
+  test_20_x_active()
+  test_21_search_count()
+  test_22_like_folding()
+}
+odoo_src.odoo.addons.base.models.assetsbundle.AssetNotFound --|> odoo_src.odoo.addons.base.models.assetsbundle.AssetError
+odoo_src.odoo.addons.base.models.assetsbundle.JavascriptAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.WebAsset
+odoo_src.odoo.addons.base.models.assetsbundle.LessStylesheetAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.PreprocessedCSS
+odoo_src.odoo.addons.base.models.assetsbundle.PreprocessedCSS --|> odoo_src.odoo.addons.base.models.assetsbundle.StylesheetAsset
+odoo_src.odoo.addons.base.models.assetsbundle.SassStylesheetAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.PreprocessedCSS
+odoo_src.odoo.addons.base.models.assetsbundle.ScssStylesheetAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.PreprocessedCSS
+odoo_src.odoo.addons.base.models.assetsbundle.StylesheetAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.WebAsset
+odoo_src.odoo.addons.base.models.assetsbundle.XMLAsset --|> odoo_src.odoo.addons.base.models.assetsbundle.WebAsset
+odoo_src.odoo.addons.base.models.ir_qweb.render.MockIrQWeb --|> odoo_src.odoo.addons.base.models.ir_qweb.IrQWeb
+odoo_src.odoo.addons.base.models.res_config.ResConfigSettings --|> odoo_src.odoo.addons.base.models.res_config.ResConfigModuleInstallationMixin
+odoo_src.odoo.addons.base.tests.common.BaseUsersCommon --|> odoo_src.odoo.addons.base.tests.common.BaseCommon
+odoo_src.odoo.addons.base.tests.test_expression.TestAutoJoin --|> odoo_src.odoo.addons.base.tests.test_expression.TransactionExpressionCase
+odoo_src.odoo.addons.base.tests.test_expression.TestExpression --|> odoo_src.odoo.addons.base.tests.test_expression.TransactionExpressionCase
+odoo_src.odoo.addons.base.tests.test_expression.TestExpression2 --|> odoo_src.odoo.addons.base.tests.test_expression.TransactionExpressionCase
+odoo_src.odoo.addons.base.tests.test_format_address_mixin.TestPartnerFormatAddress --|> odoo_src.odoo.addons.base.tests.test_format_address_mixin.FormatAddressCase
+odoo_src.odoo.addons.base.tests.test_http_case.TestChromeBrowserOddDimensions --|> odoo_src.odoo.addons.base.tests.test_http_case.TestChromeBrowser
+odoo_src.odoo.addons.base.tests.test_ir_actions.TestCustomFields --|> odoo_src.odoo.addons.base.tests.test_ir_actions.TestCommonCustomFields
+odoo_src.odoo.addons.base.tests.test_ir_actions.TestCustomFieldsPostInstall --|> odoo_src.odoo.addons.base.tests.test_ir_actions.TestCommonCustomFields
+odoo_src.odoo.addons.base.tests.test_ir_actions.TestServerActions --|> odoo_src.odoo.addons.base.tests.test_ir_actions.TestServerActionsBase
+odoo_src.odoo.addons.base.tests.test_ir_cron.TestIrCron --|> odoo_src.odoo.addons.base.tests.test_ir_cron.CronMixinCase
+odoo_src.odoo.addons.base.tests.test_ir_filters.TestEmbeddedFilters --|> odoo_src.odoo.addons.base.tests.test_ir_filters.FiltersCase
+odoo_src.odoo.addons.base.tests.test_ir_filters.TestGetFilters --|> odoo_src.odoo.addons.base.tests.test_ir_filters.FiltersCase
+odoo_src.odoo.addons.base.tests.test_ir_filters.TestGlobalDefaults --|> odoo_src.odoo.addons.base.tests.test_ir_filters.FiltersCase
+odoo_src.odoo.addons.base.tests.test_ir_filters.TestOwnDefaults --|> odoo_src.odoo.addons.base.tests.test_ir_filters.FiltersCase
+odoo_src.odoo.addons.base.tests.test_ir_mail_server_smtpd.TestIrMailServerSMTPD --|> odoo_src.odoo.addons.base.tests.common.TransactionCaseWithUserDemo
+odoo_src.odoo.addons.base.tests.test_reports.TestReportsRendering --|> odoo_src.odoo.addons.base.tests.test_reports.TestReportsRenderingCommon
+odoo_src.odoo.addons.base.tests.test_reports.TestReportsRenderingLimitations --|> odoo_src.odoo.addons.base.tests.test_reports.TestReportsRenderingCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry1Disable --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetry2Disable --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommitedCursor --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommitedCursorError --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryFailures --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryRollbackedCursor --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryRollbackedCursorError --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetrySubtest --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_retry.TestRetrySubtestFailures --|> odoo_src.odoo.addons.base.tests.test_test_retry.TestRetryCommon
+odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLogging --|> odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingCommon
+odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingSetup --|> odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingCommon
+odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingTeardown --|> odoo_src.odoo.addons.base.tests.test_test_suite.TestRunnerLoggingCommon
+odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassC --|> odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassA
+odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassD --|> odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_inheritance.FakeClassA
+odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_parental_advisory.FakeClassB --|> odoo_src.odoo.addons.base.tests.test_tests_tags.TestSetTags.test_parental_advisory.FakeClassA
+odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceMoveSpecs --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceSpecs --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritanceWrapSpecs --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestApplyInheritedArchs --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestDefaultView --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestNoModel --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestOptionalViews --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestQWebRender --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestTemplating --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestViewCombined --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestViewInheritance --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.TestViews --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.ViewModeField --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.tests.test_views.ViewModifiers --|> odoo_src.odoo.addons.base.tests.test_views.ViewCase
+odoo_src.odoo.addons.base.models.ir_qweb.render.MockPool --* odoo_src.odoo.addons.base.models.ir_qweb.render.MockIrQWeb : pool
+odoo_src.odoo.addons.base.models.res_bank.ResPartnerBank --* odoo_src.odoo.addons.base.models.res_partner.Partner : bank_ids
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : parent_id
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : child_ids
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : same_vat_partner_id
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : same_company_registry_partner_id
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : commercial_partner_id
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.Partner : self
+odoo_src.odoo.addons.base.models.res_partner.Partner --* odoo_src.odoo.addons.base.models.res_partner.PartnerCategory : partner_ids
+odoo_src.odoo.addons.base.models.res_partner.PartnerCategory --* odoo_src.odoo.addons.base.models.res_partner.Partner : category_id
+odoo_src.odoo.addons.base.models.res_partner.PartnerCategory --* odoo_src.odoo.addons.base.models.res_partner.PartnerCategory : parent_id
+odoo_src.odoo.addons.base.models.res_partner.PartnerCategory --* odoo_src.odoo.addons.base.models.res_partner.PartnerCategory : child_ids
+odoo_src.odoo.addons.base.models.res_partner.PartnerTitle --* odoo_src.odoo.addons.base.models.res_partner.Partner : title
+odoo_src.odoo.addons.base.models.res_partner.ResPartnerIndustry --* odoo_src.odoo.addons.base.models.res_partner.Partner : industry_id
+odoo_src.odoo.addons.base.models.res_users.UsersView --* odoo_src.odoo.addons.base.models.res_partner.Partner : user_id
+odoo_src.odoo.addons.base.models.res_users.UsersView --* odoo_src.odoo.addons.base.models.res_partner.Partner : user_ids
+odoo_src.odoo.addons.base.tests.common.MockSmtplibCase.mock_smtplib_connection.TestingSMTPSession --* odoo_src.odoo.addons.base.tests.common.MockSmtplibCase : testing_smtp_session
+@enduml

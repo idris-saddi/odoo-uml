@@ -1,0 +1,151 @@
+@startuml classes_l10n_hu_edi
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_hu_edi.models.template_hu.AccountChartTemplate {
+}
+class "AccountDebitNote" as odoo_src.odoo.addons.l10n_hu_edi.wizard.account_move_debit.AccountDebitNote {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_hu_edi.models.account_move.AccountMove {
+  l10n_hu_edi_attachment
+  l10n_hu_edi_attachment_filename
+  l10n_hu_edi_batch_upload_index
+  l10n_hu_edi_message_html
+  l10n_hu_edi_messages
+  l10n_hu_edi_send_time
+  l10n_hu_edi_state
+  l10n_hu_edi_transaction_code
+  l10n_hu_invoice_chain_index
+  l10n_hu_payment_mode
+  button_request_cancel()
+  l10n_hu_edi_button_hide_banner()
+  l10n_hu_edi_button_update_status(from_cron)
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_hu_edi.wizard.account_move_reversal.AccountMoveReversal {
+  reverse_moves(is_modify)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_hu_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_hu_edi.models.account_tax.AccountTax {
+  l10n_hu_tax_reason
+  l10n_hu_tax_type
+}
+class "L10nHuEdiCancellation" as odoo_src.odoo.addons.l10n_hu_edi.wizard.l10n_hu_edi_cancellation.L10nHuEdiCancellation {
+  code
+  invoice_id
+  reason
+  button_request_cancel()
+}
+class "L10nHuEdiConnection" as odoo_src.odoo.addons.l10n_hu_edi.models.l10n_hu_edi_connection.L10nHuEdiConnection {
+  env
+  session
+  do_manage_annulment(credentials, token, annulment_operations)
+  do_manage_invoice(credentials, token, invoice_operations)
+  do_query_transaction_list(credentials, datetime_from, datetime_to, page)
+  do_query_transaction_status(credentials, transaction_code, return_original_request)
+  do_token_exchange(credentials)
+}
+class "<color:red>L10nHuEdiConnectionError</color>" as odoo_src.odoo.addons.l10n_hu_edi.models.l10n_hu_edi_connection.L10nHuEdiConnectionError {
+  code : NoneType
+  errors : list
+}
+class "L10nHuEdiTaxAuditExport" as odoo_src.odoo.addons.l10n_hu_edi.wizard.l10n_hu_edi_tax_audit_export.L10nHuEdiTaxAuditExport {
+  date_from
+  date_to
+  export_file
+  filename
+  name_from
+  name_to
+  selection_mode
+  action_export()
+}
+class "L10nHuEdiTestCommon" as odoo_src.odoo.addons.l10n_hu_edi.tests.common.L10nHuEdiTestCommon {
+  create_advance_invoice()
+  create_bill_simple(currency)
+  create_cancel_wizard()
+  create_credit_note_simple(currency)
+  create_final_invoice(sale_order)
+  create_invoice_complex_eur()
+  create_invoice_complex_huf()
+  create_invoice_simple(currency)
+  create_invoice_simple_discount()
+  create_invoice_tax_price_include()
+  create_refund_simple(currency)
+  create_reversal(invoice, is_modify)
+  setUpClass()
+  write_edi_credentials()
+}
+class "L10nHuEdiTestFlowsLive" as odoo_src.odoo.addons.l10n_hu_edi.tests.test_flows_live.L10nHuEdiTestFlowsLive {
+  patch_call_nav_endpoint(endpoint, make_request)
+  set_invoice_name(invoice, prefix)
+  test_send_advance_final_invoice()
+  test_send_invoice_and_credit_note()
+  test_send_invoice_complex_eur()
+  test_send_invoice_complex_huf()
+  test_timeout_recovery_fail()
+  test_timeout_recovery_success()
+  write_edi_credentials()
+}
+class "L10nHuEdiTestFlowsMocked" as odoo_src.odoo.addons.l10n_hu_edi.tests.test_flows_mocked.L10nHuEdiTestFlowsMocked {
+  patch_post(responses)
+  setUpClass()
+  test_cancel_and_resend()
+  test_cancel_invoice_done()
+  test_cancel_invoice_error()
+  test_cancel_invoice_pending()
+  test_invoice_line_currency_rate_from_sale()
+  test_send_invoice_and_credit_note()
+  test_send_invoice_error()
+  test_send_invoice_warning()
+  test_timeout_recovery_fail()
+  test_timeout_recovery_success()
+}
+class "L10nHuEdiTestInvoiceXml" as odoo_src.odoo.addons.l10n_hu_edi.tests.test_invoice_xml.L10nHuEdiTestInvoiceXml {
+  setUpClass()
+  test_advance_invoice()
+  test_invoice_and_credit_note()
+  test_invoice_complex_eur()
+  test_invoice_complex_huf()
+  test_invoice_simple_deduction()
+  test_invoice_tax_price_include()
+  test_multi_currency_tax_sign()
+  test_tax_audit_export()
+}
+class "MockedSession" as odoo_src.odoo.addons.l10n_hu_edi.tests.test_flows_mocked.L10nHuEdiTestFlowsMocked.patch_post.MockedSession {
+  {abstract}close()
+  post(url, data, headers, timeout)
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_hu_edi.models.product.ProductTemplate {
+  l10n_hu_product_code
+  l10n_hu_product_code_type
+}
+class "ProductUoM" as odoo_src.odoo.addons.l10n_hu_edi.models.uom_uom.ProductUoM {
+  l10n_hu_edi_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_hu_edi.models.res_company.ResCompany {
+  l10n_hu_edi_last_transaction_recovery
+  l10n_hu_edi_password
+  l10n_hu_edi_replacement_key
+  l10n_hu_edi_server_mode
+  l10n_hu_edi_signature_key
+  l10n_hu_edi_username
+  l10n_hu_group_vat
+  l10n_hu_tax_regime
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_hu_edi.models.res_config_settings.ResConfigSettings {
+  l10n_hu_edi_is_active
+  l10n_hu_edi_password
+  l10n_hu_edi_replacement_key
+  l10n_hu_edi_server_mode
+  l10n_hu_edi_signature_key
+  l10n_hu_edi_username
+  l10n_hu_tax_regime
+  create(vals_list)
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_hu_edi.models.res_partner.ResPartner {
+  l10n_hu_group_vat
+}
+class "TestL10nHuEdiCreditDebitNotes" as odoo_src.odoo.addons.l10n_hu_edi.tests.test_credit_debit_notes.TestL10nHuEdiCreditDebitNotes {
+  setUpClass()
+  test_credit_note_preserves_delivery_date()
+  test_debit_note_preserves_delivery_date()
+}
+@enduml

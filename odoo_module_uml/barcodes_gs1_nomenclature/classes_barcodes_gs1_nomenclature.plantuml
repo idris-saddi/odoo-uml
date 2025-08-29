@@ -1,0 +1,27 @@
+@startuml classes_barcodes_gs1_nomenclature
+set namespaceSeparator none
+class "BarcodeNomenclature" as odoo_src.odoo.addons.barcodes_gs1_nomenclature.models.barcode_nomenclature.BarcodeNomenclature {
+  gs1_separator_fnc1
+  is_gs1_nomenclature
+  gs1_date_to_date(gs1_date)
+  gs1_decompose_extanded(barcode)
+  parse_gs1_rule_pattern(match, rule)
+  parse_nomenclature_barcode(barcode)
+}
+class "BarcodeRule" as odoo_src.odoo.addons.barcodes_gs1_nomenclature.models.barcode_rule.BarcodeRule {
+  associated_uom_id
+  encoding
+  gs1_content_type
+  gs1_decimal_usage
+  is_gs1_nomenclature
+  type
+}
+class "IrHttp" as odoo_src.odoo.addons.barcodes_gs1_nomenclature.models.ir_http.IrHttp {
+  session_info()
+}
+class "TestBarcodeGS1Nomenclature" as odoo_src.odoo.addons.barcodes_gs1_nomenclature.tests.test_barcodes_gs1_nomenclature.TestBarcodeGS1Nomenclature {
+  test_gs1_date_to_date()
+  test_gs1_extanded_barcode_1()
+  test_gs1_extanded_barcode_2_decimal()
+}
+@enduml

@@ -1,0 +1,36 @@
+@startuml classes_hr_recruitment_survey
+set namespaceSeparator none
+class "Applicant" as odoo_src.odoo.addons.hr_recruitment_survey.models.hr_applicant.Applicant {
+  partner_id
+  response_ids
+  survey_id
+  action_print_survey()
+  action_send_survey()
+}
+class "ApplicantSurvey" as odoo_src.odoo.addons.hr_recruitment_survey.controllers.main.ApplicantSurvey {
+}
+class "Job" as odoo_src.odoo.addons.hr_recruitment_survey.models.hr_job.Job {
+  survey_id
+  action_new_survey()
+  action_test_survey()
+}
+class "SurveyInvite" as odoo_src.odoo.addons.hr_recruitment_survey.wizard.survey_invite.SurveyInvite {
+  applicant_id
+  action_invite()
+}
+class "SurveySurvey" as odoo_src.odoo.addons.hr_recruitment_survey.models.survey_survey.SurveySurvey {
+  allowed_survey_types
+  hr_job_ids
+  survey_type
+  action_survey_user_input_completed()
+  get_formview_id(access_uid)
+}
+class "SurveyUserInput" as odoo_src.odoo.addons.hr_recruitment_survey.models.survey_user_input.SurveyUserInput {
+  applicant_id
+}
+class "TestRecruitmentSurvey" as odoo_src.odoo.addons.hr_recruitment_survey.tests.test_recruitment_survey.TestRecruitmentSurvey {
+  setUpClass()
+  test_print_survey()
+  test_send_survey()
+}
+@enduml

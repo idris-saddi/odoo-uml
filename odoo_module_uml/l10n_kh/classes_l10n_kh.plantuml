@@ -1,0 +1,9 @@
+@startuml classes_l10n_kh
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_kh.models.template_kh.AccountChartTemplate {
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_kh.models.res_bank.ResPartnerBank {
+  l10n_kh_merchant_id
+  proxy_type
+}
+@enduml

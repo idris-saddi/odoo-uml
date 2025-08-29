@@ -1,0 +1,41 @@
+@startuml classes_auth_totp
+set namespaceSeparator none
+class "AuthTotpDevice" as odoo_src.odoo.addons.auth_totp.models.auth_totp.AuthTotpDevice {
+}
+class "Home" as odoo_src.odoo.addons.auth_totp.controllers.home.Home {
+  web_totp(redirect)
+}
+class "TOTP" as odoo_src.odoo.addons.auth_totp.models.totp.TOTP {
+  match(code, t, window, timestep)
+}
+class "TOTPWizard" as odoo_src.odoo.addons.auth_totp.wizard.auth_totp_wizard.TOTPWizard {
+  code
+  qrcode
+  secret
+  url
+  user_id
+  enable()
+}
+class "TestTOTP" as odoo_src.odoo.addons.auth_totp.tests.test_totp.TestTOTP {
+  setUp()
+  test_totp()
+  test_totp_administration()
+  test_totp_authenticate()
+}
+class "TestTOTPMixin" as odoo_src.odoo.addons.auth_totp.tests.test_totp.TestTOTPMixin {
+  install_totphook()
+  setUpClass()
+}
+class "Users" as odoo_src.odoo.addons.auth_totp.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  totp_enabled
+  totp_secret
+  totp_trusted_device_ids
+  action_totp_disable()
+  action_totp_enable_wizard()
+  change_password(old_passwd, new_passwd)
+  init()
+  revoke_all_devices()
+}
+odoo_src.odoo.addons.auth_totp.tests.test_totp.TestTOTP --|> odoo_src.odoo.addons.auth_totp.tests.test_totp.TestTOTPMixin
+@enduml

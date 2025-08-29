@@ -1,0 +1,19 @@
+@startuml classes_l10n_vn
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_vn.models.template_vn.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_vn.models.account_move.AccountMove {
+  l10n_vn_e_invoice_number
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_vn.models.res_bank.ResPartnerBank {
+  proxy_type
+}
+class "TestL10nVNEmvQrCode" as odoo_src.odoo.addons.l10n_vn.tests.test_l10n_vn_emv_qr.TestL10nVNEmvQrCode {
+  setUpClass()
+  test_create_payment_with_no_proxy_in_client()
+  test_emv_qr_code_generation()
+  test_emv_qr_vals()
+  test_emv_qr_vals_with_accent_partner()
+  test_remove_vietnamese_accents()
+}
+@enduml

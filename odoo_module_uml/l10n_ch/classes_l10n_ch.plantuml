@@ -1,0 +1,77 @@
+@startuml classes_l10n_ch
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ch.models.template_ch.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_ch.models.account_journal.AccountJournal {
+  invoice_reference_model
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ch.models.account_invoice.AccountMove {
+  l10n_ch_is_qr_valid
+  get_l10n_ch_qrr_number()
+  l10n_ch_action_print_qr()
+  space_qrr_reference(qrr_ref)
+  space_scor_reference(iso11649_ref)
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_ch.models.account_payment.AccountPayment {
+  l10n_ch_reference_warning_msg
+}
+class "IrActionsReport" as odoo_src.odoo.addons.l10n_ch.models.ir_actions_report.IrActionsReport {
+  apply_qr_code_ch_cross_mask(width, height, barcode_drawing)
+  get_available_barcode_masks()
+  get_paperformat()
+}
+class "QRPrintTest" as odoo_src.odoo.addons.l10n_ch.tests.test_l10n_ch_qr_print.QRPrintTest {
+  print_qr_bill(invoice)
+  setUpClass()
+  test_print_qr()
+}
+class "QrInvoiceWizard" as odoo_src.odoo.addons.l10n_ch.wizard.qr_invoice_wizard.QrInvoiceWizard {
+  classic_inv_text
+  nb_classic_inv
+  nb_qr_inv
+  qr_inv_text
+  action_view_faulty_invoices()
+  default_get(fields)
+  print_all_invoices()
+}
+class "ReportSwissQR" as odoo_src.odoo.addons.l10n_ch.report.swissqr_report.ReportSwissQR {
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_ch.models.res_bank.ResPartnerBank {
+  l10n_ch_display_qr_bank_options
+  l10n_ch_qr_iban
+  create(vals_list)
+  write(vals)
+}
+class "SwissSetupBarBankConfigWizard" as odoo_src.odoo.addons.l10n_ch.wizard.setup_wizards.SwissSetupBarBankConfigWizard {
+  l10n_ch_display_qr_bank_options
+  l10n_ch_qr_iban
+}
+class "TestGenQRRReference" as odoo_src.odoo.addons.l10n_ch.tests.test_gen_qrr_reference.TestGenQRRReference {
+  setUpClass()
+  test_no_bank_account()
+  test_qrr()
+  test_qrr_long_reference()
+  test_wrong_currency()
+}
+class "TestSwissQR" as odoo_src.odoo.addons.l10n_ch.tests.test_swissqr.TestSwissQR {
+  customer
+  invoice1
+  product
+  create_account(number)
+  create_invoice(currency_to_use)
+  setUp()
+  setUpClass()
+  swissqr_generated(invoice, ref_type)
+  swissqr_not_generated(invoice)
+  test_swissQR_iban()
+  test_swissQR_missing_bank()
+  test_swissQR_qriban()
+  test_swiss_order_reference_qrr_for_qr_code()
+}
+class "TestSwissQRCode" as odoo_src.odoo.addons.l10n_ch.tests.test_ch_qr_code.TestSwissQRCode {
+  setUpClass()
+  test_ch_qr_code_cross_mask()
+  test_ch_qr_code_detection()
+  test_swiss_qr_code_generation()
+}
+@enduml

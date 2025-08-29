@@ -1,0 +1,15 @@
+@startuml classes_l10n_si
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_si.models.template_si.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_si.models.account_journal.AccountJournal {
+  invoice_reference_model
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_si.models.account_move.AccountMove {
+}
+class "L10n_siInvoiceGetReferenceTest" as odoo_src.odoo.addons.l10n_si.tests.test_get_reference.L10n_siInvoiceGetReferenceTest {
+  setUpClass()
+  test_get_reference_slovenian_invoice()
+  test_get_reference_slovenian_partner()
+}
+@enduml

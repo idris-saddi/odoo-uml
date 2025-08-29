@@ -1,0 +1,32 @@
+@startuml classes_hr_calendar
+set namespaceSeparator none
+class "CalendarEvent" as odoo_src.odoo.addons.hr_calendar.models.calendar_event.CalendarEvent {
+  unavailable_partner_ids
+  get_unusual_days(date_from, date_to)
+}
+class "Partner" as odoo_src.odoo.addons.hr_calendar.models.res_partner.Partner {
+  get_working_hours_for_all_attendees(attendee_ids, date_from, date_to, everybody)
+}
+class "TestEventInterval" as odoo_src.odoo.addons.hr_calendar.tests.test_event_interval.TestEventInterval {
+  setUpClass()
+  test_allday_event_during_no_working_day()
+  test_allday_event_during_working_day()
+  test_empty_event()
+  test_event_during_working_day()
+}
+class "TestHrCalendarCommon" as odoo_src.odoo.addons.hr_calendar.tests.common.TestHrCalendarCommon {
+  setUpClass()
+}
+class "TestWorkingHours" as odoo_src.odoo.addons.hr_calendar.tests.test_working_hours.TestWorkingHours {
+  setUpClass()
+  test_multi_companies_2_employees_1_partner_1_selected_companies()
+  test_multi_companies_2_employees_1_selected_company()
+  test_multi_companies_2_employees_2_selected_companies()
+  test_multi_companies_2_employees_2_selected_companies_union_between_schedules()
+  test_work_hours_of_employee_without_time_zone()
+  test_working_hours_2_emp_different_calendar()
+  test_working_hours_2_emp_same_calendar()
+  test_working_hours_2_emp_same_calendar_hours_different_timezone()
+  test_working_hours_3_emp_different_calendar()
+}
+@enduml

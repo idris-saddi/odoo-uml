@@ -1,0 +1,14 @@
+@startuml classes_microsoft_account
+set namespaceSeparator none
+class "MicrosoftAuth" as odoo_src.odoo.addons.microsoft_account.controllers.main.MicrosoftAuth {
+  oauth2callback()
+}
+class "MicrosoftService" as odoo_src.odoo.addons.microsoft_account.models.microsoft_service.MicrosoftService {
+  generate_refresh_token(service, authorization_code)
+}
+class "User" as odoo_src.odoo.addons.microsoft_account.models.res_users.User {
+  microsoft_calendar_rtoken
+  microsoft_calendar_token
+  microsoft_calendar_token_validity
+}
+@enduml

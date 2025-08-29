@@ -1,0 +1,36 @@
+@startuml classes_payment_mercado_pago
+set namespaceSeparator none
+class "MercadoPagoCommon" as odoo_src.odoo.addons.payment_mercado_pago.tests.common.MercadoPagoCommon {
+  MP_PAYMENT_ID : str
+  setUpClass()
+}
+class "MercadoPagoController" as odoo_src.odoo.addons.payment_mercado_pago.controllers.main.MercadoPagoController {
+  mercado_pago_return_from_checkout()
+  mercado_pago_webhook(reference)
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_mercado_pago.models.payment_provider.PaymentProvider {
+  code
+  mercado_pago_access_token
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_mercado_pago.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_mercado_pago.tests.test_payment_provider.TestPaymentProvider {
+  test_incompatible_with_unsupported_currencies()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_mercado_pago.tests.test_payment_transaction.TestPaymentTransaction {
+  amount : float
+  currency
+  maxDiff : int
+  test_cop_currency_rounding()
+  test_no_input_missing_from_redirect_form()
+  test_no_item_missing_from_preference_request_payload()
+  test_processing_notification_data_confirms_transaction()
+  test_processing_notification_data_rejects_transaction()
+}
+class "TestProcessingFlows" as odoo_src.odoo.addons.payment_mercado_pago.tests.test_processing_flows.TestProcessingFlows {
+  test_redirect_notification_triggers_processing()
+  test_webhook_notification_triggers_processing()
+}
+@enduml

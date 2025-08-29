@@ -1,0 +1,44 @@
+@startuml classes_google_gmail
+set namespaceSeparator none
+class "FetchmailServer" as odoo_src.odoo.addons.google_gmail.models.fetchmail_server.FetchmailServer {
+  google_gmail_access_token : bool
+  google_gmail_access_token_expiration : bool
+  google_gmail_authorization_code : bool
+  google_gmail_refresh_token : bool
+  is_ssl : bool
+  port : int
+  server : str
+  server_type
+  onchange_server_type()
+}
+class "GoogleGmailController" as odoo_src.odoo.addons.google_gmail.controllers.main.GoogleGmailController {
+  google_gmail_callback(code, state, error)
+}
+class "GoogleGmailMixin" as odoo_src.odoo.addons.google_gmail.models.google_gmail_mixin.GoogleGmailMixin {
+  google_gmail_access_token
+  google_gmail_access_token_expiration
+  google_gmail_authorization_code
+  google_gmail_refresh_token
+  google_gmail_uri
+  open_google_gmail_uri()
+}
+class "IrMailServer" as odoo_src.odoo.addons.google_gmail.models.ir_mail_server.IrMailServer {
+  from_filter
+  google_gmail_access_token : bool
+  google_gmail_access_token_expiration : bool
+  google_gmail_authorization_code : bool
+  google_gmail_refresh_token : bool
+  smtp_authentication
+  smtp_encryption : str
+  smtp_host : str
+  smtp_port : int
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.google_gmail.models.res_config_settings.ResConfigSettings {
+  google_gmail_client_identifier
+  google_gmail_client_secret
+}
+class "TestIrMailServer" as odoo_src.odoo.addons.google_gmail.tests.test_google_gmail.TestIrMailServer {
+  setUpClass()
+  test_generate_oauth2_string_token()
+}
+@enduml

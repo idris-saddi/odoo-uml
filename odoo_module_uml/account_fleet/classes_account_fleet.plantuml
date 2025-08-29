@@ -1,0 +1,37 @@
+@startuml classes_account_fleet
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.account_fleet.models.account_move.AccountMove {
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.account_fleet.models.account_move.AccountMoveLine {
+  need_vehicle
+  vehicle_id
+  vehicle_log_service_ids
+  unlink()
+  write(vals)
+}
+class "AutomaticEntryWizard" as odoo_src.odoo.addons.account_fleet.wizard.account_automatic_entry_wizard.AutomaticEntryWizard {
+}
+class "FleetVehicle" as odoo_src.odoo.addons.account_fleet.models.fleet_vehicle.FleetVehicle {
+  account_move_ids
+  bill_count
+  action_view_bills()
+}
+class "FleetVehicleLogServices" as odoo_src.odoo.addons.account_fleet.models.fleet_vehicle_log_services.FleetVehicleLogServices {
+  account_move_line_id
+  account_move_state
+  amount
+  vehicle_id
+  action_open_account_move()
+}
+class "TestAccountFleet" as odoo_src.odoo.addons.account_fleet.tests.test_account_fleet.TestAccountFleet {
+  test_transfer_wizard_vehicle_info_propagation()
+}
+class "TestFleetVehicleLogServices" as odoo_src.odoo.addons.account_fleet.tests.test_fleet_vehicle_log_services.TestFleetVehicleLogServices {
+  setUpClass()
+  test_fleet_log_services_amount()
+  test_service_bill_change_vehicle()
+  test_service_bill_deletion()
+  test_service_bill_right_amount()
+  test_service_log_deletion()
+}
+@enduml

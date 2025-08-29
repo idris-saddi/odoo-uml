@@ -1,0 +1,6 @@
+@startuml classes_l10n_din5008_repair
+set namespaceSeparator none
+class "RepairOrder" as odoo_src.odoo.addons.l10n_din5008_repair.models.repair.RepairOrder {
+  l10n_din5008_printing_date
+}
+@enduml

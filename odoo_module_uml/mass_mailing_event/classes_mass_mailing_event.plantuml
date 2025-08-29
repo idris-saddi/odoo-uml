@@ -1,0 +1,9 @@
+@startuml classes_mass_mailing_event
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.mass_mailing_event.models.event_event.Event {
+  action_invite_contacts()
+  action_mass_mailing_attendees()
+}
+class "EventRegistration" as odoo_src.odoo.addons.mass_mailing_event.models.event_registration.EventRegistration {
+}
+@enduml

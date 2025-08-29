@@ -1,0 +1,47 @@
+@startuml classes_l10n_latam_invoice_document
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountDebitNote" as odoo_src.odoo.addons.l10n_latam_invoice_document.wizards.account_debit_note.AccountDebitNote {
+  create_debit()
+}
+class "AccountInvoiceReport" as odoo_src.odoo.addons.l10n_latam_invoice_document.report.invoice_report.AccountInvoiceReport {
+  l10n_latam_document_type_id
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.account_journal.AccountJournal {
+  l10n_latam_company_use_documents
+  l10n_latam_use_documents
+  check_use_document()
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.account_move.AccountMove {
+  l10n_latam_available_document_type_ids
+  l10n_latam_document_number
+  l10n_latam_document_type_id
+  l10n_latam_document_type_id_code
+  l10n_latam_manual_document_number
+  l10n_latam_use_documents
+  name : bool
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.account_move_line.AccountMoveLine {
+  l10n_latam_document_type_id
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_latam_invoice_document.wizards.account_move_reversal.AccountMoveReversal {
+  l10n_latam_available_document_type_ids
+  l10n_latam_document_number
+  l10n_latam_document_type_id
+  l10n_latam_manual_document_number
+  l10n_latam_use_documents
+}
+class "L10nLatamDocumentType" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.l10n_latam_document_type.L10nLatamDocumentType {
+  active
+  code
+  country_id
+  doc_code_prefix
+  internal_type
+  name
+  report_name
+  sequence
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_latam_invoice_document.models.res_company.ResCompany {
+}
+@enduml

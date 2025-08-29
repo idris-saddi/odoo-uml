@@ -1,0 +1,14 @@
+@startuml classes_l10n_fr
+set namespaceSeparator none
+class "ResCompany" as odoo_src.odoo.addons.l10n_fr.models.res_company.ResCompany {
+  ape
+  is_france_country
+  l10n_fr_closing_sequence_id
+  siret
+  create(vals_list)
+  write(vals)
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_fr.models.res_partner.ResPartner {
+  siret
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml classes_l10n_cn
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cn.models.template_cn_common.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cn.models.template_cn_large_bis.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cn.models.template_cn.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_cn.models.account_move.AccountMove {
+  fapiao
+  check_cn2an()
+}
+@enduml

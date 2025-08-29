@@ -1,0 +1,259 @@
+@startuml classes_lunch
+set namespaceSeparator none
+class "CashmoveReport" as odoo_src.odoo.addons.lunch.report.lunch_cashmove_report.CashmoveReport {
+  amount
+  currency_id
+  date
+  description
+  id
+  user_id
+  init()
+}
+class "Company" as odoo_src.odoo.addons.lunch.models.res_company.Company {
+  lunch_minimum_threshold
+  lunch_notify_message
+}
+class "LunchAlert" as odoo_src.odoo.addons.lunch.models.lunch_alert.LunchAlert {
+  active
+  available_today
+  cron_id
+  fri
+  location_ids
+  message
+  mode
+  mon
+  name
+  notification_moment
+  notification_time
+  recipients
+  sat
+  sun
+  thu
+  tue
+  tz
+  until
+  wed
+  create(vals_list)
+  unlink()
+  write(values)
+}
+class "LunchCashMove" as odoo_src.odoo.addons.lunch.models.lunch_cashmove.LunchCashMove {
+  amount
+  currency_id
+  date
+  description
+  user_id
+  get_wallet_balance(user, include_config)
+}
+class "LunchController" as odoo_src.odoo.addons.lunch.controllers.main.LunchController {
+  get_user_location(user_id, context)
+  infos(user_id, context)
+  pay(user_id, context)
+  payment_message()
+  set_user_location(location_id, user_id, context)
+  trash(user_id, context)
+}
+class "LunchLocation" as odoo_src.odoo.addons.lunch.models.lunch_location.LunchLocation {
+  address
+  company_id
+  name
+}
+class "LunchOrder" as odoo_src.odoo.addons.lunch.models.lunch_order.LunchOrder {
+  active
+  available_on_date
+  available_today
+  available_toppings_1
+  available_toppings_2
+  available_toppings_3
+  category_id
+  company_id
+  currency_id
+  date
+  display_add_button
+  display_reorder_button
+  display_toppings
+  image_128
+  image_1920
+  lunch_location_id
+  name
+  note
+  notified
+  order_deadline_passed
+  price
+  product_description
+  product_id
+  quantity
+  state
+  supplier_id
+  topping_ids_1
+  topping_ids_2
+  topping_ids_3
+  topping_label_1
+  topping_label_2
+  topping_label_3
+  topping_quantity_1
+  topping_quantity_2
+  topping_quantity_3
+  user_id
+  action_cancel()
+  action_confirm()
+  action_notify()
+  action_order()
+  action_reorder()
+  action_reset()
+  action_send()
+  add_to_cart()
+  create(vals_list)
+  init()
+  update_quantity(increment)
+  write(values)
+}
+class "LunchProduct" as odoo_src.odoo.addons.lunch.models.lunch_product.LunchProduct {
+  active
+  category_id
+  company_id
+  currency_id
+  description
+  favorite_user_ids
+  is_available_at
+  is_favorite
+  is_new
+  last_order_date
+  name
+  new_until
+  price
+  product_image
+  supplier_id
+  toggle_active()
+  write(vals)
+}
+class "LunchProductCategory" as odoo_src.odoo.addons.lunch.models.lunch_product_category.LunchProductCategory {
+  active
+  company_id
+  currency_id
+  image_1920
+  name
+  product_count
+  toggle_active()
+}
+class "LunchSupplier" as odoo_src.odoo.addons.lunch.models.lunch_supplier.LunchSupplier {
+  active
+  automatic_email_time
+  available_location_ids
+  available_today
+  city
+  company_id
+  country_id
+  cron_id
+  delivery
+  email
+  email_formatted
+  fri
+  moment
+  mon
+  name
+  order_deadline_passed
+  partner_id
+  phone
+  recurrency_end_date
+  responsible_id
+  sat
+  send_by
+  show_confirm_button
+  show_order_button
+  state_id
+  street
+  street2
+  sun
+  thu
+  topping_ids_1
+  topping_ids_2
+  topping_ids_3
+  topping_label_1
+  topping_label_2
+  topping_label_3
+  topping_quantity_1
+  topping_quantity_2
+  topping_quantity_3
+  tue
+  tz
+  wed
+  zip_code
+  action_confirm_orders()
+  action_send_orders()
+  create(vals_list)
+  toggle_active()
+  unlink()
+  write(values)
+}
+class "LunchTopping" as odoo_src.odoo.addons.lunch.models.lunch_topping.LunchTopping {
+  company_id
+  currency_id
+  name
+  price
+  supplier_id
+  topping_category
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.lunch.models.res_config_settings.ResConfigSettings {
+  company_lunch_minimum_threshold
+  company_lunch_notify_message
+  currency_id
+}
+class "ResUsers" as odoo_src.odoo.addons.lunch.models.res_users.ResUsers {
+  favorite_lunch_product_ids
+  last_lunch_location_id
+}
+class "TestAlarm" as odoo_src.odoo.addons.lunch.tests.test_alert.TestAlarm {
+  test_cron_sync_active()
+  test_cron_sync_create()
+  test_cron_sync_nextcall()
+}
+class "TestSupplier" as odoo_src.odoo.addons.lunch.tests.test_supplier.TestSupplier {
+  monday_10am : datetime
+  monday_1am : datetime
+  monday_1pm : datetime
+  monday_8pm : datetime
+  saturday_10am : datetime
+  saturday_1pm : datetime
+  saturday_3am : datetime
+  saturday_8pm : datetime
+  setUp()
+  test_auto_email_send()
+  test_compute_available_today()
+  test_cron_sync_active()
+  test_cron_sync_create()
+  test_cron_sync_nextcall()
+  test_lunch_order_with_minimum_threshold()
+  test_remove_toppings()
+  test_search_available_today()
+  test_send_email_cron()
+}
+class "TestUi" as odoo_src.odoo.addons.lunch.tests.test_ui.TestUi {
+  category_pizza
+  location_office
+  partner_pizza_inn
+  product_pizza
+  supplier_pizza_inn
+  test_01_ui()
+}
+class "TestsCommon" as odoo_src.odoo.addons.lunch.tests.common.TestsCommon {
+  alert_ny
+  alert_tokyo
+  category_pizza
+  category_sandwich
+  location_office_1
+  location_office_2
+  manager
+  partner_coin_gourmand
+  partner_kothai
+  partner_pizza_inn
+  product_pizza
+  product_sandwich_tuna
+  supplier_coin_gourmand
+  supplier_kothai
+  supplier_pizza_inn
+  topping_olives
+  setUp()
+  setUpClass()
+}
+@enduml

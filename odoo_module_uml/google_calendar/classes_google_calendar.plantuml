@@ -1,0 +1,233 @@
+@startuml classes_google_calendar
+set namespaceSeparator none
+class "AlarmManager" as odoo_src.odoo.addons.google_calendar.models.calendar_alarm_manager.AlarmManager {
+}
+class "Attendee" as odoo_src.odoo.addons.google_calendar.models.calendar_attendee.Attendee {
+  do_accept()
+  do_decline()
+  do_tentative()
+}
+class "GoogleCalendarController" as odoo_src.odoo.addons.google_calendar.controllers.main.GoogleCalendarController {
+  check_calendar_credentials()
+  google_calendar_sync_data(model)
+}
+class "GoogleCalendarService" as odoo_src.odoo.addons.google_calendar.utils.google_calendar.GoogleCalendarService {
+  google_service
+  delete(event_id, token, timeout)
+  get_events(sync_token, token, event_id, timeout)
+  insert(values, token, timeout, need_video_call)
+  is_authorized(user)
+  patch(event_id, values, token, timeout)
+}
+class "GoogleEvent" as odoo_src.odoo.addons.google_calendar.utils.google_event.GoogleEvent {
+  ids
+  rrule
+  cancelled()
+  clear_type_ambiguity(env)
+  exists(env) -> 'GoogleEvent'
+  filter(func) -> 'GoogleEvent'
+  full_recurring_event_id()
+  get_meeting_url()
+  get_odoo_event(env)
+  is_available()
+  is_cancelled()
+  is_recurrence()
+  is_recurrence_follower()
+  is_recurrent()
+  odoo_id(env)
+  odoo_ids(env)
+  owner(env)
+}
+class "GoogleSync" as odoo_src.odoo.addons.google_calendar.models.google_sync.GoogleSync {
+  active
+  google_id
+  need_sync
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "<color:red>InvalidSyncToken</color>" as odoo_src.odoo.addons.google_calendar.utils.google_calendar.InvalidSyncToken {
+}
+class "Meeting" as odoo_src.odoo.addons.google_calendar.models.calendar.Meeting {
+  MEET_ROUTE : str
+  google_id
+  guests_readonly
+  videocall_source
+  action_mass_archive(recurrence_update_setting)
+  create(vals_list)
+  write(values)
+}
+class "RecurrenceRule" as odoo_src.odoo.addons.google_calendar.models.calendar_recurrence_rule.RecurrenceRule {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.google_calendar.models.res_config_settings.ResConfigSettings {
+  cal_client_id
+  cal_client_secret
+  cal_sync_paused
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.google_calendar.models.res_users_settings.ResUsersSettings {
+  google_calendar_cal_id
+  google_calendar_rtoken
+  google_calendar_sync_token
+  google_calendar_token
+  google_calendar_token_validity
+  google_synchronization_stopped
+}
+class "ResetGoogleAccount" as odoo_src.odoo.addons.google_calendar.wizard.reset_account.ResetGoogleAccount {
+  delete_policy
+  sync_policy
+  user_id
+  reset_account()
+}
+class "TestGoogleEvent" as odoo_src.odoo.addons.google_calendar.tests.test_google_event.TestGoogleEvent {
+  test_google_event_readonly()
+}
+class "TestSyncGoogle" as odoo_src.odoo.addons.google_calendar.tests.test_sync_common.TestSyncGoogle {
+  attendee_user
+  google_service
+  organizer_user
+  assertGoogleAPINotCalled()
+  assertGoogleEventDeleted(google_id)
+  assertGoogleEventInserted(values, timeout)
+  assertGoogleEventInsertedMultiTime(values, timeout)
+  assertGoogleEventNotDeleted()
+  assertGoogleEventNotInserted()
+  assertGoogleEventNotPatched()
+  assertGoogleEventPatched(google_id, values, timeout)
+  assertGoogleEventSendUpdates(expected_value)
+  call_post_commit_hooks()
+  mock_datetime_and_now(mock_dt)
+  mock_google_service()
+  mock_google_sync(user_id)
+  setUp()
+}
+class "TestSyncGoogle2Odoo" as odoo_src.odoo.addons.google_calendar.tests.test_sync_google2odoo.TestSyncGoogle2Odoo {
+  now
+  other_company
+  private_partner
+  public_partner
+  generate_recurring_event(mock_dt)
+  google_respond_to_recurrent_event_with_option_all_events(recurrence, response_status)
+  google_respond_to_recurrent_event_with_option_following_events(recurrence, event_index, response_status, rrule1, rrule2)
+  google_respond_to_recurrent_event_with_option_this_event(recurrence, event_index, response_status)
+  setUp()
+  sync(events)
+  test_accepting_recurrent_event_with_all_events_option_synced_by_attendee(mock_get_events)
+  test_accepting_recurrent_event_with_all_events_option_synced_by_organizer(mock_get_events)
+  test_accepting_recurrent_event_with_all_following_option_synced_by_organizer(mock_get_events)
+  test_accepting_recurrent_event_with_following_events_option_synced_by_attendee(mock_get_events)
+  test_accepting_recurrent_event_with_this_event_option_synced_by_attendee(mock_get_events)
+  test_accepting_recurrent_event_with_this_event_option_synced_by_organizer(mock_get_events)
+  test_alias_email_sync_recurrence()
+  test_attendee_cancelled()
+  test_attendee_recurrence_answer()
+  test_attendee_removed()
+  test_attendee_removed_multiple()
+  test_attendee_state()
+  test_attendee_status_is_not_updated_when_syncing_and_time_data_is_not_changed()
+  test_attendees_same_event_both_share()
+  test_cancelled()
+  test_cancelled_with_portal_attendee()
+  test_create_event_with_default_and_undefined_privacy()
+  test_event_guest_modify_permission()
+  test_event_reminder_emails_with_google_id()
+  test_event_with_availability()
+  test_event_with_local_videocall()
+  test_event_with_meeting_url()
+  test_existing_recurrence_first_updated()
+  test_invalid_owner_property()
+  test_keep_organizer_attendee_writing_recurrence_from_google()
+  test_new_google_event()
+  test_new_google_notifications()
+  test_owner_only_new_google_event()
+  test_partner_order()
+  test_private_extended_properties()
+  test_private_partner_single_event()
+  test_recurrencde_first_updated()
+  test_recurrence()
+  test_recurrence_creation_with_attendee_answer()
+  test_recurrence_datetime()
+  test_recurrence_deleted()
+  test_recurrence_edit_specific_event()
+  test_recurrence_edit_specific_event_backward_compatibility()
+  test_recurrence_exdate()
+  test_recurrence_first_exdate()
+  test_recurrence_list_contains_more_items()
+  test_recurrence_moved()
+  test_recurrence_name_updated()
+  test_recurrence_no_duplicate()
+  test_recurrence_outlier()
+  test_recurrence_private_contact()
+  test_recurrence_range_start_date_in_other_dst_period()
+  test_recurrence_reduced()
+  test_recurrence_timezone()
+  test_recurrence_write_time_fields()
+  test_recurrence_write_with_outliers()
+  test_several_attendee_have_the_same_mail()
+  test_several_users_have_the_same_mail()
+  test_simple_event_into_recurrency()
+  test_valid_owner_property()
+}
+class "TestSyncOdoo2Google" as odoo_src.odoo.addons.google_calendar.tests.test_sync_odoo2google.TestSyncOdoo2Google {
+  google_service
+  setUp()
+  test_all_event_updated()
+  test_all_event_with_tz_updated()
+  test_allday_duplicated_first_event_in_recurrence()
+  test_attendee_state()
+  test_create_event_with_sync_config_paused()
+  test_delete_synced_event_with_sync_config_paused()
+  test_event_added_to_recurrence()
+  test_event_allday_creation()
+  test_event_available_privacy()
+  test_event_busy_privacy()
+  test_event_creation()
+  test_event_creation_perf()
+  test_event_duplication_allday_google_calendar()
+  test_event_need_sync()
+  test_event_not_over_send_updates()
+  test_event_over_send_updates()
+  test_event_sync_after_pause_period(mock_sync_request)
+  test_event_until_utc()
+  test_event_without_attendee_state()
+  test_event_without_user()
+  test_following_event_updated()
+  test_inactive_event()
+  test_recurrence()
+  test_recurrence_delete_single_events()
+  test_recurrence_not_over_send_updates()
+  test_recurrence_over_send_updates()
+  test_recurring_event_creation_perf()
+  test_restart_synchronization()
+  test_skip_google_sync_for_non_synchronized_users_new_events(mock_sync_request)
+  test_stop_synchronization()
+  test_synced_inactive_event()
+  test_update_synced_event_with_sync_config_paused()
+  test_videocall_location_on_location_set()
+  test_write_unsynced_field()
+}
+class "TestSyncOdoo2GoogleMail" as odoo_src.odoo.addons.google_calendar.tests.test_sync_odoo2google.TestSyncOdoo2GoogleMail {
+  test_event_creation_for_user()
+}
+class "TestTokenAccess" as odoo_src.odoo.addons.google_calendar.tests.test_token_access.TestTokenAccess {
+  setUpClass()
+  test_normal_user_should_be_able_to_reset_his_own_token()
+  test_normal_user_should_not_be_able_to_reset_other_user_tokens()
+  test_system_user_should_be_able_to_reset_any_tokens()
+}
+class "User" as odoo_src.odoo.addons.google_calendar.models.res_users.User {
+  google_calendar_cal_id
+  google_calendar_rtoken
+  google_calendar_sync_token
+  google_calendar_token
+  google_calendar_token_validity
+  google_synchronization_stopped
+  check_calendar_credentials()
+  check_synchronization_status()
+  is_google_calendar_synced()
+  pause_google_synchronization()
+  restart_google_synchronization()
+  stop_google_synchronization()
+  unpause_google_synchronization()
+}
+odoo_src.odoo.addons.google_calendar.tests.test_sync_odoo2google.TestSyncOdoo2GoogleMail --|> odoo_src.odoo.addons.google_calendar.tests.test_token_access.TestTokenAccess
+@enduml

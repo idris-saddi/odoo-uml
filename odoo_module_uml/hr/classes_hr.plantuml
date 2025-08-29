@@ -1,0 +1,493 @@
+@startuml classes_hr
+set namespaceSeparator none
+class "ActivityScheduleHRCase" as odoo_src.odoo.addons.hr.tests.test_mail_activity_plan.ActivityScheduleHRCase {
+  setUpClass()
+}
+class "Alias" as odoo_src.odoo.addons.hr.models.mail_alias.Alias {
+  alias_contact
+}
+class "BaseModel" as odoo_src.odoo.addons.hr.models.models.BaseModel {
+}
+class "Channel" as odoo_src.odoo.addons.hr.models.discuss_channel.Channel {
+  subscription_department_ids
+  write(vals)
+}
+class "Company" as odoo_src.odoo.addons.hr.models.res_company.Company {
+  employee_properties_definition
+  hr_presence_control_attendance
+  hr_presence_control_email
+  hr_presence_control_email_amount
+  hr_presence_control_ip
+  hr_presence_control_ip_list
+  hr_presence_control_login
+}
+class "ContractType" as odoo_src.odoo.addons.hr.models.hr_contract_type.ContractType {
+  code
+  country_id
+  name
+  sequence
+}
+class "Department" as odoo_src.odoo.addons.hr.models.hr_department.Department {
+  active
+  child_ids
+  color
+  company_id
+  complete_name
+  has_read_access
+  jobs_ids
+  manager_id
+  master_department_id
+  member_ids
+  name
+  note
+  parent_id
+  parent_path
+  plan_ids
+  plans_count
+  total_employee
+  action_employee_from_department()
+  action_open_view_child_departments()
+  action_plan_from_department()
+  create(vals_list)
+  get_children_department_ids()
+  get_department_hierarchy()
+  get_formview_action(access_uid)
+  name_create(name)
+  write(vals)
+}
+class "DepartureReason" as odoo_src.odoo.addons.hr.models.hr_departure_reason.DepartureReason {
+  name
+  reason_code
+  sequence
+}
+class "EmployeeCategory" as odoo_src.odoo.addons.hr.models.hr_employee_category.EmployeeCategory {
+  color
+  employee_ids
+  name
+}
+class "HrDepartureWizard" as odoo_src.odoo.addons.hr.wizard.hr_departure_wizard.HrDepartureWizard {
+  departure_date
+  departure_description
+  departure_reason_id
+  employee_id
+  action_register_departure()
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr.models.hr_employee_base.HrEmployeeBase {
+  active
+  address_id
+  coach_id
+  color
+  company_id
+  department_id
+  email
+  hr_icon_display
+  hr_presence_state
+  im_status
+  is_flexible
+  is_fully_flexible
+  job_id
+  job_title
+  last_activity
+  last_activity_time
+  member_of_department
+  mobile_phone
+  name
+  newly_hired
+  parent_id
+  phone
+  resource_calendar_id
+  resource_id
+  share
+  show_hr_icon_display
+  tz
+  user_id
+  work_contact_id
+  work_email
+  work_location_id
+  work_location_name
+  work_location_type
+  work_phone
+  get_avatar_card_data(fields)
+}
+class "HrEmployeePrivate" as odoo_src.odoo.addons.hr.models.hr_employee.HrEmployeePrivate {
+  active
+  activity_date_deadline
+  activity_exception_decoration
+  activity_exception_icon
+  activity_ids
+  activity_state
+  activity_summary
+  activity_type_icon
+  activity_type_id
+  activity_user_id
+  additional_note
+  bank_account_id
+  barcode
+  birthday
+  category_ids
+  certificate
+  child_ids
+  children
+  color
+  company_country_code
+  company_country_id
+  company_id
+  country_id
+  country_of_birth
+  currency_id
+  department_id
+  departure_date
+  departure_description
+  departure_reason_id
+  distance_home_work
+  distance_home_work_unit
+  driving_license
+  emergency_contact
+  emergency_phone
+  employee_properties
+  employee_type
+  gender
+  has_message
+  has_work_permit
+  id_card
+  identification_id
+  job_id
+  km_home_work
+  lang
+  marital
+  message_attachment_count
+  message_follower_ids
+  message_has_error
+  message_has_error_counter
+  message_ids
+  message_is_follower
+  message_main_attachment_id
+  message_needaction
+  message_needaction_counter
+  message_partner_ids
+  my_activity_date_deadline
+  name
+  notes
+  passport_id
+  permit_no
+  pin
+  place_of_birth
+  private_car_plate
+  private_city
+  private_country_id
+  private_email
+  private_phone
+  private_state_id
+  private_street
+  private_street2
+  private_zip
+  related_partners_count
+  resource_calendar_id
+  sinid
+  spouse_birthdate
+  spouse_complete_name
+  ssnid
+  study_field
+  study_school
+  tz
+  user_id
+  user_partner_id
+  visa_expire
+  visa_no
+  work_permit_expiration_date
+  work_permit_name
+  work_permit_scheduled_activity
+  action_create_user()
+  action_related_contacts()
+  check_field_access_rights(operation, field_names)
+  create(vals_list)
+  fetch(field_names)
+  generate_random_barcode()
+  get_formview_action(access_uid)
+  get_formview_id(access_uid)
+  get_import_templates()
+  get_view(view_id, view_type)
+  get_views(views, options)
+  search_fetch(domain, field_names, offset, limit, order)
+  toggle_active()
+  unlink()
+  write(vals)
+}
+class "HrEmployeePublic" as odoo_src.odoo.addons.hr.models.hr_employee_public.HrEmployeePublic {
+  active
+  address_id
+  avatar_1024
+  avatar_128
+  avatar_1920
+  avatar_256
+  avatar_512
+  child_ids
+  coach_id
+  color
+  company_id
+  create_date
+  department_id
+  employee_id
+  image_1024
+  image_128
+  image_1920
+  image_256
+  image_512
+  is_manager
+  job_id
+  job_title
+  mobile_phone
+  name
+  parent_id
+  resource_id
+  tz
+  user_id
+  user_partner_id
+  work_contact_id
+  work_email
+  work_location_id
+  work_phone
+  init()
+}
+class "HrManagerDepartmentReport" as odoo_src.odoo.addons.hr.report.hr_manager_department_report.HrManagerDepartmentReport {
+  employee_id
+  has_department_manager_access
+}
+class "IrUiMenu" as odoo_src.odoo.addons.hr.models.ir_ui_menu.IrUiMenu {
+}
+class "Job" as odoo_src.odoo.addons.hr.models.hr_job.Job {
+  active
+  company_id
+  contract_type_id
+  department_id
+  description
+  employee_ids
+  expected_employees
+  name
+  no_of_employee
+  no_of_recruitment
+  requirements
+  sequence
+  copy_data(default)
+  create(vals_list)
+  write(vals)
+}
+class "MailActivityPLanTemplate" as odoo_src.odoo.addons.hr.models.mail_activity_plan_template.MailActivityPLanTemplate {
+  responsible_type
+}
+class "MailActivityPlan" as odoo_src.odoo.addons.hr.models.mail_activity_plan.MailActivityPlan {
+  department_assignable
+  department_id
+}
+class "MailActivitySchedule" as odoo_src.odoo.addons.hr.wizard.mail_activity_schedule.MailActivitySchedule {
+  department_id
+  plan_department_filterable
+  plan_summary : bool
+}
+class "Partner" as odoo_src.odoo.addons.hr.models.res_partner.Partner {
+  employee_ids
+  employees_count
+  action_open_employees()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr.models.res_config_settings.ResConfigSettings {
+  hr_employee_self_edit
+  hr_presence_control_email
+  hr_presence_control_email_amount
+  hr_presence_control_ip
+  hr_presence_control_ip_list
+  hr_presence_control_login
+  module_hr_attendance
+  module_hr_homeworking
+  module_hr_presence
+  module_hr_skills
+  resource_calendar_id
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.hr.models.res_partner.ResPartnerBank {
+}
+class "ResourceCalendar" as odoo_src.odoo.addons.hr.models.resource_calendar.ResourceCalendar {
+}
+class "ResourceResource" as odoo_src.odoo.addons.hr.models.resource.ResourceResource {
+  department_id
+  employee_id
+  hr_icon_display
+  job_title
+  show_hr_icon_display
+  user_id
+  work_email
+  work_phone
+}
+class "TestActivitySchedule" as odoo_src.odoo.addons.hr.tests.test_mail_activity_plan.TestActivitySchedule {
+  test_department()
+  test_res_model_compatibility()
+  test_responsible()
+}
+class "TestChannel" as odoo_src.odoo.addons.hr.tests.test_channel.TestChannel {
+  setUpClass()
+  test_auto_subscribe_department()
+}
+class "TestEmployeeUi" as odoo_src.odoo.addons.hr.tests.test_ui.TestEmployeeUi {
+  test_employee_profile_tour()
+}
+class "TestHrCommon" as odoo_src.odoo.addons.hr.tests.common.TestHrCommon {
+  setUpClass()
+}
+class "TestHrDepartment" as odoo_src.odoo.addons.hr.tests.test_hr_department.TestHrDepartment {
+  setUpClass()
+  test_dapartment_total_employee_count()
+}
+class "TestHrEmployee" as odoo_src.odoo.addons.hr.tests.test_hr_employee.TestHrEmployee {
+  employee_without_image
+  user_without_image
+  setUp()
+  test_availability_user_infos_employee()
+  test_avatar()
+  test_badge_validation()
+  test_change_user_on_employee()
+  test_change_user_on_employee_keep_partner()
+  test_change_user_on_employee_multi_company()
+  test_employee_create_from_signup()
+  test_employee_create_from_user()
+  test_employee_from_user()
+  test_employee_from_user_tz_no_reset()
+  test_employee_has_avatar_even_if_it_has_no_image()
+  test_employee_has_same_avatar_as_corresponding_user()
+  test_employee_linked_partner()
+  test_employee_member_of_department()
+  test_employee_resource()
+  test_employee_smart_button_multi_company()
+  test_employee_update_work_contact_id()
+  test_flexible_working_hours()
+  test_is_flexible()
+  test_set_user_on_new_employee()
+}
+class "TestHrEmployeeWebJson" as odoo_src.odoo.addons.hr.tests.test_hr_employee.TestHrEmployeeWebJson {
+  setUp()
+  test_webjson_employees()
+}
+class "TestHrScenario" as odoo_src.odoo.addons.hr.tests.test_scenario.TestHrScenario {
+  test_load_scenario()
+}
+class "TestMultiCompany" as odoo_src.odoo.addons.hr.tests.test_multi_company.TestMultiCompany {
+  setUpClass()
+  test_read_manager_employee()
+  test_read_no_manager_company()
+}
+class "TestMultiCompanyReport" as odoo_src.odoo.addons.hr.tests.test_multi_company.TestMultiCompanyReport {
+  setUpClass()
+  test_multi_company_report()
+  test_single_company_report()
+}
+class "TestResource" as odoo_src.odoo.addons.hr.tests.test_resource.TestResource {
+  setUpClass()
+  test_availability_hr_infos_resource()
+  test_calendars_validity_within_period_creation()
+  test_calendars_validity_within_period_default()
+}
+class "TestSelfAccessProfile" as odoo_src.odoo.addons.hr.tests.test_self_user_access.TestSelfAccessProfile {
+  test_access_my_profile()
+  test_access_my_profile_toolbar()
+  test_employee_fields_groups()
+  test_profile_view_fields()
+  test_readonly_fields()
+}
+class "TestSelfAccessRights" as odoo_src.odoo.addons.hr.tests.test_self_user_access.TestSelfAccessRights {
+  setUpClass()
+  testReadOtherEmployee()
+  testReadOtherUserEmployee()
+  testReadSelfEmployee()
+  testReadSelfUserEmployee()
+  testSearchUserEMployee()
+  testWriteOtherEmployee()
+  testWriteOtherUserEmployee()
+  testWriteOtherUserPreferencesEmployee()
+  testWriteSelfEmployee()
+  testWriteSelfPhoneEmployee()
+  testWriteSelfUserEmployee()
+  testWriteSelfUserEmployeeSettingFalse()
+  testWriteSelfUserPreferencesEmployee()
+  test_access_employee_account()
+  test_onchange_readable_fields_with_no_access()
+}
+class "User" as odoo_src.odoo.addons.hr.models.res_users.User {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  additional_note
+  address_id
+  barcode
+  birthday
+  can_edit
+  category_ids
+  certificate
+  children
+  coach_id
+  country_of_birth
+  create_employee
+  create_employee_id
+  department_id
+  distance_home_work
+  distance_home_work_unit
+  emergency_contact
+  emergency_phone
+  employee_bank_account_id
+  employee_count
+  employee_country_id
+  employee_id
+  employee_ids
+  employee_parent_id
+  employee_resource_calendar_id
+  employee_type
+  gender
+  hr_presence_state
+  identification_id
+  is_system
+  job_title
+  km_home_work
+  last_activity
+  last_activity_time
+  marital
+  mobile_phone
+  passport_id
+  permit_no
+  pin
+  place_of_birth
+  private_city
+  private_country_id
+  private_email
+  private_lang
+  private_phone
+  private_state_id
+  private_street
+  private_street2
+  private_zip
+  spouse_birthdate
+  spouse_complete_name
+  ssnid
+  study_field
+  study_school
+  visa_expire
+  visa_no
+  work_contact_id
+  work_email
+  work_location_id
+  work_location_name
+  work_location_type
+  work_phone
+  action_create_employee()
+  action_get()
+  action_open_employees()
+  create(vals_list)
+  get_view(view_id, view_type)
+  get_views(views, options)
+  write(vals)
+}
+class "WorkLocation" as odoo_src.odoo.addons.hr.models.hr_work_location.WorkLocation {
+  active
+  address_id
+  company_id
+  location_number
+  location_type
+  name
+}
+odoo_src.odoo.addons.hr.tests.test_mail_activity_plan.TestActivitySchedule --|> odoo_src.odoo.addons.hr.tests.test_mail_activity_plan.ActivityScheduleHRCase
+odoo_src.odoo.addons.hr.tests.test_resource.TestResource --|> odoo_src.odoo.addons.hr.tests.common.TestHrCommon
+@enduml

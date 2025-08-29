@@ -1,0 +1,10 @@
+@startuml classes_l10n_ma
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ma.models.template_ma.AccountChartTemplate {
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_ma.models.base_document_layout.BaseDocumentLayout {
+  company_details
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ma.models.res_partner.ResPartner {
+}
+@enduml

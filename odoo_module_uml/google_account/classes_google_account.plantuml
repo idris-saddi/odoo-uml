@@ -1,0 +1,8 @@
+@startuml classes_google_account
+set namespaceSeparator none
+class "GoogleAuth" as odoo_src.odoo.addons.google_account.controllers.main.GoogleAuth {
+  oauth2callback()
+}
+class "GoogleService" as odoo_src.odoo.addons.google_account.models.google_service.GoogleService {
+}
+@enduml

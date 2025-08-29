@@ -1,0 +1,22 @@
+@startuml classes_payment_mollie
+set namespaceSeparator none
+class "MollieCommon" as odoo_src.odoo.addons.payment_mollie.tests.common.MollieCommon {
+  setUpClass()
+}
+class "MollieController" as odoo_src.odoo.addons.payment_mollie.controllers.main.MollieController {
+  mollie_return_from_checkout()
+  mollie_webhook()
+}
+class "MollieTest" as odoo_src.odoo.addons.payment_mollie.tests.test_mollie.MollieTest {
+  test_payment_request_payload_values()
+  test_webhook_notification_confirms_transaction()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_mollie.models.payment_provider.PaymentProvider {
+  code
+  mollie_api_key
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_mollie.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+@enduml

@@ -1,0 +1,80 @@
+@startuml classes_l10n_id_efaktur
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_id_efaktur.models.account_move.AccountMove {
+  l10n_id_available_range_count
+  l10n_id_efaktur_document
+  l10n_id_efaktur_range
+  l10n_id_kode_transaksi
+  l10n_id_need_kode_transaksi
+  l10n_id_replace_invoice_id
+  l10n_id_show_kode_transaksi
+  l10n_id_tax_number
+  button_draft()
+  download_csv()
+  download_efaktur()
+  reset_efaktur()
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_id_efaktur.wizard.account_move_reversal.AccountMoveReversal {
+}
+class "Efaktur" as odoo_src.odoo.addons.l10n_id_efaktur.models.efaktur.Efaktur {
+  available
+  company_id
+  max
+  min
+  next_num
+  create(vals_list)
+  pop_number()
+  push_number(company_id, number)
+  write(vals)
+}
+class "EfakturDocument" as odoo_src.odoo.addons.l10n_id_efaktur.models.efaktur_document.EfakturDocument {
+  active
+  attachment_id
+  company_id
+  invoice_ids
+  name
+  action_download()
+  action_regenerate()
+}
+class "EfakturDownloadController" as odoo_src.odoo.addons.l10n_id_efaktur.controllers.download_efaktur.EfakturDownloadController {
+  download_invoice_attachments(attachments)
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_id_efaktur.models.res_partner.ResPartner {
+  l10n_id_kode_transaksi
+  l10n_id_nik
+  l10n_id_pkp
+}
+class "TestIndonesianEfaktur" as odoo_src.odoo.addons.l10n_id_efaktur.tests.test_l10n_id_efaktur.TestIndonesianEfaktur {
+  setUpClass()
+  test_available_range_count()
+  test_change_min_max()
+  test_efaktur_consume_code()
+  test_efaktur_csv_output_1()
+  test_efaktur_csv_output_address()
+  test_efaktur_csv_output_decimal_place()
+  test_efaktur_delete_range()
+  test_efaktur_do_not_consume_code()
+  test_efaktur_download_mismatch_flow()
+  test_efaktur_download_multi_company()
+  test_efaktur_download_reset_draft()
+  test_efaktur_download_separate()
+  test_efaktur_download_together()
+  test_efaktur_nik_with_no_vat()
+  test_efaktur_no_vat_nik()
+  test_efaktur_post_multi_invoices()
+  test_efaktur_release_last_number()
+  test_efaktur_release_number_not_last()
+  test_efaktur_reverse_invoice_flow()
+  test_efaktur_show_error_no_document_invoice()
+  test_efaktur_total_rounding_accuracy()
+  test_efaktur_use_vat()
+  test_multiple_range_select_on_invoice()
+  test_next_num()
+  test_posting_without_code()
+}
+class "TestIndonesianEfakturDownload" as odoo_src.odoo.addons.l10n_id_efaktur.tests.test_l10n_id_efaktur_download.TestIndonesianEfakturDownload {
+  test_efaktur_download_multiple()
+  test_efaktur_download_one_document()
+}
+odoo_src.odoo.addons.l10n_id_efaktur.tests.test_l10n_id_efaktur_download.TestIndonesianEfakturDownload --|> odoo_src.odoo.addons.l10n_id_efaktur.tests.test_l10n_id_efaktur.TestIndonesianEfaktur
+@enduml

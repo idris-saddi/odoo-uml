@@ -1,0 +1,9 @@
+@startuml classes_account_qr_code_emv
+set namespaceSeparator none
+class "ResPartnerBank" as odoo_src.odoo.addons.account_qr_code_emv.models.res_bank.ResPartnerBank {
+  display_qr_setting
+  include_reference
+  proxy_type
+  proxy_value
+}
+@enduml

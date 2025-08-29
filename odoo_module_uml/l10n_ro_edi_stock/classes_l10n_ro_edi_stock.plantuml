@@ -1,0 +1,57 @@
+@startuml classes_l10n_ro_edi_stock
+set namespaceSeparator none
+class "DeliveryCarrier" as odoo_src.odoo.addons.l10n_ro_edi_stock.models.delivery_carrier.DeliveryCarrier {
+  l10n_ro_edi_stock_partner_id
+}
+class "ETransportAPI" as odoo_src.odoo.addons.l10n_ro_edi_stock.models.etransport_api.ETransportAPI {
+  get_status(company_id, document_load_id, session)
+  upload_data(company_id, data)
+}
+class "L10nRoEdiStockDocument" as odoo_src.odoo.addons.l10n_ro_edi_stock.models.l10n_ro_edi_stock_document.L10nRoEdiStockDocument {
+  invoice_id
+  l10n_ro_edi_stock_load_id
+  l10n_ro_edi_stock_uit
+  message
+  picking_id
+  state
+}
+class "Picking" as odoo_src.odoo.addons.l10n_ro_edi_stock.models.stock_picking.Picking {
+  l10n_ro_edi_stock_available_end_loc_types
+  l10n_ro_edi_stock_available_operation_scopes
+  l10n_ro_edi_stock_available_start_loc_types
+  l10n_ro_edi_stock_document_ids
+  l10n_ro_edi_stock_document_uit
+  l10n_ro_edi_stock_enable
+  l10n_ro_edi_stock_enable_amend
+  l10n_ro_edi_stock_enable_fetch
+  l10n_ro_edi_stock_enable_send
+  l10n_ro_edi_stock_end_bcp
+  l10n_ro_edi_stock_end_customs_office
+  l10n_ro_edi_stock_end_loc_type
+  l10n_ro_edi_stock_fields_readonly
+  l10n_ro_edi_stock_operation_scope
+  l10n_ro_edi_stock_operation_type
+  l10n_ro_edi_stock_remarks
+  l10n_ro_edi_stock_start_bcp
+  l10n_ro_edi_stock_start_customs_office
+  l10n_ro_edi_stock_start_loc_type
+  l10n_ro_edi_stock_state
+  l10n_ro_edi_stock_trailer_1_number
+  l10n_ro_edi_stock_trailer_2_number
+  l10n_ro_edi_stock_vehicle_number
+  action_l10n_ro_edi_stock_fetch_status()
+  action_l10n_ro_edi_stock_send_etransport()
+  button_validate()
+}
+class "TestETransportFlows" as odoo_src.odoo.addons.l10n_ro_edi_stock.tests.test_etransport_flows.TestETransportFlows {
+  setUpClass()
+  test_export(make_request)
+  test_intra_community_purchase(make_request)
+  test_send_and_amend_etransport(make_request)
+}
+class "TestL10nRoEdiStockCommon" as odoo_src.odoo.addons.l10n_ro_edi_stock.tests.common.TestL10nRoEdiStockCommon {
+  change_product_qty(product, new_quantity, product_tmpl)
+  create_stock_picking(partner, name, location_id, location_dest_id, picking_type, product_data)
+  setUpClass()
+}
+@enduml

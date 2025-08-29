@@ -1,0 +1,13 @@
+@startuml classes_account_edi_ubl_cii_tax_extension
+set namespaceSeparator none
+class "AccountEdiCommon" as odoo_src.odoo.addons.account_edi_ubl_cii_tax_extension.models.account_edi_common.AccountEdiCommon {
+}
+class "AccountTax" as odoo_src.odoo.addons.account_edi_ubl_cii_tax_extension.models.account_tax.AccountTax {
+  ubl_cii_tax_category_code
+  ubl_cii_tax_exemption_reason_code
+}
+class "TestAccountEdiUblCiiTaxExtension" as odoo_src.odoo.addons.account_edi_ubl_cii_tax_extension.tests.test_ubl_cii_tax_extension.TestAccountEdiUblCiiTaxExtension {
+  setUpClass()
+  test_tax_subtotal()
+}
+@enduml

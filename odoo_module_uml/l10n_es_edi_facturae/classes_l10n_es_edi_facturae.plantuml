@@ -1,0 +1,66 @@
+@startuml classes_l10n_es_edi_facturae
+set namespaceSeparator none
+class "AcRoleType" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.res_partner.AcRoleType {
+  code
+  name
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.account_move.AccountMove {
+  l10n_es_edi_facturae_reason_code
+  l10n_es_edi_facturae_xml_file
+  l10n_es_edi_facturae_xml_id
+  l10n_es_invoicing_period_end_date
+  l10n_es_invoicing_period_start_date
+  l10n_es_payment_means
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_es_edi_facturae.wizard.account_move_reversal.AccountMoveReversal {
+  l10n_es_edi_facturae_reason_code
+  reverse_moves(is_modify)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.account_move_send.AccountMoveSend {
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.l10n_es_edi_facturae.wizard.account_move_send_wizard.AccountMoveSendWizard {
+  action_send_and_print(allow_fallback_pdf)
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.account_tax.AccountTax {
+  l10n_es_edi_facturae_tax_type
+}
+class "Certificate" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.certificate.Certificate {
+  scope
+}
+class "Company" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.res_company.Company {
+  l10n_es_edi_facturae_certificate_ids
+  l10n_es_edi_facturae_residence_type
+}
+class "Partner" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.res_partner.Partner {
+  invoice_edi_format
+  l10n_es_edi_facturae_ac_center_code
+  l10n_es_edi_facturae_ac_logical_operational_point
+  l10n_es_edi_facturae_ac_physical_gln
+  l10n_es_edi_facturae_ac_role_type_ids
+  l10n_es_edi_facturae_residence_type
+  type
+}
+class "TestEdiFacturaeXmls" as odoo_src.odoo.addons.l10n_es_edi_facturae.tests.test_edi_xml.TestEdiFacturaeXmls {
+  create_invoice()
+  create_send_and_print(invoices)
+  setUpClass()
+  test_cannot_generate_unsigned_xml()
+  test_discount_100_percent()
+  test_generate_signed_xml(date)
+  test_generate_with_administrative_centers()
+  test_generate_with_invoice_period()
+  test_generate_with_payment_means()
+  test_import_multiple_invoices()
+  test_import_withheld_taxes()
+  test_in_invoice()
+  test_no_certificate_facturae_not_selected()
+  test_refund_invoice()
+  test_simplified_invoice()
+  test_tax_withheld()
+}
+class "UoM" as odoo_src.odoo.addons.l10n_es_edi_facturae.models.uom_uom.UoM {
+  l10n_es_edi_facturae_uom_code
+}
+@enduml

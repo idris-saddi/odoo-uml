@@ -1,0 +1,29 @@
+@startuml classes_account_debit_note
+set namespaceSeparator none
+class "AccountDebitNote" as odoo_src.odoo.addons.account_debit_note.wizard.account_debit_note.AccountDebitNote {
+  copy_lines
+  country_code
+  date
+  journal_id
+  journal_type
+  move_ids
+  move_type
+  reason
+  create_debit()
+  default_get(fields)
+}
+class "AccountJournal" as odoo_src.odoo.addons.account_debit_note.models.account_journal.AccountJournal {
+  debit_sequence
+}
+class "AccountMove" as odoo_src.odoo.addons.account_debit_note.models.account_move.AccountMove {
+  debit_note_count
+  debit_note_ids
+  debit_origin_id
+  action_debit_note()
+  action_view_debit_notes()
+}
+class "TestAccountDebitNote" as odoo_src.odoo.addons.account_debit_note.tests.test_out_debit_note.TestAccountDebitNote {
+  test_00_debit_note_out_invoice()
+  test_10_debit_note_in_refund()
+}
+@enduml

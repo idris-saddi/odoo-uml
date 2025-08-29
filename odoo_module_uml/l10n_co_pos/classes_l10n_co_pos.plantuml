@@ -1,0 +1,5 @@
+@startuml classes_l10n_co_pos
+set namespaceSeparator none
+class "PosOrder" as odoo_src.odoo.addons.l10n_co_pos.models.pos_order.PosOrder {
+}
+@enduml

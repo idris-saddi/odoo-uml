@@ -1,0 +1,10 @@
+@startuml classes_base_iban
+set namespaceSeparator none
+class "ResPartnerBank" as odoo_src.odoo.addons.base_iban.models.res_partner_bank.ResPartnerBank {
+  check_iban(iban)
+  create(vals_list)
+  get_bban()
+  retrieve_acc_type(acc_number)
+  write(vals)
+}
+@enduml

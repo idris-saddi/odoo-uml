@@ -1,0 +1,2731 @@
+@startuml classes_account
+set namespaceSeparator none
+class "AccountAccount" as odoo_src.odoo.addons.account.models.account_account.AccountAccount {
+  account_type
+  allowed_journal_ids
+  code
+  code_mapping_ids
+  code_store
+  company_currency_id
+  company_fiscal_country_code
+  company_ids
+  currency_id
+  current_balance
+  deprecated
+  display_mapping_tab
+  group_id
+  include_initial_balance
+  internal_group
+  name
+  non_trade
+  note
+  opening_balance
+  opening_credit
+  opening_debit
+  placeholder_code
+  reconcile
+  related_taxes_amount
+  root_id
+  tag_ids
+  tax_ids
+  used
+  action_open_related_taxes()
+  action_unmerge()
+  copy_data(default)
+  copy_translations(new, excluded)
+  create(vals_list)
+  default_get(default_fields)
+  get_import_templates()
+  name_create(name)
+  name_search(name, args, operator, limit) -> list[tuple[int, str]]
+  write(vals)
+}
+class "AccountAccountTag" as odoo_src.odoo.addons.account.models.account_account_tag.AccountAccountTag {
+  active
+  applicability
+  color
+  country_id
+  name
+  tax_negate
+  create(vals_list)
+}
+class "AccountAnalyticAccount" as odoo_src.odoo.addons.account.models.account_analytic_account.AccountAnalyticAccount {
+  credit
+  debit
+  invoice_count
+  vendor_bill_count
+  action_view_invoice()
+  action_view_vendor_bill()
+}
+class "AccountAnalyticApplicability" as odoo_src.odoo.addons.account.models.account_analytic_plan.AccountAnalyticApplicability {
+  account_prefix
+  account_prefix_placeholder
+  business_domain
+  display_account_prefix
+  product_categ_id
+}
+class "AccountAnalyticDistributionModel" as odoo_src.odoo.addons.account.models.account_analytic_distribution_model.AccountAnalyticDistributionModel {
+  account_prefix
+  prefix_placeholder
+  product_categ_id
+  product_id
+}
+class "AccountAnalyticLine" as odoo_src.odoo.addons.account.models.account_analytic_line.AccountAnalyticLine {
+  amount
+  category
+  code
+  general_account_id
+  journal_id
+  move_line_id
+  partner_id
+  product_id
+  product_uom_id
+  ref
+  create(vals)
+  on_change_unit_amount()
+  unlink()
+  view_header_get(view_id, view_type)
+  write(vals)
+}
+class "AccountBankStatement" as odoo_src.odoo.addons.account.models.account_bank_statement.AccountBankStatement {
+  attachment_ids
+  balance_end
+  balance_end_real
+  balance_start
+  company_id
+  currency_id
+  date
+  first_line_index
+  is_complete
+  is_valid
+  journal_id
+  line_ids
+  name
+  problem_description
+  reference
+  create(vals_list)
+  default_get(fields_list)
+  init()
+  write(values)
+}
+class "AccountBankStatementLine" as odoo_src.odoo.addons.account.models.account_bank_statement_line.AccountBankStatementLine {
+  account_number
+  amount
+  amount_currency
+  amount_residual
+  company_id
+  country_code
+  currency_id
+  foreign_currency_id
+  internal_index
+  is_reconciled
+  journal_id
+  move_id
+  partner_id
+  partner_name
+  payment_ids
+  payment_ref
+  running_balance
+  sequence
+  statement_balance_end_real
+  statement_complete
+  statement_id
+  statement_name
+  statement_valid
+  transaction_details
+  transaction_type
+  action_undo_reconciliation()
+  create(vals_list)
+  default_get(fields_list)
+  init()
+  new(values, origin, ref)
+  read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+  unlink()
+  write(vals)
+}
+class "AccountCashRounding" as odoo_src.odoo.addons.account.models.account_cash_rounding.AccountCashRounding {
+  loss_account_id
+  name
+  profit_account_id
+  rounding
+  rounding_method
+  strategy
+  compute_difference(currency, amount)
+  round(amount)
+  validate_rounding()
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.account.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.account.models.template_generic_coa.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.account.models.chart_template.AccountChartTemplate {
+  ref(xmlid, raise_if_not_found)
+  try_loading(template_code, company, install_demo, force_create)
+}
+class "AccountCodeMapping" as odoo_src.odoo.addons.account.models.account_code_mapping.AccountCodeMapping {
+  account_id
+  code
+  company_id
+  create(vals_list)
+}
+class "AccountDocumentDownloadController" as odoo_src.odoo.addons.account.controllers.download_docs.AccountDocumentDownloadController {
+  download_invoice_attachments(attachments)
+  download_invoice_documents_filetype(invoices, filetype, allow_fallback)
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.account.models.partner.AccountFiscalPosition {
+  account_ids
+  account_map
+  active
+  auto_apply
+  company_country_id
+  company_id
+  country_group_id
+  country_id
+  fiscal_country_codes
+  foreign_vat
+  foreign_vat_header_mode
+  name
+  note
+  sequence
+  state_ids
+  states_count
+  tax_ids
+  tax_map
+  vat_required
+  zip_from
+  zip_to
+  action_create_foreign_taxes()
+  create(vals_list)
+  map_account(account)
+  map_tax(taxes)
+  write(vals)
+}
+class "AccountFiscalPositionAccount" as odoo_src.odoo.addons.account.models.partner.AccountFiscalPositionAccount {
+  account_dest_id
+  account_src_id
+  company_id
+  position_id
+}
+class "AccountFiscalPositionTax" as odoo_src.odoo.addons.account.models.partner.AccountFiscalPositionTax {
+  company_id
+  position_id
+  tax_dest_active
+  tax_dest_id
+  tax_src_id
+}
+class "AccountFullReconcile" as odoo_src.odoo.addons.account.models.account_full_reconcile.AccountFullReconcile {
+  exchange_move_id
+  partial_reconcile_ids
+  reconciled_line_ids
+  create(vals_list)
+  unlink()
+}
+class "AccountGroup" as odoo_src.odoo.addons.account.models.account_account.AccountGroup {
+  code_prefix_end
+  code_prefix_start
+  company_id
+  name
+  parent_id
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "AccountIncoterms" as odoo_src.odoo.addons.account.models.account_incoterms.AccountIncoterms {
+  active
+  code
+  name
+}
+class "AccountInvoiceReport" as odoo_src.odoo.addons.account.report.account_invoice_report.AccountInvoiceReport {
+  account_id
+  commercial_partner_id
+  company_currency_id
+  company_id
+  country_id
+  currency_id
+  fiscal_position_id
+  inventory_value
+  invoice_date
+  invoice_date_due
+  invoice_user_id
+  journal_id
+  move_id
+  move_type
+  partner_id
+  payment_state
+  price_average
+  price_margin
+  price_subtotal
+  price_subtotal_currency
+  price_total
+  product_categ_id
+  product_id
+  product_uom_id
+  quantity
+  state
+  read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+}
+class "AccountJournal" as odoo_src.odoo.addons.account.models.account_journal.AccountJournal {
+  account_control_ids
+  accounting_date
+  active
+  alias_id
+  autocheck_on_post
+  available_payment_method_ids
+  bank_acc_number
+  bank_account_id
+  bank_id
+  bank_statements_source
+  code
+  company_id
+  company_partner_id
+  country_code
+  currency_id
+  default_account_id
+  default_account_type
+  display_alias_fields
+  inbound_payment_method_line_ids
+  invoice_reference_model
+  invoice_reference_type
+  journal_group_ids
+  loss_account_id
+  name
+  outbound_payment_method_line_ids
+  payment_sequence
+  profit_account_id
+  refund_sequence
+  restrict_mode_hash_table
+  selected_payment_method_codes
+  sequence
+  sequence_override_regex
+  suspense_account_id
+  type
+  action_configure_bank_journal()
+  copy_data(default)
+  create(vals_list)
+  create_document_from_attachment(attachment_ids)
+  get_next_bank_cash_default_code(journal_type, company, cache, protected_codes)
+  set_bank_account(acc_number, bank_id)
+  unlink()
+  write(vals)
+}
+class "AccountJournalGroup" as odoo_src.odoo.addons.account.models.account_journal.AccountJournalGroup {
+  company_id
+  excluded_journal_ids
+  name
+  sequence
+}
+class "<color:red>AccountLockException</color>" as odoo_src.odoo.addons.account.models.account_lock_exception.AccountLockException {
+  active
+  company_id
+  company_lock_date
+  end_datetime
+  fiscalyear_lock_date
+  lock_date
+  lock_date_field
+  purchase_lock_date
+  reason
+  sale_lock_date
+  state
+  tax_lock_date
+  user_id
+  action_revoke()
+  action_show_audit_trail_during_exception()
+  copy(default)
+  create(vals_list)
+  init()
+}
+class "AccountMergeWizard" as odoo_src.odoo.addons.account.wizard.account_merge_wizard.AccountMergeWizard {
+  account_ids
+  disable_merge_button
+  is_group_by_name
+  wizard_line_ids
+  action_merge()
+  default_get(fields)
+}
+class "AccountMergeWizardLine" as odoo_src.odoo.addons.account.wizard.account_merge_wizard.AccountMergeWizardLine {
+  account_has_hashed_entries
+  account_id
+  company_ids
+  display_type
+  grouping_key
+  info
+  is_selected
+  sequence
+  wizard_id
+}
+class "AccountMove" as odoo_src.odoo.addons.account.models.account_move.AccountMove {
+  abnormal_amount_warning
+  abnormal_date_warning
+  always_tax_exigible
+  amount_residual
+  amount_residual_signed
+  amount_tax
+  amount_tax_signed
+  amount_total
+  amount_total_in_currency_signed
+  amount_total_signed
+  amount_total_words
+  amount_untaxed
+  amount_untaxed_in_currency_signed
+  amount_untaxed_signed
+  attachment_ids
+  audit_trail_message_ids
+  auto_post
+  auto_post_origin_id
+  auto_post_until
+  bank_partner_id
+  checked
+  commercial_partner_id
+  company_currency_id
+  company_id
+  company_price_include
+  country_code
+  currency_id
+  date
+  delivery_date
+  direction_sign
+  display_inactive_currency_warning
+  display_qr_code
+  duplicated_ref_ids
+  expected_currency_rate
+  fiscal_position_id
+  has_reconciled_entries
+  hide_post_button
+  highest_name
+  inalterable_hash
+  incoterm_location
+  invoice_cash_rounding_id
+  invoice_currency_rate
+  invoice_date
+  invoice_date_due
+  invoice_filter_type_domain
+  invoice_has_outstanding
+  invoice_incoterm_id
+  invoice_line_ids
+  invoice_origin
+  invoice_outstanding_credits_debits_widget
+  invoice_partner_display_name
+  invoice_payment_term_id
+  invoice_payments_widget
+  invoice_pdf_report_file
+  invoice_pdf_report_id
+  invoice_source_email
+  invoice_user_id
+  invoice_vendor_bill_id
+  is_being_sent
+  is_manually_modified
+  is_move_sent
+  is_storno
+  journal_group_id
+  journal_id
+  line_ids
+  made_sequence_gap
+  matched_payment_ids
+  move_sent_values
+  move_type
+  name
+  name_placeholder
+  narration
+  need_cancel_request
+  needed_terms
+  needed_terms_dirty
+  next_payment_date
+  origin_payment_id
+  partner_bank_id
+  partner_credit
+  partner_credit_warning
+  partner_id
+  partner_shipping_id
+  payment_count
+  payment_reference
+  payment_state
+  payment_term_details
+  posted_before
+  preferred_payment_method_line_id
+  qr_code_method
+  quick_edit_mode
+  quick_edit_total_amount
+  quick_encoding_vals
+  ref
+  restrict_mode_hash_table
+  reversal_move_ids
+  reversed_entry_id
+  secure_sequence_number
+  secured
+  sending_data
+  show_delivery_date
+  show_discount_details
+  show_name_warning
+  show_payment_term_details
+  show_reset_to_draft_button
+  show_update_fpos
+  state
+  statement_id
+  statement_line_id
+  status_in_payment
+  suitable_journal_ids
+  tax_calculation_rounding_method
+  tax_cash_basis_created_move_ids
+  tax_cash_basis_origin_move_id
+  tax_cash_basis_rec_id
+  tax_country_code
+  tax_country_id
+  tax_lock_date_message
+  tax_totals
+  taxes_legal_notes
+  type_name
+  user_id
+  action_activate_currency()
+  action_add_from_catalog()
+  action_duplicate()
+  action_force_register_payment()
+  action_invoice_download_pdf()
+  action_invoice_sent()
+  action_open_business_doc()
+  action_post()
+  action_print_pdf()
+  action_register_payment()
+  action_reverse()
+  action_send_and_print()
+  action_switch_move_type()
+  action_toggle_block_payment()
+  action_update_fpos_values()
+  button_cancel()
+  button_draft()
+  button_hash()
+  button_request_cancel()
+  button_set_checked()
+  check_field_access_rights(operation, field_names)
+  check_move_sequence_chain()
+  compute_move_sent_values()
+  copy(default)
+  copy_data(default)
+  create(vals_list)
+  get_currency_rate(company_id, to_currency_id, date)
+  get_extra_print_items()
+  get_inbound_types(include_receipts)
+  get_invoice_localisation_fields_required_to_invoice(country_id)
+  get_invoice_types(include_receipts)
+  get_outbound_types(include_receipts)
+  get_purchase_types(include_receipts)
+  get_sale_types(include_receipts)
+  init()
+  is_entry()
+  is_inbound(include_receipts)
+  is_invoice(include_receipts)
+  is_outbound(include_receipts)
+  is_purchase_document(include_receipts)
+  is_sale_document(include_receipts)
+  js_assign_outstanding_line(line_id)
+  js_remove_outstanding_partial(partial_id)
+  message_new(msg_dict, custom_values)
+  onchange(values, field_names, fields_spec)
+  open_created_caba_entries()
+  open_payments()
+  open_reconcile_view()
+  preview_invoice()
+  refresh_invoice_currency_rate()
+  unlink()
+  write(vals)
+}
+class "AccountMove" as odoo_src.odoo.addons.account.models.account_payment.AccountMove {
+  payment_ids
+}
+class "AccountMove" as odoo_src.odoo.addons.account.models.account_bank_statement_line.AccountMove {
+  statement_line_ids
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.account.models.account_move_line.AccountMoveLine {
+  account_code
+  account_id
+  account_internal_group
+  account_name
+  account_root_id
+  account_type
+  amount_currency
+  amount_residual
+  amount_residual_currency
+  analytic_distribution
+  analytic_line_ids
+  balance
+  commercial_partner_country
+  company_currency_id
+  company_id
+  credit
+  cumulated_balance
+  currency_id
+  currency_rate
+  date
+  date_maturity
+  debit
+  discount
+  discount_allocation_dirty
+  discount_allocation_key
+  discount_allocation_needed
+  discount_amount_currency
+  discount_balance
+  discount_date
+  display_type
+  epd_dirty
+  epd_key
+  epd_needed
+  full_reconcile_id
+  group_tax_id
+  invoice_date
+  is_account_reconcile
+  is_imported
+  is_refund
+  is_same_currency
+  is_storno
+  journal_group_id
+  journal_id
+  matched_credit_ids
+  matched_debit_ids
+  matching_number
+  move_id
+  move_name
+  move_type
+  name
+  parent_state
+  partner_id
+  payment_date
+  payment_id
+  price_subtotal
+  price_total
+  price_unit
+  product_category_id
+  product_id
+  product_uom_category_id
+  product_uom_id
+  quantity
+  reconcile_model_id
+  reconciled
+  ref
+  sequence
+  statement_id
+  statement_line_id
+  tax_base_amount
+  tax_calculation_rounding_method
+  tax_group_id
+  tax_ids
+  tax_line_id
+  tax_repartition_line_id
+  tax_tag_ids
+  tax_tag_invert
+  term_key
+  action_add_from_catalog()
+  action_automatic_entry(default_action)
+  action_open_business_doc()
+  action_payment_items_register_payment()
+  action_register_payment(ctx)
+  action_unreconcile_match_entries()
+  check_field_access_rights(operation, field_names)
+  copy_data(default)
+  create(vals_list)
+  default_get(fields_list)
+  flush_model(fnames)
+  flush_recordset(fnames)
+  get_import_templates()
+  get_views(views, options)
+  init()
+  invalidate_model(fnames, flush)
+  invalidate_recordset(fnames, flush)
+  open_reconcile_view()
+  read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+  reconcile()
+  remove_move_reconcile()
+  search_fetch(domain, field_names, offset, limit, order)
+  unlink()
+  write(vals)
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.account.models.account_move_line_tax_details.AccountMoveLine {
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.account.wizard.account_move_reversal.AccountMoveReversal {
+  available_journal_ids
+  company_id
+  country_code
+  currency_id
+  date
+  journal_id
+  move_ids
+  move_type
+  new_move_ids
+  reason
+  residual
+  default_get(fields)
+  modify_moves()
+  refund_moves()
+  reverse_moves(is_modify)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.account.models.account_move_send.AccountMoveSend {
+}
+class "AccountMoveSendBatchWizard" as odoo_src.odoo.addons.account.wizard.account_move_send_batch_wizard.AccountMoveSendBatchWizard {
+  alerts
+  move_ids
+  summary_data
+  action_send_and_print(force_synchronous, allow_fallback_pdf)
+  default_get(fields_list)
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.account.wizard.account_move_send_wizard.AccountMoveSendWizard {
+  alerts
+  company_id
+  display_pdf_report_id
+  extra_edi_checkboxes
+  extra_edis
+  invoice_edi_format
+  is_download_only
+  mail_attachments_widget
+  mail_body
+  mail_lang
+  mail_partner_ids
+  mail_subject
+  mail_template_id
+  move_id
+  pdf_report_id
+  sending_method_checkboxes
+  sending_methods
+  action_send_and_print(allow_fallback_pdf)
+  default_get(fields_list)
+}
+class "AccountPartialReconcile" as odoo_src.odoo.addons.account.models.account_partial_reconcile.AccountPartialReconcile {
+  amount
+  company_currency_id
+  company_id
+  credit_amount_currency
+  credit_currency_id
+  credit_move_id
+  debit_amount_currency
+  debit_currency_id
+  debit_move_id
+  exchange_move_id
+  full_reconcile_id
+  max_date
+  create(vals_list)
+  unlink()
+}
+class "AccountPayment" as odoo_src.odoo.addons.account.models.account_payment.AccountPayment {
+  amount
+  amount_company_currency_signed
+  amount_signed
+  attachment_ids
+  available_journal_ids
+  available_partner_bank_ids
+  available_payment_method_line_ids
+  company_currency_id
+  company_id
+  country_code
+  currency_id
+  date
+  destination_account_id
+  duplicate_payment_ids
+  invoice_ids
+  is_matched
+  is_reconciled
+  is_sent
+  journal_id
+  memo
+  move_id
+  name
+  need_cancel_request
+  outstanding_account_id
+  paired_internal_transfer_payment_id
+  partner_bank_id
+  partner_id
+  partner_type
+  payment_method_code
+  payment_method_id
+  payment_method_line_id
+  payment_receipt_title
+  payment_reference
+  payment_type
+  qr_code
+  reconciled_bill_ids
+  reconciled_bills_count
+  reconciled_invoice_ids
+  reconciled_invoices_count
+  reconciled_invoices_type
+  reconciled_statement_line_ids
+  reconciled_statement_lines_count
+  require_partner_bank_account
+  show_partner_bank_account
+  state
+  action_cancel()
+  action_draft()
+  action_open_business_doc()
+  action_post()
+  action_reject()
+  action_validate()
+  button_open_bills()
+  button_open_invoices()
+  button_open_journal_entry()
+  button_open_statement_lines()
+  button_request_cancel()
+  copy_data(default)
+  create(vals_list)
+  init()
+  mark_as_sent()
+  unlink()
+  unmark_as_sent()
+  write(vals)
+}
+class "AccountPaymentMethod" as odoo_src.odoo.addons.account.models.account_payment_method.AccountPaymentMethod {
+  code
+  name
+  payment_type
+  create(vals_list)
+  unlink()
+}
+class "AccountPaymentMethodLine" as odoo_src.odoo.addons.account.models.account_payment_method.AccountPaymentMethodLine {
+  available_payment_method_ids
+  code
+  company_id
+  default_account_id
+  journal_id
+  name
+  payment_account_id
+  payment_method_id
+  payment_type
+  sequence
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "AccountPaymentRegister" as odoo_src.odoo.addons.account.wizard.account_payment_register.AccountPaymentRegister {
+  actionable_errors
+  amount
+  available_journal_ids
+  available_partner_bank_ids
+  available_payment_method_line_ids
+  batches
+  can_edit_wizard
+  can_group_payments
+  communication
+  company_currency_id
+  company_id
+  country_code
+  currency_id
+  custom_user_amount
+  custom_user_currency_id
+  duplicate_payment_ids
+  early_payment_discount_mode
+  group_payment
+  hide_writeoff_section
+  installments_mode
+  installments_switch_amount
+  installments_switch_html
+  is_register_payment_on_draft
+  journal_id
+  line_ids
+  missing_account_partners
+  partner_bank_id
+  partner_id
+  partner_type
+  payment_date
+  payment_difference
+  payment_difference_handling
+  payment_method_line_id
+  payment_type
+  qr_code
+  require_partner_bank_account
+  show_partner_bank_account
+  show_payment_difference
+  source_amount
+  source_amount_currency
+  source_currency_id
+  total_payments_amount
+  untrusted_bank_ids
+  untrusted_payments_count
+  writeoff_account_id
+  writeoff_is_exchange_account
+  writeoff_label
+  action_create_payments()
+  action_open_missing_account_partners()
+  action_open_untrusted_bank_accounts()
+  default_get(fields_list)
+}
+class "AccountPaymentTerm" as odoo_src.odoo.addons.account.models.account_payment_term.AccountPaymentTerm {
+  active
+  company_id
+  currency_id
+  discount_days
+  discount_percentage
+  display_on_invoice
+  early_discount
+  early_pay_discount_computation
+  example_amount
+  example_date
+  example_invalid
+  example_preview
+  example_preview_discount
+  fiscal_country_codes
+  line_ids
+  name
+  note
+  sequence
+  copy_data(default)
+}
+class "AccountPaymentTermLine" as odoo_src.odoo.addons.account.models.account_payment_term.AccountPaymentTermLine {
+  days_next_month
+  delay_type
+  display_days_next_month
+  nb_days
+  payment_id
+  value
+  value_amount
+}
+class "AccountReconcileModel" as odoo_src.odoo.addons.account.models.account_reconcile_model.AccountReconcileModel {
+  active
+  allow_payment_tolerance
+  auto_reconcile
+  company_id
+  counterpart_type
+  decimal_separator
+  line_ids
+  match_amount
+  match_amount_max
+  match_amount_min
+  match_journal_ids
+  match_label
+  match_label_param
+  match_nature
+  match_note
+  match_note_param
+  match_partner
+  match_partner_category_ids
+  match_partner_ids
+  match_same_currency
+  match_text_location_label
+  match_text_location_note
+  match_text_location_reference
+  match_transaction_type
+  match_transaction_type_param
+  matching_order
+  name
+  number_entries
+  partner_mapping_line_ids
+  past_months_limit
+  payment_tolerance_param
+  payment_tolerance_type
+  rule_type
+  sequence
+  show_decimal_separator
+  to_check
+  action_reconcile_stat()
+  copy_data(default)
+}
+class "AccountReconcileModelLine" as odoo_src.odoo.addons.account.models.account_reconcile_model.AccountReconcileModelLine {
+  account_id
+  allow_payment_tolerance
+  amount
+  amount_string
+  amount_type
+  company_id
+  force_tax_included
+  journal_id
+  label
+  model_id
+  payment_tolerance_param
+  rule_type
+  sequence
+  show_force_tax_included
+  tax_ids
+}
+class "AccountReconcileModelPartnerMapping" as odoo_src.odoo.addons.account.models.account_reconcile_model.AccountReconcileModelPartnerMapping {
+  company_id
+  model_id
+  narration_regex
+  partner_id
+  payment_ref_regex
+  validate_regex()
+}
+class "AccountReport" as odoo_src.odoo.addons.account.models.account_report.AccountReport {
+  active
+  availability_condition
+  chart_template
+  column_ids
+  country_id
+  currency_translation
+  default_opening_date_filter
+  filter_account_type
+  filter_aml_ir_filters
+  filter_analytic
+  filter_budgets
+  filter_date_range
+  filter_fiscal_position
+  filter_growth_comparison
+  filter_hide_0_lines
+  filter_hierarchy
+  filter_journals
+  filter_multi_company
+  filter_partner
+  filter_period_comparison
+  filter_show_draft
+  filter_unfold_all
+  filter_unreconciled
+  integer_rounding
+  line_ids
+  load_more_limit
+  name
+  only_tax_exigible
+  prefix_groups_threshold
+  root_report_id
+  search_bar
+  section_main_report_ids
+  section_report_ids
+  sequence
+  use_sections
+  variant_report_ids
+  copy(default)
+  copy_data(default)
+  write(vals)
+}
+class "AccountReportColumn" as odoo_src.odoo.addons.account.models.account_report.AccountReportColumn {
+  blank_if_zero
+  custom_audit_action_id
+  expression_label
+  figure_type
+  name
+  report_id
+  sequence
+  sortable
+}
+class "AccountReportExpression" as odoo_src.odoo.addons.account.models.account_report.AccountReportExpression {
+  auditable
+  blank_if_zero
+  carryover_target
+  date_scope
+  engine
+  figure_type
+  formula
+  green_on_positive
+  label
+  report_line_id
+  report_line_name
+  subformula
+  create(vals_list)
+  write(vals)
+}
+class "AccountReportExternalValue" as odoo_src.odoo.addons.account.models.account_report.AccountReportExternalValue {
+  carryover_origin_expression_label
+  carryover_origin_report_line_id
+  company_id
+  date
+  foreign_vat_fiscal_position_id
+  name
+  report_country_id
+  target_report_expression_id
+  target_report_expression_label
+  target_report_line_id
+  text_value
+  value
+}
+class "AccountReportLine" as odoo_src.odoo.addons.account.models.account_report.AccountReportLine {
+  account_codes_formula
+  action_id
+  aggregation_formula
+  children_ids
+  code
+  domain_formula
+  expression_ids
+  external_formula
+  foldable
+  groupby
+  hide_if_zero
+  hierarchy_level
+  horizontal_split_side
+  name
+  parent_id
+  print_on_new_page
+  report_id
+  sequence
+  tax_tags_formula
+  user_groupby
+}
+class "AccountRoot" as odoo_src.odoo.addons.account.models.account_root.AccountRoot {
+  name
+  parent_id
+  browse(ids)
+}
+class "AccountSecureEntries" as odoo_src.odoo.addons.account.wizard.account_secure_entries_wizard.AccountSecureEntries {
+  chains_to_hash_with_gaps
+  company_id
+  country_code
+  hash_date
+  max_hash_date
+  move_to_hash_ids
+  not_hashable_unlocked_move_ids
+  unreconciled_bank_statement_line_ids
+  warnings
+  action_secure_entries()
+  action_show_draft_moves_in_hashed_period()
+  action_show_moves(moves)
+}
+class "AccountTax" as odoo_src.odoo.addons.account.models.account_tax.AccountTax {
+  active
+  amount
+  amount_type
+  analytic
+  cash_basis_transition_account_id
+  children_tax_ids
+  company_id
+  company_price_include
+  country_code
+  country_id
+  description
+  has_negative_factor
+  hide_tax_exigibility
+  include_base_amount
+  invoice_label
+  invoice_legal_notes
+  invoice_repartition_line_ids
+  is_base_affected
+  is_used
+  name
+  name_searchable
+  price_include
+  price_include_override
+  refund_repartition_line_ids
+  repartition_line_ids
+  repartition_lines_str
+  sequence
+  tax_exigibility
+  tax_group_id
+  tax_scope
+  type_tax_use
+  compute_all(price_unit, currency, quantity, product, partner, is_refund, handle_price_include, include_caba_tags, rounding_method)
+  copy_data(default)
+  create(vals_list)
+  flatten_taxes_hierarchy()
+  get_tax_tags(is_refund, repartition_type)
+  onchange_amount()
+  onchange_amount_type()
+  onchange_price_include()
+  validate_tax_group_id()
+  write(vals)
+}
+class "AccountTaxGroup" as odoo_src.odoo.addons.account.models.account_tax.AccountTaxGroup {
+  advance_tax_payment_account_id
+  company_id
+  country_code
+  country_id
+  name
+  pos_receipt_label
+  preceding_subtotal
+  sequence
+  tax_payable_account_id
+  tax_receivable_account_id
+}
+class "AccountTaxRepartitionLine" as odoo_src.odoo.addons.account.models.account_tax.AccountTaxRepartitionLine {
+  account_id
+  company_id
+  document_type
+  factor
+  factor_percent
+  repartition_type
+  sequence
+  tag_ids
+  tag_ids_domain
+  tax_id
+  use_in_tax_closing
+}
+class "AccountTestInvoicingCommon" as odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingCommon {
+  chart_template : bool
+  country_code : bool
+  tax_number
+  assertInvoiceValues(move, expected_lines_values, expected_move_values)
+  assertXmlTreeEqual(xml_tree, expected_xml_tree)
+  assert_invoice_outstanding_reconciled_widget(invoice, expected_amounts)
+  assert_invoice_outstanding_to_reconcile_widget(invoice, expected_amounts)
+  change_company_country(company, country)
+  collect_company_accounting_data(company)
+  copy_account(account, default)
+  create_line_for_reconciliation(balance, amount_currency, currency, move_date, account_1, partner)
+  division_tax(amount)
+  enter_test_mode()
+  fixed_tax(amount)
+  get_default_groups()
+  get_xml_tree_from_attachment(attachment)
+  get_xml_tree_from_string(xml_tree_str)
+  group_of_taxes(taxes)
+  init_invoice(move_type, partner, invoice_date, post, products, amounts, taxes, company, currency, journal)
+  init_payment(amount, post, date, partner, currency)
+  percent_tax(amount)
+  python_tax(formula)
+  safe_copy(record)
+  setUpClass()
+  setup_armageddon_tax(tax_name, company_data)
+  setup_chart_template(chart_template)
+  setup_country(country_code)
+  setup_independent_company()
+  setup_independent_user()
+  setup_other_company()
+  setup_other_currency(code)
+  with_applied_xpath(xml_tree, xpath)
+}
+class "AccountTestInvoicingHttpCommon" as odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingHttpCommon {
+}
+class "AccountTestMockOnlineSyncCommon" as odoo_src.odoo.addons.account.tests.common.AccountTestMockOnlineSyncCommon {
+  mock_online_sync_favorite_institutions()
+  start_tour(url_path, tour_name, step_delay)
+}
+class "AccruedExpenseRevenue" as odoo_src.odoo.addons.account.wizard.accrued_orders.AccruedExpenseRevenue {
+  account_id
+  amount
+  company_id
+  currency_id
+  date
+  display_amount
+  journal_id
+  preview_data
+  reversal_date
+  create_entries()
+}
+class "AutoPostBillsWizard" as odoo_src.odoo.addons.account.wizard.account_autopost_bills_wizard.AutoPostBillsWizard {
+  nb_unmodified_bills
+  partner_id
+  partner_name
+  action_ask_later()
+  action_automate_partner()
+  action_never_automate_partner()
+}
+class "AutomaticEntryWizard" as odoo_src.odoo.addons.account.wizard.account_automatic_entry_wizard.AutomaticEntryWizard {
+  account_type
+  action
+  company_currency_id
+  company_id
+  date
+  destination_account_id
+  display_currency_helper
+  expense_accrual_account
+  journal_id
+  lock_date_message
+  move_data
+  move_line_ids
+  percentage
+  preview_move_data
+  revenue_accrual_account
+  total_amount
+  default_get(fields)
+  do_action()
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.account.wizard.base_document_layout.BaseDocumentLayout {
+  account_number
+  from_invoice
+  qr_code
+  vat
+  document_layout_save()
+}
+class "DecimalPrecision" as odoo_src.odoo.addons.account.models.decimal_precision.DecimalPrecision {
+  precision_get(application)
+}
+class "Digest" as odoo_src.odoo.addons.account.models.digest.Digest {
+  kpi_account_total_revenue
+  kpi_account_total_revenue_value
+}
+class "FinancialYearOpeningWizard" as odoo_src.odoo.addons.account.wizard.setup_wizards.FinancialYearOpeningWizard {
+  company_id
+  fiscalyear_last_day
+  fiscalyear_last_month
+  opening_date
+  opening_move_posted
+  action_save_onboarding_fiscal_year()
+  write(vals)
+}
+class "GroupsView" as odoo_src.odoo.addons.account.models.res_users.GroupsView {
+  get_application_groups(domain)
+}
+class "IrActionsReport" as odoo_src.odoo.addons.account.models.ir_actions_report.IrActionsReport {
+  is_invoice_report
+}
+class "IrAttachment" as odoo_src.odoo.addons.account.models.ir_attachment.IrAttachment {
+}
+class "IrModule" as odoo_src.odoo.addons.account.models.ir_module.IrModule {
+  account_templates
+  module_uninstall()
+  write(vals)
+}
+class "IrUiMenu" as odoo_src.odoo.addons.account.models.ir_ui_menu.IrUiMenu {
+}
+class "LegacyHTTPAdapter" as odoo_src.odoo.addons.account.tools.LegacyHTTPAdapter {
+  init_poolmanager()
+}
+class "MailTemplate" as odoo_src.odoo.addons.account.models.mail_template.MailTemplate {
+}
+class "MailTrackingValues" as odoo_src.odoo.addons.account.models.mail_tracking_value.MailTrackingValues {
+  write(vals)
+}
+class "MergePartnerAutomatic" as odoo_src.odoo.addons.account.wizard.base_partner_merge.MergePartnerAutomatic {
+}
+class "MergePartnerAutomatic" as odoo_src.odoo.addons.account.models.merge_partner_automatic.MergePartnerAutomatic {
+}
+class "Message" as odoo_src.odoo.addons.account.models.mail_message.Message {
+  account_audit_log_account_id
+  account_audit_log_activated
+  account_audit_log_company_id
+  account_audit_log_move_id
+  account_audit_log_partner_id
+  account_audit_log_preview
+  account_audit_log_tax_id
+  write(vals)
+}
+class "Onboarding" as odoo_src.odoo.addons.account.models.onboarding_onboarding.Onboarding {
+  action_close_panel_account_dashboard()
+  action_close_panel_account_invoice()
+}
+class "OnboardingStep" as odoo_src.odoo.addons.account.models.onboarding_onboarding_step.OnboardingStep {
+  action_open_step_bank_account()
+  action_open_step_base_document_layout()
+  action_open_step_chart_of_accounts()
+  action_open_step_company_data()
+  action_open_step_create_invoice()
+  action_open_step_fiscal_year()
+  action_open_step_sales_tax()
+  action_validate_step_base_document_layout()
+}
+class "PortalAccount" as odoo_src.odoo.addons.account.controllers.portal.PortalAccount {
+  details_form_validate(data, partner_creation)
+  extra_details_form_validate(data, additional_required_fields, error, error_message)
+  portal_my_invoice_detail(invoice_id, access_token, report_type, download)
+  portal_my_invoices(page, date_begin, date_end, sortby, filterby)
+}
+class "ProductCategory" as odoo_src.odoo.addons.account.models.product.ProductCategory {
+  property_account_expense_categ_id
+  property_account_income_categ_id
+}
+class "ProductProduct" as odoo_src.odoo.addons.account.models.product.ProductProduct {
+  tax_string
+}
+class "ProductTemplate" as odoo_src.odoo.addons.account.models.product.ProductTemplate {
+  account_tag_ids
+  fiscal_country_codes
+  property_account_expense_id
+  property_account_income_id
+  supplier_taxes_id
+  tax_string
+  taxes_id
+  create(vals_list)
+  get_product_accounts(fiscal_pos)
+}
+class "ReSequenceWizard" as odoo_src.odoo.addons.account.wizard.account_resequence.ReSequenceWizard {
+  end_date
+  first_date
+  first_name
+  move_ids
+  new_values
+  ordering
+  preview_moves
+  sequence_number_reset
+  default_get(fields_list)
+  resequence()
+}
+class "ReportAccountHashIntegrity" as odoo_src.odoo.addons.account.report.account_hash_integrity_templates.ReportAccountHashIntegrity {
+}
+class "ReportInvoiceWithPayment" as odoo_src.odoo.addons.account.report.account_invoice_report.ReportInvoiceWithPayment {
+}
+class "ReportInvoiceWithoutPayment" as odoo_src.odoo.addons.account.report.account_invoice_report.ReportInvoiceWithoutPayment {
+}
+class "ResCompany" as odoo_src.odoo.addons.account.models.company.ResCompany {
+  account_cash_basis_base_account_id
+  account_default_pos_receivable_account_id
+  account_discount_expense_allocation_id
+  account_discount_income_allocation_id
+  account_enabled_tax_country_ids
+  account_fiscal_country_id
+  account_journal_early_pay_discount_gain_account_id
+  account_journal_early_pay_discount_loss_account_id
+  account_journal_suspense_account_id
+  account_opening_date
+  account_opening_journal_id
+  account_opening_move_id
+  account_price_include
+  account_purchase_tax_id
+  account_sale_tax_id
+  account_storno
+  account_use_credit_limit
+  anglo_saxon_accounting
+  automatic_entry_default_journal_id
+  autopost_bills
+  bank_account_code_prefix
+  bank_journal_ids
+  batch_payment_sequence_id
+  cash_account_code_prefix
+  chart_template
+  check_account_audit_trail
+  company_registry_placeholder
+  company_vat_placeholder
+  currency_exchange_journal_id
+  default_cash_difference_expense_account_id
+  default_cash_difference_income_account_id
+  display_invoice_amount_total_words
+  display_invoice_tax_company_currency
+  expects_chart_of_accounts
+  expense_accrual_account_id
+  expense_currency_exchange_account_id
+  fiscal_position_ids
+  fiscalyear_last_day
+  fiscalyear_last_month
+  fiscalyear_lock_date
+  hard_lock_date
+  income_currency_exchange_account_id
+  incoterm_id
+  invoice_terms
+  invoice_terms_html
+  multi_vat_foreign_country_ids
+  purchase_lock_date
+  qr_code
+  quick_edit_mode
+  revenue_accrual_account_id
+  sale_lock_date
+  tax_calculation_rounding_method
+  tax_cash_basis_journal_id
+  tax_exigibility
+  tax_lock_date
+  terms_type
+  transfer_account_code_prefix
+  transfer_account_id
+  user_fiscalyear_lock_date
+  user_hard_lock_date
+  user_purchase_lock_date
+  user_sale_lock_date
+  user_tax_lock_date
+  action_save_onboarding_company_data()
+  action_save_onboarding_sale_tax()
+  cache_invalidation_fields()
+  compute_account_tax_fiscal_country()
+  compute_fiscalyear_dates(current_date)
+  create(vals_list)
+  get_chart_of_accounts_or_fail()
+  get_new_account_code(current_code, old_prefix, new_prefix)
+  get_next_batch_payment_communication()
+  get_unaffected_earnings_account()
+  install_l10n_modules()
+  opening_move_posted()
+  reflect_code_prefix_change(old_code, new_code)
+  setting_init_bank_account_action()
+  write(values)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.account.models.res_config_settings.ResConfigSettings {
+  account_cash_basis_base_account_id
+  account_default_credit_limit
+  account_discount_expense_allocation_id
+  account_discount_income_allocation_id
+  account_fiscal_country_id
+  account_journal_early_pay_discount_gain_account_id
+  account_journal_early_pay_discount_loss_account_id
+  account_journal_suspense_account_id
+  account_price_include
+  account_storno
+  account_use_credit_limit
+  autopost_bills
+  chart_template
+  check_account_audit_trail
+  country_code
+  currency_exchange_journal_id
+  currency_id
+  display_invoice_amount_total_words
+  display_invoice_tax_company_currency
+  expense_currency_exchange_account_id
+  group_analytic_accounting : bool
+  group_cash_rounding
+  group_sale_delivery_address
+  group_show_purchase_receipts
+  group_show_sale_receipts
+  group_warning_account
+  has_accounting_entries
+  has_chart_of_accounts
+  income_currency_exchange_account_id
+  incoterm_id
+  invoice_terms
+  invoice_terms_html
+  is_account_peppol_eligible
+  module_account_accountant
+  module_account_bank_statement_extract
+  module_account_bank_statement_import_camt
+  module_account_bank_statement_import_csv
+  module_account_bank_statement_import_ofx
+  module_account_bank_statement_import_qif
+  module_account_batch_payment
+  module_account_budget
+  module_account_check_printing
+  module_account_extract
+  module_account_intrastat
+  module_account_invoice_extract
+  module_account_iso20022
+  module_account_payment
+  module_account_peppol
+  module_account_reports
+  module_account_sepa_direct_debit
+  module_currency_rate_live
+  module_l10n_eu_oss
+  module_product_margin
+  module_snailmail_account
+  preview_ready
+  purchase_tax_id
+  qr_code
+  quick_edit_mode
+  sale_tax_id
+  tax_calculation_rounding_method
+  tax_cash_basis_journal_id
+  tax_exigibility
+  terms_type
+  transfer_account_id
+  use_invoice_terms
+  action_update_terms()
+  onchange_analytic_accounting()
+  onchange_module_account_budget()
+  reload_template()
+  set_values()
+}
+class "ResCurrency" as odoo_src.odoo.addons.account.models.res_currency.ResCurrency {
+  display_rounding_warning
+  fiscal_country_codes
+  write(vals)
+}
+class "ResPartner" as odoo_src.odoo.addons.account.models.partner.ResPartner {
+  autopost_bills
+  bank_account_count
+  contract_ids
+  credit
+  credit_limit
+  credit_to_invoice
+  currency_id
+  customer_rank
+  days_sales_outstanding
+  debit
+  debit_limit
+  display_invoice_edi_format
+  display_invoice_template_pdf_report_id
+  duplicate_bank_partner_ids
+  duplicated_bank_account_partners_count
+  fiscal_country_codes
+  ignore_abnormal_invoice_amount
+  ignore_abnormal_invoice_date
+  invoice_edi_format
+  invoice_edi_format_store
+  invoice_ids
+  invoice_sending_method
+  invoice_template_pdf_report_id
+  invoice_warn
+  invoice_warn_msg
+  is_coa_installed
+  journal_item_count
+  name
+  partner_company_registry_placeholder
+  partner_vat_placeholder
+  property_account_payable_id
+  property_account_position_id
+  property_account_receivable_id
+  property_inbound_payment_method_line_id
+  property_outbound_payment_method_line_id
+  property_payment_term_id
+  property_supplier_payment_term_id
+  ref_company_ids
+  show_credit_limit
+  supplier_invoice_count
+  supplier_rank
+  total_invoiced
+  trust
+  use_partner_credit_limit
+  action_open_business_doc()
+  action_view_partner_invoices()
+  action_view_partner_with_same_bank()
+  can_edit_vat()
+  create(vals_list)
+  get_partner_localisation_fields_required_to_invoice(country_id)
+  write(vals)
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.account.models.res_partner_bank.ResPartnerBank {
+  acc_holder_name
+  acc_number
+  active
+  allow_out_payment
+  bank_id
+  currency_id
+  duplicate_bank_partner_ids
+  has_iban_warning
+  has_money_transfer_warning
+  journal_id
+  lock_trust_fields
+  money_transfer_service
+  partner_country_name
+  partner_customer_rank
+  partner_id
+  partner_supplier_rank
+  related_moves
+  user_has_group_validate_bank_account
+  build_qr_code_base64(amount, free_communication, structured_communication, currency, debtor_partner, qr_method, silent_errors)
+  build_qr_code_url(amount, free_communication, structured_communication, currency, debtor_partner, qr_method, silent_errors)
+  create(vals_list)
+  default_get(fields_list)
+  get_available_qr_methods_in_sequence()
+  unlink()
+  write(vals)
+}
+class "SequenceMixin" as odoo_src.odoo.addons.account.models.sequence_mixin.SequenceMixin {
+  month : str
+  prefix : str
+  prefix2 : str
+  prefix3 : str
+  seq : str
+  sequence_number
+  sequence_prefix
+  suffix : str
+  year : str
+  year_end : str
+  init()
+  write(vals)
+}
+class "SetupBarBankConfigWizard" as odoo_src.odoo.addons.account.wizard.setup_wizards.SetupBarBankConfigWizard {
+  bank_bic
+  company_id
+  linked_journal_id
+  new_journal_name
+  num_journals_without_account
+  res_partner_bank_id
+  create(vals_list)
+  default_linked_journal_id()
+  set_linked_journal_id()
+  validate()
+}
+class "StructuredReferenceTest" as odoo_src.odoo.addons.account.tests.test_structured_reference.StructuredReferenceTest {
+  test_structured_reference()
+  test_structured_reference_be()
+  test_structured_reference_fi()
+  test_structured_reference_iso()
+  test_structured_reference_nl()
+  test_structured_reference_no_se()
+  test_structured_reference_si()
+}
+class "<color:red>TaxClosingNonPostedDependingMovesError</color>" as odoo_src.odoo.addons.account.models.exceptions.TaxClosingNonPostedDependingMovesError {
+}
+class "TaxReportTest" as odoo_src.odoo.addons.account.tests.test_tax_report.TaxReportTest {
+  setUpClass()
+  test_add_expression()
+  test_change_engine_shared_tags()
+  test_change_engine_without_formula()
+  test_change_formula_multiple_fields()
+  test_create_shared_tags()
+  test_edit_multi_line_tagname_all_different_new()
+  test_tag_recreation_archived()
+  test_tax_report_change_country()
+  test_unlink_report_line_tags_used_by_amls()
+  test_unlink_report_line_tags_used_by_other_expression()
+  test_write_multi_no_change()
+  test_write_single_line_tagname_not_shared()
+  test_write_single_line_tagname_shared()
+}
+class "TermsController" as odoo_src.odoo.addons.account.controllers.terms.TermsController {
+  terms_conditions()
+}
+class "TestAccountAccount" as odoo_src.odoo.addons.account.tests.test_account_account.TestAccountAccount {
+  setUpClass()
+  test_account_accessible_by_search_in_sudo_mode()
+  test_account_code_mapping()
+  test_account_code_mapping_create()
+  test_account_company()
+  test_account_group_hierarchy_consistency()
+  test_account_name_onchange()
+  test_account_opening_balance()
+  test_compute_account()
+  test_compute_account_type()
+  test_compute_current_balance()
+  test_create_account()
+  test_ensure_code_unique()
+  test_generate_account_suggestions()
+  test_get_closest_parent_account()
+  test_muticompany_account_groups()
+  test_name_create()
+  test_name_create_account_code_only()
+  test_name_create_account_name_with_number()
+  test_placeholder_code()
+  test_remove_account_from_account_group()
+  test_search_new_account_code()
+  test_shared_accounts()
+  test_toggle_reconcile()
+  test_toggle_reconcile_with_partials()
+  test_unmerge()
+  test_write_on_code_from_branch()
+}
+class "TestAccountAnalyticAccount" as odoo_src.odoo.addons.account.tests.test_account_analytic.TestAccountAnalyticAccount {
+  create_invoice(partner, product)
+  get_analytic_lines(invoice)
+  setUpClass()
+  test_analytic_applicability_multiple_prefixes()
+  test_analytic_distribution_multiple_prefixes()
+  test_analytic_distribution_with_discount()
+  test_analytic_dynamic_update()
+  test_analytic_lines()
+  test_analytic_lines_partner_compute()
+  test_analytic_lines_rounding()
+  test_applicability_score()
+  test_changing_analytic_company()
+  test_cross_analytics_computing()
+  test_get_relevant_plans_in_multi_company()
+  test_mandatory_plan_validation()
+  test_mandatory_plan_validation_mass_posting()
+  test_model_application()
+  test_model_score()
+  test_model_sequence()
+  test_move_with_analytic_lines()
+  test_synchronization_between_analytic_distribution_and_analytic_lines()
+  test_tax_line_sync_with_analytic()
+}
+class "TestAccountBankStatementLine" as odoo_src.odoo.addons.account.tests.test_account_bank_statement.TestAccountBankStatementLine {
+  assertBankStatementLine(statement_line, expected_statement_line_vals, expected_move_line_vals)
+  create_bank_transaction(amount, date, amount_currency, currency, statement, partner, journal, sequence)
+  setUpClass()
+  test_bank_transaction_creation_with_default_journal_entry_date()
+  test_constraints()
+  test_create_statement_line_with_inconsistent_currencies()
+  test_edition_journal_curr_1_statement_curr_2()
+  test_edition_journal_curr_1_statement_false()
+  test_edition_journal_curr_2_statement_curr_1()
+  test_edition_journal_curr_2_statement_curr_3()
+  test_edition_journal_curr_2_statement_false()
+  test_for_presence_single_suspense_line()
+  test_prepare_counterpart_amounts_using_st_line_rate()
+  test_statement_attachments()
+  test_statement_balance_warnings()
+  test_statement_line_move_onchange_1()
+  test_statement_line_ordering()
+  test_statement_reverse_keeps_partner()
+  test_statement_split()
+  test_statement_valid_complete_1()
+  test_statement_with_canceled_lines()
+  test_zero_amount_journal_curr_1_statement_curr_2()
+  test_zero_amount_journal_curr_2_statement_curr_1()
+  test_zero_amount_journal_curr_2_statement_curr_3()
+  test_zero_amount_statement_line()
+}
+class "TestAccountComposerPerformance" as odoo_src.odoo.addons.account.tests.test_account_move_send.TestAccountComposerPerformance {
+  default_env_context()
+  setUp()
+  setUpClass()
+  test_assert_initial_values()
+  test_invoice_sent_to_additional_partner()
+  test_move_composer_multi()
+  test_move_composer_single()
+  test_move_composer_single_lang()
+  test_move_composer_with_dynamic_reports()
+}
+class "TestAccountDigest" as odoo_src.odoo.addons.account.tests.test_digest.TestAccountDigest {
+  setUpClass()
+  test_kpi_account_total_revenue_value()
+}
+class "TestAccountEarlyPaymentDiscount" as odoo_src.odoo.addons.account.tests.test_early_payment_discount.TestAccountEarlyPaymentDiscount {
+  setUpClass()
+  test_early_payment_date_eligibility()
+  test_early_payment_date_eligibility2()
+  test_early_payment_end_date()
+  test_epd_entry_tag_invert_with_distinct_negative_invoice_line()
+  test_epd_multiple_repartition_lines()
+  test_epd_validation_on_payment_terms()
+  test_fixed_tax_amount_discounted_payment_mixed()
+  test_intracomm_bill_with_early_payment_included()
+  test_invoice_report_without_invoice_date()
+  test_mixed_early_discount_with_tag_on_tax_base_line()
+  test_mixed_epd_with_draft_invoice()
+  test_mixed_epd_with_rounding_issue()
+  test_mixed_epd_with_tax_deleted_line()
+  test_mixed_epd_with_tax_included()
+  test_mixed_epd_with_tax_no_duplication()
+  test_mixed_epd_with_tax_refund()
+  test_register_discounted_payment_multi_line_discount()
+  test_register_discounted_payment_on_single_invoice()
+  test_register_discounted_payment_on_single_invoice_with_fixed_tax_1()
+  test_register_discounted_payment_on_single_invoice_with_fixed_tax_2()
+  test_register_discounted_payment_on_single_invoice_with_tax()
+  test_register_discounted_payment_on_single_out_invoice_with_tax()
+  test_register_payment_batch_excluded()
+  test_register_payment_batch_included()
+  test_register_payment_batch_mixed()
+  test_register_payment_batch_mixed_one_too_late()
+  test_register_payment_batch_with_discount_and_without_discount()
+  test_register_payment_batch_without_discount()
+}
+class "TestAccountIncomingSupplierInvoice" as odoo_src.odoo.addons.account.tests.test_account_incoming_supplier_invoice.TestAccountIncomingSupplierInvoice {
+  attachment_number
+  default_env_context()
+  setUpClass()
+  test_extend_with_attachments()
+  test_supplier_invoice_forwarded_by_internal_user_without_supplier()
+  test_supplier_invoice_forwarded_by_internal_with_internal_in_body()
+  test_supplier_invoice_forwarded_by_internal_with_supplier_in_body()
+  test_supplier_invoice_mailed_from_supplier()
+  with_simulated_embedded_xml(pdf)
+  with_success_decoder(omit)
+}
+class "TestAccountInvoiceReport" as odoo_src.odoo.addons.account.tests.test_account_invoice_report.TestAccountInvoiceReport {
+  assertInvoiceReportValues(expected_values_list)
+  setUpClass()
+  test_avg_price_calculation()
+  test_inventory_margin_currency()
+  test_invoice_report_multicompany_product_cost()
+  test_invoice_report_multiple_types()
+}
+class "TestAccountJournal" as odoo_src.odoo.addons.account.tests.test_account_journal.TestAccountJournal {
+  setUpClass()
+  test_account_control_create_journal_entry()
+  test_account_control_existing_journal_entry()
+  test_account_journal_add_new_payment_method_multi()
+  test_account_journal_duplicates()
+  test_archive_multiple_journals()
+  test_archive_used_journal()
+  test_changing_journal_company()
+  test_constraint_currency_consistency_with_accounts()
+  test_remove_payment_method_lines()
+}
+class "TestAccountJournalAlias" as odoo_src.odoo.addons.account.tests.test_account_journal.TestAccountJournalAlias {
+  setUpClass()
+  test_alias_create_unique()
+  test_alias_from_type()
+  test_alias_name_creation()
+  test_alias_name_form()
+  test_use_default_account_from_journal()
+}
+class "TestAccountJournalDashboard" as odoo_src.odoo.addons.account.tests.test_account_journal_dashboard.TestAccountJournalDashboard {
+  test_bank_journal_different_currency()
+  test_bank_journal_with_default_account_as_outstanding_account_payments()
+  test_customer_invoice_dashboard()
+  test_gap_in_sequence_warning()
+  test_purchase_journal_numbers_and_sums()
+  test_sale_purchase_journal_for_multi_currency_sale()
+  test_sale_purchase_journal_for_purchase()
+  test_to_check_amount_different_currency()
+  test_to_check_posted()
+}
+class "TestAccountJournalDashboardCommon" as odoo_src.odoo.addons.account.tests.test_account_journal_dashboard_common.TestAccountJournalDashboardCommon {
+  assertDashboardPurchaseSaleData(journal, number_draft, sum_draft, number_waiting, sum_waiting, number_late, sum_late, currency)
+  setUpClass()
+}
+class "<color:red>TestAccountLockException</color>" as odoo_src.odoo.addons.account.tests.test_account_lock_exception.TestAccountLockException {
+  setUpClass()
+  test_company_lock_date()
+  test_expired_exception()
+  test_global_exception_move_edit_multi_user()
+  test_hard_lock_date()
+  test_revoked_exception()
+  test_user_exception_branch()
+  test_user_exception_insufficient()
+  test_user_exception_move_edit_multi_user()
+  test_user_exception_remove_lock_date()
+  test_user_exception_wrong_company()
+  test_user_exception_wrong_field()
+}
+class "TestAccountMergeCommon" as odoo_src.odoo.addons.account.tests.common.TestAccountMergeCommon {
+}
+class "TestAccountMergeWizard" as odoo_src.odoo.addons.account.tests.test_account_merge_wizard.TestAccountMergeWizard {
+  setUpClass()
+  test_can_merge_accounts_if_one_is_hashed()
+  test_cannot_merge_same_company()
+  test_cannot_merge_two_hashed_accounts()
+  test_merge()
+  test_merge_accounts_company_dependent_related()
+}
+class "TestAccountMove" as odoo_src.odoo.addons.account.tests.test_account_move_entry.TestAccountMove {
+  account
+  included_percent_tax
+  default_env_context()
+  setUpClass()
+  test_account_move_inactive_currency_raise_error_on_post()
+  test_add_followers_on_post()
+  test_always_exigible_caba_account()
+  test_balance_modification_auto_balancing()
+  test_cache_invalidation()
+  test_change_journal_account_move()
+  test_change_journal_posted_before()
+  test_change_journal_sequence_number()
+  test_cumulated_balance()
+  test_custom_currency_on_account_1()
+  test_entry_reverse_storno()
+  test_fiscal_position_multicompany()
+  test_included_tax()
+  test_invoice_like_entry_reverse_caba()
+  test_journal_entry_clear_taxes()
+  test_line_steal()
+  test_manually_modifying_taxes()
+  test_misc_draft_reconciled_entries_1()
+  test_misc_fiscalyear_lock_date_1()
+  test_misc_fiscalyear_lock_date_2()
+  test_misc_move_onchange()
+  test_misc_prevent_edit_tax_on_posted_moves()
+  test_misc_prevent_unlink_posted_items()
+  test_misc_tax_autobalance()
+  test_misc_tax_lock_date_1()
+  test_misc_with_taxes_reverse()
+  test_modify_posted_move_readonly_fields()
+  test_move_line_rounding()
+  test_out_invoice_auto_post_at_date()
+  test_out_invoice_auto_post_monthly()
+  test_posting_future_invoice_fails()
+  test_reset_draft_exchange_move()
+  test_validate_move_wizard_with_auto_post_entry()
+}
+class "TestAccountMoveAttachment" as odoo_src.odoo.addons.account.tests.test_account_move_attachment.TestAccountMoveAttachment {
+  test_preserving_manually_added_attachments()
+}
+class "TestAccountMoveAutoPost" as odoo_src.odoo.addons.account.tests.test_account_move_auto_post.TestAccountMoveAutoPost {
+  setUpClass()
+  test_auto_post_infinite_loop()
+}
+class "TestAccountMoveDateAlgorithm" as odoo_src.odoo.addons.account.tests.test_account_move_date_algorithm.TestAccountMoveDateAlgorithm {
+  setUpClass()
+  test_caba_with_different_lock_dates()
+  test_caba_with_lock_date()
+  test_in_invoice_date_with_lock_date()
+  test_in_invoice_reverse_date_with_lock_date()
+  test_in_refund_date_with_lock_date()
+  test_in_refund_reverse_date_with_lock_date()
+  test_lock_date_exceptions()
+  test_out_invoice_date_with_lock_date()
+  test_out_invoice_reverse_date_with_lock_date()
+  test_out_refund_date_with_lock_date()
+  test_out_refund_reverse_date_with_lock_date()
+  test_reconcile_with_lock_date()
+  test_unreconcile_with_lock_date()
+}
+class "TestAccountMoveDuplicate" as odoo_src.odoo.addons.account.tests.test_account_move_duplicate.TestAccountMoveDuplicate {
+  setUpClass()
+  test_in_invoice_multiple_duplicate_reference_batch()
+  test_in_invoice_single_duplicate_reference()
+  test_in_invoice_single_duplicate_reference_diff_date()
+  test_in_invoice_single_duplicate_reference_with_form()
+  test_out_invoice_single_duplicate_reference()
+}
+class "TestAccountMoveInInvoiceOnchanges" as odoo_src.odoo.addons.account.tests.test_account_move_in_invoice.TestAccountMoveInInvoiceOnchanges {
+  setUp()
+  setUpClass()
+  setup_armageddon_tax(tax_name, company_data)
+  test_compute_cash_rounding_lines()
+  test_duplicate_invoice_with_separate_discount_acccount()
+  test_fiduciary_mode_date_suggestion()
+  test_in_invoice_change_period_accrual_1()
+  test_in_invoice_create_1()
+  test_in_invoice_create_refund()
+  test_in_invoice_create_refund_multi_currency()
+  test_in_invoice_line_onchange_business_fields_1()
+  test_in_invoice_line_onchange_cash_rounding_1()
+  test_in_invoice_line_onchange_currency_1()
+  test_in_invoice_line_onchange_partner_1()
+  test_in_invoice_line_onchange_product_1()
+  test_in_invoice_line_onchange_product_2_with_fiscal_pos()
+  test_in_invoice_line_onchange_product_2_with_fiscal_pos_2()
+  test_in_invoice_line_onchange_taxes_1()
+  test_in_invoice_line_product_taxes_on_branch()
+  test_in_invoice_line_tax_line_delete()
+  test_in_invoice_onchange_invoice_date()
+  test_in_invoice_onchange_invoice_date_2()
+  test_in_invoice_onchange_past_invoice_1()
+  test_in_invoice_payment_register_wizard()
+  test_in_invoice_reverse_caba()
+  test_in_invoice_switch_type_1()
+  test_in_invoice_switch_type_2()
+  test_in_invoice_with_down_payment_caba()
+  test_in_invoice_write_1()
+  test_manual_label_change_on_payment_term_line()
+  test_onchange_journal_currency()
+  test_onchange_payment_reference()
+  test_payment_move_state()
+  test_purchase_uom_on_vendor_bills()
+  test_taxes_onchange_product_uom_and_price_unit()
+}
+class "TestAccountMoveInRefundOnchanges" as odoo_src.odoo.addons.account.tests.test_account_move_in_refund.TestAccountMoveInRefundOnchanges {
+  setUp()
+  setUpClass()
+  setup_armageddon_tax(tax_name, company_data)
+  test_in_refund_create_1()
+  test_in_refund_create_storno()
+  test_in_refund_line_onchange_business_fields_1()
+  test_in_refund_line_onchange_cash_rounding_1()
+  test_in_refund_line_onchange_currency_1()
+  test_in_refund_line_onchange_partner_1()
+  test_in_refund_line_onchange_product_1()
+  test_in_refund_line_onchange_taxes_1()
+  test_in_refund_onchange_past_invoice_1()
+  test_in_refund_reverse_caba()
+  test_in_refund_with_down_payment_caba()
+  test_in_refund_write_1()
+}
+class "TestAccountMoveInalterableHash" as odoo_src.odoo.addons.account.tests.test_account_inalterable_hash.TestAccountMoveInalterableHash {
+  setUpClass()
+  test_account_group_account_secured()
+  test_account_move_hash_integrity_report()
+  test_account_move_hash_versioning_1()
+  test_account_move_hash_versioning_2()
+  test_account_move_hash_versioning_3()
+  test_account_move_hash_versioning_v1_to_v2()
+  test_account_move_hash_versioning_v2_to_v3()
+  test_account_move_hash_versioning_v3_to_v4()
+  test_account_move_hash_with_cash_rounding()
+  test_account_move_inalterable_hash()
+  test_account_move_unhashed_entries()
+  test_error_on_unreconciled_bank_statement_lines()
+  test_hash_multiyear()
+  test_hash_on_lock_date()
+  test_inalterable_hash_verification_by_batches()
+  test_no_hash_if_hole_in_sequence()
+  test_retroactive_hash_multiple_journals()
+  test_retroactive_hash_vendor_bills()
+  test_retroactive_hashing()
+  test_retroactive_hashing_backwards_compatibility()
+  test_retroactive_hashing_before_current()
+  test_wizard_backwards_compatibility()
+  test_wizard_hashes_all_journals()
+  test_wizard_ignores_sequence_prefixes_with_unreconciled_entries()
+}
+class "TestAccountMoveOutInvoiceOnchanges" as odoo_src.odoo.addons.account.tests.test_account_move_out_invoice.TestAccountMoveOutInvoiceOnchanges {
+  setUp()
+  setUpClass()
+  test_account_on_invoice_line_product_removal()
+  test_before_initial_rate()
+  test_change_currency_id()
+  test_change_first_journal_move_sequence()
+  test_change_journal_currency()
+  test_compute_name_payment_reference()
+  test_date_reversal_exchange_move()
+  test_discount_allocation_account_on_invoice()
+  test_discount_allocation_account_on_invoice_currency_change()
+  test_invoice_copy_data()
+  test_invoice_currency_mismatch_account_currency()
+  test_invoice_journal_account_check_constraints()
+  test_invoice_mass_posting()
+  test_invoice_with_empty_currency()
+  test_keep_receivable()
+  test_lines_recomputation_after_currency_rate_change()
+  test_narration_preserved_when_use_invoice_terms_disabled()
+  test_no_taxes_on_payment_term_line()
+  test_on_quick_encoding_non_accounting_lines()
+  test_out_invoice_bank_partner()
+  test_out_invoice_caba_on_payment()
+  test_out_invoice_change_period_accrual_1()
+  test_out_invoice_change_period_past_move_date()
+  test_out_invoice_change_to_future_period_accrual_1()
+  test_out_invoice_copy_custom_date()
+  test_out_invoice_create_1()
+  test_out_invoice_create_child_partner()
+  test_out_invoice_create_cross_branch_refund()
+  test_out_invoice_create_refund()
+  test_out_invoice_create_refund_auto_post()
+  test_out_invoice_create_refund_multi_currency()
+  test_out_invoice_depreciated_account()
+  test_out_invoice_filter_zero_balance_lines()
+  test_out_invoice_line_onchange_analytic()
+  test_out_invoice_line_onchange_analytic_2()
+  test_out_invoice_line_onchange_business_fields_1()
+  test_out_invoice_line_onchange_cash_rounding_1()
+  test_out_invoice_line_onchange_currency_1()
+  test_out_invoice_line_onchange_partner_1()
+  test_out_invoice_line_onchange_product_1()
+  test_out_invoice_line_onchange_product_2_with_fiscal_pos_1()
+  test_out_invoice_line_onchange_product_2_with_fiscal_pos_2()
+  test_out_invoice_line_onchange_rounding_price_subtotal_1()
+  test_out_invoice_line_onchange_rounding_price_subtotal_2()
+  test_out_invoice_line_onchange_taxes_1()
+  test_out_invoice_line_onchange_taxes_2_price_unit_tax_included()
+  test_out_invoice_line_product_taxes_on_branch()
+  test_out_invoice_line_tax_fixed_price_include_free_product()
+  test_out_invoice_line_taxes_fixed_price_include_free_product()
+  test_out_invoice_multi_company()
+  test_out_invoice_multi_date_change_period_accrual()
+  test_out_invoice_multiple_switch_payment_terms()
+  test_out_invoice_note_and_tax_partner_is_set()
+  test_out_invoice_onchange_invoice_date()
+  test_out_invoice_partner_context()
+  test_out_invoice_post_1()
+  test_out_invoice_post_2()
+  test_out_invoice_recomputation_receivable_lines()
+  test_out_invoice_reverse_caba()
+  test_out_invoice_reverse_move_tags()
+  test_out_invoice_rounding_recomputation_receivable_lines()
+  test_out_invoice_switch_out_refund_1()
+  test_out_invoice_switch_out_refund_2()
+  test_out_invoice_switch_out_refund_3()
+  test_out_invoice_switch_out_refund_4()
+  test_out_invoice_tax_tags()
+  test_out_invoice_with_down_payment_caba()
+  test_out_invoice_write_1()
+  test_out_invoice_write_2()
+  test_payment_term_line_fiscal_position()
+  test_post_valid_invoices_when_auto_post()
+  test_quick_edit_total_amount()
+  test_quick_edit_total_amount_with_mixed_epd()
+  test_quick_edit_total_amount_with_reverse_charge()
+  test_tax_grid_remove_tax()
+  test_update_lines_date_when_invoice_date_changes()
+}
+class "TestAccountMoveOutRefundOnchanges" as odoo_src.odoo.addons.account.tests.test_account_move_out_refund.TestAccountMoveOutRefundOnchanges {
+  setUp()
+  setUpClass()
+  test_out_refund_create_1()
+  test_out_refund_create_storno()
+  test_out_refund_line_onchange_business_fields_1()
+  test_out_refund_line_onchange_cash_rounding_1()
+  test_out_refund_line_onchange_currency_1()
+  test_out_refund_line_onchange_partner_1()
+  test_out_refund_line_onchange_product_1()
+  test_out_refund_line_onchange_taxes_1()
+  test_out_refund_reverse_caba()
+  test_out_refund_with_down_payment_caba()
+  test_out_refund_write_1()
+}
+class "TestAccountMovePaymentsWidget" as odoo_src.odoo.addons.account.tests.test_account_move_payments_widget.TestAccountMovePaymentsWidget {
+  setUpClass()
+  test_outstanding_payments_foreign_currency()
+  test_outstanding_payments_single_currency()
+  test_payments_with_exchange_difference_invoice()
+  test_payments_with_exchange_difference_payment()
+}
+class "TestAccountMoveReconcile" as odoo_src.odoo.addons.account.tests.test_account_move_reconcile.TestAccountMoveReconcile {
+  assertAmountsGroupByAccount(amount_per_account)
+  assertFullReconcile(full_reconcile, lines)
+  assertFullReconcileAccount(full_reconcile, account)
+  setUpClass()
+  test_caba_dest_acc_reconciliation_partial_pmt()
+  test_caba_double_tax_negative_line()
+  test_caba_foreign_vat()
+  test_caba_mix_reconciliation()
+  test_caba_rounding_adjustment_monocurrency()
+  test_caba_rounding_adjustment_multicurrency()
+  test_caba_tax_group()
+  test_caba_undo_reconciliation()
+  test_cash_basis_full_refund()
+  test_cash_basis_taxline_without_account()
+  test_cash_basis_with_analytic_distribution()
+  test_cash_basis_with_analytic_distribution_analytic_tax()
+  test_full_reconcile_bunch_lines()
+  test_full_reconcile_foreign_currency_rounding_difference_credit_larger()
+  test_full_reconcile_foreign_currency_rounding_difference_debit_larger()
+  test_invoice_draft_fully_paid_if_zero()
+  test_matching_loop()
+  test_matching_number_full_reconcile()
+  test_matching_number_partial_multi_reconcile()
+  test_matching_number_partial_multi_separate_reconcile()
+  test_matching_number_partial_single_reconcile()
+  test_matching_number_unreconcile_multi()
+  test_matching_number_unreconcile_single()
+  test_migration_to_new_reconciliation_multiple_currencies_fix_residual_with_writeoff()
+  test_migration_to_new_reconciliation_same_foreign_currency()
+  test_modify_all_reconciled_lines()
+  test_partial_payments_auto_validation()
+  test_reconcile_cash_basis_exchange_difference_transfer_account_check_entries_1()
+  test_reconcile_cash_basis_exchange_difference_transfer_account_check_entries_2()
+  test_reconcile_cash_basis_exchange_difference_transfer_account_check_entries_3()
+  test_reconcile_cash_basis_exchange_difference_transfer_account_check_entries_4()
+  test_reconcile_cash_basis_refund_multicurrency()
+  test_reconcile_cash_basis_revert()
+  test_reconcile_cash_basis_tax_grid_multi_taxes()
+  test_reconcile_cash_basis_tax_grid_refund()
+  test_reconcile_cash_basis_tax_grid_reversal()
+  test_reconcile_cash_basis_workflow_multi_currency()
+  test_reconcile_cash_basis_workflow_single_currency()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_credit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_credit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_credit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_credit_income_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_debit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_debit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_debit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_credit_foreign_currency_debit_income_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_credit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_credit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_credit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_credit_income_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_debit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_debit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_debit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_one_debit_foreign_currency_debit_income_partial_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_credit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_credit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_credit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_credit_income_partial_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_debit_expense_full_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_debit_expense_partial_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_debit_income_full_payment()
+  test_reconcile_exchange_difference_on_partial_same_foreign_currency_debit_income_partial_payment()
+  test_reconcile_foreign_currency_rounding_issue()
+  test_reconcile_import()
+  test_reconcile_invoice_company_curr_payment_foreign_curr()
+  test_reconcile_lines_corner_case_1_zero_balance_different_foreign_currency()
+  test_reconcile_lines_corner_case_1_zero_balance_same_foreign_currency()
+  test_reconcile_lines_corner_case_2_zero_amount_currency_same_foreign_currency()
+  test_reconcile_lines_corner_case_3_zero_balance_one_foreign_currency()
+  test_reconcile_lines_corner_case_4_zero_amount_currency_multiple_currencies()
+  test_reconcile_lines_corner_case_5_zero_balance_in_one_line_same_foreign_currency()
+  test_reconcile_lines_multiple_in_foreign_currency()
+  test_reconcile_one_foreign_currency_fallback_company_currency()
+  test_reconcile_partial_exchange_rounding_issue()
+  test_reconcile_payment_custom_rate()
+  test_reconcile_payment_with_no_exchange_diff_journal()
+  test_reconcile_plan()
+  test_reconcile_rounding_issue()
+  test_reconcile_special_mexican_workflow_1()
+  test_reconcile_special_mexican_workflow_2()
+  test_reconciliation_currency_exchange_matching_number()
+  test_reverse_exchange_difference()
+  test_reverse_with_multiple_lines()
+}
+class "TestAccountMoveSend" as odoo_src.odoo.addons.account.tests.test_account_move_send.TestAccountMoveSend {
+  setUpClass()
+  test_cron_notifications()
+  test_error_but_continue()
+  test_get_invoice_report_filename()
+  test_get_sending_settings()
+  test_invoice_email_subtitle()
+  test_invoice_mail_attachments_widget()
+  test_invoice_multi()
+  test_invoice_multi_email_missing()
+  test_invoice_multi_with_edi()
+  test_invoice_single()
+  test_invoice_web_service_after_pdf_rendering()
+  test_is_move_sent_state()
+  test_link_pdf_webservice_fails_after()
+  test_link_pdf_webservice_fails_before()
+  test_no_sending_method_selected()
+  test_proforma_pdf()
+  test_send_and_print_cron()
+  test_with_draft_invoices()
+  test_with_empty_mail_template_multi()
+  test_with_empty_mail_template_single()
+}
+class "TestAccountMoveSendCommon" as odoo_src.odoo.addons.account.tests.test_account_move_send.TestAccountMoveSendCommon {
+  create_send_and_print(invoices)
+  setUpClass()
+}
+class "TestAccountPartner" as odoo_src.odoo.addons.account.tests.test_account_partner.TestAccountPartner {
+  test_account_move_count()
+  test_days_sales_outstanding()
+  test_manually_write_partner_id()
+  test_manually_write_partner_id_different_vat()
+}
+class "TestAccountPayment" as odoo_src.odoo.addons.account.tests.test_account_payment.TestAccountPayment {
+  setUpClass()
+  test_attachments_send_multiple()
+  test_compute_currency_id()
+  test_empty_string_payment_method()
+  test_invoice_paid_hook_called_in_various_scenarios()
+  test_journal_change_and_change_names()
+  test_journal_onchange()
+  test_payment_amount_without_move()
+  test_payment_confirmation_with_bank_outstanding_account()
+  test_payment_journal_onchange()
+  test_payment_move_sync_create_write()
+  test_payment_move_sync_onchange()
+  test_payment_move_sync_update_journal_custom_accounts()
+  test_payment_state_with_unreconciliable_outstanding_account()
+  test_payment_without_default_company_account()
+  test_payments_copy_data()
+  test_payments_epd_eligible_on_move_with_payment()
+  test_payments_invoice_payment_state_without_outstanding_accounts()
+  test_reconciliation_payment_states()
+  test_reconciliation_payment_states_reverse_payment_move()
+  test_reconciliation_with_old_oustanding_account()
+  test_resequence_change_payment_name()
+  test_suggested_default_partner_bank()
+  test_vendor_payment_save_user_selected_journal_id()
+}
+class "TestAccountPaymentDuplicateMoves" as odoo_src.odoo.addons.account.tests.test_account_payment_duplicate.TestAccountPaymentDuplicateMoves {
+  setUpClass()
+  test_duplicate_payments()
+  test_in_payment_multiple_duplicate_inbound_batch()
+  test_in_payment_multiple_duplicate_multiple_journals()
+  test_register_payment_different_payment_types()
+  test_register_payment_single_batch_duplicate_payments()
+}
+class "TestAccountPaymentItems" as odoo_src.odoo.addons.account.tests.test_account_payment_items.TestAccountPaymentItems {
+  create_bill(due_date, discount_days)
+  create_payment_term(due_date, discount_days)
+  setUpClass()
+  test_payment_date()
+  test_search_payment_date()
+}
+class "TestAccountPaymentMethodLine" as odoo_src.odoo.addons.account.tests.test_account_payment_method_line.TestAccountPaymentMethodLine {
+  partner_d
+  assertRegisterPayment(expected_journal, expected_payment_method, move_partner, payment_method_line)
+  setUpClass()
+  test_move_register_payment_view()
+  test_move_register_payment_wizard()
+  test_multiple_moves_register_payment()
+}
+class "TestAccountPaymentRegister" as odoo_src.odoo.addons.account.tests.test_account_payment_register.TestAccountPaymentRegister {
+  get_wizard_available_journals(wizard)
+  setUpClass()
+  test_branch_user_register_payment()
+  test_epd_and_cash_rounding()
+  test_group_payment_method_with_and_without_discount()
+  test_group_payment_method_with_and_without_discount_and_refund()
+  test_installment_mode_multiple_batches()
+  test_installment_mode_single_batch()
+  test_keep_user_amount()
+  test_payment_method_different_type_single_batch_not_grouped()
+  test_payment_register_with_next_payment_date()
+  test_payment_with_branch()
+  test_register_foreign_currency_on_invoice_exchange_writeoff_account()
+  test_register_foreign_currency_on_payment_exchange_writeoff_account()
+  test_register_payment_constraints()
+  test_register_payment_different_type_single_batch_not_grouped()
+  test_register_payment_doesnt_send_email()
+  test_register_payment_inbound_multiple_bank_account()
+  test_register_payment_invoice_comp_curr_payment_foreign_curr()
+  test_register_payment_invoice_foreign_curr_payment_comp_curr()
+  test_register_payment_multi_batches_grouped()
+  test_register_payment_multi_batches_not_grouped()
+  test_register_payment_multi_currency_rounding_issue_negative_delta()
+  test_register_payment_multi_currency_rounding_issue_positive_delta()
+  test_register_payment_multi_currency_rounding_issue_writeoff_higher_amount_reconcile_negative_delta()
+  test_register_payment_multi_currency_rounding_issue_writeoff_higher_amount_reconcile_positive_delta()
+  test_register_payment_multi_currency_rounding_issue_writeoff_lower_amount_keep_open()
+  test_register_payment_multi_currency_rounding_issue_writeoff_lower_amount_reconcile_negative_delta()
+  test_register_payment_multi_currency_rounding_issue_writeoff_lower_amount_reconcile_positive_delta()
+  test_register_payment_multiple_batch_grouped_with_credit_note()
+  test_register_payment_single_batch_grouped_keep_open_higher_amount()
+  test_register_payment_single_batch_grouped_keep_open_lower_amount()
+  test_register_payment_single_batch_grouped_with_credit_note()
+  test_register_payment_single_batch_grouped_writeoff_higher_amount_credit()
+  test_register_payment_single_batch_grouped_writeoff_higher_amount_debit()
+  test_register_payment_single_batch_grouped_writeoff_lower_amount_credit()
+  test_register_payment_single_batch_grouped_writeoff_lower_amount_debit()
+  test_register_payment_single_batch_not_grouped()
+  test_suggested_default_partner_bank_inbound_payment()
+  test_suggested_default_partner_bank_outbound_payment()
+}
+class "TestAccountPaymentTerms" as odoo_src.odoo.addons.account.tests.test_payment_term.TestAccountPaymentTerms {
+  assertPaymentTerm(pay_term, invoice_date, dates)
+  setUpClass()
+  test_payment_term()
+  test_payment_term_compute_method_early_excluded()
+  test_payment_term_compute_method_with_cash_discount()
+  test_payment_term_compute_method_with_cash_discount_and_cash_rounding()
+  test_payment_term_compute_method_without_cash_discount()
+  test_payment_term_compute_method_without_cash_discount_with_cash_rounding()
+  test_payment_term_days_end_of_month_days_next_month_0()
+  test_payment_term_days_end_of_month_nb_days_0()
+  test_payment_term_days_end_of_month_nb_days_15()
+  test_payment_term_days_end_of_month_on_the()
+  test_payment_term_labels()
+  test_payment_term_last_balance_line_with_fixed()
+  test_payment_term_last_balance_line_with_fixed_negative()
+  test_payment_term_last_balance_line_with_fixed_negative_fixed()
+  test_payment_term_multi_company()
+  test_payment_term_percent_round_calculation()
+  test_payment_term_residual_amount_on_last_line()
+  test_payment_term_residual_amount_on_last_line_with_fixed_amount_multi_currency()
+  test_wrong_payment_term()
+}
+class "TestAccountReport" as odoo_src.odoo.addons.account.tests.test_account_report.TestAccountReport {
+  test_copy_report()
+}
+class "TestAccountTax" as odoo_src.odoo.addons.account.tests.test_account_tax.TestAccountTax {
+  default_env_context()
+  flush_tracking()
+  setUpClass()
+  set_up_and_use_tax()
+  test_changing_tax_company()
+  test_logging_of_repartition_lines_addition_when_tax_is_used()
+  test_logging_of_repartition_lines_removal_when_tax_is_used()
+  test_logging_of_repartition_lines_reordering_when_tax_is_used()
+  test_logging_of_repartition_lines_update_when_tax_is_used()
+  test_logging_of_tax_update_when_tax_is_used()
+  test_tax_is_used_when_in_transactions()
+  test_tax_no_duplicate_in_repartition_line()
+}
+class "TestAccountTaxDetailsReport" as odoo_src.odoo.addons.account.tests.test_account_move_line_tax_details.TestAccountTaxDetailsReport {
+  assertTaxDetailsValues(tax_details, expected_values_list)
+  assertTotalAmounts(moves, tax_details)
+  setUpClass()
+  test_affect_base_amount_1()
+  test_affect_base_amount_2()
+  test_affect_base_amount_3()
+  test_affect_base_amount_4()
+  test_affect_base_amount_5()
+  test_affect_base_amount_6()
+  test_amounts_sign()
+  test_broken_configuration()
+  test_fixed_tax_with_negative_balance()
+  test_fixed_tax_with_negative_quantity()
+  test_mixing_tax_inside_and_outside_a_group_of_taxes()
+  test_multiple_same_tax_lines()
+  test_multiple_same_tax_lines_multi_currencies_manual_edition()
+  test_multiple_same_tax_lines_with_analytic()
+  test_partitioning_lines_by_moves()
+  test_percent_tax_with_negative_balance()
+  test_round_globally_rounding()
+  test_round_per_line_update()
+  test_tax_on_payment()
+}
+class "TestAuditTrail" as odoo_src.odoo.addons.account.tests.test_audit_trail.TestAuditTrail {
+  assertTrail(trail, expected)
+  create_move()
+  get_trail(move)
+  setUpClass()
+  test_can_unlink_draft()
+  test_cant_unlink_message()
+  test_cant_unlink_posted()
+  test_cant_unlink_tracking_value()
+  test_cant_unown_message()
+  test_content()
+  test_partner_notif()
+  test_partner_unlink()
+}
+class "TestChartTemplate" as odoo_src.odoo.addons.account.tests.test_chart_template.TestChartTemplate {
+  setUpClass()
+  test_branch()
+  test_change_coa()
+  test_chart_template_company_without_country()
+  test_command_int_values()
+  test_inactive_tag_tax()
+  test_install_with_translations()
+  test_new_tax_rate()
+  test_parsed_csv_submodel_being_loaded()
+  test_parsed_csv_submodel_being_updated()
+  test_remove_fiscal_position_try_loading_force_create_false()
+  test_signed_and_unsigned_tags_tax()
+  test_unknown_company_fields()
+  test_update_account_codes_conflict()
+  test_update_reload_no_new_data()
+  test_update_tax_with_non_existent_tag()
+  test_update_taxes_children_tax_ids()
+  test_update_taxes_children_tax_ids_inactive()
+  test_update_taxes_conflict_name()
+  test_update_taxes_creation()
+  test_update_taxes_multi_company()
+  test_update_taxes_recreation()
+  test_update_taxes_removed_from_templates()
+  test_update_taxes_update()
+  test_update_taxes_update_rounding()
+}
+class "TestCompanyBranch" as odoo_src.odoo.addons.account.tests.test_company_branch.TestCompanyBranch {
+  setUpClass()
+  test_branch_should_keep_parent_company_currency()
+  test_change_record_company()
+  test_chart_template_loading()
+  test_lock_dates()
+  test_reconciliation()
+  test_reconciliation_foreign_currency()
+  test_switch_company_currency()
+}
+class "TestDictToXml" as odoo_src.odoo.addons.account.tests.test_dict_to_xml.TestDictToXml {
+  assertXmlEqual(element1, element2)
+  test_10_empty_node()
+  test_11_render_empty_node()
+  test_21_simple_node()
+  test_22_simple_node_with_nsmap()
+  test_31_compound_node()
+  test_32_compound_node_render_empty_nodes()
+  test_33_compound_node_with_template()
+  test_34_compound_node_with_template_raises()
+  test_35_compound_node_with_template_and_nsmap()
+  test_40_complex_example()
+  test_41_complex_example_render_empty_nodes()
+}
+class "TestDownloadDocs" as odoo_src.odoo.addons.account.tests.test_download_docs.TestDownloadDocs {
+  setUpClass()
+  test_download_invoice_attachments_multiple()
+  test_download_invoice_attachments_not_auth()
+  test_download_invoice_attachments_one()
+  test_download_invoice_documents_filetype_all()
+  test_download_invoice_documents_filetype_multiple()
+  test_download_invoice_documents_filetype_one()
+}
+class "TestDuplicatePartnerBank" as odoo_src.odoo.addons.account.tests.test_duplicate_res_partner_bank.TestDuplicatePartnerBank {
+  setUpClass()
+  test_duplicate_acc_number_b_company()
+  test_duplicate_acc_number_different_company()
+  test_duplicate_acc_number_no_company()
+}
+class "TestFiscalPosition" as odoo_src.odoo.addons.account.tests.test_fiscal_position.TestFiscalPosition {
+  dst1_tax
+  dst2_tax
+  eu_intra_b2b
+  fp2m
+  fr_b2b_state
+  fr_b2b_zip100
+  src_tax
+  world
+  setUpClass()
+  test_10_fp_country()
+  test_20_fp_one_tax_2m()
+  test_30_fp_delivery_address()
+  test_fiscal_position_constraint()
+  test_get_first_fiscal_position()
+}
+class "TestInvoiceTaxes" as odoo_src.odoo.addons.account.tests.test_invoice_taxes.TestInvoiceTaxes {
+  setUpClass()
+  test_affecting_base_amount()
+  test_division_tax()
+  test_ensure_no_unbalanced_entry()
+  test_fixed_tax_with_zero_price()
+  test_group_of_taxes()
+  test_misc_entry_tax_group_signs()
+  test_misc_journal_entry_tax_tags_purchase()
+  test_misc_journal_entry_tax_tags_sale()
+  test_one_tax_per_line()
+  test_product_account_tags()
+  test_setting_tax_separately()
+  test_tax_calculation_foreign_currency_large_quantity()
+  test_tax_calculation_multi_currency()
+  test_tax_line_amount_currency_modification_auto_balancing()
+  test_tax_repartition()
+  test_tax_repartition_lines_dispatch_amount_1()
+  test_tax_repartition_lines_dispatch_amount_2()
+}
+class "TestIrActionsReport" as odoo_src.odoo.addons.account.tests.test_ir_actions_report.TestIrActionsReport {
+  file
+  minimal_pdf_reader
+  minimal_reader_buffer : BytesIO
+  setUp()
+  test_download_one_corrupted_pdf()
+  test_download_with_encrypted_pdf()
+}
+class "TestMergePartner" as odoo_src.odoo.addons.account.tests.test_res_partner_merge.TestMergePartner {
+  setUpClass()
+  test_merge_partners_with_bank_accounts_linked_to_payments()
+  test_merge_partners_with_duplicate_bank_accounts_linked_to_payments()
+}
+class "TestMultiVAT" as odoo_src.odoo.addons.account.tests.test_multivat.TestMultiVAT {
+  setUpClass()
+  test_children_taxes()
+  test_multivat_cash_basis()
+  test_tax_and_tax_group_should_be_reachable_using_standard_api()
+  test_tax_data_should_be_consistent()
+  test_tax_group_data()
+}
+class "TestPortalAttachment" as odoo_src.odoo.addons.account.tests.test_portal_attachment.TestPortalAttachment {
+  setUpClass()
+  test_01_portal_attachment()
+}
+class "TestPortalInvoice" as odoo_src.odoo.addons.account.tests.test_portal_invoice.TestPortalInvoice {
+  setUpClass()
+  test_portal_my_invoice_detail_download_pdf()
+  test_portal_my_invoice_detail_download_proforma()
+  test_portal_my_invoice_detail_not_his_invoice()
+}
+class "TestProduct" as odoo_src.odoo.addons.account.tests.test_product.TestProduct {
+  setUpClass()
+  test_account_manager_user_can_create_product()
+  test_internal_user_can_read_product_with_tax_and_tags()
+  test_multi_company_product_tax()
+}
+class "TestSequenceGaps" as odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceGaps {
+  setUpClass()
+  test_basic()
+  test_change_multi()
+  test_change_multi_2()
+  test_change_sequence()
+  test_create_fill_gap()
+  test_create_gap()
+  test_first()
+  test_null_change()
+  test_unlink()
+  test_unlink_2()
+}
+class "TestSequenceMixin" as odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixin {
+  assertNameAtDate(date, name)
+  set_sequence(date, name)
+  test_change_journal_on_first_account_move()
+  test_change_same_journal_not_change_sequence()
+  test_fiscal_vs_monthly()
+  test_journal_next_sequence()
+  test_journal_override_sequence_regex()
+  test_journal_override_sequence_regex_year()
+  test_journal_resequence_in_between_2_years_pattern()
+  test_journal_sequence()
+  test_journal_sequence_format()
+  test_journal_sequence_groupby_compute()
+  test_journal_sequence_multiple_type()
+  test_journal_sequence_ordering()
+  test_limit_savepoint()
+  test_resequence_clash()
+  test_resequence_payment_and_non_payment_without_payment_sequence()
+  test_sequence_change_date()
+  test_sequence_change_date_with_quick_edit_mode()
+  test_sequence_draft_change_date()
+  test_sequence_draft_change_date_with_new_sequence()
+  test_sequence_draft_first_of_period()
+  test_sequence_empty_editable_with_quick_edit_mode()
+  test_sequence_get_more_specific()
+  test_sequence_move_name_related_field_well_computed()
+  test_sequence_staggered_year()
+}
+class "TestSequenceMixinCommon" as odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinCommon {
+  assertMoveName(move, expected_name)
+  create_move(date, journal, name, post)
+  setUpClass()
+}
+class "TestSequenceMixinConcurrency" as odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinConcurrency {
+  data : dict
+  cleanUp()
+  setUp()
+  test_sequence_concurency()
+  test_sequence_concurency_no_useless_lock()
+}
+class "TestSequenceMixinDeletion" as odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinDeletion {
+  setUpClass()
+  test_sequence_deletion_1()
+  test_sequence_deletion_2()
+}
+class "TestSetupWizard" as odoo_src.odoo.addons.account.tests.test_setup_wizard.TestSetupWizard {
+  test_setup_bank_account()
+}
+class "TestTax" as odoo_src.odoo.addons.account.tests.test_tax.TestTax {
+  test_forced_price_exclude_context_key()
+  test_forced_price_include_context_key()
+  test_parse_name_search()
+  test_repartition_line_in()
+}
+class "TestTaxCommon" as odoo_src.odoo.addons.account.tests.common.TestTaxCommon {
+  js_tests : list
+  number
+  assert_adapt_price_unit_to_another_taxes(price_unit, original_taxes, new_taxes, expected_price_unit, product)
+  assert_base_lines_tax_details(document, expected_values)
+  assert_invoice_tax_totals_summary(invoice, expected_values, soft_checking)
+  assert_tax_totals_summary(document, expected_values, excluded_tax_group_ids, soft_checking)
+  assert_taxes_computation(taxes, price_unit, expected_values, quantity, product, precision_rounding, rounding_method, excluded_special_modes, excluded_tax_ids)
+  convert_base_line_to_invoice_line(document, base_line)
+  convert_document_to_invoice(document)
+  init_document(lines, currency, rate, cash_rounding)
+  new_currency(rounding)
+  populate_document(document)
+  setUp()
+  setUpClass()
+  with_tax_calculation_rounding_method(rounding_method)
+}
+class "TestTaxesBaseLinesTaxDetails" as odoo_src.odoo.addons.account.tests.test_taxes_base_lines_tax_details.TestTaxesBaseLinesTaxDetails {
+  test_dispatch_delta_on_base_lines()
+}
+class "TestTaxesComputation" as odoo_src.odoo.addons.account.tests.test_taxes_computation.TestTaxesComputation {
+  test_adapt_price_unit_to_another_taxes()
+  test_division_taxes_for_l10n_br()
+  test_fixed_tax_price_included_affect_base_on_0()
+  test_fixed_taxes_for_l10n_be()
+  test_percent_taxes_for_l10n_in()
+  test_random_case_1()
+  test_random_case_2()
+  test_random_case_3()
+  test_random_case_4()
+  test_random_case_5()
+  test_random_case_6()
+  test_random_case_7()
+  test_random_case_8()
+  test_random_case_9()
+  test_taxes_filtering()
+  test_taxes_ordering()
+}
+class "TestTaxesTaxTotalsSummary" as odoo_src.odoo.addons.account.tests.test_taxes_tax_totals_summary.TestTaxesTaxTotalsSummary {
+  different_tax_group(taxes)
+  same_tax_group(taxes)
+  setUpClass()
+  test_archived_tax_in_tax_totals()
+  test_cash_rounding_generic_helpers()
+  test_cash_rounding_invoices()
+  test_cash_rounding_with_excluded_tax_groups()
+  test_discount_with_round_globally_generic_helpers()
+  test_discount_with_round_globally_invoices()
+  test_mixed_combined_standalone_taxes_generic_helpers()
+  test_mixed_combined_standalone_taxes_invoices()
+  test_preceding_subtotal_generic_helpers()
+  test_preceding_subtotal_invoices()
+  test_preceding_subtotal_with_include_base_amount_generic_helpers()
+  test_preceding_subtotal_with_include_base_amount_invoices()
+  test_preceding_subtotal_with_tax_group_generic_helpers()
+  test_preceding_subtotal_with_tax_group_invoices()
+  test_reverse_charge_division_tax_generic_helpers()
+  test_reverse_charge_division_tax_invoices()
+  test_reverse_charge_percent_tax_generic_helpers()
+  test_reverse_charge_percent_tax_invoices()
+  test_reverse_charge_taxes_1_generic_helpers()
+  test_reverse_charge_taxes_1_invoices()
+  test_reverse_charge_taxes_2_generic_helpers()
+  test_reverse_charge_taxes_2_invoices()
+  test_taxes_l10n_be_generic_helpers()
+  test_taxes_l10n_be_invoices()
+  test_taxes_l10n_br_generic_helpers()
+  test_taxes_l10n_br_invoices()
+  test_taxes_l10n_in_generic_helpers()
+  test_taxes_l10n_in_invoices()
+  test_taxes_l10n_mx_generic_helpers()
+  test_taxes_l10n_mx_invoices()
+  test_taxes_l10n_pt_generic_helpers()
+  test_taxes_l10n_pt_invoices()
+  test_taxes_l10n_pt_vendor_bill_manual_tax_amount()
+}
+class "TestTracking" as odoo_src.odoo.addons.account.tests.test_mail_tracking_value.TestTracking {
+  default_env_context()
+  test_aml_change_tracking()
+}
+class "TestTransferWizard" as odoo_src.odoo.addons.account.tests.test_transfer_wizard.TestTransferWizard {
+  setUpClass()
+  test_period_change_lock_date()
+  test_period_change_tax_lock_date()
+  test_transfer_default_tax()
+  test_transfer_wizard_amount_currency_is_zero()
+  test_transfer_wizard_analytic()
+  test_transfer_wizard_currency_conversion()
+  test_transfer_wizard_grouping()
+  test_transfer_wizard_no_currency_conversion()
+  test_transfer_wizard_reconcile()
+}
+class "TestUi" as odoo_src.odoo.addons.account.tests.test_tour.TestUi {
+  setUpClass()
+  test_01_account_tax_groups_tour()
+  test_01_account_tour()
+}
+class "TestUnexpectedAmount" as odoo_src.odoo.addons.account.tests.test_unexpected_invoice.TestUnexpectedAmount {
+  setUpClass()
+  test_date_too_soon_month()
+  test_date_too_soon_year()
+  test_higher_amount()
+}
+class "TestsSharedJsPython" as odoo_src.odoo.addons.account.controllers.tests_shared_js_python.TestsSharedJsPython {
+  route_init_tests_shared_js_python()
+  route_post_tests_shared_js_python(results)
+}
+class "UoM" as odoo_src.odoo.addons.account.models.uom_uom.UoM {
+  fiscal_country_codes
+}
+class "ValidateAccountMove" as odoo_src.odoo.addons.account.wizard.account_validate_account_move.ValidateAccountMove {
+  abnormal_amount_partner_ids
+  abnormal_date_partner_ids
+  display_force_post
+  force_post
+  ignore_abnormal_amount
+  ignore_abnormal_date
+  is_entries
+  move_ids
+  default_get(fields_list)
+  validate_move()
+}
+class "account_journal" as odoo_src.odoo.addons.account.models.account_journal_dashboard.account_journal {
+  color
+  current_statement_balance
+  entries_count
+  has_entries
+  has_posted_entries
+  has_sequence_holes
+  has_statement_lines
+  has_unhashed_entries
+  json_activity_data
+  kanban_dashboard
+  kanban_dashboard_graph
+  last_statement_id
+  show_on_dashboard
+  action_create_new()
+  action_create_vendor_bill()
+  create_bank_statement()
+  create_customer_payment()
+  create_supplier_payment()
+  open_action()
+  open_action_with_context()
+  open_bank_difference_action()
+  open_payments_action(payment_type, mode)
+  show_sequence_holes()
+  show_unhashed_entries()
+  to_check_ids()
+}
+odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingHttpCommon --|> odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingCommon
+odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingHttpCommon --|> odoo_src.odoo.addons.account.tests.common.AccountTestMockOnlineSyncCommon
+odoo_src.odoo.addons.account.tests.common.TestAccountMergeCommon --|> odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingCommon
+odoo_src.odoo.addons.account.tests.common.TestTaxCommon --|> odoo_src.odoo.addons.account.tests.common.AccountTestInvoicingHttpCommon
+odoo_src.odoo.addons.account.tests.test_account_move_send.TestAccountMoveSend --|> odoo_src.odoo.addons.account.tests.test_account_move_send.TestAccountMoveSendCommon
+odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceGaps --|> odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinCommon
+odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixin --|> odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinCommon
+odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinDeletion --|> odoo_src.odoo.addons.account.tests.test_sequence_mixin.TestSequenceMixinCommon
+@enduml

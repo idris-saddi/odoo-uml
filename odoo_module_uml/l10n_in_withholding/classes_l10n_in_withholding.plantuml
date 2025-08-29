@@ -1,0 +1,95 @@
+@startuml classes_l10n_in_withholding
+set namespaceSeparator none
+class "AccountAccount" as odoo_src.odoo.addons.l10n_in_withholding.models.account_account.AccountAccount {
+  l10n_in_tds_tcs_section_id
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_in_withholding.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_withholding.models.account_move.AccountMove {
+  l10n_in_display_higher_tcs_button
+  l10n_in_is_withholding
+  l10n_in_tcs_tds_warning
+  l10n_in_total_withholding_amount
+  l10n_in_withhold_move_ids
+  l10n_in_withholding_line_ids
+  l10n_in_withholding_ref_move_id
+  action_l10n_in_apply_higher_tax()
+  action_l10n_in_withholding_entries()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_in_withholding.models.account_move_line.AccountMoveLine {
+  l10n_in_withhold_tax_amount
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_in_withholding.models.account_payment.AccountPayment {
+  l10n_in_total_withholding_amount
+  l10n_in_withhold_move_ids
+  action_l10n_in_withholding_entries()
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_in_withholding.models.account_tax.AccountTax {
+  l10n_in_section_id
+  l10n_in_tds_tax_type
+}
+class "L10nInSectionAlert" as odoo_src.odoo.addons.l10n_in_withholding.models.l10n_in_section_alert.L10nInSectionAlert {
+  aggregate_limit
+  aggregate_period
+  consider_amount
+  is_aggregate_limit
+  is_per_transaction_limit
+  l10n_in_section_tax_ids
+  name
+  per_transaction_limit
+  tax_source_type
+}
+class "L10nInWithholdWizard" as odoo_src.odoo.addons.l10n_in_withholding.wizard.l10n_in_withhold_wizard.L10nInWithholdWizard {
+  company_id
+  currency_id
+  date
+  journal_id
+  l10n_in_tds_tax_type
+  l10n_in_withholding_warning
+  reference
+  related_move_id
+  related_payment_id
+  type_name
+  withhold_line_ids
+  action_create_and_post_withhold()
+  default_get(fields_list)
+}
+class "L10nInWithholdWizardLine" as odoo_src.odoo.addons.l10n_in_withholding.wizard.l10n_in_withhold_wizard.L10nInWithholdWizardLine {
+  amount
+  base
+  currency_id
+  l10n_in_tds_tax_type
+  tax_id
+  withhold_id
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_in_withholding.models.res_company.ResCompany {
+  l10n_in_withholding_account_id
+  l10n_in_withholding_journal_id
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_in_withholding.models.res_config_settings.ResConfigSettings {
+  l10n_in_withholding_account_id
+  l10n_in_withholding_journal_id
+}
+class "TestTdsTcsAlert" as odoo_src.odoo.addons.l10n_in_withholding.tests.test_tds_tcs_alert.TestTdsTcsAlert {
+  create_invoice(move_type, partner, invoice_date, amounts, taxes, company, accounts, quantities)
+  reverse_move(move, date)
+  setUpClass()
+  tds_wizard_entry(move, lines)
+  test_tcs_tds_warning()
+  test_tcs_tds_warning_cleared_on_available_tax()
+  test_tcs_tds_warning_for_all_lines_do_not_have_taxes()
+  test_tcs_tds_warning_for_company_branches()
+  test_tcs_tds_warning_for_if_line_has_price_zero()
+  test_tcs_tds_warning_for_multiple_accounts_in_lines()
+  test_tcs_tds_warning_for_multiple_accounts_same_section_in_lines()
+  test_tcs_tds_warning_for_not_consider_draft_cancel_invoices_for_aggregate()
+  test_tcs_tds_warning_if_some_lines_has_tax()
+  test_tcs_tds_warning_on_case_of_credit_note()
+  test_tcs_tds_warning_on_exceeded_aggregate_limit()
+  test_tcs_tds_warning_on_exceeded_per_transaction_limit()
+  test_tcs_tds_warning_on_monthly_aggregate_limit()
+  test_tcs_tds_warning_partner_wiht_pan()
+  test_tcs_tds_warning_tcs_use_in_bill()
+  test_tcs_tds_warning_tds_use_in_invoice()
+}
+@enduml

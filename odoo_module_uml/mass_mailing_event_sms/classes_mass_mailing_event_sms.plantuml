@@ -1,0 +1,11 @@
+@startuml classes_mass_mailing_event_sms
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.mass_mailing_event_sms.models.event.Event {
+  action_invite_contacts()
+  action_mass_mailing_attendees()
+}
+class "TestMassMailEventValues" as odoo_src.odoo.addons.mass_mailing_event_sms.tests.test_mailing_event.TestMassMailEventValues {
+  setUpClass()
+  test_mailing_event_computed_fields_form()
+}
+@enduml

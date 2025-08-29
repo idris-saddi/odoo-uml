@@ -1,0 +1,30 @@
+@startuml classes_l10n_es_pos
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_pos.models.account_move.AccountMove {
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_es_pos.models.pos_config.PosConfig {
+  is_spanish
+  l10n_es_simplified_invoice_journal_id
+  simplified_partner_id
+  get_limited_partners_loading()
+}
+class "PosOrder" as odoo_src.odoo.addons.l10n_es_pos.models.pos_order.PosOrder {
+  is_l10n_es_simplified_invoice
+  l10n_es_simplified_invoice_number
+  get_invoice_name()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_pos.models.res_company.ResCompany {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_es_pos.models.res_config_settings.ResConfigSettings {
+  pos_l10n_es_simplified_invoice_journal_id
+}
+class "TestUi" as odoo_src.odoo.addons.l10n_es_pos.tests.test_frontend.TestUi {
+  customer_account_payment_method
+  pos_make_payment_0
+  pos_order_pos0
+  test_l10n_es_pos_reconcile()
+  test_simplified_invoice_not_override_set_pricelist()
+  test_spanish_pos()
+  test_spanish_pos_invoice_no_certificate()
+}
+@enduml

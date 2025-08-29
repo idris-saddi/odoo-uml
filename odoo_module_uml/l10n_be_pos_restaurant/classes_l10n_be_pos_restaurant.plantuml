@@ -1,0 +1,9 @@
+@startuml classes_l10n_be_pos_restaurant
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_be_pos_restaurant.models.template_be.AccountChartTemplate {
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_be_pos_restaurant.models.pos_config.PosConfig {
+  load_onboarding_bar_scenario()
+  load_onboarding_restaurant_scenario()
+}
+@enduml

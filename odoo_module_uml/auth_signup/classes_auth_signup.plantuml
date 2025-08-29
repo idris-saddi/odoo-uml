@@ -1,0 +1,54 @@
+@startuml classes_auth_signup
+set namespaceSeparator none
+class "AuthBaseSetup" as odoo_src.odoo.addons.auth_signup.controllers.main.AuthBaseSetup {
+  base_setup_data()
+}
+class "AuthSignupHome" as odoo_src.odoo.addons.auth_signup.controllers.main.AuthSignupHome {
+  do_signup(qcontext)
+  get_auth_signup_config()
+  get_auth_signup_qcontext()
+  web_auth_reset_password()
+  web_auth_signup()
+  web_login()
+}
+class "Http" as odoo_src.odoo.addons.auth_signup.models.ir_http.Http {
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.auth_signup.models.res_config_settings.ResConfigSettings {
+  auth_signup_reset_password
+  auth_signup_template_user_id
+  auth_signup_uninvited
+}
+class "ResPartner" as odoo_src.odoo.addons.auth_signup.models.res_partner.ResPartner {
+  signup_type
+  action_signup_prepare()
+  signup_cancel()
+  signup_get_auth_param()
+  signup_prepare(signup_type)
+}
+class "ResUsers" as odoo_src.odoo.addons.auth_signup.models.res_users.ResUsers {
+  state
+  action_reset_password()
+  authenticate(db, credential, user_agent_env)
+  copy(default)
+  create(vals_list)
+  reset_password(login)
+  send_unregistered_user_reminder()
+  signup(values, token)
+  web_create_users(emails)
+}
+class "<color:red>SignupError</color>" as odoo_src.odoo.addons.auth_signup.models.res_partner.SignupError {
+}
+class "TestAuthSignupFlow" as odoo_src.odoo.addons.auth_signup.tests.test_auth_signup.TestAuthSignupFlow {
+  default_values
+  setUp()
+  test_compute_signup_url()
+  test_confirmation_mail_free_signup()
+  test_copy_multiple_users()
+  test_notify_unregistered()
+}
+class "TestResetPassword" as odoo_src.odoo.addons.auth_signup.tests.test_reset_password.TestResetPassword {
+  setUpClass()
+  test_reset_password()
+  test_reset_password_mail_server_error(mock_send)
+}
+@enduml

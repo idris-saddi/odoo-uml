@@ -1,0 +1,232 @@
+@startuml classes_gamification
+set namespaceSeparator none
+class "BadgeUser" as odoo_src.odoo.addons.gamification.models.gamification_badge_user.BadgeUser {
+  badge_id
+  badge_name
+  challenge_id
+  comment
+  level
+  sender_id
+  user_id
+  create(vals_list)
+}
+class "Challenge" as odoo_src.odoo.addons.gamification.models.gamification_challenge.Challenge {
+  REPORT_OFFSETS : dict
+  challenge_category
+  description
+  end_date
+  invited_user_ids
+  last_report_date
+  line_ids
+  manager_id
+  name
+  next_report_date
+  period
+  remind_update_delay
+  report_message_frequency
+  report_message_group_id
+  report_template_id
+  reward_failure
+  reward_first_id
+  reward_id
+  reward_realtime
+  reward_second_id
+  reward_third_id
+  start_date
+  state
+  user_count
+  user_domain
+  user_ids
+  visibility_mode
+  accept_challenge()
+  action_check()
+  action_report_progress()
+  action_start()
+  action_view_users()
+  create(vals_list)
+  default_get(fields_list)
+  discard_challenge()
+  report_progress(users, subset_goals)
+  write(vals)
+}
+class "ChallengeLine" as odoo_src.odoo.addons.gamification.models.gamification_challenge_line.ChallengeLine {
+  challenge_id
+  condition
+  definition_full_suffix
+  definition_id
+  definition_monetary
+  definition_suffix
+  name
+  sequence
+  target_goal
+}
+class "GamificationBadge" as odoo_src.odoo.addons.gamification.models.gamification_badge.GamificationBadge {
+  BADGE_REQUIRED : int
+  CAN_GRANT : int
+  NOBODY_CAN_GRANT : int
+  TOO_MANY : int
+  USER_NOT_VIP : int
+  active
+  challenge_ids
+  description
+  goal_definition_ids
+  granted_count
+  granted_users_count
+  level
+  name
+  owner_ids
+  remaining_sending
+  rule_auth
+  rule_auth_badge_ids
+  rule_auth_user_ids
+  rule_max
+  rule_max_number
+  stat_my
+  stat_my_monthly_sending
+  stat_my_this_month
+  stat_this_month
+  unique_owner_ids
+  check_granting()
+}
+class "Goal" as odoo_src.odoo.addons.gamification.models.gamification_goal.Goal {
+  challenge_id
+  closed
+  color
+  completeness
+  computation_mode
+  current
+  definition_condition
+  definition_description
+  definition_display
+  definition_id
+  definition_suffix
+  end_date
+  last_update
+  line_id
+  remind_update_delay
+  start_date
+  state
+  target_goal
+  to_update
+  user_id
+  action_cancel()
+  action_fail()
+  action_reach()
+  action_start()
+  create(vals_list)
+  get_action()
+  update_goal()
+  write(vals)
+}
+class "GoalDefinition" as odoo_src.odoo.addons.gamification.models.gamification_goal_definition.GoalDefinition {
+  action_id
+  batch_distinctive_field
+  batch_mode
+  batch_user_expression
+  computation_mode
+  compute_code
+  condition
+  description
+  display_mode
+  domain
+  field_date_id
+  field_id
+  full_suffix
+  model_id
+  model_inherited_ids
+  monetary
+  name
+  res_id_field
+  suffix
+  create(vals_list)
+  write(vals)
+}
+class "HttpCaseGamification" as odoo_src.odoo.addons.gamification.tests.common.HttpCaseGamification {
+  setUp()
+}
+class "KarmaRank" as odoo_src.odoo.addons.gamification.models.gamification_karma_rank.KarmaRank {
+  description
+  description_motivational
+  karma_min
+  name
+  rank_users_count
+  user_ids
+  create(values_list)
+  write(vals)
+}
+class "KarmaTracking" as odoo_src.odoo.addons.gamification.models.gamification_karma_tracking.KarmaTracking {
+  consolidated
+  gain
+  new_value
+  old_value
+  origin_ref
+  origin_ref_model_name
+  reason
+  tracking_date
+  user_id
+  create(values_list)
+}
+class "TestComputeRankCommon" as odoo_src.odoo.addons.gamification.tests.test_karma_tracking.TestComputeRankCommon {
+  setUpClass()
+  test_00_initial_compute()
+  test_01_switch_rank()
+  test_02_update_rank_without_switch()
+  test_03_test_bulk_call()
+  test_get_next_rank()
+}
+class "TestGamificationCommon" as odoo_src.odoo.addons.gamification.tests.test_challenge.TestGamificationCommon {
+  badge_good_job
+  robot
+  user_ids
+  setUp()
+}
+class "TestKarmaTrackingCommon" as odoo_src.odoo.addons.gamification.tests.test_karma_tracking.TestKarmaTrackingCommon {
+  setUpClass()
+  test_computation_gain()
+  test_consolidation_cron()
+  test_consolidation_monthly()
+  test_user_as_erp_manager()
+  test_user_tracking()
+}
+class "TransactionCaseGamification" as odoo_src.odoo.addons.gamification.tests.common.TransactionCaseGamification {
+  setUpClass()
+}
+class "Users" as odoo_src.odoo.addons.gamification.models.res_users.Users {
+  badge_ids
+  bronze_badge
+  gold_badge
+  karma
+  karma_tracking_ids
+  next_rank_id
+  rank_id
+  silver_badge
+  action_karma_report()
+  create(values_list)
+  get_gamification_redirection_data()
+  write(values)
+}
+class "goal_manual_wizard" as odoo_src.odoo.addons.gamification.wizard.update_goal.goal_manual_wizard {
+  current
+  goal_id
+  action_update_current()
+}
+class "grant_badge_wizard" as odoo_src.odoo.addons.gamification.wizard.grant_badge.grant_badge_wizard {
+  badge_id
+  comment
+  user_id
+  action_grant_badge()
+}
+class "test_badge_wizard" as odoo_src.odoo.addons.gamification.tests.test_challenge.test_badge_wizard {
+  test_grant_badge()
+}
+class "test_challenge" as odoo_src.odoo.addons.gamification.tests.test_challenge.test_challenge {
+  test_00_join_challenge()
+  test_10_reach_challenge()
+  test_20_update_all_goals_filter()
+  test_30_create_challenge_with_sum_goal()
+  test_40_create_challenge_with_sum_goal()
+  test_send_report_in_ranking()
+}
+odoo_src.odoo.addons.gamification.tests.test_challenge.test_badge_wizard --|> odoo_src.odoo.addons.gamification.tests.test_challenge.TestGamificationCommon
+odoo_src.odoo.addons.gamification.tests.test_challenge.test_challenge --|> odoo_src.odoo.addons.gamification.tests.test_challenge.TestGamificationCommon
+@enduml

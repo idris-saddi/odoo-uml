@@ -1,0 +1,9 @@
+@startuml classes_l10n_in_sale_stock
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_sale_stock.models.account_move.AccountMove {
+}
+class "StockMove" as odoo_src.odoo.addons.l10n_in_sale_stock.models.stock_move.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.l10n_in_sale_stock.models.stock_picking.StockPicking {
+}
+@enduml

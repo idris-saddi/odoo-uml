@@ -1,0 +1,36 @@
+@startuml classes_l10n_uy
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_uy.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_uy.models.template_uy.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_uy.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_uy.models.account_tax.AccountTax {
+  l10n_uy_tax_category
+}
+class "CheckUyVat" as odoo_src.odoo.addons.l10n_uy.tests.test_check_vat.CheckUyVat {
+  setUpClass()
+  test_invalid_ci()
+  test_invalid_nie()
+  test_invalid_rut()
+  test_valid_ci()
+  test_valid_nie()
+  test_valid_rut()
+}
+class "L10nAccountDocumentType" as odoo_src.odoo.addons.l10n_uy.models.l10n_latam_document_type.L10nAccountDocumentType {
+}
+class "L10nLatamIdentificationType" as odoo_src.odoo.addons.l10n_uy.models.l10n_latam_identification_type.L10nLatamIdentificationType {
+  l10n_uy_dgi_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_uy.models.res_company.ResCompany {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_uy.models.res_partner.ResPartner {
+  check_vat()
+}
+class "TestDocTypes" as odoo_src.odoo.addons.l10n_uy.tests.test_doc_types.TestDocTypes {
+  setUpClass()
+  test_credit_note()
+  test_debit_note()
+}
+@enduml

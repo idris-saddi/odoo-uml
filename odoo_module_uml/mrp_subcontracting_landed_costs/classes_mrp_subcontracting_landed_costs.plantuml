@@ -1,0 +1,8 @@
+@startuml classes_mrp_subcontracting_landed_costs
+set namespaceSeparator none
+class "StockMove" as odoo_src.odoo.addons.mrp_subcontracting_landed_costs.models.stock_move.StockMove {
+}
+class "TestSubcontractingLandedCosts" as odoo_src.odoo.addons.mrp_subcontracting_landed_costs.tests.test_subcontracting_landed_costs.TestSubcontractingLandedCosts {
+  test_subcontracting_landed_cost_receipts_flow()
+}
+@enduml

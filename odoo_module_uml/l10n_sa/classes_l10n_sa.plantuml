@@ -1,0 +1,13 @@
+@startuml classes_l10n_sa
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_sa.models.template_sa.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sa.models.account_move.AccountMove {
+  l10n_sa_confirmation_datetime
+  l10n_sa_qr_code_str
+  button_draft()
+  get_l10n_sa_confirmation_datetime_sa_tz()
+}
+class "IrAttachment" as odoo_src.odoo.addons.l10n_sa.models.ir_attachment.IrAttachment {
+}
+@enduml

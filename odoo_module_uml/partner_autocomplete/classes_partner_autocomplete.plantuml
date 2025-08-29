@@ -1,0 +1,46 @@
+@startuml classes_partner_autocomplete
+set namespaceSeparator none
+class "Http" as odoo_src.odoo.addons.partner_autocomplete.models.ir_http.Http {
+  session_info()
+}
+class "IapAutocompleteEnrichAPI" as odoo_src.odoo.addons.partner_autocomplete.models.iap_autocomplete_api.IapAutocompleteEnrichAPI {
+}
+class "MockIAPPartnerAutocomplete" as odoo_src.odoo.addons.partner_autocomplete.tests.common.MockIAPPartnerAutocomplete {
+  mockPartnerAutocomplete(default_data, sim_error)
+}
+class "ResCompany" as odoo_src.odoo.addons.partner_autocomplete.models.res_company.ResCompany {
+  iap_enrich_auto_done
+  partner_gid
+  create(vals_list)
+  iap_enrich_auto()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.partner_autocomplete.models.res_config_settings.ResConfigSettings {
+  partner_autocomplete_insufficient_credit
+  redirect_to_buy_autocomplete_credit()
+}
+class "ResPartner" as odoo_src.odoo.addons.partner_autocomplete.models.res_partner.ResPartner {
+  additional_info
+  partner_gid
+  autocomplete(query, timeout)
+  autocomplete_by_name(query, query_country_id, timeout)
+  autocomplete_by_vat(vat, query_country_id, timeout)
+  check_gst_in(vat)
+  enrich_by_domain(domain, timeout)
+  enrich_by_duns(duns, timeout)
+  enrich_by_gst(gst, timeout)
+  enrich_company(company_domain, partner_gid, vat, timeout)
+  iap_partner_autocomplete_add_tags(unspsc_codes)
+  read_by_vat(vat, timeout)
+}
+class "ResPartnerAutocompleteSync" as odoo_src.odoo.addons.partner_autocomplete.models.res_partner_autocomplete_sync.ResPartnerAutocompleteSync {
+  partner_id
+  synched
+  {abstract}add_to_queue(partner_id)
+  {abstract}start_sync(batch_size)
+}
+class "TestResCompany" as odoo_src.odoo.addons.partner_autocomplete.tests.test_res_company.TestResCompany {
+  setUpClass()
+  test_enrich()
+  test_extract_company_domain()
+}
+@enduml

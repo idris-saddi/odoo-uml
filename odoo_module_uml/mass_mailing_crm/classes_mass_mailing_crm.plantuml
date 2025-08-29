@@ -1,0 +1,13 @@
+@startuml classes_mass_mailing_crm
+set namespaceSeparator none
+class "CrmLead" as odoo_src.odoo.addons.mass_mailing_crm.models.crm_lead.CrmLead {
+}
+class "MassMailing" as odoo_src.odoo.addons.mass_mailing_crm.models.mailing_mailing.MassMailing {
+  crm_lead_count
+  use_leads
+  action_redirect_to_leads_and_opportunities()
+}
+class "UtmCampaign" as odoo_src.odoo.addons.mass_mailing_crm.models.utm.UtmCampaign {
+  ab_testing_winner_selection
+}
+@enduml

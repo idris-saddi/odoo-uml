@@ -1,0 +1,72 @@
+@startuml classes_l10n_es_edi_sii
+set namespaceSeparator none
+class "AccountEdiFormat" as odoo_src.odoo.addons.l10n_es_edi_sii.models.account_edi_format.AccountEdiFormat {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_edi_sii.models.account_move.AccountMove {
+  l10n_es_edi_csv
+  l10n_es_edi_is_required
+  l10n_es_registration_date
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_es_edi_sii.models.account_move_send.AccountMoveSend {
+}
+class "AccountResequenceWizard" as odoo_src.odoo.addons.l10n_es_edi_sii.wizards.account_resequence_wizard.AccountResequenceWizard {
+}
+class "Certificate" as odoo_src.odoo.addons.l10n_es_edi_sii.models.certificate.Certificate {
+  scope
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_edi_sii.models.res_company.ResCompany {
+  l10n_es_sii_certificate_id
+  l10n_es_sii_certificate_ids
+  l10n_es_sii_tax_agency
+  l10n_es_sii_test_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_es_edi_sii.models.res_config_settings.ResConfigSettings {
+  l10n_es_sii_certificate_ids
+  l10n_es_sii_tax_agency
+  l10n_es_sii_test_env
+}
+class "TestEdiWebServices" as odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_edi_web_services.TestEdiWebServices {
+  setUpClass()
+  test_edi_bizkaia()
+  test_edi_gipuzkoa()
+}
+class "TestEdiXmls" as odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_edi_xml.TestEdiXmls {
+  setUpClass()
+  test_010_out_invoice_s_iva10b_s_iva21s()
+  test_020_out_invoice_s_iva10b_s_iva0_ns()
+  test_030_out_invoice_s_iva10b_s_req014_s_iva21s_s_req52()
+  test_040_out_refund_s_iva10b_s_iva10b_s_iva21s()
+  test_050_out_invoice_s_iva0_sp_i_s_iva0_ic()
+  test_060_out_refund_s_iva0_sp_i_s_iva0_ic()
+  test_070_out_invoice_s_iva_e_s_iva0_e()
+  test_080_out_refund_s_iva0_sp_i_s_iva0_ic()
+  test_085_out_refund_s_iva0_sp_i_s_iva0_ic_multi_currency()
+  test_090_in_invoice_p_iva10_bc_p_irpf19_p_iva21_sc_p_irpf19()
+  test_100_in_refund_p_iva10_bc()
+  test_110_in_invoice_p_iva10_bc_p_req014_p_iva21_sc_p_req52()
+  test_120_in_invoice_p_iva21_sp_ex()
+  test_130_in_invoice_p_iva0_ns_p_iva10_bc()
+  test_140_out_invoice_s_iva10b_s_irpf1()
+  test_150_in_invoice_p_iva10_bc_p_irpf1()
+  test_160_in_refund_p_iva10_bc_p_irpf1()
+  test_165_in_refund_p_iva10_bc_p_irpf1_multi_currency()
+  test_170_in_invoice_dua()
+  test_180_in_invoice_iva21_sp_in_iva21_ic_bc()
+  test_190_in_refund_iva21_sp_in_iva21_ic_bc()
+  test_200_in_invoice_p_iva12_agr()
+}
+class "TestEsEdiCommon" as odoo_src.odoo.addons.l10n_es_edi_sii.tests.common.TestEsEdiCommon {
+  create_invoice()
+  setUpClass()
+}
+class "TestResequenceSII" as odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_resequence.TestResequenceSII {
+  generated_files
+  setUp()
+  setUpClass()
+  test_customer_fails()
+  test_vendor_works()
+}
+odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_edi_web_services.TestEdiWebServices --|> odoo_src.odoo.addons.l10n_es_edi_sii.tests.common.TestEsEdiCommon
+odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_edi_xml.TestEdiXmls --|> odoo_src.odoo.addons.l10n_es_edi_sii.tests.common.TestEsEdiCommon
+odoo_src.odoo.addons.l10n_es_edi_sii.tests.test_resequence.TestResequenceSII --|> odoo_src.odoo.addons.l10n_es_edi_sii.tests.common.TestEsEdiCommon
+@enduml

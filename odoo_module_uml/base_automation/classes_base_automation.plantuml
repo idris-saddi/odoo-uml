@@ -1,0 +1,56 @@
+@startuml classes_base_automation
+set namespaceSeparator none
+class "BaseAutomation" as odoo_src.odoo.addons.base_automation.models.base_automation.BaseAutomation {
+  CRITICAL_FIELDS : list
+  RANGE_FIELDS : list
+  action_server_ids
+  active
+  description
+  filter_domain
+  filter_pre_domain
+  last_run
+  least_delay_msg
+  log_webhook_calls
+  model_id
+  model_is_mail_thread
+  model_name
+  name
+  on_change_field_ids
+  record_getter
+  trg_date_calendar_id
+  trg_date_id
+  trg_date_range
+  trg_date_range_type
+  trg_field_ref
+  trg_field_ref_model_name
+  trg_selection_field_id
+  trigger
+  trigger_field_ids
+  url
+  webhook_uuid
+  action_rotate_webhook_uuid()
+  action_view_webhook_logs()
+  copy(default)
+  create(vals_list)
+  unlink()
+  write(vals: dict)
+}
+class "BaseAutomationController" as odoo_src.odoo.addons.base_automation.controllers.main.BaseAutomationController {
+  call_webhook_http(rule_uuid)
+}
+class "ServerAction" as odoo_src.odoo.addons.base_automation.models.ir_actions_server.ServerAction {
+  base_automation_id
+  name
+  usage
+}
+class "TestAutomation" as odoo_src.odoo.addons.base_automation.tests.test_automation.TestAutomation {
+  test_01_on_create_or_write()
+  test_02_on_create_or_write_restricted()
+  test_03_on_change_restricted()
+  test_04_on_create_or_write_differentiate()
+  test_create_automation_rule_for_valid_model()
+}
+class "TestMailFullComposer" as odoo_src.odoo.addons.base_automation.tests.test_mail_composer.TestMailFullComposer {
+  test_mail_composer_test_tour()
+}
+@enduml

@@ -1,0 +1,17 @@
+@startuml classes_l10n_din5008
+set namespaceSeparator none
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_din5008.models.base_document_layout.BaseDocumentLayout {
+  account_fiscal_country_id
+  bank_ids
+  city
+  company_details
+  company_registry
+  l10n_din5008_delivery_date
+  l10n_din5008_due_date
+  l10n_din5008_invoice_date
+  report_footer
+  street
+  street2
+  zip
+}
+@enduml

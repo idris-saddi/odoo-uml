@@ -1,0 +1,9 @@
+@startuml classes_l10n_fi_sale
+set namespaceSeparator none
+class "SaleOrder" as odoo_src.odoo.addons.l10n_fi_sale.models.sale.SaleOrder {
+  compute_payment_reference_finnish(number)
+  get_finnish_check_digit(base_number)
+  number2numeric(number)
+  write(values)
+}
+@enduml

@@ -1,0 +1,40 @@
+@startuml classes_l10n_id
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_id.models.template_id.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_id.models.account_move.AccountMove {
+  l10n_id_qris_transaction_ids
+  action_l10n_id_update_payment_status()
+}
+class "Portal" as odoo_src.odoo.addons.l10n_id.controllers.portal.Portal {
+  portal_my_invoice_detail()
+}
+class "QRISTransaction" as odoo_src.odoo.addons.l10n_id.models.qris_transaction.QRISTransaction {
+  bank_id
+  model
+  model_id
+  paid
+  qris_amount
+  qris_content
+  qris_creation_datetime
+  qris_invoice_id
+}
+class "ResBank" as odoo_src.odoo.addons.l10n_id.models.res_bank.ResBank {
+  l10n_id_qris_api_key
+  l10n_id_qris_mid
+}
+class "TestQris" as odoo_src.odoo.addons.l10n_id.tests.test_qris.TestQris {
+  setUpClass()
+  test_fetch_payment_status_fail()
+  test_fetch_payment_status_success()
+  test_gc_no_remove_transactions_unpaid_within_30()
+  test_gc_remove_transactions_unpaid_after_30()
+  test_qris_qr_code_generation()
+}
+class "TestQrisTransaction" as odoo_src.odoo.addons.l10n_id.tests.test_qris_transaction.TestQrisTransaction {
+  setUpClass()
+  test_l10n_id_get_qris_qr_statuses()
+  test_latest_transaction()
+  test_retrieve_backend_record()
+}
+@enduml

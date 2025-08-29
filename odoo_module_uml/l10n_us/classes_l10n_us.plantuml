@@ -1,0 +1,6 @@
+@startuml classes_l10n_us
+set namespaceSeparator none
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_us.models.res_partner_bank.ResPartnerBank {
+  aba_routing
+}
+@enduml

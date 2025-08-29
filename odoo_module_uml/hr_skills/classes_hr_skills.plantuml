@@ -1,0 +1,111 @@
+@startuml classes_hr_skills
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.hr_skills.models.hr_employee.Employee {
+  employee_skill_ids
+  resume_line_ids
+  skill_ids
+  create(vals_list)
+  write(vals)
+}
+class "EmployeePublic" as odoo_src.odoo.addons.hr_skills.models.hr_employee_public.EmployeePublic {
+  employee_skill_ids
+  resume_line_ids
+}
+class "EmployeeResumeReport" as odoo_src.odoo.addons.hr_skills.report.hr_employee_cv_report.EmployeeResumeReport {
+}
+class "EmployeeSkill" as odoo_src.odoo.addons.hr_skills.models.hr_employee_skill.EmployeeSkill {
+  color
+  employee_id
+  level_progress
+  skill_id
+  skill_level_id
+  skill_type_id
+  create(vals_list)
+  write(vals)
+}
+class "HrEmployeeCV" as odoo_src.odoo.addons.hr_skills.controllers.main.HrEmployeeCV {
+  print_employee_cv(employee_ids, color_primary, color_secondary)
+}
+class "HrEmployeeCVWizard" as odoo_src.odoo.addons.hr_skills.wizard.hr_employee_cv_wizard.HrEmployeeCVWizard {
+  can_show_others
+  can_show_skills
+  color_primary
+  color_secondary
+  employee_ids
+  show_contact
+  show_others
+  show_skills
+  action_validate()
+}
+class "HrEmployeeSkillLog" as odoo_src.odoo.addons.hr_skills.models.hr_employee_skill_log.HrEmployeeSkillLog {
+  date
+  department_id
+  employee_id
+  level_progress
+  skill_id
+  skill_level_id
+  skill_type_id
+}
+class "HrEmployeeSkillReport" as odoo_src.odoo.addons.hr_skills.report.hr_employee_skill_report.HrEmployeeSkillReport {
+  active
+  company_id
+  department_id
+  display_name
+  id
+  level_progress
+  skill_id
+  skill_level
+  skill_type_id
+  init()
+}
+class "Resource" as odoo_src.odoo.addons.hr_skills.models.resource_resource.Resource {
+  employee_skill_ids
+}
+class "ResumeLine" as odoo_src.odoo.addons.hr_skills.models.hr_resume_line.ResumeLine {
+  date_end
+  date_start
+  description
+  display_type
+  employee_id
+  line_type_id
+  name
+}
+class "ResumeLineType" as odoo_src.odoo.addons.hr_skills.models.hr_resume_line_type.ResumeLineType {
+  name
+  sequence
+}
+class "Skill" as odoo_src.odoo.addons.hr_skills.models.hr_skill.Skill {
+  color
+  name
+  sequence
+  skill_type_id
+}
+class "SkillLevel" as odoo_src.odoo.addons.hr_skills.models.hr_skill_level.SkillLevel {
+  default_level
+  level_progress
+  name
+  skill_type_id
+  create(vals_list)
+  write(vals)
+}
+class "SkillType" as odoo_src.odoo.addons.hr_skills.models.hr_skill_type.SkillType {
+  active
+  color
+  name
+  skill_ids
+  skill_level_ids
+  copy_data(default)
+}
+class "SkillsTestUI" as odoo_src.odoo.addons.hr_skills.tests.test_ui.SkillsTestUI {
+  test_ui()
+}
+class "TestResourceSkills" as odoo_src.odoo.addons.hr_skills.tests.test_resource.TestResourceSkills {
+  test_availability_skills_infos_resource()
+}
+class "User" as odoo_src.odoo.addons.hr_skills.models.res_users.User {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  employee_skill_ids
+  resume_line_ids
+}
+@enduml

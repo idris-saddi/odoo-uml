@@ -1,0 +1,50 @@
+@startuml classes_l10n_cl
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cl.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cl.models.template_cl.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_cl.models.account_move.AccountMove {
+  l10n_latam_document_type_id : bool
+  l10n_latam_internal_type
+  partner_id_vat
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_cl.models.account_move_line.AccountMoveLine {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_cl.models.account_tax.AccountTax {
+  l10n_cl_sii_code
+}
+class "L10nLatamDocumentType" as odoo_src.odoo.addons.l10n_cl.models.l10n_latam_document_type.L10nLatamDocumentType {
+  internal_type
+  l10n_cl_active
+}
+class "ResBank" as odoo_src.odoo.addons.l10n_cl.models.res_partner_bank.ResBank {
+  fiscal_country_codes
+  l10n_cl_sbif_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_cl.models.res_company.ResCompany {
+  l10n_cl_activity_description
+}
+class "ResCurrency" as odoo_src.odoo.addons.l10n_cl.models.res_currency.ResCurrency {
+  l10n_cl_currency_code
+  l10n_cl_short_name
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_cl.models.res_country.ResPartner {
+  l10n_cl_customs_abbreviation
+  l10n_cl_customs_code
+  l10n_cl_customs_name
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_cl.models.res_partner.ResPartner {
+  l10n_cl_activity_description
+  l10n_cl_sii_taxpayer_type
+  create(vals_list)
+  write(values)
+}
+class "TestClLatamDocumentType" as odoo_src.odoo.addons.l10n_cl.tests.test_latam_document_type.TestClLatamDocumentType {
+  setUpClass()
+  test_document_type_not_modified_when_partner_changes()
+}
+class "UomUom" as odoo_src.odoo.addons.l10n_cl.models.uom_uom.UomUom {
+  l10n_cl_sii_code
+}
+@enduml

@@ -1,0 +1,186 @@
+@startuml classes_l10n_it_edi
+set namespaceSeparator none
+class "AccountEdiProxyClientUser" as odoo_src.odoo.addons.l10n_it_edi.models.account_edi_proxy_user.AccountEdiProxyClientUser {
+  proxy_type
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_edi.models.account_move.AccountMove {
+  is_move_sent : bool
+  l10n_it_cig
+  l10n_it_cup
+  l10n_it_ddt_id
+  l10n_it_edi_attachment_file
+  l10n_it_edi_attachment_id
+  l10n_it_edi_header
+  l10n_it_edi_is_self_invoice
+  l10n_it_edi_state
+  l10n_it_edi_transaction
+  l10n_it_origin_document_date
+  l10n_it_origin_document_name
+  l10n_it_origin_document_type
+  l10n_it_partner_pa
+  l10n_it_stamp_duty
+  action_check_l10n_it_edi()
+  action_invoice_download_fatturapa()
+  action_l10n_it_edi_send()
+  button_draft()
+  cron_l10n_it_edi_download_and_update()
+  get_extra_print_items()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_it_edi.models.account_move_send.AccountMoveSend {
+}
+class "Asn1Node" as odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node {
+  children : list
+  cls
+  content
+  end_offset
+  finalized : bool
+  kind
+  length
+  name : str
+  parent : NoneType
+  start_offset
+  finalize(end_offset, content)
+  total_length()
+}
+class "IrAttachment" as odoo_src.odoo.addons.l10n_it_edi.models.ir_attachment.IrAttachment {
+}
+class "L10nItDdt" as odoo_src.odoo.addons.l10n_it_edi.models.ddt.L10nItDdt {
+  date
+  invoice_id
+  name
+}
+class "ObjectIdentifierNode" as odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.ObjectIdentifierNode {
+  content(content)
+}
+class "OctetStringNode" as odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.OctetStringNode {
+}
+class "PrimitiveNode" as odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.PrimitiveNode {
+}
+class "Reader" as odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Reader {
+  current_node : NoneType
+  last_open_node : NoneType
+  offset : int
+  open_nodes_stack : list
+  parent_node : NoneType
+  root : NoneType
+  build_from_stream(stream)
+  clear()
+  consume(_format, stream, offset)
+  create_node(definition_byte, node_len, start_offset, parent)
+  finalize_last_open_node()
+  read_length(stream, offset)
+}
+class "RepartitionLine" as odoo_src.odoo.addons.l10n_it_edi.tests.common.TestItEdi.RepartitionLine {
+  factor_percent
+  repartition_type
+  tag_ids
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_it_edi.models.res_company.ResCompany {
+  l10n_it_codice_fiscale
+  l10n_it_eco_index_liquidation_state
+  l10n_it_eco_index_number
+  l10n_it_eco_index_office
+  l10n_it_eco_index_share_capital
+  l10n_it_eco_index_sole_shareholder
+  l10n_it_edi_proxy_user_id
+  l10n_it_has_eco_index
+  l10n_it_has_tax_representative
+  l10n_it_tax_representative_partner_id
+  l10n_it_tax_system
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_it_edi.models.res_config_settings.ResConfigSettings {
+  company_parent_id
+  is_edi_proxy_active
+  l10n_it_edi_demo_mode
+  l10n_it_edi_proxy_current_state
+  l10n_it_edi_register
+  use_root_proxy_user
+  button_create_proxy_user()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_it_edi.models.res_partner.ResPartner {
+  invoice_edi_format
+  l10n_it_codice_fiscale
+  l10n_it_pa_index
+  l10n_it_pec_email
+  validate_codice_fiscale()
+}
+class "TestItAccountMoveSend" as odoo_src.odoo.addons.l10n_it_edi.tests.test_account_move_send.TestItAccountMoveSend {
+  get_attachments(res_id)
+  init_invoice(partners, company, taxes)
+  test_invoice_multi_with_l10n_it_edi_xml_export()
+  test_invoice_multi_without_l10n_it_edi_xml_export()
+  test_invoice_send_with_multiple_company()
+  test_invoice_with_cig_or_cup_or_both()
+}
+class "TestItEdi" as odoo_src.odoo.addons.l10n_it_edi.tests.common.TestItEdi {
+  get_tag_ids(tag_codes)
+  repartition_lines()
+  setUpClass()
+}
+class "TestItEdiExport" as odoo_src.odoo.addons.l10n_it_edi.tests.test_edi_export.TestItEdiExport {
+  setUpClass()
+  test_bill_refund_no_reconcile()
+  test_export_XML_lowercase_fields()
+  test_export_XML_product_with_multiline_description_field()
+  test_export_foreign_currency()
+  test_export_invoice_exclude_postdated_moves()
+  test_export_invoice_partially_discounted()
+  test_export_invoice_price_included_taxes()
+  test_export_invoice_with_rounding_lines_value()
+  test_export_invoice_with_two_downpayments()
+  test_invoice_below_400_codice_simplified()
+  test_invoice_fully_discounted()
+  test_invoice_more_400_simplified()
+  test_invoice_more_decimal_price_unit()
+  test_invoice_negative_price()
+  test_invoice_non_domestic_simplified()
+  test_invoice_non_latin_and_latin()
+  test_invoice_total_400_VAT_simplified()
+  test_send_and_print_invoice_with_fallback_pdf()
+  test_send_prezzo_unitario_converted_to_company_currency()
+  test_vat_not_equals_codice()
+}
+class "TestItEdiImport" as odoo_src.odoo.addons.l10n_it_edi.tests.test_edi_import.TestItEdiImport {
+  fake_test_content : str
+  test_cron_receives_bill_from_another_company()
+  test_import_vendor_bill_with_ref_service_valid_tax()
+  test_invoice_user_can_compute_is_self_invoice()
+  test_receive_bill_sequence()
+  test_receive_bill_with_global_discount()
+  test_receive_bill_with_multiple_discounts_in_line()
+  test_receive_invalid_xml()
+  test_receive_negative_vendor_bill()
+  test_receive_same_vendor_bill_twice()
+  test_receive_signed_vendor_bill()
+  test_receive_vendor_bill()
+  test_receive_vendor_bill_sconto_maggiorazione()
+  test_receive_wrongly_signed_vendor_bill()
+}
+class "TestItEdiPa" as odoo_src.odoo.addons.l10n_it_edi.tests.test_edi_pa.TestItEdiPa {
+  setUpClass()
+  test_send_pa_partner()
+}
+class "TestItEdiReverseCharge" as odoo_src.odoo.addons.l10n_it_edi.tests.test_edi_reverse_charge.TestItEdiReverseCharge {
+  setUpClass()
+  test_bill_reverse_charge_and_refund()
+  test_bill_reverse_charge_san_marino()
+  test_invoice_external_reverse_charge()
+  test_invoice_internal_reverse_charge()
+  test_receive_bill_reverse_charge_internal()
+  test_reverse_charge_bill_2()
+}
+class "TestResPartner" as odoo_src.odoo.addons.l10n_it_edi.tests.test_res_partner.TestResPartner {
+  setUpClass()
+  test_normalized_country_and_vat()
+  test_normalized_pa_index_and_zip()
+  test_partner_l10n_it_codice_fiscale()
+  test_validate_fiscal_code()
+}
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.ObjectIdentifierNode --|> odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.PrimitiveNode
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.OctetStringNode --|> odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.PrimitiveNode
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.PrimitiveNode --|> odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node --* odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Reader : root
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node --* odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Reader : current_node
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node --* odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Reader : parent_node
+odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Asn1Node --* odoo_src.odoo.addons.l10n_it_edi.tools.remove_signature.Reader : last_open_node
+@enduml

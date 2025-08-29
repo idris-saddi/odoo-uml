@@ -1,0 +1,76 @@
+@startuml classes_l10n_vn_edi_viettel
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.account_move.AccountMove {
+  l10n_vn_edi_adjustment_type
+  l10n_vn_edi_agreement_document_date
+  l10n_vn_edi_agreement_document_name
+  l10n_vn_edi_invoice_number
+  l10n_vn_edi_invoice_state
+  l10n_vn_edi_invoice_symbol
+  l10n_vn_edi_invoice_transaction_id
+  l10n_vn_edi_issue_date
+  l10n_vn_edi_replacement_origin_id
+  l10n_vn_edi_reservation_code
+  l10n_vn_edi_reversed_entry_invoice_number
+  l10n_vn_edi_sinvoice_file
+  l10n_vn_edi_sinvoice_file_id
+  l10n_vn_edi_sinvoice_pdf_file
+  l10n_vn_edi_sinvoice_pdf_file_id
+  l10n_vn_edi_sinvoice_xml_file
+  l10n_vn_edi_sinvoice_xml_file_id
+  action_l10n_vn_edi_update_payment_status()
+  button_draft()
+  button_request_cancel()
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_vn_edi_viettel.wizard.account_move_reversal.AccountMoveReversal {
+  l10n_vn_edi_adjustment_type
+  l10n_vn_edi_agreement_document_date
+  l10n_vn_edi_agreement_document_name
+  reverse_moves(is_modify)
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.account_move_send.AccountMoveSend {
+}
+class "L10nVNEdiCancellation" as odoo_src.odoo.addons.l10n_vn_edi_viettel.wizard.l10n_vn_edi_cancellation_request.L10nVNEdiCancellation {
+  agreement_document_date
+  agreement_document_name
+  invoice_id
+  reason
+  button_request_cancel()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.res_company.ResCompany {
+  l10n_vn_edi_password
+  l10n_vn_edi_token
+  l10n_vn_edi_token_expiry
+  l10n_vn_edi_username
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.res_config_settings.ResConfigSettings {
+  l10n_vn_edi_default_symbol
+  l10n_vn_edi_password
+  l10n_vn_edi_username
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.res_partner.ResPartner {
+  invoice_edi_format
+  l10n_vn_edi_symbol
+}
+class "SInvoiceSymbol" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.sinvoice.SInvoiceSymbol {
+  invoice_template_id
+  name
+}
+class "SInvoiceTemplate" as odoo_src.odoo.addons.l10n_vn_edi_viettel.models.sinvoice.SInvoiceTemplate {
+  invoice_symbols_ids
+  name
+  template_invoice_type
+}
+class "TestVNEDI" as odoo_src.odoo.addons.l10n_vn_edi_viettel.tests.test_edi.TestVNEDI {
+  setUpClass()
+  test_access_token()
+  test_adjustment_invoice()
+  test_cancel_invoice()
+  test_default_symbol_on_partner()
+  test_invoice_creation()
+  test_invoice_foreign_currency()
+  test_json_data_generation()
+  test_replacement_invoice()
+  test_send_and_print()
+}
+@enduml

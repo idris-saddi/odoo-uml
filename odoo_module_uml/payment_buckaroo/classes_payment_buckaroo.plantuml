@@ -1,0 +1,30 @@
+@startuml classes_payment_buckaroo
+set namespaceSeparator none
+class "BuckarooCommon" as odoo_src.odoo.addons.payment_buckaroo.tests.common.BuckarooCommon {
+  setUpClass()
+}
+class "BuckarooController" as odoo_src.odoo.addons.payment_buckaroo.controllers.main.BuckarooController {
+  buckaroo_return_from_checkout()
+  buckaroo_webhook()
+}
+class "BuckarooTest" as odoo_src.odoo.addons.payment_buckaroo.tests.test_buckaroo.BuckarooTest {
+  reference : str
+  test_accept_notification_with_valid_signature()
+  test_feedback_processing()
+  test_redirect_form_values()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_signature_is_computed_based_on_lower_case_data_keys()
+  test_webhook_notification_confirms_transaction()
+  test_webhook_notification_triggers_signature_check()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_buckaroo.models.payment_provider.PaymentProvider {
+  buckaroo_secret_key
+  buckaroo_website_key
+  code
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_buckaroo.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+@enduml

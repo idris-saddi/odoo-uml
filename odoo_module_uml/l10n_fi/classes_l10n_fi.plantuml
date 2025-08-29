@@ -1,0 +1,27 @@
+@startuml classes_l10n_fi
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_fi.models.template_fi.AccountChartTemplate {
+}
+class "AccountInvoiceFinnish" as odoo_src.odoo.addons.l10n_fi.models.account_move.AccountInvoiceFinnish {
+  compute_payment_reference_finnish(number)
+  compute_payment_reference_finnish_rf(number)
+  get_finnish_check_digit(base_number)
+  get_rf_check_digits(base_number)
+  number2numeric(number)
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_fi.models.account_journal.AccountJournal {
+  invoice_reference_model
+}
+class "InvoiceGetReferenceTest" as odoo_src.odoo.addons.l10n_fi.tests.test_get_reference.InvoiceGetReferenceTest {
+  setUpClass()
+  test_get_reference_finnish_invoice()
+  test_get_reference_finnish_partner()
+  test_get_reference_finnish_rf_invoice()
+  test_get_reference_finnish_rf_partner()
+}
+class "PaymentReferenceTest" as odoo_src.odoo.addons.l10n_fi.tests.test_references.PaymentReferenceTest {
+  setUpClass()
+  test_payment_reference_fi()
+  test_payment_reference_rf()
+}
+@enduml

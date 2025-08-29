@@ -1,0 +1,8 @@
+@startuml classes_mass_mailing_event_track
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.mass_mailing_event_track.models.event_event.Event {
+  action_mass_mailing_track_speakers()
+}
+class "EventTrack" as odoo_src.odoo.addons.mass_mailing_event_track.models.event_track.EventTrack {
+}
+@enduml

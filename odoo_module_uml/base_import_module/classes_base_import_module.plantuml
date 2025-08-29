@@ -1,0 +1,62 @@
+@startuml classes_base_import_module
+set namespaceSeparator none
+class "BaseImportModule" as odoo_src.odoo.addons.base_import_module.models.base_import_module.BaseImportModule {
+  force
+  import_message
+  module_file
+  modules_dependencies
+  state
+  with_demo
+  action_module_open()
+  get_dependencies_to_install_names()
+  import_module()
+}
+class "BaseModuleUninstall" as odoo_src.odoo.addons.base_import_module.wizard.base_module_uninstall.BaseModuleUninstall {
+}
+class "ImportModule" as odoo_src.odoo.addons.base_import_module.controllers.main.ImportModule {
+  login_upload(login, password, force, mod_file)
+}
+class "IrModule" as odoo_src.odoo.addons.base_import_module.models.ir_module.IrModule {
+  imported
+  module_type
+  button_immediate_install_app()
+  module_uninstall()
+  more_info()
+  search_panel_select_range(field_name)
+  web_read(specification)
+  web_search_read(domain, specification, offset, limit, order, count_limit)
+}
+class "IrUiView" as odoo_src.odoo.addons.base_import_module.models.ir_ui_view.IrUiView {
+}
+class "TestClocFields" as odoo_src.odoo.addons.base_import_module.tests.test_cloc.TestClocFields {
+  create_studio_module()
+  test_count_attachment_imported_module()
+  test_count_qweb_imported_module()
+  test_exclude_attachment_imported_module()
+  test_exclude_cloc_imported_module()
+  test_exclude_qweb()
+  test_fields_from_import_module()
+  test_fields_from_studio()
+  test_fields_module_name()
+}
+class "TestImportModule" as odoo_src.odoo.addons.base_import_module.tests.test_import_module.TestImportModule {
+  test_user
+  import_zipfile(files)
+  test_import_and_uninstall_module()
+  test_import_and_update_module()
+  test_import_wrong_dependencies()
+  test_import_zip()
+  test_import_zip_data_not_in_manifest()
+  test_import_zip_extract_only_useful()
+  test_import_zip_ignore_unexpected_data_extension()
+  test_import_zip_invalid_data()
+  test_import_zip_invalid_manifest()
+}
+class "TestImportModuleHttp" as odoo_src.odoo.addons.base_import_module.tests.test_import_module.TestImportModuleHttp {
+  test_check_zip_dependencies()
+  test_import_module_assets_http()
+  test_import_module_field_file()
+  test_import_module_icon()
+}
+odoo_src.odoo.addons.base_import_module.tests.test_import_module.TestImportModuleHttp --|> odoo_src.odoo.addons.base_import_module.tests.test_import_module.TestImportModule
+@enduml

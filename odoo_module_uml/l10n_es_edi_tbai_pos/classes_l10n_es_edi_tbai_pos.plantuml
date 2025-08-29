@@ -1,0 +1,28 @@
+@startuml classes_l10n_es_edi_tbai_pos
+set namespaceSeparator none
+class "PosOrder" as odoo_src.odoo.addons.l10n_es_edi_tbai_pos.models.pos_order.PosOrder {
+  l10n_es_tbai_chain_index
+  l10n_es_tbai_is_required
+  l10n_es_tbai_post_document_id
+  l10n_es_tbai_post_file
+  l10n_es_tbai_post_file_name
+  l10n_es_tbai_refund_reason
+  l10n_es_tbai_state
+  action_pos_order_paid()
+  get_l10n_es_pos_tbai_qrurl()
+  l10n_es_tbai_retry_post()
+}
+class "PosSession" as odoo_src.odoo.addons.l10n_es_edi_tbai_pos.models.pos_session.PosSession {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_edi_tbai_pos.models.res_company.ResCompany {
+}
+class "TestPosEdi" as odoo_src.odoo.addons.l10n_es_edi_tbai_pos.tests.test_tbai_pos.TestPosEdi {
+  create_pos_order(session, price_unit)
+  pay_pos_order(pos_order)
+  setUpClass()
+  test_tbai_pos_order()
+  test_tbai_pos_order_to_invoice()
+  test_tbai_refund_invoiced_pos_order()
+  test_tbai_refund_pos_order()
+}
+@enduml

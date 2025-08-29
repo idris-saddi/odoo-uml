@@ -1,0 +1,55 @@
+@startuml classes_payment_authorize
+set namespaceSeparator none
+class "AuthorizeAPI" as odoo_src.odoo.addons.payment_authorize.models.authorize_request.AuthorizeAPI {
+  AUTH_ERROR_STATUS : str
+  name
+  state
+  transaction_key
+  url : str
+  auth_and_capture(tx, token, opaque_data)
+  authorize(tx, token, opaque_data)
+  capture(transaction_id, amount)
+  create_customer_profile(partner, transaction_id)
+  delete_customer_profile(profile_id)
+  get_transaction_details(transaction_id)
+  merchant_details()
+  refund(transaction_id, amount, tx_details)
+  test_authenticate()
+  void(transaction_id)
+}
+class "AuthorizeCommon" as odoo_src.odoo.addons.payment_authorize.tests.common.AuthorizeCommon {
+  setUpClass()
+}
+class "AuthorizeController" as odoo_src.odoo.addons.payment_authorize.controllers.main.AuthorizeController {
+  authorize_payment(reference, partner_id, access_token, opaque_data)
+}
+class "AuthorizeTest" as odoo_src.odoo.addons.payment_authorize.tests.test_authorize.AuthorizeTest {
+  test_compatible_providers()
+  test_processing_values()
+  test_validation()
+  test_voiding_confirmed_tx_cancels_it()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_authorize.models.payment_provider.PaymentProvider {
+  authorize_client_key
+  authorize_login
+  authorize_signature_key
+  authorize_transaction_key
+  available_currency_ids : list
+  code
+  action_update_merchant_details()
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment_authorize.models.payment_token.PaymentToken {
+  authorize_profile
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_authorize.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "TestRefundFlows" as odoo_src.odoo.addons.payment_authorize.tests.test_refund_flows.TestRefundFlows {
+  test_refunding_authorized_tx_voids_it()
+  test_refunding_captured_tx_refunds_it_and_creates_refund_tx()
+  test_refunding_refunded_tx_creates_refund_tx()
+  test_refunding_voided_tx_cancels_it()
+}
+odoo_src.odoo.addons.payment_authorize.tests.test_authorize.AuthorizeTest --|> odoo_src.odoo.addons.payment_authorize.tests.common.AuthorizeCommon
+@enduml

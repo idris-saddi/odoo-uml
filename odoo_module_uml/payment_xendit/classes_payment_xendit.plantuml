@@ -1,0 +1,47 @@
+@startuml classes_payment_xendit
+set namespaceSeparator none
+class "PaymentProvider" as odoo_src.odoo.addons.payment_xendit.models.payment_provider.PaymentProvider {
+  code
+  xendit_public_key
+  xendit_secret_key
+  xendit_webhook_token
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_xendit.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_xendit.tests.test_payment_provider.TestPaymentProvider {
+  test_incompatible_with_unsupported_currencies()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_xendit.tests.test_payment_transaction.TestPaymentTransaction {
+  maxDiff : int
+  reference : str
+  test_charge_request_contains_rounded_amount_idr()
+  test_empty_rendering_values_if_direct()
+  test_get_tx_from_notification_data_returns_tx()
+  test_no_input_missing_from_redirect_form()
+  test_no_item_missing_from_invoice_request_payload()
+  test_no_item_missing_from_rendering_values()
+  test_processing_notification_data_confirms_transaction()
+  test_processing_notification_data_tokenizes_transaction()
+  test_processing_values_contain_rounded_amount_idr()
+  test_tokenization_flow_not_save_payment_details()
+}
+class "TestProcessingFlow" as odoo_src.odoo.addons.payment_xendit.tests.test_processing_flows.TestProcessingFlow {
+  reference : str
+  test_accept_webhook_notification_with_valid_signature()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_set_xendit_transactions_to_pending_on_return()
+  test_webhook_notification_triggers_processing()
+  test_webhook_notification_triggers_signature_check()
+}
+class "XenditCommon" as odoo_src.odoo.addons.payment_xendit.tests.common.XenditCommon {
+  setUpClass()
+}
+class "XenditController" as odoo_src.odoo.addons.payment_xendit.controllers.main.XenditController {
+  xendit_payment(reference, token_ref, auth_id)
+  xendit_return(tx_ref, success, access_token)
+  xendit_webhook()
+}
+@enduml

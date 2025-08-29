@@ -1,0 +1,25 @@
+@startuml classes_l10n_in_gstin_status
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_gstin_status.models.account_move.AccountMove {
+  l10n_in_gstin_verified_date
+  l10n_in_partner_gstin_status
+  l10n_in_show_gstin_status
+  l10n_in_verify_partner_gstin_status()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_in_gstin_status.models.res_partner.ResPartner {
+  l10n_in_gstin_verified_date
+  l10n_in_gstin_verified_status
+  action_l10n_in_verify_gstin_status()
+}
+class "TestGSTStatusFeature" as odoo_src.odoo.addons.l10n_in_gstin_status.tests.test_check_status.TestGSTStatusFeature {
+  mock_responses : dict
+  partner1
+  partner2
+  partner3
+  partner4
+  partner5
+  check_gstin_status(partner, expected_status, mock_response, raises_exception)
+  setUp()
+  test_gstin_status()
+}
+@enduml

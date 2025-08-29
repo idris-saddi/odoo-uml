@@ -1,0 +1,19 @@
+@startuml classes_auth_totp_mail
+set namespaceSeparator none
+class "AuthTotpDevice" as odoo_src.odoo.addons.auth_totp_mail.models.auth_totp_device.AuthTotpDevice {
+  unlink()
+}
+class "TestNotifySecurityUpdateTotp" as odoo_src.odoo.addons.auth_totp_mail.tests.test_notify_security_update_totp.TestNotifySecurityUpdateTotp {
+  test_security_update_totp_enabled_disabled()
+  test_security_update_trusted_device_added_removed()
+}
+class "TestTOTPInvite" as odoo_src.odoo.addons.auth_totp_mail.tests.test_totp.TestTOTPInvite {
+  test_totp_administration()
+}
+class "Users" as odoo_src.odoo.addons.auth_totp_mail.models.res_users.Users {
+  action_open_my_account_settings()
+  action_totp_invite()
+  get_totp_invite_url()
+  write(vals)
+}
+@enduml

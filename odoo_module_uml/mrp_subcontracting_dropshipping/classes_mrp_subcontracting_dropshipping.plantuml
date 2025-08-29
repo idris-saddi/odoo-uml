@@ -1,0 +1,56 @@
+@startuml classes_mrp_subcontracting_dropshipping
+set namespaceSeparator none
+class "ProductReplenishMixin" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_replenish_mixin.ProductReplenishMixin {
+}
+class "PurchaseOrder" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.purchase.PurchaseOrder {
+  default_location_dest_id_is_subcontracting_loc
+  onchange_picking_type_id()
+}
+class "ResCompany" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.res_company.ResCompany {
+  dropship_subcontractor_pick_type_id
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_move.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_picking.StockPicking {
+}
+class "StockRule" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_rule.StockRule {
+}
+class "StockWarehouse" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_warehouse.StockWarehouse {
+  subcontracting_dropshipping_pull_id
+  subcontracting_dropshipping_to_resupply
+  create(vals_list)
+  update_global_route_dropship_subcontractor()
+  write(vals)
+}
+class "StockWarehouseOrderpoint" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.models.stock_orderpoint.StockWarehouseOrderpoint {
+}
+class "TestSaleDropshippingFlows" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.tests.test_sale_dropshipping.TestSaleDropshippingFlows {
+  setUpClass()
+  test_cancelled_picking_and_delivered_qty()
+  test_dropship_standard_perpetual_anglosaxon_ordered_return_internal_aml()
+  test_dropship_with_different_suppliers()
+  test_kit_dropshipped_change_qty_SO()
+  test_partial_return_kit_and_delivered_qty()
+  test_return_kit_and_delivered_qty()
+  test_sale_kit_with_dropshipped_component()
+}
+class "TestSubcontractingDropshippingFlows" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.tests.test_purchase_subcontracting.TestSubcontractingDropshippingFlows {
+  test_dropshipped_component_and_sub_location()
+  test_mrp_subcontracting_dropshipping_1()
+  test_mrp_subcontracting_purchase_2()
+  test_partner_id_no_overwrite()
+  test_po_to_customer()
+  test_po_to_subcontractor()
+  test_subcontracted_bom_routes()
+  test_two_boms_same_component_supplier()
+}
+class "TestSubcontractingDropshippingPortal" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.tests.test_purchase_subcontracting.TestSubcontractingDropshippingPortal {
+  test_portal_subcontractor_record_production_with_dropship()
+}
+class "TestSubcontractingDropshippingValuation" as odoo_src.odoo.addons.mrp_subcontracting_dropshipping.tests.test_anglo_saxon_valuation.TestSubcontractingDropshippingValuation {
+  setUpClass()
+  test_account_line_entry_kit_bom_dropship()
+  test_avco_valuation_subcontract_and_dropshipped_and_backorder()
+  test_valuation_subcontracted_and_dropshipped()
+}
+@enduml

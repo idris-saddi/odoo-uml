@@ -1,0 +1,24 @@
+@startuml classes_l10n_fr_hr_holidays
+set namespaceSeparator none
+class "HrLeave" as odoo_src.odoo.addons.l10n_fr_hr_holidays.models.hr_leave.HrLeave {
+  l10n_fr_date_to_changed
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_fr_hr_holidays.models.res_company.ResCompany {
+  l10n_fr_reference_leave_type
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_fr_hr_holidays.models.res_config_settings.ResConfigSettings {
+  l10n_fr_reference_leave_type
+}
+class "TestFrenchLeaves" as odoo_src.odoo.addons.l10n_fr_hr_holidays.tests.test_french_leaves.TestFrenchLeaves {
+  setUpClass()
+  test_2_weeks_calendar()
+  test_calendar_end_week_hole()
+  test_calendar_with_holes()
+  test_end_of_week()
+  test_last_day_half()
+  test_leave_full_day_different_working_hours()
+  test_leave_type_half_day_different_working_hours()
+  test_no_differences()
+  test_start_of_week()
+}
+@enduml

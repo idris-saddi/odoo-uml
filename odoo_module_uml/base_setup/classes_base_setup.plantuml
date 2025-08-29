@@ -1,0 +1,68 @@
+@startuml classes_base_setup
+set namespaceSeparator none
+class "BaseSetup" as odoo_src.odoo.addons.base_setup.controllers.main.BaseSetup {
+  base_setup_data()
+  base_setup_is_demo()
+}
+class "IrHttp" as odoo_src.odoo.addons.base_setup.models.ir_http.IrHttp {
+  session_info()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.base_setup.models.res_config_settings.ResConfigSettings {
+  active_user_count
+  company_count
+  company_country_code
+  company_id
+  company_informations
+  company_name
+  external_report_layout_id
+  group_multi_currency
+  is_root_company
+  language_count
+  module_account_inter_company_rules
+  module_auth_ldap
+  module_auth_oauth
+  module_base_geolocalize
+  module_base_import
+  module_google_calendar
+  module_google_recaptcha
+  module_mail_plugin
+  module_microsoft_calendar
+  module_partner_autocomplete
+  module_product_images
+  module_sms
+  module_voip
+  module_web_unsplash
+  module_website_cf_turnstile
+  profiling_enabled_until
+  report_footer
+  show_effect
+  user_default_rights
+  edit_external_header()
+  open_company()
+  open_default_user()
+}
+class "ResUsers" as odoo_src.odoo.addons.base_setup.models.res_users.ResUsers {
+  web_create_users(emails)
+}
+class "TestResConfig" as odoo_src.odoo.addons.base_setup.tests.test_res_config.TestResConfig {
+  company
+  config
+  user
+  setUp()
+  test_install()
+  test_multi_company_res_config_group()
+  test_no_install()
+}
+class "TestResConfig" as odoo_src.odoo.addons.base_setup.tests.test_default_group.TestResConfig {
+  company
+  config
+  user
+  setUp()
+  test_multi_company_res_config_group()
+}
+class "TestResConfigDocLinks" as odoo_src.odoo.addons.base_setup.tests.test_res_config_doc_links.TestResConfigDocLinks {
+  setUpClass()
+  test_01_href_links()
+  test_02_setting_nodes_documentation_links()
+}
+@enduml

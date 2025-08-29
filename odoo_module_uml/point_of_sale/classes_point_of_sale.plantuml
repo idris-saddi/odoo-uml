@@ -1,0 +1,652 @@
+@startuml classes_point_of_sale
+set namespaceSeparator none
+class "AccountBankStatementLine" as odoo_src.odoo.addons.point_of_sale.models.account_bank_statement.AccountBankStatementLine {
+  pos_session_id
+}
+class "AccountCashRounding" as odoo_src.odoo.addons.point_of_sale.models.pos_order.AccountCashRounding {
+}
+class "AccountCashRounding" as odoo_src.odoo.addons.point_of_sale.models.account_cash_rounding.AccountCashRounding {
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.point_of_sale.models.account_fiscal_position.AccountFiscalPosition {
+}
+class "AccountFiscalPositionTax" as odoo_src.odoo.addons.point_of_sale.models.account_fiscal_position_tax.AccountFiscalPositionTax {
+}
+class "AccountJournal" as odoo_src.odoo.addons.point_of_sale.models.account_journal.AccountJournal {
+  pos_payment_method_ids
+  action_archive()
+}
+class "AccountMove" as odoo_src.odoo.addons.point_of_sale.models.account_move.AccountMove {
+  pos_order_ids
+  pos_payment_ids
+  pos_refunded_invoice_ids
+  pos_session_ids
+  reversed_pos_order_id
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.point_of_sale.models.account_move.AccountMoveLine {
+}
+class "AccountPayment" as odoo_src.odoo.addons.point_of_sale.models.account_payment.AccountPayment {
+  force_outstanding_account_id
+  pos_payment_method_id
+  pos_session_id
+}
+class "AccountTax" as odoo_src.odoo.addons.point_of_sale.models.account_tax.AccountTax {
+  write(vals)
+}
+class "AccountTaxGroup" as odoo_src.odoo.addons.point_of_sale.models.account_tax_group.AccountTaxGroup {
+}
+class "BarcodeRule" as odoo_src.odoo.addons.point_of_sale.models.barcode_rule.BarcodeRule {
+  type
+}
+class "Bill" as odoo_src.odoo.addons.point_of_sale.models.pos_bill.Bill {
+  for_all_config
+  name
+  pos_config_ids
+  value
+  name_create(name)
+}
+class "DecimalPrecision" as odoo_src.odoo.addons.point_of_sale.models.decimal_precision.DecimalPrecision {
+}
+class "Digest" as odoo_src.odoo.addons.point_of_sale.models.digest.Digest {
+  kpi_pos_total
+  kpi_pos_total_value
+}
+class "IrBinary" as odoo_src.odoo.addons.point_of_sale.models.ir_binary.IrBinary {
+}
+class "IrHttp" as odoo_src.odoo.addons.point_of_sale.models.ir_http.IrHttp {
+}
+class "IrModuleModule" as odoo_src.odoo.addons.point_of_sale.models.ir_module_module.IrModuleModule {
+}
+class "IrUiView" as odoo_src.odoo.addons.point_of_sale.models.ir_ui_view.IrUiView {
+}
+class "MailComposer" as odoo_src.odoo.addons.point_of_sale.models.mail_compose_message.MailComposer {
+  action_send_mail()
+}
+class "PointOfSaleBinary" as odoo_src.odoo.addons.point_of_sale.models.binary.PointOfSaleBinary {
+  point_of_sale_content_image(field)
+}
+class "PosBusMixin" as odoo_src.odoo.addons.point_of_sale.models.pos_bus_mixin.PosBusMixin {
+  access_token
+  create(vals_list)
+}
+class "PosCategory" as odoo_src.odoo.addons.point_of_sale.models.pos_category.PosCategory {
+  child_ids
+  color
+  has_image
+  image_128
+  name
+  parent_id
+  sequence
+  create(vals_list)
+  get_default_color()
+  write(vals)
+}
+class "PosConfig" as odoo_src.odoo.addons.point_of_sale.models.pos_config.PosConfig {
+  access_token
+  active
+  amount_authorized_diff
+  auto_validate_terminal_payment
+  available_pricelist_ids
+  basic_receipt
+  cash_control
+  cash_rounding
+  company_has_template
+  company_id
+  currency_id
+  current_session_id
+  current_session_state
+  current_user_id
+  customer_display_bg_img
+  customer_display_bg_img_name
+  customer_display_type
+  default_bill_ids
+  default_fiscal_position_id
+  fiscal_position_ids
+  group_pos_manager_id
+  group_pos_user_id
+  has_active_session
+  iface_available_categ_ids
+  iface_big_scrollbars
+  iface_cashdrawer
+  iface_electronic_scale
+  iface_print_auto
+  iface_print_skip_screen
+  iface_print_via_proxy
+  iface_scan_via_proxy
+  iface_tax_included
+  iface_tipproduct
+  invoice_journal_id
+  is_closing_entry_by_product
+  is_header_or_footer
+  is_installed_account_accountant
+  is_margins_costs_accessible_to_every_user
+  is_order_printer
+  is_posbox
+  journal_id
+  last_session_closing_cash
+  last_session_closing_date
+  limit_categories
+  manual_discount
+  module_pos_avatax
+  module_pos_discount
+  module_pos_hr
+  module_pos_restaurant
+  module_pos_sms
+  name
+  note_ids
+  number_of_rescue_session
+  only_round_cash_method
+  order_edit_tracking
+  orderlines_sequence_in_cart_by_category
+  other_devices
+  payment_method_ids
+  picking_policy
+  picking_type_id
+  pos_session_duration
+  pos_session_state
+  pos_session_username
+  pricelist_id
+  printer_ids
+  proxy_ip
+  receipt_footer
+  receipt_header
+  restrict_price_control
+  rounding_method
+  route_id
+  sequence_id
+  sequence_line_id
+  session_ids
+  set_maximum_difference
+  ship_later
+  show_category_images
+  show_product_images
+  tax_regime_selection
+  tip_product_id
+  trusted_config_ids
+  use_pricelist
+  uuid
+  warehouse_id
+  action_pos_config_modal_edit()
+  create(vals_list)
+  execute()
+  get_categories(categories)
+  get_limited_partners_loading()
+  get_limited_product_count()
+  get_limited_products_loading(fields)
+  get_pos_kanban_view_state()
+  get_records(data)
+  install_pos_restaurant()
+  load_onboarding_bakery_scenario()
+  load_onboarding_clothes_scenario()
+  load_onboarding_furniture_scenario()
+  notify_synchronisation(session_id, login_number, records)
+  open_existing_session_cb()
+  open_opened_rescue_session_form()
+  open_ui()
+  read_config_open_orders(domain, record_ids)
+  unlink()
+  update_customer_display(order, access_token)
+  write(vals)
+}
+class "PosController" as odoo_src.odoo.addons.point_of_sale.controllers.main.PosController {
+  invoice_request_screen()
+  pos_web(config_id, from_backend)
+  print_sale_details(date_start, date_stop)
+  show_ticket_validation_screen(access_token)
+}
+class "PosCustomerDisplay" as odoo_src.odoo.addons.point_of_sale.controllers.customer_display.PosCustomerDisplay {
+  pos_customer_display(id_, access_token)
+}
+class "PosInvoiceReport" as odoo_src.odoo.addons.point_of_sale.report.pos_invoice.PosInvoiceReport {
+}
+class "PosLoadMixin" as odoo_src.odoo.addons.point_of_sale.models.pos_load_mixin.PosLoadMixin {
+}
+class "PosNote" as odoo_src.odoo.addons.point_of_sale.models.pos_note.PosNote {
+  name
+  sequence
+}
+class "PosOrder" as odoo_src.odoo.addons.point_of_sale.models.pos_order.PosOrder {
+  account_move
+  amount_difference
+  amount_paid
+  amount_return
+  amount_tax
+  amount_total
+  available_payment_method_ids
+  company_id
+  config_id
+  country_code
+  currency_id
+  currency_rate
+  date_order
+  email
+  failed_pickings
+  fiscal_position_id
+  floating_order_name
+  general_note
+  has_deleted_line
+  has_refundable_lines
+  is_edited
+  is_invoiced
+  is_tipped
+  is_total_cost_computed
+  last_order_preparation_change
+  lines
+  margin
+  margin_percent
+  mobile
+  name
+  nb_print
+  order_edit_tracking
+  partner_id
+  payment_ids
+  picking_count
+  picking_ids
+  picking_type_id
+  pos_reference
+  pricelist_id
+  procurement_group_id
+  refund_orders_count
+  refunded_order_id
+  sale_journal
+  sequence_number
+  session_id
+  session_move_id
+  shipping_date
+  state
+  ticket_code
+  tip_amount
+  to_invoice
+  tracking_number
+  user_id
+  uuid
+  action_pos_order_cancel()
+  action_pos_order_invoice()
+  action_pos_order_paid()
+  action_send_mail()
+  action_send_receipt(email, ticket_image, basic_image)
+  action_stock_picking()
+  action_view_invoice()
+  action_view_refund_orders()
+  action_view_refunded_order()
+  add_payment(data)
+  create(vals_list)
+  get_preparation_change()
+  read_pos_data(data, config_id)
+  refund()
+  remove_from_ui(server_ids)
+  search_paid_order_ids(config_id, domain, limit, offset)
+  sync_from_ui(orders)
+  write(vals)
+}
+class "PosOrderLine" as odoo_src.odoo.addons.point_of_sale.models.pos_order.PosOrderLine {
+  attribute_value_ids
+  combo_item_id
+  combo_line_ids
+  combo_parent_id
+  company_id
+  currency_id
+  custom_attribute_value_ids
+  customer_note
+  discount
+  full_product_name
+  is_edited
+  is_total_cost_computed
+  margin
+  margin_percent
+  name
+  note
+  notice
+  order_id
+  pack_lot_ids
+  price_extra
+  price_subtotal
+  price_subtotal_incl
+  price_type
+  price_unit
+  product_id
+  product_uom_id
+  qty
+  refund_orderline_ids
+  refunded_orderline_id
+  refunded_qty
+  skip_change
+  tax_ids
+  tax_ids_after_fiscal_position
+  total_cost
+  uuid
+  create(vals_list)
+  get_existing_lots(company_id, product_id)
+  unlink()
+  write(values)
+}
+class "PosOrderLineLot" as odoo_src.odoo.addons.point_of_sale.models.pos_order.PosOrderLineLot {
+  lot_name
+  order_id
+  pos_order_line_id
+  product_id
+}
+class "PosOrderReport" as odoo_src.odoo.addons.point_of_sale.report.pos_order_report.PosOrderReport {
+  average_price
+  company_id
+  config_id
+  date
+  delay_validation
+  invoiced
+  journal_id
+  margin
+  nbr_lines
+  order_id
+  partner_id
+  payment_method_id
+  pos_categ_id
+  price_sub_total
+  price_subtotal_excl
+  price_total
+  pricelist_id
+  product_categ_id
+  product_id
+  product_qty
+  product_tmpl_id
+  session_id
+  state
+  total_discount
+  user_id
+  init()
+}
+class "PosPayment" as odoo_src.odoo.addons.point_of_sale.models.pos_payment.PosPayment {
+  account_move_id
+  amount
+  card_brand
+  card_no
+  card_type
+  cardholder_name
+  company_id
+  currency_id
+  currency_rate
+  is_change
+  name
+  partner_id
+  payment_date
+  payment_method_authcode
+  payment_method_id
+  payment_method_issuer_bank
+  payment_method_payment_mode
+  payment_ref_no
+  payment_status
+  pos_order_id
+  session_id
+  ticket
+  transaction_id
+  user_id
+  uuid
+}
+class "PosPaymentMethod" as odoo_src.odoo.addons.point_of_sale.models.pos_payment_method.PosPaymentMethod {
+  active
+  company_id
+  config_ids
+  default_qr
+  hide_qr_code_method
+  hide_use_payment_terminal
+  image
+  is_cash_count
+  journal_id
+  name
+  open_session_ids
+  outstanding_account_id
+  payment_method_type
+  qr_code_method
+  receivable_account_id
+  sequence
+  split_transactions
+  type
+  use_payment_terminal
+  copy_data(default)
+  create(vals_list)
+  get_qr_code(amount, free_communication, structured_communication, currency, debtor_partner)
+  write(vals)
+}
+class "PosPrinter" as odoo_src.odoo.addons.point_of_sale.models.pos_printer.PosPrinter {
+  company_id
+  name
+  printer_type
+  product_categories_ids
+  proxy_ip
+}
+class "PosSession" as odoo_src.odoo.addons.point_of_sale.models.pos_session.PosSession {
+  POS_SESSION_STATE : list
+  bank_payment_ids
+  cash_control
+  cash_journal_id
+  cash_real_transaction
+  cash_register_balance_end
+  cash_register_balance_end_real
+  cash_register_balance_start
+  cash_register_difference
+  closing_notes
+  company_id
+  config_id
+  currency_id
+  failed_pickings
+  is_in_company_currency
+  login_number
+  move_id
+  name
+  opening_notes
+  order_count
+  order_ids
+  payment_method_ids
+  picking_count
+  picking_ids
+  rescue
+  sequence_number
+  start_at
+  state
+  statement_line_ids
+  stop_at
+  total_payments_amount
+  update_stock_at_closing
+  user_id
+  action_pos_session_close(balancing_account, amount_to_balance, bank_payment_method_diffs)
+  action_pos_session_closing_control(balancing_account, amount_to_balance, bank_payment_method_diffs)
+  action_pos_session_open()
+  action_pos_session_validate(balancing_account, amount_to_balance, bank_payment_method_diffs)
+  action_show_payments_list()
+  action_stock_picking()
+  action_view_order()
+  close_session_from_ui(bank_payment_method_diff_pairs)
+  create(vals_list)
+  delete_opening_control_session()
+  find_product_by_barcode(barcode, config_id)
+  get_closing_control_data()
+  get_pos_ui_product_pricelist_item_by_product(product_tmpl_ids, product_ids, config_id)
+  get_session_orders()
+  get_total_discount()
+  load_data(models_to_load, only_data)
+  log_partner_message(partner_id, action, message_type)
+  login()
+  open_frontend_cb()
+  post_close_register_message()
+  post_closing_cash_details(counted_cash)
+  set_opening_control(cashbox_value: int, notes: str)
+  show_cash_register()
+  show_journal_items()
+  try_cash_in_out(_type, amount, reason, extras)
+  unlink()
+  update_closing_control_state_session(notes)
+  write(vals)
+}
+class "ProcurementGroup" as odoo_src.odoo.addons.point_of_sale.models.pos_session.ProcurementGroup {
+}
+class "ProcurementGroup" as odoo_src.odoo.addons.point_of_sale.models.stock_picking.ProcurementGroup {
+  pos_order_id
+}
+class "ProductAttribute" as odoo_src.odoo.addons.point_of_sale.models.product.ProductAttribute {
+}
+class "ProductAttributeCustomValue" as odoo_src.odoo.addons.point_of_sale.models.product.ProductAttributeCustomValue {
+  pos_order_line_id
+}
+class "ProductCategory" as odoo_src.odoo.addons.point_of_sale.models.product.ProductCategory {
+}
+class "ProductCombo" as odoo_src.odoo.addons.point_of_sale.models.product_combo.ProductCombo {
+}
+class "ProductComboItem" as odoo_src.odoo.addons.point_of_sale.models.product_combo_item.ProductComboItem {
+}
+class "ProductPackaging" as odoo_src.odoo.addons.point_of_sale.models.product.ProductPackaging {
+}
+class "ProductPricelist" as odoo_src.odoo.addons.point_of_sale.models.product.ProductPricelist {
+}
+class "ProductPricelistItem" as odoo_src.odoo.addons.point_of_sale.models.product.ProductPricelistItem {
+}
+class "ProductProduct" as odoo_src.odoo.addons.point_of_sale.models.product.ProductProduct {
+  get_product_info_pos(price, quantity, pos_config_id)
+}
+class "ProductTag" as odoo_src.odoo.addons.point_of_sale.models.product_tag.ProductTag {
+}
+class "ProductTemplate" as odoo_src.odoo.addons.point_of_sale.models.product.ProductTemplate {
+  available_in_pos
+  color
+  pos_categ_ids
+  public_description
+  sale_ok : bool
+  to_weight
+}
+class "ProductTemplateAttributeLine" as odoo_src.odoo.addons.point_of_sale.models.product.ProductTemplateAttributeLine {
+}
+class "ProductTemplateAttributeValue" as odoo_src.odoo.addons.point_of_sale.models.product.ProductTemplateAttributeValue {
+}
+class "ReportSaleDetails" as odoo_src.odoo.addons.point_of_sale.models.report_sale_details.ReportSaleDetails {
+  get_sale_details(date_start, date_stop, config_ids, session_ids)
+}
+class "ResCompany" as odoo_src.odoo.addons.point_of_sale.models.res_company.ResCompany {
+  point_of_sale_ticket_portal_url_display_mode
+  point_of_sale_ticket_unique_code
+  point_of_sale_update_stock_quantities
+  point_of_sale_use_ticket_qr_code
+  validate_lock_dates()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.point_of_sale.models.res_config_settings.ResConfigSettings {
+  account_default_pos_receivable_account_id
+  barcode_nomenclature_id
+  is_kiosk_mode
+  module_pos_adyen
+  module_pos_mercado_pago
+  module_pos_paytm
+  module_pos_preparation_display
+  module_pos_pricer
+  module_pos_razorpay
+  module_pos_six
+  module_pos_stripe
+  module_pos_viva_wallet
+  point_of_sale_ticket_portal_url_display_mode
+  point_of_sale_ticket_unique_code
+  point_of_sale_use_ticket_qr_code
+  pos_allowed_pricelist_ids
+  pos_amount_authorized_diff
+  pos_auto_validate_terminal_payment
+  pos_available_pricelist_ids
+  pos_basic_receipt
+  pos_cash_control
+  pos_cash_rounding
+  pos_company_has_template
+  pos_config_id
+  pos_customer_display_bg_img
+  pos_customer_display_bg_img_name
+  pos_customer_display_type
+  pos_default_bill_ids
+  pos_default_fiscal_position_id
+  pos_fiscal_position_ids
+  pos_has_active_session
+  pos_iface_available_categ_ids
+  pos_iface_big_scrollbars
+  pos_iface_cashdrawer
+  pos_iface_electronic_scale
+  pos_iface_print_auto
+  pos_iface_print_skip_screen
+  pos_iface_print_via_proxy
+  pos_iface_scan_via_proxy
+  pos_iface_tax_included
+  pos_iface_tipproduct
+  pos_invoice_journal_id
+  pos_is_closing_entry_by_product
+  pos_is_header_or_footer
+  pos_is_margins_costs_accessible_to_every_user
+  pos_is_order_printer
+  pos_is_posbox
+  pos_journal_id
+  pos_limit_categories
+  pos_manual_discount
+  pos_module_pos_avatax
+  pos_module_pos_discount
+  pos_module_pos_hr
+  pos_module_pos_restaurant
+  pos_module_pos_sms
+  pos_note_ids
+  pos_only_round_cash_method
+  pos_order_edit_tracking
+  pos_orderlines_sequence_in_cart_by_category
+  pos_other_devices
+  pos_payment_method_ids
+  pos_picking_policy
+  pos_picking_type_id
+  pos_pricelist_id
+  pos_printer_ids
+  pos_proxy_ip
+  pos_receipt_footer
+  pos_receipt_header
+  pos_restrict_price_control
+  pos_rounding_method
+  pos_route_id
+  pos_selectable_categ_ids
+  pos_sequence_id
+  pos_set_maximum_difference
+  pos_ship_later
+  pos_show_category_images
+  pos_show_product_images
+  pos_tax_regime_selection
+  pos_tip_product_id
+  pos_trusted_config_ids
+  pos_use_pricelist
+  pos_warehouse_id
+  sale_tax_id
+  update_stock_quantities
+  action_pos_config_create_new()
+  create(vals_list)
+  pos_open_ui()
+  set_values()
+}
+class "ResCountry" as odoo_src.odoo.addons.point_of_sale.models.res_country.ResCountry {
+}
+class "ResCountryState" as odoo_src.odoo.addons.point_of_sale.models.res_country_state.ResCountryState {
+}
+class "ResCurrency" as odoo_src.odoo.addons.point_of_sale.models.res_currency.ResCurrency {
+}
+class "ResLang" as odoo_src.odoo.addons.point_of_sale.models.res_lang.ResLang {
+}
+class "ResPartner" as odoo_src.odoo.addons.point_of_sale.models.res_partner.ResPartner {
+  pos_order_count
+  pos_order_ids
+  action_view_pos_order()
+  open_commercial_entity()
+}
+class "ResUsers" as odoo_src.odoo.addons.point_of_sale.models.res_users.ResUsers {
+}
+class "StockMove" as odoo_src.odoo.addons.point_of_sale.models.stock_picking.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.point_of_sale.models.stock_picking.StockPicking {
+  pos_order_id
+  pos_session_id
+}
+class "StockPickingType" as odoo_src.odoo.addons.point_of_sale.models.stock_picking.StockPickingType {
+}
+class "StockRule" as odoo_src.odoo.addons.point_of_sale.models.stock_rule.StockRule {
+}
+class "Uom" as odoo_src.odoo.addons.point_of_sale.models.product.Uom {
+  is_pos_groupable
+}
+class "UomCateg" as odoo_src.odoo.addons.point_of_sale.models.product.UomCateg {
+  is_pos_groupable
+}
+class "Warehouse" as odoo_src.odoo.addons.point_of_sale.models.stock_warehouse.Warehouse {
+  pos_type_id
+}
+@enduml

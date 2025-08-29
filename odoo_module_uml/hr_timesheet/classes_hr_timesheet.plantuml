@@ -1,0 +1,192 @@
+@startuml classes_hr_timesheet
+set namespaceSeparator none
+class "AccountAnalyticApplicability" as odoo_src.odoo.addons.hr_timesheet.models.analytic_applicability.AccountAnalyticApplicability {
+  business_domain
+}
+class "AccountAnalyticLine" as odoo_src.odoo.addons.hr_timesheet.models.hr_timesheet.AccountAnalyticLine {
+  department_id
+  employee_id
+  encoding_uom_id
+  job_title
+  manager_id
+  message_partner_ids
+  milestone_id
+  parent_task_id
+  partner_id
+  project_id
+  readonly_timesheet
+  task_id
+  user_id
+  action_open_timesheet_view_portal()
+  create(vals_list)
+  default_get(field_list)
+  get_views(views, options)
+  write(values)
+}
+class "HrEmployeDeleteWizard" as odoo_src.odoo.addons.hr_timesheet.wizard.hr_employee_delete_wizard.HrEmployeDeleteWizard {
+  employee_ids
+  has_active_employee
+  has_timesheet
+  action_archive()
+  action_confirm_delete()
+  action_open_timesheets()
+}
+class "HrEmployee" as odoo_src.odoo.addons.hr_timesheet.models.hr_employee.HrEmployee {
+  has_timesheet
+  action_timesheet_from_employee()
+  action_unlink_wizard()
+}
+class "Http" as odoo_src.odoo.addons.hr_timesheet.models.ir_http.Http {
+  get_timesheet_uoms()
+  session_info()
+}
+class "IrUiMenu" as odoo_src.odoo.addons.hr_timesheet.models.ir_ui_menu.IrUiMenu {
+}
+class "Project" as odoo_src.odoo.addons.hr_timesheet.models.project_project.Project {
+  account_id
+  allocated_hours
+  allow_timesheets
+  analytic_account_active
+  effective_hours
+  encode_uom_in_days
+  is_internal_project
+  is_project_overtime
+  remaining_hours
+  timesheet_encode_uom_id
+  timesheet_ids
+  total_timesheet_time
+  action_project_timesheets()
+  action_view_tasks()
+  create(vals_list)
+  get_create_edit_project_ids()
+  write(values)
+}
+class "ProjectCollaborator" as odoo_src.odoo.addons.hr_timesheet.models.project_collaborator.ProjectCollaborator {
+}
+class "ProjectCustomerPortal" as odoo_src.odoo.addons.hr_timesheet.controllers.project.ProjectCustomerPortal {
+}
+class "ProjectUpdate" as odoo_src.odoo.addons.hr_timesheet.models.project_update.ProjectUpdate {
+  allocated_time
+  display_timesheet_stats
+  timesheet_percentage
+  timesheet_time
+  uom_id
+  create(vals_list)
+}
+class "ReportProjectTaskUser" as odoo_src.odoo.addons.hr_timesheet.report.project_report.ReportProjectTaskUser {
+  allocated_hours
+  effective_hours
+  overtime
+  progress
+  remaining_hours
+  remaining_hours_percentage
+  subtask_effective_hours
+  total_hours_spent
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_timesheet.models.res_company.ResCompany {
+  internal_project_id
+  project_time_mode_id
+  timesheet_encode_uom_id
+  create(values)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_timesheet.models.res_config_settings.ResConfigSettings {
+  is_encode_uom_days
+  module_project_timesheet_holidays
+  project_time_mode_id
+  reminder_allow
+  reminder_user_allow
+  timesheet_encode_method
+}
+class "Task" as odoo_src.odoo.addons.hr_timesheet.models.project_task.Task {
+  SELF_READABLE_FIELDS
+  allocated_hours
+  allow_timesheets
+  analytic_account_active
+  display_name
+  effective_hours
+  encode_uom_in_days
+  overtime
+  progress
+  project_id
+  remaining_hours
+  remaining_hours_percentage
+  subtask_effective_hours
+  timesheet_ids
+  total_hours_spent
+  action_view_subtask_timesheet()
+}
+class "TestCommonTimesheet" as odoo_src.odoo.addons.hr_timesheet.tests.test_timesheet.TestCommonTimesheet {
+  setUpClass()
+}
+class "TestPortalTimesheet" as odoo_src.odoo.addons.hr_timesheet.tests.test_portal_timesheet.TestPortalTimesheet {
+  test_action_view_subtask_timesheet()
+  test_ensure_fields_view_get_access()
+}
+class "TestProjectProject" as odoo_src.odoo.addons.hr_timesheet.tests.test_project_project.TestProjectProject {
+  test_create_projects()
+  test_create_projects_with_default_analytic_account()
+}
+class "TestProjectTaskQuickCreate" as odoo_src.odoo.addons.hr_timesheet.tests.test_project_task_quick_create.TestProjectTaskQuickCreate {
+  setUpClass()
+  test_create_task_with_invalid_expressions()
+  test_create_task_with_valid_expressions()
+}
+class "TestTimesheet" as odoo_src.odoo.addons.hr_timesheet.tests.test_timesheet.TestTimesheet {
+  project_customer2
+  setUp()
+  test_analytic_plan_timesheet_change_project()
+  test_analytic_plan_timesheet_creation()
+  test_cannot_convert_task_with_timesheets_in_private_task()
+  test_compute_display_name()
+  test_create_timesheet_employee_not_in_company()
+  test_create_timesheet_with_archived_employee()
+  test_create_timesheet_with_companyless_analytic_account()
+  test_create_timesheet_with_default_employee_in_context()
+  test_create_timesheet_with_multi_company()
+  test_create_unlink_project()
+  test_ensure_product_uom_set_in_timesheet()
+  test_keep_create_account_values_at_timesheet_creation()
+  test_keep_write_account_values_at_timesheet_update()
+  test_log_access_rights()
+  test_log_timesheet()
+  test_mandatory_plan_timesheet_applicability()
+  test_percentage_of_allocated_hours()
+  test_recompute_amount_for_multiple_timesheets()
+  test_recompute_partner_from_task_customer_change()
+  test_split_analytic_dynamic_update()
+  test_subtask_log_timesheet()
+  test_task_with_timesheet_project_change()
+  test_timesheet_unactive_analytic_account()
+  test_timesheet_update_user_on_employee()
+  test_transfert_project()
+  test_unlink_task_with_timesheet()
+  test_uom_change_timesheet()
+}
+class "TimesheetCustomerPortal" as odoo_src.odoo.addons.hr_timesheet.controllers.portal.TimesheetCustomerPortal {
+  portal_my_timesheets(page, sortby, filterby, search, search_in, groupby)
+}
+class "TimesheetProjectCustomerPortal" as odoo_src.odoo.addons.hr_timesheet.controllers.portal.TimesheetProjectCustomerPortal {
+}
+class "TimesheetsAnalysisReport" as odoo_src.odoo.addons.hr_timesheet.report.timesheets_analysis_report.TimesheetsAnalysisReport {
+  amount
+  company_id
+  currency_id
+  date
+  department_id
+  manager_id
+  message_partner_ids
+  milestone_id
+  name
+  parent_task_id
+  partner_id
+  project_id
+  task_id
+  unit_amount
+  user_id
+  init()
+}
+class "Uom" as odoo_src.odoo.addons.hr_timesheet.models.uom_uom.Uom {
+  timesheet_widget
+}
+odoo_src.odoo.addons.hr_timesheet.tests.test_timesheet.TestTimesheet --|> odoo_src.odoo.addons.hr_timesheet.tests.test_timesheet.TestCommonTimesheet
+@enduml

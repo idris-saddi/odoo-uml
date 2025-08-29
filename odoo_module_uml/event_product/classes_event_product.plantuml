@@ -1,0 +1,26 @@
+@startuml classes_event_product
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.event_product.models.event_event.Event {
+  currency_id
+}
+class "EventTemplateTicket" as odoo_src.odoo.addons.event_product.models.event_type_ticket.EventTemplateTicket {
+  currency_id
+  description
+  price
+  price_reduce
+  product_id
+}
+class "EventTicket" as odoo_src.odoo.addons.event_product.models.event_event_ticket.EventTicket {
+  price_incl
+  price_reduce_taxinc
+}
+class "Product" as odoo_src.odoo.addons.event_product.models.product_product.Product {
+  event_ticket_ids
+}
+class "ProductTemplate" as odoo_src.odoo.addons.event_product.models.product_template.ProductTemplate {
+  service_tracking
+}
+class "TestEventProductCommon" as odoo_src.odoo.addons.event_product.tests.common.TestEventProductCommon {
+  setUpClass()
+}
+@enduml

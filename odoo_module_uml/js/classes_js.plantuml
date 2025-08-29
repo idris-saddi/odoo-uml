@@ -1,0 +1,3 @@
+@startuml classes_js
+set namespaceSeparator none
+@enduml

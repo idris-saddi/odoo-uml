@@ -1,0 +1,489 @@
+@startuml classes_crm
+set namespaceSeparator none
+class "ActivityReport" as odoo_src.odoo.addons.crm.report.crm_activity_report.ActivityReport {
+  active
+  author_id
+  body
+  company_id
+  country_id
+  date
+  date_closed
+  date_conversion
+  date_deadline
+  lead_create_date
+  lead_id
+  lead_type
+  mail_activity_type_id
+  partner_id
+  stage_id
+  subtype_id
+  tag_ids
+  team_id
+  user_id
+  init()
+}
+class "CalendarEvent" as odoo_src.odoo.addons.crm.models.calendar.CalendarEvent {
+  opportunity_id
+  create(vals)
+  default_get(fields)
+}
+class "CrmController" as odoo_src.odoo.addons.crm.controllers.main.CrmController {
+  crm_lead_case_mark_lost(res_id, token)
+  crm_lead_case_mark_won(res_id, token)
+  crm_lead_convert(res_id, token)
+}
+class "CrmLeadLost" as odoo_src.odoo.addons.crm.wizard.crm_lead_lost.CrmLeadLost {
+  lead_ids
+  lost_feedback
+  lost_reason_id
+  action_lost_reason_apply()
+}
+class "CrmUpdateProbabilities" as odoo_src.odoo.addons.crm.wizard.crm_lead_pls_update.CrmUpdateProbabilities {
+  pls_fields
+  pls_start_date
+  action_update_crm_lead_probabilities()
+}
+class "Digest" as odoo_src.odoo.addons.crm.models.digest.Digest {
+  kpi_crm_lead_created
+  kpi_crm_lead_created_value
+  kpi_crm_opportunities_won
+  kpi_crm_opportunities_won_value
+}
+class "FrequencyField" as odoo_src.odoo.addons.crm.models.crm_lead_scoring_frequency.FrequencyField {
+  field_id
+  name
+}
+class "IrConfigParameter" as odoo_src.odoo.addons.crm.models.ir_config_parameter.IrConfigParameter {
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "Lead" as odoo_src.odoo.addons.crm.models.crm_lead.Lead {
+  active
+  automated_probability
+  calendar_event_ids
+  campaign_id
+  city
+  color
+  company_currency
+  company_id
+  contact_name
+  country_id
+  date_automation_last
+  date_closed
+  date_conversion
+  date_deadline
+  date_last_stage_update
+  date_open
+  day_close
+  day_open
+  description
+  duplicate_lead_count
+  duplicate_lead_ids
+  email_domain_criterion
+  email_from
+  email_normalized
+  email_state
+  expected_revenue
+  function
+  is_automated_probability
+  is_partner_visible
+  lang_active_count
+  lang_code
+  lang_id
+  lead_properties
+  lost_reason_id
+  medium_id
+  meeting_display_date
+  meeting_display_label
+  mobile
+  name
+  partner_email_update
+  partner_id
+  partner_is_blacklisted
+  partner_name
+  partner_phone_update
+  phone
+  phone_sanitized
+  phone_state
+  priority
+  probability
+  prorated_revenue
+  recurring_plan
+  recurring_revenue
+  recurring_revenue_monthly
+  recurring_revenue_monthly_prorated
+  recurring_revenue_prorated
+  referred
+  source_id
+  stage_id
+  state_id
+  street
+  street2
+  tag_ids
+  team_id
+  title
+  type
+  user_company_ids
+  user_id
+  website
+  zip
+  action_reschedule_meeting()
+  action_schedule_meeting(smart_calendar)
+  action_set_automated_probability()
+  action_set_lost()
+  action_set_won()
+  action_set_won_rainbowman()
+  action_show_potential_duplicates()
+  action_snooze()
+  convert_opportunity(partner, user_ids, team_id)
+  copy_data(default)
+  create(vals_list)
+  get_empty_list_help(help_message)
+  get_import_templates()
+  get_rainbowman_message()
+  log_meeting(meeting)
+  merge_opportunity(user_id, team_id, auto_unlink)
+  message_new(msg_dict, custom_values)
+  redirect_lead_opportunity_view()
+  search_fetch(domain, field_names, offset, limit, order)
+  toggle_active()
+  unlink()
+  write(vals)
+}
+class "Lead2OpportunityMassConvert" as odoo_src.odoo.addons.crm.wizard.crm_lead_to_opportunity_mass.Lead2OpportunityMassConvert {
+  action
+  deduplicate
+  force_assignment
+  lead_id
+  lead_tomerge_ids
+  user_ids
+  action_mass_convert()
+}
+class "Lead2OpportunityPartner" as odoo_src.odoo.addons.crm.wizard.crm_lead_to_opportunity.Lead2OpportunityPartner {
+  action
+  duplicated_lead_ids
+  force_assignment
+  lead_id
+  name
+  partner_id
+  team_id
+  user_id
+  action_apply()
+  default_get(fields)
+}
+class "LeadScoringFrequency" as odoo_src.odoo.addons.crm.models.crm_lead_scoring_frequency.LeadScoringFrequency {
+  lost_count
+  team_id
+  value
+  variable
+  won_count
+}
+class "LostReason" as odoo_src.odoo.addons.crm.models.crm_lost_reason.LostReason {
+  active
+  leads_count
+  name
+  action_lost_leads()
+}
+class "MailActivity" as odoo_src.odoo.addons.crm.models.mail_activity.MailActivity {
+  action_create_calendar_event()
+}
+class "MergeOpportunity" as odoo_src.odoo.addons.crm.wizard.crm_merge_opportunities.MergeOpportunity {
+  opportunity_ids
+  team_id
+  user_id
+  action_merge()
+  default_get(fields)
+}
+class "NewLeadNotification" as odoo_src.odoo.addons.crm.tests.test_crm_lead_notification.NewLeadNotification {
+  setUpClass()
+  test_lead_message_get_suggested_recipients_email()
+  test_lead_message_get_suggested_recipients_langs()
+  test_lead_message_get_suggested_recipients_values_for_create()
+  test_new_lead_from_email_multicompany()
+  test_new_lead_notification()
+}
+class "Partner" as odoo_src.odoo.addons.crm.models.res_partner.Partner {
+  opportunity_count
+  opportunity_ids
+  action_view_opportunity()
+  default_get(fields)
+}
+class "RecurringPlan" as odoo_src.odoo.addons.crm.models.crm_recurring_plan.RecurringPlan {
+  active
+  name
+  number_of_months
+  sequence
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.crm.models.res_config_settings.ResConfigSettings {
+  crm_auto_assignment_action
+  crm_auto_assignment_interval_number
+  crm_auto_assignment_interval_type
+  crm_auto_assignment_run_datetime
+  crm_use_auto_assignment
+  group_use_lead
+  group_use_recurring_revenues
+  is_membership_multi
+  lead_enrich_auto
+  lead_mining_in_pipeline
+  module_crm_iap_enrich
+  module_crm_iap_mine
+  module_website_crm_iap_reveal
+  predictive_lead_scoring_field_labels
+  predictive_lead_scoring_fields
+  predictive_lead_scoring_fields_str
+  predictive_lead_scoring_start_date
+  predictive_lead_scoring_start_date_str
+  action_crm_assign_leads()
+  set_values()
+}
+class "Stage" as odoo_src.odoo.addons.crm.models.crm_stage.Stage {
+  fold
+  is_won
+  name
+  requirements
+  sequence
+  team_count
+  team_id
+  default_get(fields)
+}
+class "Team" as odoo_src.odoo.addons.crm.models.crm_team.Team {
+  alias_id
+  alias_name : bool
+  assignment_auto_enabled
+  assignment_domain
+  assignment_enabled
+  assignment_max
+  assignment_optout
+  lead_all_assigned_month_count
+  lead_all_assigned_month_exceeded
+  lead_properties_definition
+  lead_unassigned_count
+  opportunities_amount
+  opportunities_count
+  opportunities_overdue_amount
+  opportunities_overdue_count
+  use_leads
+  use_opportunities
+  action_assign_leads()
+  action_opportunity_forecast()
+  action_primary_channel_button()
+  action_your_pipeline()
+  unlink()
+  write(vals)
+}
+class "TeamMember" as odoo_src.odoo.addons.crm.models.crm_team_member.TeamMember {
+  assignment_domain
+  assignment_enabled
+  assignment_max
+  assignment_optout
+  lead_day_count
+  lead_month_count
+}
+class "TestCRMLead" as odoo_src.odoo.addons.crm.tests.test_crm_lead.TestCRMLead {
+  assertLeadAddress(lead, street, street2, city, lead_zip, state, country)
+  setUpClass()
+  test_crm_lead_contact_fields_mixed()
+  test_crm_lead_create_pipe_data()
+  test_crm_lead_creation_no_partner()
+  test_crm_lead_creation_partner()
+  test_crm_lead_creation_partner_address()
+  test_crm_lead_creation_partner_company()
+  test_crm_lead_creation_partner_no_address()
+  test_crm_lead_currency_sync()
+  test_crm_lead_date_closed()
+  test_crm_lead_lost_date_closed()
+  test_crm_lead_meeting_display_fields()
+  test_crm_lead_partner_sync()
+  test_crm_lead_partner_sync_email_phone()
+  test_crm_lead_partner_sync_email_phone_corner_cases()
+  test_crm_lead_stages()
+  test_crm_lead_unlink_calendar_event()
+  test_crm_lead_update_contact()
+  test_crm_lead_update_dates()
+  test_crm_team_alias()
+  test_crm_team_alias_helper()
+  test_mailgateway()
+  test_phone_mobile_search()
+  test_phone_mobile_search_format()
+  test_phone_mobile_update()
+}
+class "TestCRMLead" as odoo_src.odoo.addons.crm.tests.test_crm_lead_duplicates.TestCRMLead {
+  setUpClass()
+  test_assert_initial_values()
+  test_crm_lead_duplicates_fetch()
+  test_crm_lead_email_domain_criterion()
+  test_iap_tools()
+}
+class "TestCRMLeadMultiCompany" as odoo_src.odoo.addons.crm.tests.test_crm_lead_multicompany.TestCRMLeadMultiCompany {
+  setUpClass()
+  test_gateway_incompatible_company_error_on_incoming_email()
+  test_initial_data()
+  test_lead_mc_company_computation()
+  test_lead_mc_company_computation_env_team_norestrict()
+  test_lead_mc_company_computation_env_user_restrict()
+  test_lead_mc_company_computation_partner_restrict()
+  test_lead_mc_company_form()
+  test_lead_mc_company_form_progressives_setup()
+  test_lead_mc_company_form_w_partner_id()
+}
+class "TestCRMLeadSmartCalendar" as odoo_src.odoo.addons.crm.tests.test_crm_lead_smart_calendar.TestCRMLeadSmartCalendar {
+  setUpClass()
+  test_meeting_creation_from_lead_form()
+  test_meeting_view_parameters_1()
+  test_meeting_view_parameters_2()
+}
+class "TestCRMPLS" as odoo_src.odoo.addons.crm.tests.test_crm_pls.TestCRMPLS {
+  generate_leads_with_tags(tag_ids)
+  setUpClass()
+  test_crm_lead_pls_update()
+  test_pls_no_share_stage()
+  test_predictive_lead_scoring()
+  test_predictive_lead_scoring_always_won()
+  test_settings_pls_start_date()
+  test_team_unlink()
+}
+class "TestCrmCommon" as odoo_src.odoo.addons.crm.tests.common.TestCrmCommon {
+  FIELDS_FIRST_SET : list
+  merge_fields : list
+  assertLeadMerged(opportunity, leads)
+  setUpClass()
+}
+class "TestCrmDigest" as odoo_src.odoo.addons.crm.tests.test_digest.TestCrmDigest {
+  setUpClass()
+  test_kpi_crm_lead_created_value()
+}
+class "TestCrmLeadMailTrackingDuration" as odoo_src.odoo.addons.crm.tests.test_crm_lead.TestCrmLeadMailTrackingDuration {
+  setUpClass()
+  test_crm_lead_mail_tracking_duration()
+  test_crm_lead_mail_tracking_duration_batch()
+  test_crm_lead_queries_batch_mail_tracking_duration()
+}
+class "TestCrmMailActivity" as odoo_src.odoo.addons.crm.tests.test_crm_activity.TestCrmMailActivity {
+  setUpClass()
+  test_crm_activity_next_action()
+  test_crm_activity_ordering()
+  test_crm_activity_recipients()
+}
+class "TestLeadAssign" as odoo_src.odoo.addons.crm.tests.test_crm_lead_assignment.TestLeadAssign {
+  test_assign_configuration()
+  test_assign_count()
+  test_assign_duplicates()
+  test_assign_no_duplicates()
+  test_assign_populated()
+  test_assign_quota()
+  test_assign_specific_won_lost()
+  test_merge_assign_keep_master_team()
+  test_no_assign_if_exceed_max_assign()
+}
+class "TestLeadAssignCommon" as odoo_src.odoo.addons.crm.tests.test_crm_lead_assignment.TestLeadAssignCommon {
+  assertInitialData()
+  setUpClass()
+}
+class "TestLeadAssignPerf" as odoo_src.odoo.addons.crm.tests.test_performances.TestLeadAssignPerf {
+  test_assign_perf_duplicates()
+  test_assign_perf_no_duplicates()
+  test_assign_perf_populated()
+}
+class "TestLeadConvert" as odoo_src.odoo.addons.crm.tests.test_crm_lead_lost.TestLeadConvert {
+  setUpClass()
+  test_lead_lost()
+  test_lead_lost_batch_wfeedback()
+  test_lead_lost_crm_rights()
+}
+class "TestLeadConvert" as odoo_src.odoo.addons.crm.tests.test_crm_lead_convert.TestLeadConvert {
+  setUpClass()
+  test_duplicates_computation()
+  test_initial_data()
+  test_lead_convert_action_exist()
+  test_lead_convert_action_nothing()
+  test_lead_convert_base()
+  test_lead_convert_base_corner_cases()
+  test_lead_convert_base_w_salesmen()
+  test_lead_convert_base_w_team()
+  test_lead_convert_contact_mutlicompany()
+  test_lead_convert_corner_cases_crud()
+  test_lead_convert_corner_cases_matching()
+  test_lead_convert_internals()
+  test_lead_convert_no_lang()
+  test_lead_convert_properties_preserve()
+  test_lead_convert_properties_reset()
+  test_lead_convert_same_partner()
+  test_lead_merge()
+  test_lead_merge_duplicates()
+  test_lead_merge_duplicates_flow()
+  test_lead_merge_last_created()
+  test_lead_merge_user()
+}
+class "TestLeadConvertBatch" as odoo_src.odoo.addons.crm.tests.test_crm_lead_convert.TestLeadConvertBatch {
+  test_initial_data()
+  test_lead_convert_batch_internals()
+}
+class "TestLeadConvertCommon" as odoo_src.odoo.addons.crm.tests.common.TestLeadConvertCommon {
+  assertMemberAssign(member, count)
+  setUpClass()
+}
+class "TestLeadConvertForm" as odoo_src.odoo.addons.crm.tests.test_crm_lead_convert.TestLeadConvertForm {
+  test_form_action_default()
+  test_form_name_onchange()
+}
+class "TestLeadConvertMass" as odoo_src.odoo.addons.crm.tests.test_crm_lead_convert_mass.TestLeadConvertMass {
+  setUpClass()
+  test_assignment_salesmen()
+  test_assignment_salesmen_wteam()
+  test_mass_convert_deduplicate()
+  test_mass_convert_find_existing()
+  test_mass_convert_internals()
+  test_mass_convert_performances()
+  test_mass_convert_w_salesmen()
+  test_mass_convert_with_original_and_duplicate_selected()
+}
+class "TestLeadConvertMassCommon" as odoo_src.odoo.addons.crm.tests.common.TestLeadConvertMassCommon {
+  setUpClass()
+}
+class "TestLeadFormTools" as odoo_src.odoo.addons.crm.tests.test_crm_lead.TestLeadFormTools {
+  test_address_view()
+}
+class "TestLeadMerge" as odoo_src.odoo.addons.crm.tests.test_crm_lead_merge.TestLeadMerge {
+  test_initial_data()
+  test_lead_merge_address_not_propagated()
+  test_lead_merge_address_propagated()
+  test_lead_merge_internals()
+  test_lead_merge_mixed()
+  test_lead_merge_probability_auto()
+  test_lead_merge_probability_auto_empty()
+  test_lead_merge_probability_manual()
+  test_lead_merge_probability_manual_empty()
+  test_lead_merge_properties_formatting()
+  test_merge_method()
+  test_merge_method_dependencies()
+  test_merge_method_followers()
+  test_merge_method_propagate_lost_reason()
+}
+class "TestLeadMergeCommon" as odoo_src.odoo.addons.crm.tests.test_crm_lead_merge.TestLeadMergeCommon {
+  setUpClass()
+}
+class "TestUi" as odoo_src.odoo.addons.crm.tests.test_sales_team_ui.TestUi {
+  test_crm_team_members_mono_company()
+}
+class "TestUi" as odoo_src.odoo.addons.crm.tests.test_crm_ui.TestUi {
+  setUpClass()
+  test_01_crm_tour()
+  test_02_crm_tour_rainbowman()
+  test_03_crm_tour_forecast()
+  test_email_and_phone_propagation_edit_save()
+}
+class "Users" as odoo_src.odoo.addons.crm.models.res_users.Users {
+  target_sales_done
+  target_sales_won
+}
+class "UtmCampaign" as odoo_src.odoo.addons.crm.models.utm.UtmCampaign {
+  crm_lead_count
+  use_leads
+  action_redirect_to_leads_opportunities()
+}
+odoo_src.odoo.addons.crm.tests.common.TestLeadConvertCommon --|> odoo_src.odoo.addons.crm.tests.common.TestCrmCommon
+odoo_src.odoo.addons.crm.tests.common.TestLeadConvertMassCommon --|> odoo_src.odoo.addons.crm.tests.common.TestLeadConvertCommon
+odoo_src.odoo.addons.crm.tests.test_crm_lead_assignment.TestLeadAssign --|> odoo_src.odoo.addons.crm.tests.test_crm_lead_assignment.TestLeadAssignCommon
+odoo_src.odoo.addons.crm.tests.test_crm_lead_merge.TestLeadMerge --|> odoo_src.odoo.addons.crm.tests.test_crm_lead_merge.TestLeadMergeCommon
+@enduml

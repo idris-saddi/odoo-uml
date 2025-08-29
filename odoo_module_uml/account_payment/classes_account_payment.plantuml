@@ -1,0 +1,122 @@
+@startuml classes_account_payment
+set namespaceSeparator none
+class "AccountJournal" as odoo_src.odoo.addons.account_payment.models.account_journal.AccountJournal {
+}
+class "AccountMove" as odoo_src.odoo.addons.account_payment.models.account_move.AccountMove {
+  amount_paid
+  authorized_transaction_ids
+  transaction_count
+  transaction_ids
+  action_view_payment_transactions()
+  get_portal_last_transaction()
+  payment_action_capture()
+  payment_action_void()
+}
+class "AccountPayment" as odoo_src.odoo.addons.account_payment.models.account_payment.AccountPayment {
+  amount_available_for_refund
+  payment_token_id
+  payment_transaction_id
+  refunds_count
+  source_payment_id
+  suitable_payment_token_ids
+  use_electronic_payment_method
+  action_post()
+  action_refund_wizard()
+  action_view_refunds()
+}
+class "AccountPaymentCommon" as odoo_src.odoo.addons.account_payment.tests.common.AccountPaymentCommon {
+  enable_post_process_patcher : bool
+  mocked_get_payment_method_information()
+  setUp()
+  setUpClass()
+}
+class "AccountPaymentMethod" as odoo_src.odoo.addons.account_payment.models.account_payment_method.AccountPaymentMethod {
+}
+class "AccountPaymentMethodLine" as odoo_src.odoo.addons.account_payment.models.account_payment_method_line.AccountPaymentMethodLine {
+  payment_provider_id
+  payment_provider_state
+  action_open_provider_form()
+}
+class "AccountPaymentRegister" as odoo_src.odoo.addons.account_payment.wizards.account_payment_register.AccountPaymentRegister {
+  payment_method_code
+  payment_token_id
+  suitable_payment_token_ids
+  use_electronic_payment_method
+}
+class "OnboardingStep" as odoo_src.odoo.addons.account_payment.models.onboarding_onboarding_step.OnboardingStep {
+  action_open_step_payment_provider()
+  action_validate_step_payment_provider()
+}
+class "PaymentLinkWizard" as odoo_src.odoo.addons.account_payment.wizards.payment_link_wizard.PaymentLinkWizard {
+  discount_date
+  display_open_installments
+  epd_info
+  has_eligible_epd
+  invoice_amount_due
+  open_installments
+  open_installments_preview
+}
+class "PaymentPortal" as odoo_src.odoo.addons.account_payment.controllers.payment.PaymentPortal {
+  invoice_transaction(invoice_id, access_token)
+  overdue_invoices_transaction(payment_reference)
+  payment_pay()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.account_payment.models.payment_provider.PaymentProvider {
+  journal_id
+}
+class "PaymentRefundWizard" as odoo_src.odoo.addons.account_payment.wizards.payment_refund_wizard.PaymentRefundWizard {
+  amount_available_for_refund
+  amount_to_refund
+  currency_id
+  has_pending_refund
+  payment_amount
+  payment_id
+  refunded_amount
+  support_refund
+  transaction_id
+  action_refund()
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.account_payment.models.payment_transaction.PaymentTransaction {
+  invoice_ids
+  invoices_count
+  payment_id
+  action_view_invoices()
+}
+class "PortalAccount" as odoo_src.odoo.addons.account_payment.controllers.portal.PortalAccount {
+  portal_my_invoice_detail(invoice_id, payment_token, amount)
+  portal_my_overdue_invoices(access_token)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.account_payment.wizards.res_config_settings.ResConfigSettings {
+  pay_invoices_online
+}
+class "TestAccountPayment" as odoo_src.odoo.addons.account_payment.tests.test_account_payment.TestAccountPayment {
+  test_action_post_calls_send_payment_request_only_once()
+  test_full_amount_available_for_refund_when_not_yet_refunded()
+  test_full_amount_available_for_refund_when_refunds_are_pending()
+  test_generate_payment_link_with_no_invoice_line()
+  test_no_amount_available_for_refund_when_fully_refunded()
+  test_no_amount_available_for_refund_when_no_tx()
+  test_no_amount_available_for_refund_when_not_supported()
+  test_no_full_amount_available_for_refund_when_partially_refunded()
+  test_no_payment_for_validations()
+  test_payment_invoice_same_receivable()
+  test_payments_for_source_tx_with_children()
+  test_post_process_does_not_fail_on_cancelled_invoice()
+  test_prevent_unlink_apml_with_active_provider()
+  test_provider_journal_assignation()
+  test_refunds_count()
+  test_vendor_payment_name_remains_same_after_repost()
+}
+class "TestFlows" as odoo_src.odoo.addons.account_payment.tests.test_payment_flows.TestFlows {
+  amount : float
+  test_check_payment_access_token_before_rerouting_flow()
+  test_check_portal_access_token_before_rerouting_flow()
+  test_invoice_overdue_payment_flow()
+  test_invoice_payment_flow()
+  test_public_user_new_company()
+  test_transaction_route_rejects_unexpected_kwarg()
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.account_payment.tests.test_payment_provider.TestPaymentProvider {
+  test_duplicate_provider_child_company_no_journal_id()
+}
+@enduml

@@ -1,0 +1,16 @@
+@startuml classes_l10n_gcc_invoice
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_gcc_invoice.models.account_move.AccountMove {
+  narration
+  create(vals_list)
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_gcc_invoice.models.account_move.AccountMoveLine {
+  l10n_gcc_invoice_tax_amount
+  l10n_gcc_line_name
+}
+class "ProductProduct" as odoo_src.odoo.addons.l10n_gcc_invoice.models.product.ProductProduct {
+}
+class "TestGccInvoice" as odoo_src.odoo.addons.l10n_gcc_invoice.tests.test_gcc_invoice.TestGccInvoice {
+  test_invoice_narration_translation()
+}
+@enduml

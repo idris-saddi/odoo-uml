@@ -1,0 +1,23 @@
+@startuml classes_crm_iap_enrich
+set namespaceSeparator none
+class "Lead" as odoo_src.odoo.addons.crm_iap_enrich.models.crm_lead.Lead {
+  iap_enrich_done
+  show_enrich_button
+  create(vals_list)
+  iap_enrich(from_cron)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.crm_iap_enrich.models.res_config_settings.ResConfigSettings {
+  get_values()
+  set_values()
+}
+class "TestLeadEnrich" as odoo_src.odoo.addons.crm_iap_enrich.tests.test_lead_enrich.TestLeadEnrich {
+  setUpClass()
+  tearDownClass()
+  test_enrich_error_jsonrpc_exception()
+  test_enrich_internals()
+  test_lead_enrich_auto_setting()
+}
+class "TestLeadMerge" as odoo_src.odoo.addons.crm_iap_enrich.tests.test_crm_lead_merge.TestLeadMerge {
+  test_merge_method_iap_enrich_done()
+}
+@enduml

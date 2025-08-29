@@ -1,0 +1,19 @@
+@startuml classes_l10n_in_pos
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_pos.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_in_pos.models.account_tax.AccountTax {
+}
+class "PosOrder" as odoo_src.odoo.addons.l10n_in_pos.models.pos_order.PosOrder {
+}
+class "PosOrderLine" as odoo_src.odoo.addons.l10n_in_pos.models.pos_order_line.PosOrderLine {
+  l10n_in_hsn_code
+}
+class "ProductProduct" as odoo_src.odoo.addons.l10n_in_pos.models.product_product.ProductProduct {
+}
+class "TestL10nInHSNSummaryPos" as odoo_src.odoo.addons.l10n_in_pos.tests.test_hsn_summary.TestL10nInHSNSummaryPos {
+  create_base_line_product(base_line)
+  setUpClass()
+  test_l10n_in_hsn_summary_pos()
+}
+@enduml

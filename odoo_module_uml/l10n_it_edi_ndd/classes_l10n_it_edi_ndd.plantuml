@@ -1,0 +1,29 @@
+@startuml classes_l10n_it_edi_ndd
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_edi_ndd.models.account_move.AccountMove {
+  l10n_it_document_type
+  l10n_it_payment_method
+}
+class "AccountPaymentMethodLine" as odoo_src.odoo.addons.l10n_it_edi_ndd.models.account_payment_methode_line.AccountPaymentMethodLine {
+  l10n_it_payment_method
+}
+class "L10nItDocumentType" as odoo_src.odoo.addons.l10n_it_edi_ndd.models.l10n_it_document_type.L10nItDocumentType {
+  code
+  name
+  type
+}
+class "TestItAccountMoveDocumentType" as odoo_src.odoo.addons.l10n_it_edi_ndd.tests.test_account_move_document_type.TestItAccountMoveDocumentType {
+  test_account_move_document_type()
+}
+class "TestItAccountMovePaymentMethod" as odoo_src.odoo.addons.l10n_it_edi_ndd.tests.test_account_move_payment_method.TestItAccountMovePaymentMethod {
+  test_account_move_payment_method()
+}
+class "TestItEdiImportNdd" as odoo_src.odoo.addons.l10n_it_edi_ndd.tests.test_edi_import.TestItEdiImportNdd {
+  test_l10n_it_payment_method_correctly_imported()
+}
+class "TestItReverseChargeDocumentType" as odoo_src.odoo.addons.l10n_it_edi_ndd.tests.test_account_move_document_type.TestItReverseChargeDocumentType {
+  eu_partner
+  module : str
+  test_credit_note_export_document_type()
+}
+@enduml

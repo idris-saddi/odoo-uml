@@ -1,0 +1,19 @@
+@startuml classes_base_install_request
+set namespaceSeparator none
+class "BaseModuleInstallRequest" as odoo_src.odoo.addons.base_install_request.wizard.base_module_install_request.BaseModuleInstallRequest {
+  body_html
+  module_id
+  user_id
+  user_ids
+  action_send_request()
+}
+class "BaseModuleInstallReview" as odoo_src.odoo.addons.base_install_request.wizard.base_module_install_request.BaseModuleInstallReview {
+  module_id
+  module_ids
+  modules_description
+  action_install_module()
+}
+class "IrModuleModule" as odoo_src.odoo.addons.base_install_request.models.ir_module_module.IrModuleModule {
+  action_open_install_request()
+}
+@enduml

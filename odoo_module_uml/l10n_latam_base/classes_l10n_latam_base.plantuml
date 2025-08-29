@@ -1,0 +1,19 @@
+@startuml classes_l10n_latam_base
+set namespaceSeparator none
+class "L10nLatamIdentificationType" as odoo_src.odoo.addons.l10n_latam_base.models.l10n_latam_identification_type.L10nLatamIdentificationType {
+  active
+  country_id
+  description
+  is_vat
+  name
+  sequence
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_latam_base.models.res_company.ResCompany {
+  create(vals_list)
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_latam_base.models.res_partner.ResPartner {
+  l10n_latam_identification_type_id
+  vat
+  check_vat()
+}
+@enduml

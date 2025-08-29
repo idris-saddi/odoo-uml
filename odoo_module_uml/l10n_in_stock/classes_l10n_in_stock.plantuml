@@ -1,0 +1,7 @@
+@startuml classes_l10n_in_stock
+set namespaceSeparator none
+class "StockMove" as odoo_src.odoo.addons.l10n_in_stock.models.stock_move.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.l10n_in_stock.models.stock_picking.StockPicking {
+}
+@enduml

@@ -1,0 +1,36 @@
+@startuml classes_l10n_ph
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ph.models.template_ph.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ph.models.account_move.AccountMove {
+  action_open_l10n_ph_2307_wizard()
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_ph.models.account_payment.AccountPayment {
+  action_open_l10n_ph_2307_wizard()
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_ph.models.account_tax.AccountTax {
+  l10n_ph_atc
+}
+class "Generate2307Wizard" as odoo_src.odoo.addons.l10n_ph.wizard.generate_2307_wizard.Generate2307Wizard {
+  moves_to_export
+  xls_file
+  action_generate()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ph.models.res_partner.ResPartner {
+  branch_code
+  first_name
+  last_name
+  middle_name
+}
+class "TestBIR2307Generation" as odoo_src.odoo.addons.l10n_ph.tests.test_bir_2307_generation.TestBIR2307Generation {
+  setUpClass()
+  test_01_no_atc()
+  test_02_simple_atc()
+  test_03_atc_affected_by_vat()
+  test_04_multi_currency()
+  test_bir_2307_company()
+}
+class "TestPhCommon" as odoo_src.odoo.addons.l10n_ph.tests.common.TestPhCommon {
+  setUpClass()
+}
+@enduml

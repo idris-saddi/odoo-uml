@@ -1,0 +1,303 @@
+@startuml classes_hr_recruitment
+set namespaceSeparator none
+class "Applicant" as odoo_src.odoo.addons.hr_recruitment.models.hr_applicant.Applicant {
+  active
+  applicant_notes
+  applicant_properties
+  application_status
+  attachment_ids
+  attachment_number
+  availability
+  campaign_id
+  candidate_id
+  categ_ids
+  color
+  company_id
+  create_date
+  date_closed
+  date_last_stage_update
+  date_open
+  day_close
+  day_open
+  delay_close
+  department_id
+  email_from
+  email_normalized
+  emp_is_active
+  employee_id
+  employee_name
+  interviewer_ids
+  job_id
+  kanban_state
+  last_stage_id
+  legend_blocked
+  legend_done
+  legend_normal
+  linkedin_profile
+  medium_id
+  meeting_display_date
+  meeting_display_text
+  meeting_ids
+  other_applications_count
+  partner_id
+  partner_name
+  partner_phone
+  partner_phone_sanitized
+  priority
+  probability
+  refuse_date
+  refuse_reason_id
+  salary_expected
+  salary_expected_extra
+  salary_proposed
+  salary_proposed_extra
+  source_id
+  stage_id
+  type_id
+  user_email
+  user_id
+  action_create_meeting()
+  action_open_attachments()
+  action_open_employee()
+  action_open_other_applications()
+  action_send_email()
+  archive_applicant()
+  create(vals_list)
+  create_employee_from_applicant()
+  get_empty_list_help(help_message)
+  get_view(view_id, view_type)
+  init()
+  message_new(msg, custom_values)
+  reset_applicant()
+  toggle_active()
+  write(vals)
+}
+class "ApplicantCategory" as odoo_src.odoo.addons.hr_recruitment.models.hr_applicant_category.ApplicantCategory {
+  color
+  name
+}
+class "ApplicantGetRefuseReason" as odoo_src.odoo.addons.hr_recruitment.wizard.applicant_refuse_reason.ApplicantGetRefuseReason {
+  applicant_emails
+  applicant_ids
+  applicant_without_email
+  duplicates
+  duplicates_count
+  refuse_reason_id
+  send_mail
+  single_applicant_email
+  template_id
+  action_refuse_reason_apply()
+}
+class "ApplicantRefuseReason" as odoo_src.odoo.addons.hr_recruitment.models.hr_applicant_refuse_reason.ApplicantRefuseReason {
+  active
+  name
+  sequence
+  template_id
+}
+class "ApplicantSendMail" as odoo_src.odoo.addons.hr_recruitment.wizard.applicant_send_mail.ApplicantSendMail {
+  applicant_ids
+  attachment_ids
+  author_id
+  render_model : str
+  action_send()
+}
+class "CalendarEvent" as odoo_src.odoo.addons.hr_recruitment.models.calendar.CalendarEvent {
+  applicant_id
+  candidate_id
+  create(vals_list)
+  default_get(fields)
+}
+class "CandidateSendMail" as odoo_src.odoo.addons.hr_recruitment.wizard.candidate_send_mail.CandidateSendMail {
+  attachment_ids
+  author_id
+  candidate_ids
+  render_model : str
+  action_send()
+}
+class "Digest" as odoo_src.odoo.addons.hr_recruitment.models.digest.Digest {
+  kpi_hr_recruitment_new_colleagues
+  kpi_hr_recruitment_new_colleagues_value
+}
+class "HrCandidate" as odoo_src.odoo.addons.hr_recruitment.models.hr_candidate.HrCandidate {
+  accepted_applications_count
+  active
+  applicant_ids
+  application_count
+  applications_count
+  attachment_count
+  attachment_ids
+  availability
+  candidate_properties
+  categ_ids
+  color
+  company_id
+  email_from
+  email_normalized
+  emp_is_active
+  employee_id
+  employee_name
+  linkedin_profile
+  meeting_display_date
+  meeting_display_text
+  meeting_ids
+  partner_id
+  partner_name
+  partner_phone
+  partner_phone_sanitized
+  priority
+  refused_applications_count
+  similar_candidates_count
+  type_id
+  user_id
+  action_create_meeting()
+  action_open_applications()
+  action_open_attachments()
+  action_open_employee()
+  action_open_similar_candidates()
+  action_send_email()
+  create_employee_from_candidate()
+  init()
+  write(vals)
+}
+class "HrDepartment" as odoo_src.odoo.addons.hr_recruitment.models.hr_department.HrDepartment {
+  expected_employee
+  new_applicant_count
+  new_hired_employee
+}
+class "HrEmployee" as odoo_src.odoo.addons.hr_recruitment.models.hr_employee.HrEmployee {
+  candidate_id
+  create(vals_list)
+}
+class "IrUiMenu" as odoo_src.odoo.addons.hr_recruitment.models.ir_ui_menu.IrUiMenu {
+}
+class "Job" as odoo_src.odoo.addons.hr_recruitment.models.hr_job.Job {
+  activities_overdue
+  activities_today
+  address_id
+  alias_id
+  all_application_count
+  applicant_hired
+  applicant_properties_definition
+  application_count
+  application_ids
+  color
+  date_from
+  date_to
+  document_ids
+  documents_count
+  extended_interviewer_ids
+  favorite_user_ids
+  industry_id
+  interviewer_ids
+  is_favorite
+  job_properties
+  manager_id
+  new_application_count
+  no_of_hired_employee
+  old_application_count
+  user_id
+  action_open_activities()
+  action_open_attachments()
+  action_open_late_activities()
+  action_open_today_activities()
+  close_dialog()
+  create(vals_list)
+  edit_dialog()
+  write(vals)
+}
+class "JobPlatform" as odoo_src.odoo.addons.hr_recruitment.models.hr_job_platform.JobPlatform {
+  email
+  name
+  regex
+  create(vals_list)
+  write(vals)
+}
+class "MailActivityPlan" as odoo_src.odoo.addons.hr_recruitment.models.mail_activity_plan.MailActivityPlan {
+}
+class "MailActivitySchedule" as odoo_src.odoo.addons.hr_recruitment.wizard.mail_activity_schedule.MailActivitySchedule {
+}
+class "RecruitmentDegree" as odoo_src.odoo.addons.hr_recruitment.models.hr_recruitment_degree.RecruitmentDegree {
+  name
+  sequence
+}
+class "RecruitmentSource" as odoo_src.odoo.addons.hr_recruitment.models.hr_recruitment_source.RecruitmentSource {
+  alias_id
+  email
+  has_domain
+  job_id
+  medium_id
+  create_alias()
+  unlink()
+}
+class "RecruitmentStage" as odoo_src.odoo.addons.hr_recruitment.models.hr_recruitment_stage.RecruitmentStage {
+  fold
+  hired_stage
+  is_warning_visible
+  job_ids
+  legend_blocked
+  legend_done
+  legend_normal
+  name
+  requirements
+  sequence
+  template_id
+  default_get(fields)
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_recruitment.models.res_company.ResCompany {
+  candidate_properties_definition
+  job_properties_definition
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_recruitment.models.res_config_settings.ResConfigSettings {
+  group_applicant_cv_display
+  module_hr_recruitment_extract
+  module_hr_recruitment_survey
+  module_website_hr_recruitment
+}
+class "ResUsers" as odoo_src.odoo.addons.hr_recruitment.models.res_users.ResUsers {
+}
+class "TestHrApplicant" as odoo_src.odoo.addons.hr_recruitment.tests.test_applicant.TestHrApplicant {
+  Applicant
+  Candidate
+  Category
+  applicant
+  candidate_0
+  candidate_1
+  candidate_2
+  candidate_3
+  category_1
+  category_2
+  category_3
+  setUp()
+  test_compute_categ_ids()
+  test_update_interviewer_for_multiple_applicants()
+}
+class "TestRecruitment" as odoo_src.odoo.addons.hr_recruitment.tests.test_recruitment.TestRecruitment {
+  test_applicant_refuse_reason()
+  test_application_no_partner_duplicate()
+  test_candidate_application_count()
+  test_duplicate_email()
+  test_infer_applicant_lang_from_context()
+  test_open_other_applications_count()
+  test_other_applications_count()
+  test_similar_candidates_count()
+}
+class "TestRecruitmentInterviewer" as odoo_src.odoo.addons.hr_recruitment.tests.test_recruitment_interviewer.TestRecruitmentInterviewer {
+  setUpClass()
+  test_interviewer_access_rights()
+  test_interviewer_group()
+}
+class "TestRecruitmentProcess" as odoo_src.odoo.addons.hr_recruitment.tests.test_recruitment_process.TestRecruitmentProcess {
+  test_00_recruitment_process()
+  test_01_hr_application_notification()
+  test_email_application_multi_company()
+  test_job_platforms()
+  test_multiple_emails_only_one_candidate()
+}
+class "TestUTMConsistencyHrRecruitment" as odoo_src.odoo.addons.hr_recruitment.tests.test_utm.TestUTMConsistencyHrRecruitment {
+  test_utm_consistency()
+}
+class "UtmCampaign" as odoo_src.odoo.addons.hr_recruitment.models.utm_campaign.UtmCampaign {
+}
+class "UtmSource" as odoo_src.odoo.addons.hr_recruitment.models.utm_source.UtmSource {
+}
+@enduml

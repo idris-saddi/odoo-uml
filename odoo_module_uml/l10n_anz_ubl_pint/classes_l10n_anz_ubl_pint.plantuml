@@ -1,0 +1,12 @@
+@startuml classes_l10n_anz_ubl_pint
+set namespaceSeparator none
+class "AccountEdiXmlUBLPINTANZ" as odoo_src.odoo.addons.l10n_anz_ubl_pint.models.account_edi_xml_pint_anz.AccountEdiXmlUBLPINTANZ {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_anz_ubl_pint.models.res_partner.ResPartner {
+  invoice_edi_format
+}
+class "TestAnzUBLPint" as odoo_src.odoo.addons.l10n_anz_ubl_pint.tests.test_anz_ubl_pint.TestAnzUBLPint {
+  setUpClass()
+  test_invoice()
+}
+@enduml

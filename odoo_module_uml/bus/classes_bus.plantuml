@@ -1,0 +1,239 @@
+@startuml classes_bus
+set namespaceSeparator none
+class "BusController" as odoo_src.odoo.addons.bus.controllers.main.BusController {
+  get_autovacuum_info()
+  get_model_definitions(model_names_to_fetch)
+  has_missed_notifications(last_notification_id)
+}
+class "BusListenerMixin" as odoo_src.odoo.addons.bus.models.bus_listener_mixin.BusListenerMixin {
+}
+class "BusPresence" as odoo_src.odoo.addons.bus.models.bus_presence.BusPresence {
+  last_poll
+  last_presence
+  status
+  user_id
+  create(values)
+  init()
+  unlink()
+  update_presence(inactivity_period, identity_field, identity_value)
+  write(values)
+}
+class "BusSubscription" as odoo_src.odoo.addons.bus.models.bus.BusSubscription {
+  channels
+  last_notification_id
+}
+class "BusWebTests" as odoo_src.odoo.addons.bus.tests.test_assetsbundle.BusWebTests {
+  test_bundle_sends_bus()
+}
+class "CloseCode" as odoo_src.odoo.addons.bus.websocket.CloseCode {
+  name
+}
+class "CloseFrame" as odoo_src.odoo.addons.bus.websocket.CloseFrame {
+  code
+  reason
+}
+class "<color:red>ConnectionClosed</color>" as odoo_src.odoo.addons.bus.websocket.ConnectionClosed {
+}
+class "ConnectionState" as odoo_src.odoo.addons.bus.websocket.ConnectionState {
+  name
+}
+class "Frame" as odoo_src.odoo.addons.bus.websocket.Frame {
+  fin : bool
+  opcode
+  payload : bytes
+  rsv1 : bool
+  rsv2 : bool
+  rsv3 : bool
+}
+class "Home" as odoo_src.odoo.addons.bus.controllers.home.Home {
+}
+class "Http" as odoo_src.odoo.addons.bus.models.ir_http.Http {
+  get_frontend_session_info()
+  session_info()
+}
+class "ImBus" as odoo_src.odoo.addons.bus.models.bus.ImBus {
+  channel
+  message
+}
+class "ImDispatch" as odoo_src.odoo.addons.bus.models.bus.ImDispatch {
+  loop()
+  run()
+  subscribe(channels, last, db, websocket)
+  unsubscribe(websocket)
+}
+class "<color:red>InvalidCloseCodeException</color>" as odoo_src.odoo.addons.bus.websocket.InvalidCloseCodeException {
+}
+class "<color:red>InvalidDatabaseException</color>" as odoo_src.odoo.addons.bus.websocket.InvalidDatabaseException {
+}
+class "<color:red>InvalidStateException</color>" as odoo_src.odoo.addons.bus.websocket.InvalidStateException {
+}
+class "<color:red>InvalidWebsocketRequest</color>" as odoo_src.odoo.addons.bus.websocket.InvalidWebsocketRequest {
+}
+class "IrAttachment" as odoo_src.odoo.addons.bus.models.ir_attachment.IrAttachment {
+}
+class "IrModel" as odoo_src.odoo.addons.bus.models.ir_model.IrModel {
+}
+class "IrWebsocket" as odoo_src.odoo.addons.bus.models.ir_websocket.IrWebsocket {
+}
+class "LifecycleEvent" as odoo_src.odoo.addons.bus.websocket.LifecycleEvent {
+  name
+}
+class "NotifyTests" as odoo_src.odoo.addons.bus.tests.test_notify.NotifyTests {
+  test_get_notify_payloads()
+  test_postcommit()
+}
+class "Opcode" as odoo_src.odoo.addons.bus.websocket.Opcode {
+  name
+}
+class "<color:red>PayloadTooLargeException</color>" as odoo_src.odoo.addons.bus.websocket.PayloadTooLargeException {
+}
+class "<color:red>ProtocolError</color>" as odoo_src.odoo.addons.bus.websocket.ProtocolError {
+}
+class "<color:red>RateLimitExceededException</color>" as odoo_src.odoo.addons.bus.websocket.RateLimitExceededException {
+}
+class "ResGroups" as odoo_src.odoo.addons.bus.models.res_groups.ResGroups {
+}
+class "ResPartner" as odoo_src.odoo.addons.bus.models.res_partner.ResPartner {
+  im_status
+}
+class "ResUsers" as odoo_src.odoo.addons.bus.models.res_users.ResUsers {
+  im_status
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.bus.models.res_users_settings.ResUsersSettings {
+}
+class "TestBusController" as odoo_src.odoo.addons.bus.tests.test_health.TestBusController {
+  test_health()
+}
+class "TestBusGC" as odoo_src.odoo.addons.bus.tests.test_bus_gc.TestBusGC {
+  test_custom_gc_retention_window()
+  test_default_gc_retention_window()
+}
+class "TestBusPresence" as odoo_src.odoo.addons.bus.tests.test_bus_presence.TestBusPresence {
+  test_bus_presence_auto_vacuum()
+  test_im_status_invalidation()
+}
+class "TestGetModelDefinitions" as odoo_src.odoo.addons.bus.tests.test_ir_model.TestGetModelDefinitions {
+  test_access_all_model_fields()
+  test_access_cr()
+  test_relational_fields_with_missing_model()
+}
+class "TestIrWebsocket" as odoo_src.odoo.addons.bus.tests.test_ir_websocket.TestIrWebsocket {
+  test_notify_on_status_change()
+  test_only_allow_string_channels_from_frontend()
+  test_receive_missed_presences_on_subscribe()
+}
+class "TestWebsocketCaryall" as odoo_src.odoo.addons.bus.tests.test_websocket_caryall.TestWebsocketCaryall {
+  test_channel_subscription_disconnect()
+  test_channel_subscription_update()
+  test_disconnect_when_version_outdated()
+  test_instances_weak_set()
+  test_lifecycle_hooks()
+  test_no_cursor_when_no_callback_for_lifecycle_event()
+  test_public_configuration()
+  test_subscribe_higher_last_notification_id()
+  test_subscribe_lower_last_notification_id()
+  test_subscribe_to_custom_channel()
+  test_timeout_manager_keep_alive_timeout()
+  test_timeout_manager_no_response_timeout()
+  test_timeout_manager_reset_wait_for()
+  test_trigger_notification()
+  test_trigger_notification_unsupported_language()
+  test_trigger_on_websocket_closed()
+  test_user_login()
+  test_user_logout_incoming_message()
+  test_user_logout_outgoing_message()
+}
+class "TestWebsocketController" as odoo_src.odoo.addons.bus.tests.test_websocket_controller.TestWebsocketController {
+  test_on_websocket_closed()
+  test_receive_missed_presences_on_peek_notifications()
+  test_websocket_peek()
+  test_websocket_peek_session_expired_login()
+  test_websocket_peek_session_expired_logout()
+}
+class "TestWebsocketRateLimiting" as odoo_src.odoo.addons.bus.tests.test_websocket_rate_limiting.TestWebsocketRateLimiting {
+  test_rate_limiting_base_ko()
+  test_rate_limiting_base_ok()
+  test_rate_limiting_opening_burst()
+  test_rate_limiting_start_ok_end_ko()
+}
+class "TimeoutManager" as odoo_src.odoo.addons.bus.websocket.TimeoutManager {
+  KEEP_ALIVE_TIMEOUT : int
+  TIMEOUT : int
+  timeout_reason : KEEP_ALIVE, NO_RESPONSE, NoneType
+  acknowledge_frame_receipt(frame)
+  acknowledge_frame_sent(frame)
+  has_timed_out()
+}
+class "TimeoutReason" as odoo_src.odoo.addons.bus.websocket.TimeoutReason {
+  name
+}
+class "UpgradeRequired" as odoo_src.odoo.addons.bus.websocket.UpgradeRequired {
+  code : int
+  description : str
+  get_headers(environ)
+}
+class "Websocket" as odoo_src.odoo.addons.bus.websocket.Websocket {
+  CONNECTION_TIMEOUT : int
+  INACTIVITY_TIMEOUT : int
+  MAX_NOTIFICATION_HISTORY_SEC : int
+  MESSAGE_MAX_SIZE : int
+  RL_BURST : int
+  RL_DELAY : float
+  state : CLOSED, CLOSING, OPEN
+  disconnect(code, reason)
+  get_messages()
+  onclose(func)
+  onopen(func)
+  subscribe(channels, last)
+  trigger_notification_dispatching()
+}
+class "WebsocketCase" as odoo_src.odoo.addons.bus.tests.common.WebsocketCase {
+  session
+  assert_close_with_code(websocket, expected_code, expected_reason)
+  setUp()
+  setUpClass()
+  subscribe(websocket, channels, last, wait_for_dispatch)
+  tearDown()
+  trigger_notification_dispatching(channels)
+  wait_remaining_websocket_connections()
+  websocket_connect()
+}
+class "WebsocketConnectionHandler" as odoo_src.odoo.addons.bus.websocket.WebsocketConnectionHandler {
+  SUPPORTED_VERSIONS : set
+  open_connection(request, version)
+  websocket_allowed(request)
+}
+class "WebsocketController" as odoo_src.odoo.addons.bus.controllers.websocket.WebsocketController {
+  get_websocket_worker_bundle(v)
+  health()
+  on_websocket_closed()
+  peek_notifications(channels, last, is_first_poll)
+  update_bus_presence(inactivity_period, im_status_ids_by_model)
+  websocket(version)
+}
+class "<color:red>WebsocketException</color>" as odoo_src.odoo.addons.bus.websocket.WebsocketException {
+}
+class "WebsocketRequest" as odoo_src.odoo.addons.bus.websocket.WebsocketRequest {
+  db
+  env
+  httprequest
+  registry
+  session : NoneType
+  ws
+  cookies()
+  serve_websocket_message(message)
+  update_context()
+  update_env(user, context, su)
+}
+odoo_src.odoo.addons.bus.tests.test_ir_websocket.TestIrWebsocket --|> odoo_src.odoo.addons.bus.tests.common.WebsocketCase
+odoo_src.odoo.addons.bus.tests.test_websocket_caryall.TestWebsocketCaryall --|> odoo_src.odoo.addons.bus.tests.common.WebsocketCase
+odoo_src.odoo.addons.bus.tests.test_websocket_rate_limiting.TestWebsocketRateLimiting --|> odoo_src.odoo.addons.bus.tests.common.WebsocketCase
+odoo_src.odoo.addons.bus.websocket.CloseFrame --|> odoo_src.odoo.addons.bus.websocket.Frame
+odoo_src.odoo.addons.bus.websocket.ConnectionClosed --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.InvalidCloseCodeException --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.InvalidDatabaseException --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.InvalidStateException --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.InvalidWebsocketRequest --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.PayloadTooLargeException --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+odoo_src.odoo.addons.bus.websocket.ProtocolError --|> odoo_src.odoo.addons.bus.websocket.WebsocketException
+@enduml

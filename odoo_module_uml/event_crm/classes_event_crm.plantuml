@@ -1,0 +1,63 @@
+@startuml classes_event_crm
+set namespaceSeparator none
+class "EventCrmCase" as odoo_src.odoo.addons.event_crm.tests.common.EventCrmCase {
+  assertLeadConvertion(rule, registrations, partner)
+  setUpClass()
+}
+class "EventEvent" as odoo_src.odoo.addons.event_crm.models.event_event.EventEvent {
+  has_lead_request
+  lead_count
+  lead_ids
+  action_generate_leads()
+}
+class "EventLeadRequest" as odoo_src.odoo.addons.event_crm.models.event_lead_request.EventLeadRequest {
+  event_id
+  processed_registration_id
+}
+class "EventLeadRule" as odoo_src.odoo.addons.event_crm.models.event_lead_rule.EventLeadRule {
+  active
+  company_id
+  event_id
+  event_registration_filter
+  event_type_ids
+  lead_creation_basis
+  lead_creation_trigger
+  lead_ids
+  lead_sales_team_id
+  lead_tag_ids
+  lead_type
+  lead_user_id
+  name
+}
+class "EventRegistration" as odoo_src.odoo.addons.event_crm.models.event_registration.EventRegistration {
+  lead_count
+  lead_ids
+  create(vals_list)
+  write(vals)
+}
+class "Lead" as odoo_src.odoo.addons.event_crm.models.crm_lead.Lead {
+  event_id
+  event_lead_rule_id
+  registration_count
+  registration_ids
+}
+class "TestEventCrmCommon" as odoo_src.odoo.addons.event_crm.tests.common.TestEventCrmCommon {
+  setUpClass()
+}
+class "TestEventCrmFlow" as odoo_src.odoo.addons.event_crm.tests.test_event_crm_flow.TestEventCrmFlow {
+  setUpClass()
+  test_action_generate_leads()
+  test_assert_initial_data()
+  test_event_crm_flow_batch_create()
+  test_event_crm_flow_batch_update()
+  test_event_crm_flow_per_attendee_single_wo_partner()
+  test_event_crm_flow_per_attendee_single_wpartner()
+  test_event_crm_trigger_done()
+  test_order_rule_duplicate_lead()
+}
+class "TestLeadCrmMerge" as odoo_src.odoo.addons.event_crm.tests.test_crm_lead_merge.TestLeadCrmMerge {
+  test_merge_different_events_and_update()
+  test_merge_method_dependencies()
+}
+odoo_src.odoo.addons.event_crm.tests.common.TestEventCrmCommon --|> odoo_src.odoo.addons.event_crm.tests.common.EventCrmCase
+@enduml

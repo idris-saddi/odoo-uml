@@ -1,0 +1,8 @@
+@startuml classes_l10n_rs
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_rs.models.template_rs.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_rs.models.account_move.AccountMove {
+  l10n_rs_turnover_date
+}
+@enduml

@@ -1,0 +1,30 @@
+@startuml classes_hr_org_chart
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.hr_org_chart.models.hr_employee.Employee {
+  is_subordinate
+  subordinate_ids
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_org_chart.models.hr_org_chart_mixin.HrEmployeeBase {
+  child_all_count
+  child_count
+  department_color
+  is_subordinate : bool
+}
+class "HrEmployeePublic" as odoo_src.odoo.addons.hr_org_chart.models.hr_employee.HrEmployeePublic {
+  is_subordinate
+  subordinate_ids
+}
+class "HrOrgChartController" as odoo_src.odoo.addons.hr_org_chart.controllers.hr_org_chart.HrOrgChartController {
+  get_org_chart(employee_id)
+  get_redirect_model()
+  get_subordinates(employee_id, subordinates_type)
+}
+class "TestEmployee" as odoo_src.odoo.addons.hr_org_chart.tests.test_employee.TestEmployee {
+  setUpClass()
+  test_hierarchy_read()
+  test_is_subordinate()
+}
+class "TestEmployeeDeletion" as odoo_src.odoo.addons.hr_org_chart.tests.test_employee_deletion.TestEmployeeDeletion {
+  test_employee_deletion()
+}
+@enduml

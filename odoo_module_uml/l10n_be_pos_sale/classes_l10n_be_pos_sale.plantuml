@@ -1,0 +1,15 @@
+@startuml classes_l10n_be_pos_sale
+set namespaceSeparator none
+class "PosSession" as odoo_src.odoo.addons.l10n_be_pos_sale.models.pos_session.PosSession {
+}
+class "TestPoSSaleL10NBe" as odoo_src.odoo.addons.l10n_be_pos_sale.tests.test_l10n_be_pos_sale.TestPoSSaleL10NBe {
+  product_a
+  setUpClass()
+  test_pos_branch_company_access()
+  test_settle_order_is_invoice()
+}
+class "TestPoSSaleL10NBeNormalCompany" as odoo_src.odoo.addons.l10n_be_pos_sale.tests.test_l10n_be_pos_sale.TestPoSSaleL10NBeNormalCompany {
+  product_a
+  test_settle_order_can_invoice()
+}
+@enduml

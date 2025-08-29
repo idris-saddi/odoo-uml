@@ -1,0 +1,5 @@
+@startuml classes_l10n_br_sales
+set namespaceSeparator none
+class "SaleOrder" as odoo_src.odoo.addons.l10n_br_sales.models.sale_order.SaleOrder {
+}
+@enduml

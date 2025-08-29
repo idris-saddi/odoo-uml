@@ -1,0 +1,91 @@
+@startuml classes_cloud_storage_azure
+set namespaceSeparator none
+class "BlobQueryStringConstants" as odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils.BlobQueryStringConstants {
+  SIGNED_TIMESTAMP : str
+}
+class "<color:red>ClientAuthenticationError</color>" as odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils.ClientAuthenticationError {
+}
+class "CloudStorageSettings" as odoo_src.odoo.addons.cloud_storage_azure.models.res_config_settings.CloudStorageSettings {
+  cloud_storage_azure_account_name
+  cloud_storage_azure_client_id
+  cloud_storage_azure_client_secret
+  cloud_storage_azure_container_name
+  cloud_storage_azure_invalidate_user_delegation_key
+  cloud_storage_azure_tenant_id
+  cloud_storage_provider
+  set_values()
+}
+class "IrAttachment" as odoo_src.odoo.addons.cloud_storage_azure.models.ir_attachment.IrAttachment {
+}
+class "QueryStringConstants" as odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils.QueryStringConstants {
+  SIGNED_AUTHORIZED_OID : str
+  SIGNED_CACHE_CONTROL : str
+  SIGNED_CONTENT_DISPOSITION : str
+  SIGNED_CONTENT_ENCODING : str
+  SIGNED_CONTENT_LANGUAGE : str
+  SIGNED_CONTENT_TYPE : str
+  SIGNED_CORRELATION_ID : str
+  SIGNED_ENCRYPTION_SCOPE : str
+  SIGNED_EXPIRY : str
+  SIGNED_IDENTIFIER : str
+  SIGNED_IP : str
+  SIGNED_KEY_EXPIRY : str
+  SIGNED_KEY_SERVICE : str
+  SIGNED_KEY_START : str
+  SIGNED_KEY_VERSION : str
+  SIGNED_OID : str
+  SIGNED_PERMISSION : str
+  SIGNED_PROTOCOL : str
+  SIGNED_RESOURCE : str
+  SIGNED_SIGNATURE : str
+  SIGNED_START : str
+  SIGNED_TID : str
+  SIGNED_UNAUTHORIZED_OID : str
+  SIGNED_VERSION : str
+}
+class "TestCloudStorageAttachmentController" as odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure_attachment_controller.TestCloudStorageAttachmentController {
+  test_cloud_storage_azure_attachment_upload()
+}
+class "TestCloudStorageAzure" as odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure.TestCloudStorageAzure {
+  test_azure_url_validation()
+  test_cloud_storage_attachments()
+  test_generate_sas_url()
+  test_get_user_delegation_key_success()
+  test_get_user_delegation_key_wrong_account()
+  test_get_user_delegation_key_wrong_info()
+  test_get_user_delegation_key_wrong_secret()
+  test_uninstall_fail()
+  test_uninstall_success()
+}
+class "TestCloudStorageAzureCommon" as odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure.TestCloudStorageAzureCommon {
+  DUMMY_AZURE_ACCOUNT_NAME : str
+  DUMMY_AZURE_CLIENT_ID : str
+  DUMMY_AZURE_CLIENT_SECRET : str
+  DUMMY_AZURE_TENANT_ID : str
+  DUMMY_USER_DELEGATION_KEY
+  DUMMY_USER_DELEGATION_KEY_XML : bytes
+  container_name : str
+  setUp()
+}
+class "UserDelegationKey" as odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils.UserDelegationKey {
+  signed_expiry : NoneType
+  signed_oid : NoneType, str
+  signed_service : NoneType, str
+  signed_start : NoneType
+  signed_tid : NoneType, str
+  signed_version : NoneType, str
+  value : NoneType, str
+}
+class "_BlobSharedAccessHelper" as odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils._BlobSharedAccessHelper {
+  query_dict : dict
+  add_base(permission, expiry, start, ip, protocol, x_ms_version)
+  add_id(policy_id)
+  add_override_response_headers(cache_control, content_disposition, content_encoding, content_language, content_type)
+  add_resource(resource)
+  add_resource_signature(account_name, account_key, path, user_delegation_key)
+  get_token()
+  get_value_to_append(query)
+}
+odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure.TestCloudStorageAzure --|> odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure.TestCloudStorageAzureCommon
+odoo_src.odoo.addons.cloud_storage_azure.utils.cloud_storage_azure_utils.UserDelegationKey --* odoo_src.odoo.addons.cloud_storage_azure.tests.test_cloud_storage_azure.TestCloudStorageAzureCommon : DUMMY_USER_DELEGATION_KEY
+@enduml

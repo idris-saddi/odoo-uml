@@ -1,0 +1,47 @@
+@startuml classes_event_booth
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.event_booth.models.event_event.Event {
+  event_booth_category_available_ids
+  event_booth_category_ids
+  event_booth_count
+  event_booth_count_available
+  event_booth_ids
+}
+class "EventBooth" as odoo_src.odoo.addons.event_booth.models.event_type_booth.EventBooth {
+  booth_category_id
+  event_type_id
+  name
+}
+class "EventBooth" as odoo_src.odoo.addons.event_booth.models.event_booth.EventBooth {
+  contact_email
+  contact_name
+  contact_phone
+  event_id
+  event_type_id
+  is_available
+  partner_id
+  state
+  action_confirm(additional_values)
+  create(vals_list)
+  write(vals)
+}
+class "EventBoothCategory" as odoo_src.odoo.addons.event_booth.models.event_booth_category.EventBoothCategory {
+  active
+  booth_ids
+  description
+  name
+  sequence
+}
+class "EventType" as odoo_src.odoo.addons.event_booth.models.event_type.EventType {
+  event_type_booth_ids
+}
+class "TestEventBoothCommon" as odoo_src.odoo.addons.event_booth.tests.common.TestEventBoothCommon {
+  setUpClass()
+}
+class "TestEventData" as odoo_src.odoo.addons.event_booth.tests.test_event_internals.TestEventData {
+  test_event_configuration_booths_from_type()
+}
+class "TestEventData" as odoo_src.odoo.addons.event_booth.tests.test_event_booth_internals.TestEventData {
+  test_event_booth_contact()
+}
+@enduml

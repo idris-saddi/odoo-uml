@@ -1,0 +1,87 @@
+@startuml classes_l10n_latam_check
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_latam_check.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_latam_check.models.account_journal.AccountJournal {
+  create(vals_list)
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_latam_check.models.account_move.AccountMove {
+  button_draft()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_latam_check.models.account_move_line.AccountMoveLine {
+  l10n_latam_check_ids
+}
+class "AccountPayment" as odoo_src.odoo.addons.l10n_latam_check.models.account_payment.AccountPayment {
+  amount
+  l10n_latam_check_warning_msg
+  l10n_latam_move_check_ids
+  l10n_latam_new_check_ids
+  action_cancel()
+  action_draft()
+  action_post()
+}
+class "AccountPaymentMethod" as odoo_src.odoo.addons.l10n_latam_check.models.account_payment_method.AccountPaymentMethod {
+}
+class "AccountPaymentRegister" as odoo_src.odoo.addons.l10n_latam_check.wizards.account_payment_register.AccountPaymentRegister {
+  l10n_latam_move_check_ids
+  l10n_latam_new_check_ids
+  action_create_payments()
+}
+class "L10nLatamCheckTest" as odoo_src.odoo.addons.l10n_latam_check.tests.common.L10nLatamCheckTest {
+  setUpClass()
+}
+class "L10nLatamPaymentMassTransfer" as odoo_src.odoo.addons.l10n_latam_check.wizards.l10n_latam_payment_mass_transfer.L10nLatamPaymentMassTransfer {
+  check_ids
+  communication
+  company_id
+  destination_journal_id
+  journal_id
+  payment_date
+  action_create_payments()
+  default_get(fields_list)
+}
+class "TestOwnChecks" as odoo_src.odoo.addons.l10n_latam_check.tests.test_own_checks.TestOwnChecks {
+  test_01_pay_with_own_checks()
+  test_02_pay_with_own_check_and_cancel_payment()
+}
+class "TestThirdChecks" as odoo_src.odoo.addons.l10n_latam_check.tests.test_third_party_checks.TestThirdChecks {
+  create_third_party_check(journal, check_numbers)
+  test_01_get_paid_with_multiple_checks()
+  test_02_third_party_check_delivery()
+  test_03_deposit()
+  test_04_check_transfer()
+}
+class "l10nLatamAccountPaymentCheck" as odoo_src.odoo.addons.l10n_latam_check.models.l10n_latam_check.l10nLatamAccountPaymentCheck {
+  amount
+  bank_id
+  company_id
+  currency_id
+  current_journal_id
+  issue_state
+  issuer_vat
+  name
+  operation_ids
+  original_journal_id
+  outstanding_line_id
+  partner_id
+  payment_date
+  payment_id
+  payment_method_code
+  payment_method_line_id
+  action_show_journal_entry()
+  action_show_reconciled_move()
+  action_void()
+  button_open_check_operations()
+  button_open_payment()
+}
+class "l10nLatamCheckPaymentRegisterCheck" as odoo_src.odoo.addons.l10n_latam_check.wizards.l10n_latam_payment_register_check.l10nLatamCheckPaymentRegisterCheck {
+  amount
+  bank_id
+  company_id
+  currency_id
+  issuer_vat
+  name
+  payment_date
+  payment_register_id
+}
+@enduml

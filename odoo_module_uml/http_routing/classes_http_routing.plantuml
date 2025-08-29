@@ -1,0 +1,25 @@
+@startuml classes_http_routing
+set namespaceSeparator none
+class "IrHttp" as odoo_src.odoo.addons.http_routing.models.ir_http.IrHttp {
+  rerouting_limit : int
+  get_frontend_session_info() -> dict
+  get_nearest_lang(lang_code: str) -> str
+  get_translation_frontend_modules() -> list[str]
+  url_rewrite(path, query_args)
+}
+class "IrQweb" as odoo_src.odoo.addons.http_routing.models.ir_qweb.IrQweb {
+}
+class "ModelConverter" as odoo_src.odoo.addons.http_routing.models.ir_http.ModelConverter {
+  domain : str
+  regex : str
+  to_python(value) -> models.BaseModel
+}
+class "ResLang" as odoo_src.odoo.addons.http_routing.models.res_lang.ResLang {
+}
+class "Routing" as odoo_src.odoo.addons.http_routing.controllers.main.Routing {
+  get_website_translations(unique, lang, mods)
+}
+class "SessionWebsite" as odoo_src.odoo.addons.http_routing.controllers.main.SessionWebsite {
+  logout(redirect)
+}
+@enduml

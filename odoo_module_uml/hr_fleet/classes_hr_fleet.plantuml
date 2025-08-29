@@ -1,0 +1,60 @@
+@startuml classes_hr_fleet
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.hr_fleet.models.employee.Employee {
+  car_ids
+  employee_cars_count
+  license_plate
+  mobility_card
+  action_open_employee_cars()
+  write(vals)
+}
+class "EmployeePublic" as odoo_src.odoo.addons.hr_fleet.models.employee.EmployeePublic {
+  mobility_card
+}
+class "FleetVehicle" as odoo_src.odoo.addons.hr_fleet.models.fleet_vehicle.FleetVehicle {
+  driver_employee_id
+  driver_employee_name
+  future_driver_employee_id
+  mobility_card
+  action_open_employee()
+  create(vals_list)
+  open_assignation_logs()
+  write(vals)
+}
+class "FleetVehicleAssignationLog" as odoo_src.odoo.addons.hr_fleet.models.fleet_vehicle_assignation_log.FleetVehicleAssignationLog {
+  attachment_number
+  driver_employee_id
+  action_get_attachment_view()
+}
+class "FleetVehicleLogContract" as odoo_src.odoo.addons.hr_fleet.models.fleet_vehicle_log_contract.FleetVehicleLogContract {
+  purchaser_employee_id
+  action_open_employee()
+}
+class "FleetVehicleLogServices" as odoo_src.odoo.addons.hr_fleet.models.fleet_vehicle_log_services.FleetVehicleLogServices {
+  purchaser_employee_id
+}
+class "FleetVehicleOdometer" as odoo_src.odoo.addons.hr_fleet.models.fleet_vehicle_odometer.FleetVehicleOdometer {
+  driver_employee_id
+}
+class "HrDepartureWizard" as odoo_src.odoo.addons.hr_fleet.wizard.hr_departure_wizard.HrDepartureWizard {
+  release_campany_car
+  action_register_departure()
+}
+class "MailActivityPlanTemplate" as odoo_src.odoo.addons.hr_fleet.models.mail_activity_plan_template.MailActivityPlanTemplate {
+  responsible_type
+}
+class "TestActivitySchedule" as odoo_src.odoo.addons.hr_fleet.tests.test_mail_activity_plan.TestActivitySchedule {
+  setUpClass()
+  test_responsible()
+}
+class "TestHrFleetDriver" as odoo_src.odoo.addons.hr_fleet.tests.test_hr_fleet_driver.TestHrFleetDriver {
+  setUpClass()
+  test_driver_sync_with_employee()
+  test_driver_sync_with_employee_without_contact()
+}
+class "User" as odoo_src.odoo.addons.hr_fleet.models.res_users.User {
+  SELF_READABLE_FIELDS
+  employee_cars_count
+  action_open_employee_cars()
+}
+@enduml

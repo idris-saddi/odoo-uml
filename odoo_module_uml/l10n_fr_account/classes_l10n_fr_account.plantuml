@@ -1,0 +1,29 @@
+@startuml classes_l10n_fr_account
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_fr_account.models.template_mc.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_fr_account.models.template_fr.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_fr_account.models.account_move.AccountMove {
+  l10n_fr_is_company_french
+}
+class "FecExportWizard" as odoo_src.odoo.addons.l10n_fr_account.wizard.account_fr_fec_export_wizard.FecExportWizard {
+  date_from
+  date_to
+  exclude_zero
+  excluded_journal_ids
+  export_type
+  filename
+  test_file
+  create_fec_report_action()
+  generate_fec()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_fr_account.models.res_company.ResCompany {
+  l10n_fr_rounding_difference_loss_account_id
+  l10n_fr_rounding_difference_profit_account_id
+}
+class "TestFECExport" as odoo_src.odoo.addons.l10n_fr_account.tests.test_fec_export.TestFECExport {
+  test_fec_export()
+  test_fec_sub_companies()
+}
+@enduml

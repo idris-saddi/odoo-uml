@@ -1,0 +1,23 @@
+@startuml classes_l10n_sg
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_sg.models.template_sg.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sg.models.account_move.AccountMove {
+  l10n_sg_permit_number
+  l10n_sg_permit_number_date
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_sg.models.res_company.ResCompany {
+  l10n_sg_unique_entity_number
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_sg.models.res_partner.ResPartner {
+  l10n_sg_unique_entity_number
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_sg.models.res_bank.ResPartnerBank {
+  proxy_type
+}
+class "TestL10nSGEmvQrCode" as odoo_src.odoo.addons.l10n_sg.tests.test_l10n_sg_emv_qr.TestL10nSGEmvQrCode {
+  setUpClass()
+  test_emv_qr_code_generation()
+  test_emv_qr_vals()
+}
+@enduml

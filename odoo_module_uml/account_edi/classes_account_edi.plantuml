@@ -1,0 +1,78 @@
+@startuml classes_account_edi
+set namespaceSeparator none
+class "AccountEdiDocument" as odoo_src.odoo.addons.account_edi.models.account_edi_document.AccountEdiDocument {
+  attachment_id
+  blocking_level
+  edi_content
+  edi_format_id
+  edi_format_name
+  error
+  move_id
+  name
+  state
+  action_export_xml()
+}
+class "AccountEdiFormat" as odoo_src.odoo.addons.account_edi.models.account_edi_format.AccountEdiFormat {
+  code
+  name
+  create(vals_list)
+}
+class "AccountEdiTestCommon" as odoo_src.odoo.addons.account_edi.tests.common.AccountEdiTestCommon {
+  edi_format_ref : bool
+  assert_generated_file_equal(invoice, expected_values, applied_xpath)
+  create_edi_document(edi_format, state, move, move_type)
+  edi_cron()
+  mock_edi(_get_move_applicability_method, _needs_web_services_method, _check_move_configuration_method)
+  setUpClass()
+  setup_edi_format(edi_format_ref)
+  with_custom_method(method_name, method_content)
+}
+class "AccountJournal" as odoo_src.odoo.addons.account_edi.models.account_journal.AccountJournal {
+  compatible_edi_ids
+  edi_format_ids
+  write(vals)
+}
+class "AccountMove" as odoo_src.odoo.addons.account_edi.models.account_move.AccountMove {
+  edi_blocking_level
+  edi_document_ids
+  edi_error_count
+  edi_error_message
+  edi_show_abandon_cancel_button
+  edi_show_cancel_button
+  edi_show_force_cancel_button
+  edi_state
+  edi_web_services_to_process
+  action_process_edi_web_services(with_commit)
+  action_retry_edi_documents_error()
+  button_abandon_cancel_posted_posted_moves()
+  button_cancel()
+  button_cancel_posted_moves()
+  button_draft()
+  button_force_cancel()
+  button_process_edi_web_services()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.account_edi.models.account_move_send.AccountMoveSend {
+}
+class "IrActionsReport" as odoo_src.odoo.addons.account_edi.models.ir_actions_report.IrActionsReport {
+}
+class "IrAttachment" as odoo_src.odoo.addons.account_edi.models.ir_attachment.IrAttachment {
+}
+class "ReSequenceWizard" as odoo_src.odoo.addons.account_edi.wizard.account_resequence.ReSequenceWizard {
+  resequence()
+}
+class "TestAccountEdi" as odoo_src.odoo.addons.account_edi.tests.test_edi.TestAccountEdi {
+  setUpClass()
+  test_cron_self_trigger()
+  test_cron_triggers()
+  test_edi_flow()
+  test_edi_flow_two_steps()
+  test_export_edi()
+  test_invoice_ready_to_be_sent()
+  test_prepare_jobs_batching()
+  test_prepare_jobs_no_batching()
+  test_warning_is_retried()
+}
+class "TestImportVendorBill" as odoo_src.odoo.addons.account_edi.tests.test_import_vendor_bill.TestImportVendorBill {
+  test_retrieve_partner()
+}
+@enduml

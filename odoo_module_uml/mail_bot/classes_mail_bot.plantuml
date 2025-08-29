@@ -1,0 +1,16 @@
+@startuml classes_mail_bot
+set namespaceSeparator none
+class "Channel" as odoo_src.odoo.addons.mail_bot.models.discuss_channel.Channel {
+  execute_command_help()
+}
+class "MailBot" as odoo_src.odoo.addons.mail_bot.models.mail_bot.MailBot {
+}
+class "ThreadController" as odoo_src.odoo.addons.mail_bot.controllers.thread.ThreadController {
+  mail_message_post(thread_model, thread_id, post_data, context)
+}
+class "Users" as odoo_src.odoo.addons.mail_bot.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  odoobot_failed
+  odoobot_state
+}
+@enduml

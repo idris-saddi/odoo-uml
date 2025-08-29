@@ -1,0 +1,119 @@
+@startuml classes_event_sale
+set namespaceSeparator none
+class "Event" as odoo_src.odoo.addons.event_sale.models.event_event.Event {
+  sale_order_lines_ids
+  sale_price_subtotal
+  action_view_linked_orders()
+}
+class "EventConfigurator" as odoo_src.odoo.addons.event_sale.wizard.event_configurator.EventConfigurator {
+  event_id
+  event_ticket_id
+  has_available_tickets
+  product_id
+  check_event_id()
+}
+class "EventRegistration" as odoo_src.odoo.addons.event_sale.models.event_registration.EventRegistration {
+  sale_order_id
+  sale_order_line_id
+  sale_status
+  state
+  utm_campaign_id
+  utm_medium_id
+  utm_source_id
+  action_view_sale_order()
+  create(vals_list)
+  write(vals)
+}
+class "EventSaleReport" as odoo_src.odoo.addons.event_sale.report.event_sale_report.EventSaleReport {
+  active
+  company_id
+  event_date_begin
+  event_date_end
+  event_id
+  event_registration_create_date
+  event_registration_id
+  event_registration_name
+  event_registration_state
+  event_ticket_id
+  event_ticket_price
+  event_type_id
+  invoice_partner_id
+  product_id
+  sale_order_date
+  sale_order_id
+  sale_order_line_id
+  sale_order_partner_id
+  sale_order_state
+  sale_order_user_id
+  sale_price
+  sale_price_untaxed
+  sale_status
+  init()
+}
+class "EventTicket" as odoo_src.odoo.addons.event_sale.models.event_ticket.EventTicket {
+}
+class "ProductTemplate" as odoo_src.odoo.addons.event_sale.models.product_template.ProductTemplate {
+  invoice_policy : str
+}
+class "RegistrationEditor" as odoo_src.odoo.addons.event_sale.wizard.event_edit_registration.RegistrationEditor {
+  event_registration_ids
+  sale_order_id
+  action_make_registration()
+  default_get(fields)
+}
+class "RegistrationEditorLine" as odoo_src.odoo.addons.event_sale.wizard.event_edit_registration.RegistrationEditorLine {
+  company_id
+  editor_id
+  email
+  event_id
+  event_ticket_id
+  name
+  phone
+  registration_id
+  sale_order_line_id
+}
+class "SaleOrder" as odoo_src.odoo.addons.event_sale.models.sale_order.SaleOrder {
+  attendee_count
+  action_confirm()
+  action_view_attendee_list()
+  write(vals)
+}
+class "SaleOrderLine" as odoo_src.odoo.addons.event_sale.models.sale_order_line.SaleOrderLine {
+  event_id
+  event_ticket_id
+  registration_ids
+}
+class "TestEventData" as odoo_src.odoo.addons.event_sale.tests.test_event_internals.TestEventData {
+  test_event_configuration_from_type()
+  test_event_registrable()
+}
+class "TestEventSale" as odoo_src.odoo.addons.event_sale.tests.test_event_sale.TestEventSale {
+  setUpClass()
+  test_adjusted_quantity_in_sale_order()
+  test_cancel_so()
+  test_compute_sale_status()
+  test_event_crm_sale()
+  test_event_sale_free_confirm()
+  test_event_sale_free_full_event_no_confirm()
+  test_event_sale_free_full_ticket_no_confirm()
+  test_event_sale_free_no_saleorder()
+  test_ticket_price_with_currency_conversion()
+  test_ticket_price_with_pricelist_and_tax()
+  test_unlink_so()
+  test_unlink_soline()
+}
+class "TestEventSaleCommon" as odoo_src.odoo.addons.event_sale.tests.common.TestEventSaleCommon {
+  setUpClass()
+}
+class "TestEventSpecific" as odoo_src.odoo.addons.event_sale.tests.test_event_specific.TestEventSpecific {
+  test_event_change_max_seat_no_side_effect()
+}
+class "TestEventTicketData" as odoo_src.odoo.addons.event_sale.tests.test_event_internals.TestEventTicketData {
+  test_event_ticket_fields()
+}
+class "TestUi" as odoo_src.odoo.addons.event_sale.tests.test_event_sale_ui.TestUi {
+  product_event
+  tax_10
+  test_event_configurator()
+}
+@enduml

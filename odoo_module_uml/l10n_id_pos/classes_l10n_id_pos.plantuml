@@ -1,0 +1,20 @@
+@startuml classes_l10n_id_pos
+set namespaceSeparator none
+class "PosOrder" as odoo_src.odoo.addons.l10n_id_pos.models.pos_order.PosOrder {
+  l10n_id_qris_transaction_ids
+}
+class "PosPaymentMethod" as odoo_src.odoo.addons.l10n_id_pos.models.pos_payment_method.PosPaymentMethod {
+  l10n_id_verify_qris_status(trx_uuid)
+}
+class "QRISTransaction" as odoo_src.odoo.addons.l10n_id_pos.models.qris_transaction.QRISTransaction {
+}
+class "TestPosQris" as odoo_src.odoo.addons.l10n_id_pos.tests.test_qris_pos.TestPosQris {
+  setUpClass()
+  test_only_call_api_call_once()
+  test_qris_change_amount()
+  test_qris_link_with_pos_order()
+  test_qris_transaction_allow_pos_order()
+  test_tour_qris_payment_fail()
+  test_tour_qris_payment_success()
+}
+@enduml

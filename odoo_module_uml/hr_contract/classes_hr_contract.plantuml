@@ -1,0 +1,187 @@
+@startuml classes_hr_contract
+set namespaceSeparator none
+class "Contract" as odoo_src.odoo.addons.hr_contract.models.hr_contract.Contract {
+  active
+  active_employee
+  calendar_mismatch
+  company_country_id
+  company_id
+  contract_type_id
+  contract_wage
+  contracts_count
+  country_code
+  currency_id
+  date_end
+  date_start
+  department_id
+  employee_id
+  first_contract_date
+  hr_responsible_id
+  job_id
+  kanban_state
+  name
+  notes
+  permit_no
+  resource_calendar_id
+  state
+  structure_type_id
+  trial_date_end
+  visa_no
+  wage
+  action_open_contract_form()
+  action_open_contract_history()
+  action_open_contract_list()
+  create(vals_list)
+  update_state()
+  write(vals)
+}
+class "ContractHistory" as odoo_src.odoo.addons.hr_contract.report.hr_contract_history.ContractHistory {
+  active_employee
+  activity_state
+  company_country_id
+  company_id
+  contract_count
+  contract_id
+  contract_ids
+  contract_type_id
+  country_code
+  currency_id
+  date_end
+  date_hired
+  date_start
+  department_id
+  employee_id
+  hr_responsible_id
+  is_under_contract
+  job_id
+  name
+  resource_calendar_id
+  state
+  structure_type_id
+  under_contract_state
+  wage
+  hr_contract_view_form_new_action()
+  init()
+}
+class "Employee" as odoo_src.odoo.addons.hr_contract.models.hr_employee.Employee {
+  calendar_mismatch
+  contract_id
+  contract_ids
+  contract_warning
+  contracts_count
+  first_contract_date
+  legal_name
+  vehicle
+  action_open_contract()
+  write(vals)
+}
+class "EmployeeBase" as odoo_src.odoo.addons.hr_contract.models.hr_employee.EmployeeBase {
+}
+class "EmployeePublic" as odoo_src.odoo.addons.hr_contract.models.hr_employee.EmployeePublic {
+  first_contract_date
+}
+class "HrDepartureWizard" as odoo_src.odoo.addons.hr_contract.wizard.hr_departure_wizard.HrDepartureWizard {
+  set_date_end
+  action_register_departure()
+}
+class "HrPayrollStructureType" as odoo_src.odoo.addons.hr_contract.models.hr_payroll_structure_type.HrPayrollStructureType {
+  country_code
+  country_id
+  default_resource_calendar_id
+  name
+}
+class "IrUiMenu" as odoo_src.odoo.addons.hr_contract.models.ir_ui_menu.IrUiMenu {
+}
+class "MailActivitySchedule" as odoo_src.odoo.addons.hr_contract.wizard.mail_activity_schedule.MailActivitySchedule {
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_contract.models.res_company.ResCompany {
+  contract_expiration_notice_period
+  work_permit_expiration_notice_period
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_contract.models.res_config_settings.ResConfigSettings {
+  contract_expiration_notice_period
+  work_permit_expiration_notice_period
+}
+class "ResourceCalendar" as odoo_src.odoo.addons.hr_contract.models.resource.ResourceCalendar {
+  contracts_count
+  action_open_contracts()
+  transfer_leaves_to(other_calendar, resources, from_date)
+}
+class "ResourceCalendarLeaves" as odoo_src.odoo.addons.hr_contract.models.resource_calendar_leaves.ResourceCalendarLeaves {
+}
+class "ResourceResource" as odoo_src.odoo.addons.hr_contract.models.resource_resource.ResourceResource {
+}
+class "TestActivitySchedule" as odoo_src.odoo.addons.hr_contract.tests.test_mail_activity_plan.TestActivitySchedule {
+  setUpClass()
+  test_default_due_date()
+}
+class "TestAttendances" as odoo_src.odoo.addons.hr_contract.tests.test_attendances.TestAttendances {
+  setUpClass()
+  test_incoming_overlapping_contract()
+}
+class "TestContractCalendars" as odoo_src.odoo.addons.hr_contract.tests.test_calendar_sync.TestContractCalendars {
+  setUpClass()
+  test_contract_state_incoming_to_open()
+  test_contract_transfer_leaves()
+  test_set_fully_flexible_contract_should_change_resource_calendar()
+}
+class "TestContractCommon" as odoo_src.odoo.addons.hr_contract.tests.common.TestContractCommon {
+  setUpClass()
+}
+class "TestContractPublicAccess" as odoo_src.odoo.addons.hr_contract.tests.test_access.TestContractPublicAccess {
+  setUpClass()
+  test_manager()
+  test_manager_access_read()
+  test_manager_access_search()
+}
+class "TestHrContractHistoryGroupby" as odoo_src.odoo.addons.hr_contract.tests.test_hr_contract_history_groupby.TestHrContractHistoryGroupby {
+  test_related_activity_state_groupable()
+}
+class "TestHrContracts" as odoo_src.odoo.addons.hr_contract.tests.test_contract.TestHrContracts {
+  create_contract(state, kanban_state, start, end, employee_id)
+  setUpClass()
+  test_check_multi_company_contract_expiration()
+  test_contract_calendar_update()
+  test_contract_unusual_days()
+  test_copy_employee_contract_create()
+  test_current_contract_stage_change()
+  test_draft_overlapping_contract()
+  test_first_contract_date()
+  test_incoming_overlapping_contract()
+  test_overlapping_contract_no_end()
+  test_overlapping_contract_no_end2()
+  test_pending_overlapping_contract()
+  test_set_employee_contract_create()
+  test_set_employee_contract_write()
+}
+class "TestHrContracts" as odoo_src.odoo.addons.hr_contract.tests.test_auto_status.TestHrContracts {
+  contract
+  apply_cron()
+  setUpClass()
+  test_contract_auto_expire()
+  test_contract_enddate()
+  test_contract_pending_work_permit_expire()
+  test_contract_start_date()
+  test_employee_contractwarning()
+}
+class "TestHrEmployee" as odoo_src.odoo.addons.hr_contract.tests.test_employee.TestHrEmployee {
+  create_contract(state, kanban_state, start, end)
+  test_employee_first_contract_date_archived_contract()
+  test_employee_first_contract_date_base_case()
+  test_employee_first_contract_date_multiple_contracts()
+}
+class "TestResource" as odoo_src.odoo.addons.hr_contract.tests.test_resource.TestResource {
+  setUpClass()
+  test_calendars_validity_within_period()
+  test_get_valid_work_intervals()
+  test_multi_contract_attendance()
+  test_queries()
+}
+class "User" as odoo_src.odoo.addons.hr_contract.models.res_users.User {
+  SELF_READABLE_FIELDS
+  bank_account_id
+  vehicle
+}
+odoo_src.odoo.addons.hr_contract.tests.test_employee.TestHrEmployee --|> odoo_src.odoo.addons.hr_contract.tests.common.TestContractCommon
+odoo_src.odoo.addons.hr_contract.tests.test_resource.TestResource --|> odoo_src.odoo.addons.hr_contract.tests.common.TestContractCommon
+@enduml

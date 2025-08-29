@@ -1,0 +1,3 @@
+@startuml classes_mock_server
+set namespaceSeparator none
+@enduml

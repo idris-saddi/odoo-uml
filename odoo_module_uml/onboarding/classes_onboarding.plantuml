@@ -1,0 +1,91 @@
+@startuml classes_onboarding
+set namespaceSeparator none
+class "Onboarding" as odoo_src.odoo.addons.onboarding.models.onboarding_onboarding.Onboarding {
+  current_onboarding_state
+  current_progress_id
+  is_onboarding_closed
+  is_per_company
+  name
+  panel_close_action_name
+  progress_ids
+  route_name
+  sequence
+  step_ids
+  text_completed
+  action_close()
+  action_close_panel(xmlid)
+  action_refresh_progress_ids()
+  action_toggle_visibility()
+  write(vals)
+}
+class "OnboardingProgress" as odoo_src.odoo.addons.onboarding.models.onboarding_progress.OnboardingProgress {
+  company_id
+  is_onboarding_closed
+  onboarding_id
+  onboarding_state
+  progress_step_ids
+  action_close()
+  action_toggle_visibility()
+  init()
+}
+class "OnboardingProgressStep" as odoo_src.odoo.addons.onboarding.models.onboarding_progress_step.OnboardingProgressStep {
+  company_id
+  progress_ids
+  step_id
+  step_state
+  action_consolidate_just_done()
+  action_set_just_done()
+  init()
+}
+class "OnboardingStep" as odoo_src.odoo.addons.onboarding.models.onboarding_onboarding_step.OnboardingStep {
+  button_text
+  current_progress_step_id
+  current_step_state
+  description
+  done_icon
+  done_text
+  is_per_company
+  onboarding_ids
+  panel_step_open_action_name
+  progress_ids
+  sequence
+  step_image
+  step_image_alt
+  step_image_filename
+  title
+  action_set_just_done()
+  action_validate_step(xml_id)
+  check_step_on_onboarding_has_action()
+  write(vals)
+}
+class "TestOnboarding" as odoo_src.odoo.addons.onboarding.tests.test_onboarding.TestOnboarding {
+  onboarding_3
+  step_initially_w_o_onboarding
+  test_onboarding_completion_global()
+  test_onboarding_completion_per_company()
+  test_onboarding_shared_steps()
+  test_onboarding_step_without_onboarding()
+  test_onboarding_to_company_change()
+  test_progress_no_company_uniqueness()
+  test_progress_per_company_uniqueness()
+  test_remove_company_with_progress()
+}
+class "TestOnboardingCommon" as odoo_src.odoo.addons.onboarding.tests.common.TestOnboardingCommon {
+  onboarding_1
+  onboarding_1_step_1
+  onboarding_1_step_2
+  activate_company(company)
+  setUpClass()
+}
+class "TestOnboardingConcurrency" as odoo_src.odoo.addons.onboarding.tests.test_onboarding_concurrency.TestOnboardingConcurrency {
+  cleanUpClass()
+  setUpClass()
+  test_concurrent_create_progress()
+}
+class "TransactionCaseOnboarding" as odoo_src.odoo.addons.onboarding.tests.case.TransactionCaseOnboarding {
+  assert_onboarding_is_done(onboarding, also_with_company)
+  assert_onboarding_is_not_done(onboarding, also_with_company)
+  assert_step_is_done(step, also_with_company)
+  assert_step_is_not_done(step, also_with_company)
+}
+@enduml

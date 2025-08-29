@@ -1,0 +1,27 @@
+@startuml classes_auth_totp_mail_enforce
+set namespaceSeparator none
+class "AuthTotpRateLimitLog" as odoo_src.odoo.addons.auth_totp_mail_enforce.models.auth_totp_rate_limit_log.AuthTotpRateLimitLog {
+  ip
+  limit_type
+  scope
+  user_id
+  init()
+}
+class "Home" as odoo_src.odoo.addons.auth_totp_mail_enforce.controllers.home.Home {
+  web_totp(redirect)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.auth_totp_mail_enforce.models.res_config_settings.ResConfigSettings {
+  auth_totp_enforce
+  auth_totp_policy
+  get_values()
+}
+class "TestAuthSignupFlowWith2faEnforced" as odoo_src.odoo.addons.auth_totp_mail_enforce.tests.test_auth_signup.TestAuthSignupFlowWith2faEnforced {
+  setUp()
+  test_signup_with_2fa_enforced()
+}
+class "TestTOTPMailEnforce" as odoo_src.odoo.addons.auth_totp_mail_enforce.tests.test_totp_mail_enforce.TestTOTPMailEnforce {
+  test_totp_rpc_api_keys_only()
+}
+class "Users" as odoo_src.odoo.addons.auth_totp_mail_enforce.models.res_users.Users {
+}
+@enduml

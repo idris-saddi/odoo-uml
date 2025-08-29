@@ -1,0 +1,20 @@
+@startuml classes_l10n_ke
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ke.models.template_ke.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ke.models.account_move.AccountMove {
+  l10n_ke_wh_certificate_date
+  l10n_ke_wh_certificate_number
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_ke.models.account_tax.AccountTax {
+  l10n_ke_item_code_id
+}
+class "L10nKeItemCode" as odoo_src.odoo.addons.l10n_ke.models.l10n_ke_item_code.L10nKeItemCode {
+  code
+  description
+  tax_rate
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ke.models.res_company.ResCompany {
+  l10n_ke_oscu_is_active
+}
+@enduml

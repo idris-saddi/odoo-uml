@@ -1,0 +1,145 @@
+@startuml classes_mrp_account
+set namespaceSeparator none
+class "AccountAnalyticAccount" as odoo_src.odoo.addons.mrp_account.models.analytic_account.AccountAnalyticAccount {
+  bom_count
+  bom_ids
+  production_count
+  production_ids
+  workcenter_ids
+  workorder_count
+  action_view_mrp_bom()
+  action_view_mrp_production()
+  action_view_workorder()
+}
+class "AccountAnalyticApplicability" as odoo_src.odoo.addons.mrp_account.models.analytic_account.AccountAnalyticApplicability {
+  business_domain
+}
+class "AccountAnalyticLine" as odoo_src.odoo.addons.mrp_account.models.analytic_account.AccountAnalyticLine {
+  category
+}
+class "AccountMove" as odoo_src.odoo.addons.mrp_account.models.account_move.AccountMove {
+  wip_production_count
+  wip_production_ids
+  action_view_wip_production()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.mrp_account.models.account_move.AccountMoveLine {
+}
+class "MrpProduction" as odoo_src.odoo.addons.mrp_account.models.mrp_production.MrpProduction {
+  extra_cost
+  show_valuation
+  action_view_stock_valuation_layers()
+  write(vals)
+}
+class "MrpRoutingWorkcenter" as odoo_src.odoo.addons.mrp_account.models.mrp_routing.MrpRoutingWorkcenter {
+}
+class "MrpWipAccounting" as odoo_src.odoo.addons.mrp_account.wizard.mrp_wip_accounting.MrpWipAccounting {
+  date
+  journal_id
+  line_ids
+  mo_ids
+  reference
+  reversal_date
+  confirm()
+  default_get(fields_list)
+}
+class "MrpWipAccountingLine" as odoo_src.odoo.addons.mrp_account.wizard.mrp_wip_accounting.MrpWipAccountingLine {
+  account_id
+  credit
+  currency_id
+  debit
+  label
+  wip_accounting_id
+}
+class "MrpWorkcenter" as odoo_src.odoo.addons.mrp_account.models.mrp_workcenter.MrpWorkcenter {
+  costs_hour_account_ids
+  expense_account_id
+}
+class "MrpWorkcenterProductivity" as odoo_src.odoo.addons.mrp_account.models.mrp_workcenter.MrpWorkcenterProductivity {
+  account_move_line_id
+}
+class "MrpWorkorder" as odoo_src.odoo.addons.mrp_account.models.mrp_workorder.MrpWorkorder {
+  mo_analytic_account_line_ids
+  wc_analytic_account_line_ids
+  action_cancel()
+  unlink()
+}
+class "ProductCategory" as odoo_src.odoo.addons.mrp_account.models.product.ProductCategory {
+  property_stock_account_production_cost_id
+}
+class "ProductProduct" as odoo_src.odoo.addons.mrp_account.models.product.ProductProduct {
+  standard_price : int
+  action_bom_cost()
+  button_bom_cost()
+}
+class "ProductTemplate" as odoo_src.odoo.addons.mrp_account.models.product.ProductTemplate {
+  action_bom_cost()
+  button_bom_cost()
+}
+class "ReportMoOverview" as odoo_src.odoo.addons.mrp_account.report.mrp_report_mo_overview.ReportMoOverview {
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_account.models.stock_move.StockMove {
+}
+class "StockValuationLayer" as odoo_src.odoo.addons.mrp_account.models.stock_valuation_layer.StockValuationLayer {
+}
+class "TestAnalyticAccount" as odoo_src.odoo.addons.mrp_account.tests.test_analytic_account.TestAnalyticAccount {
+  test_mandatory_analytic_plan_bom()
+  test_mandatory_analytic_plan_workcenter()
+}
+class "TestBomPrice" as odoo_src.odoo.addons.mrp_account.tests.test_bom_price.TestBomPrice {
+  test_00_compute_price()
+  test_01_compute_price_operation_cost()
+  test_02_compute_byproduct_price()
+}
+class "TestBomPriceCommon" as odoo_src.odoo.addons.mrp_account.tests.test_bom_price.TestBomPriceCommon {
+  setUpClass()
+}
+class "TestMrpAccount" as odoo_src.odoo.addons.mrp_account.tests.test_mrp_account.TestMrpAccount {
+  setUpClass()
+  test_00_production_order_with_accounting()
+  test_labor_cost_posting_is_not_rounded_incorrectly()
+  test_stock_user_without_account_permissions_can_create_bom()
+  test_two_productions_unbuild_one_sell_other_fifo()
+}
+class "TestMrpAccountMove" as odoo_src.odoo.addons.mrp_account.tests.test_mrp_account.TestMrpAccountMove {
+  setUpClass()
+  test_labor_cost_balancing()
+  test_labor_cost_balancing_with_cost_share()
+  test_labor_cost_over_consumption()
+  test_unbuild_account_00()
+  test_wip_accounting_00()
+}
+class "TestMrpAnalyticAccount" as odoo_src.odoo.addons.mrp_account.tests.test_analytic_account.TestMrpAnalyticAccount {
+  setUpClass()
+}
+class "TestMrpStockValuation" as odoo_src.odoo.addons.mrp_account.tests.test_valuation_layers.TestMrpStockValuation {
+  setUpClass()
+  test_average_cost_unbuild_component_change_move_qty()
+  test_production_account_00()
+  test_production_account_01()
+}
+class "TestMrpValuationCommon" as odoo_src.odoo.addons.mrp_account.tests.test_valuation_layers.TestMrpValuationCommon {
+  setUpClass()
+}
+class "TestMrpValuationStandard" as odoo_src.odoo.addons.mrp_account.tests.test_valuation_layers.TestMrpValuationStandard {
+  test_avco_avco_1()
+  test_avco_avco_2()
+  test_average_cost_unbuild_with_byproducts()
+  test_fifo_avco_1()
+  test_fifo_avco_2()
+  test_fifo_byproduct()
+  test_fifo_fifo_1()
+  test_fifo_fifo_2()
+  test_fifo_produce_deliver_return_unbuild()
+  test_fifo_std_1()
+  test_fifo_std_2()
+  test_fifo_unbuild()
+  test_std_avco_1()
+  test_std_avco_2()
+  test_std_std_1()
+  test_std_std_2()
+  test_validate_draft_kit()
+}
+odoo_src.odoo.addons.mrp_account.tests.test_analytic_account.TestAnalyticAccount --|> odoo_src.odoo.addons.mrp_account.tests.test_analytic_account.TestMrpAnalyticAccount
+odoo_src.odoo.addons.mrp_account.tests.test_bom_price.TestBomPrice --|> odoo_src.odoo.addons.mrp_account.tests.test_bom_price.TestBomPriceCommon
+odoo_src.odoo.addons.mrp_account.tests.test_valuation_layers.TestMrpValuationStandard --|> odoo_src.odoo.addons.mrp_account.tests.test_valuation_layers.TestMrpValuationCommon
+@enduml

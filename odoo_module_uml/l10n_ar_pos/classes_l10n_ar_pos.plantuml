@@ -1,0 +1,14 @@
+@startuml classes_l10n_ar_pos
+set namespaceSeparator none
+class "L10nArAfipResponsibilityType" as odoo_src.odoo.addons.l10n_ar_pos.models.l10n_latam_identification_type.L10nArAfipResponsibilityType {
+}
+class "L10nArAfipResponsibilityType" as odoo_src.odoo.addons.l10n_ar_pos.models.l10n_ar_afip_responsibility_type.L10nArAfipResponsibilityType {
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_ar_pos.models.pos_config.PosConfig {
+  get_limited_partners_loading()
+}
+class "PosSession" as odoo_src.odoo.addons.l10n_ar_pos.models.pos_session.PosSession {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ar_pos.models.res_partner.ResPartner {
+}
+@enduml

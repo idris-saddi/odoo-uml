@@ -1,0 +1,31 @@
+@startuml classes_mrp_repair
+set namespaceSeparator none
+class "MrpProduction" as odoo_src.odoo.addons.mrp_repair.models.production.MrpProduction {
+  repair_count
+  action_view_repair_orders()
+}
+class "Repair" as odoo_src.odoo.addons.mrp_repair.models.repair.Repair {
+  production_count
+  action_explode()
+  action_view_mrp_productions()
+  create(vals_list)
+  write(vals)
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_repair.models.repair.StockMove {
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_repair.models.stock_move.StockMove {
+}
+class "TestMrpRepairFlow" as odoo_src.odoo.addons.mrp_repair.tests.test_mrp_repair_flow.TestMrpRepairFlow {
+  setUpClass()
+  test_adding_kit_parts_to_confirmed_repair()
+  test_repair_with_manufacture_mto_link()
+}
+class "TestRepairTraceability" as odoo_src.odoo.addons.mrp_repair.tests.test_tracability.TestRepairTraceability {
+  setUpClass()
+  test_mo_with_unscrapped_tracked_component()
+  test_mo_with_used_sn_component()
+  test_mo_with_used_sn_component_02()
+  test_repair_with_consumable_kit()
+  test_tracking_repair_production()
+}
+@enduml

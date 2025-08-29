@@ -1,0 +1,18 @@
+@startuml classes_l10n_in_hr_holidays
+set namespaceSeparator none
+class "HolidaysRequest" as odoo_src.odoo.addons.l10n_in_hr_holidays.models.hr_leave.HolidaysRequest {
+  l10n_in_contains_sandwich_leaves
+}
+class "HolidaysType" as odoo_src.odoo.addons.l10n_in_hr_holidays.models.hr_leave_type.HolidaysType {
+  l10n_in_is_sandwich_leave
+}
+class "TestSandwichLeave" as odoo_src.odoo.addons.l10n_in_hr_holidays.tests.test_sandwich_leave.TestSandwichLeave {
+  demo_employee
+  demo_user
+  indian_company
+  leave_type
+  setUp()
+  test_approved_leave_does_not_raise_access_error()
+  test_sandwich_leave()
+}
+@enduml

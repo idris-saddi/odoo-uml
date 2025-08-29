@@ -1,0 +1,8 @@
+@startuml classes_l10n_sa_pos
+set namespaceSeparator none
+class "POSOrder" as odoo_src.odoo.addons.l10n_sa_pos.models.pos_order.POSOrder {
+}
+class "pos_config" as odoo_src.odoo.addons.l10n_sa_pos.models.pos_config.pos_config {
+  open_ui()
+}
+@enduml

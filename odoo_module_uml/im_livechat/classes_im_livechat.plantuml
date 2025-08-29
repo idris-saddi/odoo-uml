@@ -1,0 +1,327 @@
+@startuml classes_im_livechat
+set namespaceSeparator none
+class "ChannelMember" as odoo_src.odoo.addons.im_livechat.models.discuss_channel_member.ChannelMember {
+}
+class "ChatbotCase" as odoo_src.odoo.addons.im_livechat.tests.chatbot_common.ChatbotCase {
+  setUpClass()
+}
+class "ChatbotCase" as odoo_src.odoo.addons.im_livechat.tests.test_chatbot_internals.ChatbotCase {
+  test_chatbot_clear_answers_on_step_type_change()
+  test_chatbot_duplicate()
+  test_chatbot_is_forward_operator_child()
+  test_chatbot_multiple_rules_on_same_url()
+  test_chatbot_not_invited_to_rtc_calls()
+  test_chatbot_steps()
+  test_chatbot_steps_sequence()
+  test_chatbot_welcome_steps()
+}
+class "ChatbotMailMessage" as odoo_src.odoo.addons.im_livechat.models.chatbot_message.ChatbotMailMessage {
+  discuss_channel_id
+  mail_message_id
+  script_step_id
+  user_raw_answer
+  user_script_answer_id
+}
+class "ChatbotScript" as odoo_src.odoo.addons.im_livechat.models.chatbot_script.ChatbotScript {
+  active
+  first_step_warning
+  image_1920
+  livechat_channel_count
+  operator_partner_id
+  script_step_ids
+  title
+  action_view_livechat_channels()
+  copy(default)
+  copy_data(default)
+  create(vals_list)
+  write(vals)
+}
+class "ChatbotScriptAnswer" as odoo_src.odoo.addons.im_livechat.models.chatbot_script_answer.ChatbotScriptAnswer {
+  chatbot_script_id
+  name
+  redirect_link
+  script_step_id
+  sequence
+}
+class "ChatbotScriptStep" as odoo_src.odoo.addons.im_livechat.models.chatbot_script_step.ChatbotScriptStep {
+  answer_ids
+  chatbot_script_id
+  is_forward_operator_child
+  message
+  sequence
+  step_type
+  triggering_answer_ids
+  create(vals_list)
+}
+class "CorsLivechatChatbotScriptController" as odoo_src.odoo.addons.im_livechat.controllers.cors.chatbot.CorsLivechatChatbotScriptController {
+  cors_chatbot_restart(guest_token, channel_id, chatbot_script_id)
+  cors_chatbot_save_answer(guest_token, channel_id, message_id, selected_answer_id)
+  cors_chatbot_trigger_step(guest_token, channel_id, chatbot_script_id)
+  cors_chatbot_validate_email(guest_token, channel_id)
+}
+class "CorsLivechatController" as odoo_src.odoo.addons.im_livechat.controllers.cors.main.CorsLivechatController {
+  cors_email_livechat_transcript(guest_token, channel_id, email)
+  cors_feedback(guest_token, channel_id, rate, reason)
+  cors_get_session(channel_id, anonymous_name, previous_operator_id, chatbot_script_id, persisted)
+  cors_history_pages(guest_token, pid, channel_id, page_history)
+  cors_livechat_init(channel_id, guest_token)
+  cors_visitor_leave_session(guest_token, channel_id)
+}
+class "Digest" as odoo_src.odoo.addons.im_livechat.models.digest.Digest {
+  kpi_livechat_conversations
+  kpi_livechat_conversations_value
+  kpi_livechat_rating
+  kpi_livechat_rating_value
+  kpi_livechat_response
+  kpi_livechat_response_value
+}
+class "DiscussChannel" as odoo_src.odoo.addons.im_livechat.models.discuss_channel.DiscussChannel {
+  anonymous_name
+  channel_type
+  chatbot_current_step_id
+  chatbot_message_ids
+  country_id
+  duration
+  livechat_active
+  livechat_channel_id
+  livechat_operator_id
+  execute_command_history()
+}
+class "ExternalTestSuite" as odoo_src.odoo.addons.im_livechat.tests.test_js.ExternalTestSuite {
+  test_external_livechat()
+}
+class "ImLivechatChannel" as odoo_src.odoo.addons.im_livechat.models.im_livechat_channel.ImLivechatChannel {
+  are_you_inside
+  available_operator_ids
+  button_background_color
+  button_text
+  button_text_color
+  channel_ids
+  chatbot_script_count
+  default_message
+  header_background_color
+  image_128
+  input_placeholder
+  name
+  nbr_channel
+  rule_ids
+  script_external
+  title_color
+  user_ids
+  web_page
+  action_join()
+  action_quit()
+  action_view_chatbot_scripts()
+  action_view_rating()
+  get_livechat_info(username)
+}
+class "ImLivechatChannelRule" as odoo_src.odoo.addons.im_livechat.models.im_livechat_channel.ImLivechatChannelRule {
+  action
+  auto_popup_timer
+  channel_id
+  chatbot_only_if_no_operator
+  chatbot_script_id
+  country_ids
+  regex_url
+  sequence
+  match_rule(channel_id, url, country_id)
+}
+class "ImLivechatReportChannel" as odoo_src.odoo.addons.im_livechat.report.im_livechat_report_channel.ImLivechatReportChannel {
+  channel_id
+  channel_name
+  country_id
+  day_number
+  days_of_activity
+  duration
+  is_anonymous
+  is_happy
+  is_unrated
+  is_without_answer
+  livechat_channel_id
+  nbr_message
+  nbr_speaker
+  partner_id
+  rating
+  rating_text
+  start_date
+  start_date_hour
+  start_hour
+  technical_name
+  time_to_answer
+  uuid
+  init()
+}
+class "ImLivechatReportOperator" as odoo_src.odoo.addons.im_livechat.report.im_livechat_report_operator.ImLivechatReportOperator {
+  channel_id
+  duration
+  livechat_channel_id
+  nbr_channel
+  partner_id
+  rating
+  start_date
+  time_to_answer
+  init()
+}
+class "LivechatAttachmentController" as odoo_src.odoo.addons.im_livechat.controllers.attachment.LivechatAttachmentController {
+  mail_attachment_upload(ufile, thread_id, thread_model, is_pending)
+}
+class "LivechatAttachmentController" as odoo_src.odoo.addons.im_livechat.controllers.cors.attachment.LivechatAttachmentController {
+  im_livechat_attachment_delete(guest_token, attachment_id, access_token)
+  im_livechat_attachment_upload(guest_token, ufile, thread_id, thread_model, is_pending)
+}
+class "LivechatBinaryController" as odoo_src.odoo.addons.im_livechat.controllers.cors.binary.LivechatBinaryController {
+  livechat_channel_attachment(guest_token, channel_id, attachment_id, download)
+  livechat_content_image(model, id, field, unique, guest_token, access_token)
+  livechat_fetch_image(guest_token, channel_id, attachment_id, width, height)
+}
+class "LivechatChannelController" as odoo_src.odoo.addons.im_livechat.controllers.cors.channel.LivechatChannelController {
+  livechat_channel_fold(guest_token, channel_id, state, state_count)
+  livechat_channel_mark_as_read(guest_token)
+  livechat_channel_messages(guest_token, channel_id, before, after, limit, around)
+  livechat_channel_notify_typing(guest_token, channel_id, is_typing)
+}
+class "LivechatChatbotScriptController" as odoo_src.odoo.addons.im_livechat.controllers.chatbot.LivechatChatbotScriptController {
+  chatbot_restart(channel_id, chatbot_script_id)
+  chatbot_save_answer(channel_id, message_id, selected_answer_id)
+  chatbot_trigger_step(channel_id, chatbot_script_id)
+  chatbot_validate_email(channel_id)
+}
+class "LivechatController" as odoo_src.odoo.addons.im_livechat.controllers.main.LivechatController {
+  assets_embed(ext)
+  email_livechat_transcript(channel_id, email)
+  external_lib(ext)
+  feedback(channel_id, rate, reason)
+  fontawesome()
+  get_emoji_bundle()
+  get_session(channel_id, anonymous_name, previous_operator_id, chatbot_script_id, persisted)
+  history_pages(pid, channel_id, page_history)
+  livechat_init(channel_id)
+  loader(channel_id)
+  odoo_ui_icons()
+  support_page(channel_id)
+  visitor_leave_session(channel_id)
+}
+class "LivechatLinkPreviewController" as odoo_src.odoo.addons.im_livechat.controllers.cors.link_preview.LivechatLinkPreviewController {
+  livechat_link_preview(guest_token, message_id)
+  livechat_link_preview_hide(guest_token, link_preview_ids)
+}
+class "LivechatMessageReactionController" as odoo_src.odoo.addons.im_livechat.controllers.cors.message_reaction.LivechatMessageReactionController {
+  livechat_message_reaction(guest_token, message_id, content, action)
+}
+class "LivechatRtcController" as odoo_src.odoo.addons.im_livechat.controllers.cors.rtc.LivechatRtcController {
+  livechat_channel_call_join(guest_token, channel_id, check_rtc_session_ids)
+  livechat_channel_call_leave(guest_token, channel_id)
+  livechat_channel_ping(guest_token, channel_id, rtc_session_id, check_rtc_session_ids)
+  livechat_session_call_notify(guest_token, peer_notifications)
+  livechat_session_update_and_broadcast(guest_token, session_id, values)
+}
+class "LivechatThreadController" as odoo_src.odoo.addons.im_livechat.controllers.cors.thread.LivechatThreadController {
+  livechat_message_post(guest_token, thread_model, thread_id, post_data, context)
+  livechat_message_update_content(guest_token, message_id, body, attachment_ids, attachment_tokens, partner_ids)
+}
+class "MailMessage" as odoo_src.odoo.addons.im_livechat.models.mail_message.MailMessage {
+  parent_author_name
+  parent_body
+}
+class "Partners" as odoo_src.odoo.addons.im_livechat.models.res_partner.Partners {
+  user_livechat_username
+}
+class "Rating" as odoo_src.odoo.addons.im_livechat.models.rating_rating.Rating {
+  action_open_rated_object()
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.im_livechat.models.res_users_settings.ResUsersSettings {
+  livechat_lang_ids
+  livechat_username
+}
+class "TestCorsLivechat" as odoo_src.odoo.addons.im_livechat.tests.test_cors_livechat.TestCorsLivechat {
+  setUpClass()
+  test_access_denied_for_wrong_channel()
+  test_access_routes_with_valid_guest_token()
+  test_ignore_guest_cookie()
+  test_ignore_user_cookie()
+}
+class "TestGetDiscussChannel" as odoo_src.odoo.addons.im_livechat.tests.test_get_discuss_channel.TestGetDiscussChannel {
+  maxDiff : NoneType
+  test_channel_get_livechat_visitor_info()
+  test_channel_not_pinned_for_operator_before_first_message()
+  test_get_discuss_channel()
+  test_livechat_manager_can_invite_anyone()
+  test_only_active_livechats_returned_by_init_messaging()
+  test_read_channel_unpined_for_operator_after_one_day()
+  test_unread_channel_not_unpined_for_operator_after_autovacuum()
+}
+class "TestGetOperator" as odoo_src.odoo.addons.im_livechat.tests.test_get_operator.TestGetOperator {
+  operator_id : int
+  setUp()
+  test_get_by_country()
+  test_get_by_country_no_operator_matching_country()
+  test_get_by_lang()
+  test_get_by_lang_and_country_prioritize_lang()
+  test_get_by_lang_both_operator_active()
+  test_get_by_lang_no_operator_matching_lang()
+  test_in_call_operator_not_prioritized()
+  test_operator_in_call_no_more_than_two_chats()
+  test_priority_by_number_of_chat()
+  test_priority_by_number_of_chat_all_operators_exceed_limit()
+  test_priority_by_number_of_chat_with_call_limit_not_exceeded()
+}
+class "TestImLivechatCommon" as odoo_src.odoo.addons.im_livechat.tests.common.TestImLivechatCommon {
+  operator_id : int
+  setUp()
+  setUpClass()
+}
+class "TestImLivechatMessage" as odoo_src.odoo.addons.im_livechat.tests.test_message.TestImLivechatMessage {
+  maxDiff : NoneType
+  password : str
+  users
+  setUp()
+  setUpClass()
+  test_chatbot_message_format()
+  test_feedback_message()
+  test_message_to_store()
+  test_update_username()
+}
+class "TestImLivechatReport" as odoo_src.odoo.addons.im_livechat.tests.test_im_livechat_report.TestImLivechatReport {
+  operator
+  setUp()
+  test_im_livechat_report_channel()
+  test_im_livechat_report_operator()
+}
+class "TestImLivechatSessionHistory" as odoo_src.odoo.addons.im_livechat.tests.test_session_history.TestImLivechatSessionHistory {
+  test_session_history_navigation_back_and_forth()
+}
+class "TestImLivechatSupportPage" as odoo_src.odoo.addons.im_livechat.tests.test_im_livechat_support_page.TestImLivechatSupportPage {
+  test_load_modules()
+}
+class "TestLiveChatDigest" as odoo_src.odoo.addons.im_livechat.tests.test_digest.TestLiveChatDigest {
+  setUpClass()
+  test_kpi_livechat_rating_value()
+}
+class "TestLiveChatResUsers" as odoo_src.odoo.addons.im_livechat.tests.test_res_users.TestLiveChatResUsers {
+  test_livechat_create_res_users()
+}
+class "TestLivechatChatbotFormUI" as odoo_src.odoo.addons.im_livechat.tests.test_chatbot_form_ui.TestLivechatChatbotFormUI {
+  test_chatbot_steps_sequence_ui()
+  test_chatbot_steps_sequence_with_move_ui()
+}
+class "TestUploadAttachment" as odoo_src.odoo.addons.im_livechat.tests.test_upload_attachment.TestUploadAttachment {
+  test_visitor_cannot_upload_on_closed_livechat()
+}
+class "ThreadController" as odoo_src.odoo.addons.im_livechat.controllers.thread.ThreadController {
+  mail_message_post(thread_model, thread_id, post_data, context)
+}
+class "Users" as odoo_src.odoo.addons.im_livechat.models.res_users.Users {
+  SELF_READABLE_FIELDS
+  SELF_WRITEABLE_FIELDS
+  has_access_livechat
+  livechat_lang_ids
+  livechat_username
+}
+class "WebClient" as odoo_src.odoo.addons.im_livechat.controllers.webclient.WebClient {
+  test_external_livechat()
+}
+class "WebClient" as odoo_src.odoo.addons.im_livechat.controllers.cors.webclient.WebClient {
+  livechat_action(guest_token)
+  livechat_data(guest_token)
+}
+@enduml

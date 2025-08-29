@@ -1,0 +1,14 @@
+@startuml classes_mass_mailing_sale
+set namespaceSeparator none
+class "MassMailing" as odoo_src.odoo.addons.mass_mailing_sale.models.mailing_mailing.MassMailing {
+  sale_invoiced_amount
+  sale_quotation_count
+  action_redirect_to_invoiced()
+  action_redirect_to_quotations()
+}
+class "SaleOrder" as odoo_src.odoo.addons.mass_mailing_sale.models.sale_order.SaleOrder {
+}
+class "UtmCampaign" as odoo_src.odoo.addons.mass_mailing_sale.models.utm.UtmCampaign {
+  ab_testing_winner_selection
+}
+@enduml

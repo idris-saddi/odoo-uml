@@ -1,0 +1,42 @@
+@startuml classes_microsoft_outlook
+set namespaceSeparator none
+class "FetchmailServer" as odoo_src.odoo.addons.microsoft_outlook.models.fetchmail_server.FetchmailServer {
+  is_ssl : bool
+  microsoft_outlook_access_token : bool
+  microsoft_outlook_access_token_expiration : bool
+  microsoft_outlook_refresh_token : bool
+  port : int
+  server : str
+  server_type
+  onchange_server_type()
+}
+class "IrMailServer" as odoo_src.odoo.addons.microsoft_outlook.models.ir_mail_server.IrMailServer {
+  from_filter
+  microsoft_outlook_access_token : bool
+  microsoft_outlook_access_token_expiration : bool
+  microsoft_outlook_refresh_token : bool
+  smtp_authentication
+  smtp_encryption : str
+  smtp_host : str
+  smtp_port : int
+}
+class "MicrosoftOutlookController" as odoo_src.odoo.addons.microsoft_outlook.controllers.main.MicrosoftOutlookController {
+  microsoft_outlook_callback(code, state, error_description)
+}
+class "MicrosoftOutlookMixin" as odoo_src.odoo.addons.microsoft_outlook.models.microsoft_outlook_mixin.MicrosoftOutlookMixin {
+  is_microsoft_outlook_configured
+  microsoft_outlook_access_token
+  microsoft_outlook_access_token_expiration
+  microsoft_outlook_refresh_token
+  microsoft_outlook_uri
+  open_microsoft_outlook_uri()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.microsoft_outlook.models.res_config_settings.ResConfigSettings {
+  microsoft_outlook_client_identifier
+  microsoft_outlook_client_secret
+}
+class "TestFetchmailOutlook" as odoo_src.odoo.addons.microsoft_outlook.tests.test_fetchmail_outlook.TestFetchmailOutlook {
+  test_connect(mock_imap)
+  test_constraints()
+}
+@enduml

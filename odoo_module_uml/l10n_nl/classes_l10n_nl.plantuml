@@ -1,0 +1,13 @@
+@startuml classes_l10n_nl
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_nl.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_nl.models.template_nl.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_nl.models.account_journal.AccountJournal {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_nl.models.res_company.ResCompany {
+  l10n_nl_rounding_difference_loss_account_id
+  l10n_nl_rounding_difference_profit_account_id
+}
+@enduml

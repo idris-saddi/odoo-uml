@@ -1,0 +1,11 @@
+@startuml classes_contacts
+set namespaceSeparator none
+class "Partner" as odoo_src.odoo.addons.contacts.models.res_partner.Partner {
+}
+class "TestUi" as odoo_src.odoo.addons.contacts.tests.test_ui.TestUi {
+  test_set_defaults()
+  test_vat_label_string()
+}
+class "Users" as odoo_src.odoo.addons.contacts.models.res_users.Users {
+}
+@enduml

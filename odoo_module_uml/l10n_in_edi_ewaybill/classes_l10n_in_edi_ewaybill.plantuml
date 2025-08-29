@@ -1,0 +1,48 @@
+@startuml classes_l10n_in_edi_ewaybill
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.demo.account_demo.AccountChartTemplate {
+}
+class "AccountEdiFormat" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.models.account_edi_format.AccountEdiFormat {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.models.account_move.AccountMove {
+  l10n_in_distance
+  l10n_in_edi_ewaybill_direct_api
+  l10n_in_edi_ewaybill_show_send_button
+  l10n_in_mode
+  l10n_in_transportation_doc_date
+  l10n_in_transportation_doc_no
+  l10n_in_transporter_id
+  l10n_in_type_id
+  l10n_in_vehicle_no
+  l10n_in_vehicle_type
+  button_cancel_posted_moves()
+  l10n_in_edi_ewaybill_send()
+}
+class "EWayBillType" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.models.ewaybill_type.EWayBillType {
+  active
+  allowed_supply_type
+  code
+  name
+  sub_type
+  sub_type_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.models.res_company.ResCompany {
+  l10n_in_edi_ewaybill_auth_validity
+  l10n_in_edi_ewaybill_password
+  l10n_in_edi_ewaybill_username
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.models.res_config_settings.ResConfigSettings {
+  l10n_in_edi_ewaybill_password
+  l10n_in_edi_ewaybill_username
+  l10n_in_edi_ewaybill_test()
+}
+class "TestEdiEwaybillJson" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.tests.test_edi_ewaybill_json.TestEdiEwaybillJson {
+  test_edi_ewaybill_transporter_gst()
+  test_edi_json()
+}
+class "TestEdiEwaybillJson" as odoo_src.odoo.addons.l10n_in_edi_ewaybill.tests.test_edi_ewaybill_distance.TestEdiEwaybillJson {
+  mockEwaybillGateway1()
+  mockEwaybillGateway2()
+  test_edi_distance()
+}
+@enduml

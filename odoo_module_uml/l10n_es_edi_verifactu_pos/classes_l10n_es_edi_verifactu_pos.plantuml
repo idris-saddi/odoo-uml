@@ -1,0 +1,41 @@
+@startuml classes_l10n_es_edi_verifactu_pos
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.account_move.AccountMove {
+}
+class "L10nEsEdiVerifactuDocument" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.verifactu_document.L10nEsEdiVerifactuDocument {
+  pos_order_id
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.pos_config.PosConfig {
+  l10n_es_edi_verifactu_required
+}
+class "PosOrder" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.pos_order.PosOrder {
+  l10n_es_edi_verifactu_document_ids
+  l10n_es_edi_verifactu_qr_code
+  l10n_es_edi_verifactu_refund_reason
+  l10n_es_edi_verifactu_required
+  l10n_es_edi_verifactu_show_cancel_button
+  l10n_es_edi_verifactu_state
+  l10n_es_edi_verifactu_warning
+  l10n_es_edi_verifactu_warning_level
+  action_pos_order_paid()
+  {abstract}l10n_es_edi_verifactu_button_cancel()
+  l10n_es_edi_verifactu_button_send()
+}
+class "PosSession" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.pos_session.PosSession {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.models.res_company.ResCompany {
+}
+class "TestL10nEsEdiVerifactuPosCommon" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.tests.common.TestL10nEsEdiVerifactuPosCommon {
+  setUpClass()
+}
+class "TestL10nEsEdiVerifactuPosOrder" as odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.tests.test_pos_order.TestL10nEsEdiVerifactuPosOrder {
+  setUpClass()
+  test_error_above_simplified_limit()
+  test_order_invoiced_not_simplified()
+  test_order_invoiced_simplified()
+  test_order_not_invoiced()
+  test_record_identifier()
+  with_pos_session()
+}
+odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.tests.test_pos_order.TestL10nEsEdiVerifactuPosOrder --|> odoo_src.odoo.addons.l10n_es_edi_verifactu_pos.tests.common.TestL10nEsEdiVerifactuPosCommon
+@enduml

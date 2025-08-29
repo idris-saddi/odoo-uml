@@ -1,0 +1,19 @@
+@startuml classes_calendar_sms
+set namespaceSeparator none
+class "AlarmManager" as odoo_src.odoo.addons.calendar_sms.models.calendar_alarm_manager.AlarmManager {
+}
+class "CalendarAlarm" as odoo_src.odoo.addons.calendar_sms.models.calendar_alarm.CalendarAlarm {
+  alarm_type
+  name
+  sms_notify_responsible
+  sms_template_id
+}
+class "CalendarEvent" as odoo_src.odoo.addons.calendar_sms.models.calendar_event.CalendarEvent {
+  action_send_sms()
+}
+class "TestCalendarSms" as odoo_src.odoo.addons.calendar_sms.tests.test_calendar_sms.TestCalendarSms {
+  setUpClass()
+  test_attendees_with_number()
+  test_send_reminder_match_both_events()
+}
+@enduml

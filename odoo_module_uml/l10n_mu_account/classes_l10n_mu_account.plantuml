@@ -1,0 +1,10 @@
+@startuml classes_l10n_mu_account
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_mu_account.models.template_mu.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_mu_account.models.account_move.AccountMove {
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_mu_account.models.base_document_layout.BaseDocumentLayout {
+  company_details
+}
+@enduml

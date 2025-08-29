@@ -1,0 +1,16 @@
+@startuml classes_l10n_no
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_no.models.template_no.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_no.models.account_journal.AccountJournal {
+  invoice_reference_model
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_no.models.account_move.AccountMove {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_no.models.res_company.ResCompany {
+  l10n_no_bronnoysund_number
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_no.models.res_partner.ResPartner {
+  l10n_no_bronnoysund_number
+}
+@enduml

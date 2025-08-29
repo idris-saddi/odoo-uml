@@ -1,0 +1,8 @@
+@startuml classes_iap_mail
+set namespaceSeparator none
+class "IapAccount" as odoo_src.odoo.addons.iap_mail.models.iap_account.IapAccount {
+  company_ids
+  warning_threshold
+  warning_user_ids
+}
+@enduml

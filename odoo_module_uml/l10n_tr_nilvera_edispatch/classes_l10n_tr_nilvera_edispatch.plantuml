@@ -1,0 +1,30 @@
+@startuml classes_l10n_tr_nilvera_edispatch
+set namespaceSeparator none
+class "L10nTrNilveraTrailerPlate" as odoo_src.odoo.addons.l10n_tr_nilvera_edispatch.models.l10n_tr_nilvera_trailer_plate.L10nTrNilveraTrailerPlate {
+  name
+  plate_number_type
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_tr_nilvera_edispatch.models.res_partner.ResPartner {
+  l10n_tr_nilvera_edispatch_customs_zip
+}
+class "StockPicking" as odoo_src.odoo.addons.l10n_tr_nilvera_edispatch.models.stock_picking.StockPicking {
+  l10n_tr_nilvera_buyer_id
+  l10n_tr_nilvera_buyer_originator_id
+  l10n_tr_nilvera_carrier_id
+  l10n_tr_nilvera_delivery_date
+  l10n_tr_nilvera_delivery_notes
+  l10n_tr_nilvera_delivery_printed_number
+  l10n_tr_nilvera_dispatch_state
+  l10n_tr_nilvera_dispatch_type
+  l10n_tr_nilvera_driver_ids
+  l10n_tr_nilvera_edispatch_warnings
+  l10n_tr_nilvera_seller_supplier_id
+  l10n_tr_nilvera_trailer_plate_ids
+  l10n_tr_vehicle_plate
+  action_generate_l10n_tr_edispatch_xml(is_list)
+  action_mark_l10n_tr_edispatch_status()
+  button_validate()
+}
+class "StockPickingType" as odoo_src.odoo.addons.l10n_tr_nilvera_edispatch.models.stock_picking_type.StockPickingType {
+}
+@enduml

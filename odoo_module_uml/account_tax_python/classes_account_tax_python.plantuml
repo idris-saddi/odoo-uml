@@ -1,0 +1,13 @@
+@startuml classes_account_tax_python
+set namespaceSeparator none
+class "AccountTaxPython" as odoo_src.odoo.addons.account_tax_python.models.account_tax.AccountTaxPython {
+  amount_type
+  formula
+  formula_decoded_info
+}
+class "TestTaxesComputation" as odoo_src.odoo.addons.account_tax_python.tests.test_taxes_computation.TestTaxesComputation {
+  assert_python_taxes_computation(formula, price_unit, expected_values, product_values, price_include_override)
+  test_formula()
+  test_invalid_formula()
+}
+@enduml

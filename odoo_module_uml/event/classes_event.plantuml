@@ -1,0 +1,333 @@
+@startuml classes_event
+set namespaceSeparator none
+class "EscLabelCommand" as odoo_src.odoo.addons.event.tools.esc_label_tools.EscLabelCommand {
+  concat(other_command)
+  delete_files(file_pattern: str)
+  load_canvas()
+  print_box(position: tuple[int, int], size: tuple[int, int], thickness: int)
+  print_complete()
+  print_image(filename: str, position: tuple[int, int])
+  print_text(text: str, position: tuple[int, int], font_size: tuple[int, int], wrap_width: Optional[int], max_lines: int, align: Literal['L', 'C', 'R', 'J'], rotation: Literal['N', 'R', 'I', 'B'])
+  save_canvas()
+  set_color(color: tuple[int, int, int] | str, alpha: int, bg_color: tuple[int, int, int] | str, bg_alpha: int)
+  set_edge_detection(detection_type: Literal['M', 'W', 'N'])
+  set_label_gap(gap: int)
+  set_left_gap(gap: int)
+  set_media_coating(coating: Literal['P1', 'M1', 'S1', 'G1', 'GS1', 'PG1', 'T1', 'WB1'])
+  set_media_shape(shape: Literal['RP', 'FP'])
+  set_media_source(source: Literal['IR', 'ER'])
+  set_media_type(media_type: Literal['CP', 'DL', 'CL', 'WB'])
+  set_print_quality(quality: Literal['D', 'S', 'N', 'Q', 'M'])
+  set_printable_area(width: int, length: int)
+  set_printing_offset(left_offset: int, top_offset: int)
+  set_resolution(dots_per_inch: Literal[200, 300, 600])
+  set_utf8_encoding()
+  to_string()
+  upload_image(filename: str, image_field: str, size: Optional[tuple[int, int]], crop_mode: Literal['contain', 'cover'], flip)
+  wrap_command()
+}
+class "EventCase" as odoo_src.odoo.addons.event.tests.common.EventCase {
+  assertSchedulerCronTriggers(capture, call_at_list)
+  setUpClass()
+}
+class "EventController" as odoo_src.odoo.addons.event.controllers.main.EventController {
+  event_ics_file(event)
+  event_my_tickets(event_id, registration_ids, tickets_hash, badge_mode, responsive_html)
+  init_barcode_interface(event_id)
+}
+class "EventEvent" as odoo_src.odoo.addons.event.models.event_event.EventEvent {
+  active
+  address_id
+  address_inline
+  address_search
+  badge_format
+  badge_image
+  company_id
+  country_id
+  date_begin
+  date_begin_located
+  date_end
+  date_end_located
+  date_tz
+  description
+  event_mail_ids
+  event_registrations_open
+  event_registrations_sold_out
+  event_registrations_started
+  event_ticket_ids
+  event_type_id
+  general_question_ids
+  is_finished
+  is_one_day
+  is_ongoing
+  kanban_state
+  kanban_state_label
+  lang
+  legend_blocked
+  legend_done
+  legend_normal
+  name
+  note
+  organizer_id
+  question_ids
+  registration_ids
+  registration_properties_definition
+  seats_available
+  seats_limited
+  seats_max
+  seats_reserved
+  seats_taken
+  seats_used
+  specific_question_ids
+  stage_id
+  start_sale_datetime
+  tag_ids
+  ticket_instructions
+  use_barcode
+  user_id
+  action_set_done()
+  copy_data(default)
+  create(vals_list)
+  default_get(fields_list)
+  get_kiosk_url()
+  mail_attendees(template_id, force_send, filter_func)
+  write(vals)
+}
+class "EventMailRegistration" as odoo_src.odoo.addons.event.models.event_mail_registration.EventMailRegistration {
+  mail_sent
+  registration_id
+  scheduled_date
+  scheduler_id
+  execute()
+}
+class "EventMailScheduler" as odoo_src.odoo.addons.event.models.event_mail.EventMailScheduler {
+  event_id
+  interval_nbr
+  interval_type
+  interval_unit
+  last_registration_id
+  mail_count_done
+  mail_done
+  mail_registration_ids
+  mail_state
+  notification_type
+  scheduled_date
+  sequence
+  template_ref
+  execute()
+  run(autocommit)
+  schedule_communications(autocommit)
+}
+class "EventQuestion" as odoo_src.odoo.addons.event.models.event_question.EventQuestion {
+  answer_ids
+  event_id
+  event_type_id
+  is_mandatory_answer
+  once_per_order
+  question_type
+  sequence
+  title
+  action_view_question_answers()
+  write(vals)
+}
+class "EventQuestionAnswer" as odoo_src.odoo.addons.event.models.event_question_answer.EventQuestionAnswer {
+  name
+  question_id
+  sequence
+}
+class "EventRegistration" as odoo_src.odoo.addons.event.models.event_registration.EventRegistration {
+  active
+  barcode
+  company_id
+  company_name
+  date_closed
+  email
+  event_begin_date
+  event_date_range
+  event_end_date
+  event_id
+  event_organizer_id
+  event_ticket_id
+  event_user_id
+  mail_registration_ids
+  name
+  partner_id
+  phone
+  registration_answer_choice_ids
+  registration_answer_ids
+  registration_properties
+  state
+  utm_campaign_id
+  utm_medium_id
+  utm_source_id
+  action_cancel()
+  action_confirm()
+  action_send_badge_email()
+  action_set_done()
+  action_set_draft()
+  create(vals_list)
+  default_get(fields)
+  register_attendee(barcode, event_id)
+  toggle_active()
+  write(vals)
+}
+class "EventRegistrationAnswer" as odoo_src.odoo.addons.event.models.event_registration_answer.EventRegistrationAnswer {
+  event_id
+  partner_id
+  question_id
+  question_type
+  registration_id
+  value_answer_id
+  value_text_box
+}
+class "EventStage" as odoo_src.odoo.addons.event.models.event_stage.EventStage {
+  description
+  fold
+  legend_blocked
+  legend_done
+  legend_normal
+  name
+  pipe_end
+  sequence
+}
+class "EventTag" as odoo_src.odoo.addons.event.models.event_tag.EventTag {
+  category_id
+  category_sequence
+  color
+  name
+  sequence
+}
+class "EventTagCategory" as odoo_src.odoo.addons.event.models.event_tag.EventTagCategory {
+  name
+  sequence
+  tag_ids
+}
+class "EventTemplateTicket" as odoo_src.odoo.addons.event.models.event_ticket.EventTemplateTicket {
+  description
+  event_type_id
+  name
+  seats_limited
+  seats_max
+  sequence
+}
+class "EventTicket" as odoo_src.odoo.addons.event.models.event_ticket.EventTicket {
+  color
+  company_id
+  end_sale_datetime
+  event_id
+  event_type_id
+  is_expired
+  is_launched
+  is_sold_out
+  registration_ids
+  sale_available
+  seats_available
+  seats_reserved
+  seats_taken
+  seats_used
+  start_sale_datetime
+  default_get(fields)
+}
+class "EventType" as odoo_src.odoo.addons.event.models.event_event.EventType {
+  default_timezone
+  event_type_mail_ids
+  event_type_ticket_ids
+  has_seats_limitation
+  name
+  note
+  question_ids
+  seats_max
+  sequence
+  tag_ids
+  ticket_instructions
+}
+class "EventTypeMail" as odoo_src.odoo.addons.event.models.event_mail.EventTypeMail {
+  event_type_id
+  interval_nbr
+  interval_type
+  interval_unit
+  notification_type
+  template_ref
+}
+class "MailTemplate" as odoo_src.odoo.addons.event.models.mail_template.MailTemplate {
+  unlink()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.event.models.res_config_settings.ResConfigSettings {
+  barcode_nomenclature_id
+  google_maps_static_api_key
+  google_maps_static_api_secret
+  module_event_booth
+  module_event_sale
+  module_pos_event
+  module_website_event_exhibitor
+  module_website_event_meet
+  module_website_event_sale
+  module_website_event_track
+  module_website_event_track_live
+  module_website_event_track_quiz
+  use_event_barcode
+  use_google_maps_static_api
+  create(vals_list)
+  write(vals)
+}
+class "ResPartner" as odoo_src.odoo.addons.event.models.res_partner.ResPartner {
+  event_count
+  static_map_url
+  static_map_url_is_valid
+  action_event_view()
+}
+class "TestEventData" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventData {
+  test_event_configuration_from_type()
+  test_event_configuration_mails_from_type()
+  test_event_configuration_note_from_type()
+  test_event_configuration_question_from_type()
+  test_event_configuration_tickets_from_type()
+  test_event_date_computation()
+  test_event_date_timezone()
+  test_event_mail_default_config()
+  test_event_mail_filter_template_on_event()
+  test_event_ongoing()
+  test_event_registrable()
+  test_event_seats()
+}
+class "TestEventFlow" as odoo_src.odoo.addons.event.tests.test_event_flow.TestEventFlow {
+  test_event_default_datetime()
+  test_event_missed_mail_template()
+}
+class "TestEventInternalsCommon" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventInternalsCommon {
+  setUpClass()
+}
+class "TestEventRegistrationData" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventRegistrationData {
+  test_registration_partner_sync()
+  test_registration_partner_sync_company()
+}
+class "TestEventRegistrationPhone" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventRegistrationPhone {
+  setUpClass()
+  test_assert_initial_values()
+  test_registration_form_phone()
+  test_registration_phone_format()
+}
+class "TestEventTicketData" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventTicketData {
+  test_event_ticket_fields()
+}
+class "TestEventTypeData" as odoo_src.odoo.addons.event.tests.test_event_internals.TestEventTypeData {
+  test_event_type_fields()
+}
+class "TestMailSchedule" as odoo_src.odoo.addons.event.tests.test_event_mail_schedule.TestMailSchedule {
+  setUpClass()
+  test_archived_event_mail_schedule()
+  test_assert_initial_values()
+  test_event_mail_schedule()
+  test_event_mail_schedule_fail_global_composer()
+  test_event_mail_schedule_fail_global_no_registrations()
+  test_event_mail_schedule_fail_registration_composer()
+  test_event_mail_schedule_fail_registration_template_removed()
+  test_event_mail_schedule_on_subscription()
+  test_event_mail_schedule_on_subscription_async()
+  test_unique_event_mail_ids()
+}
+odoo_src.odoo.addons.event.tests.test_event_internals.TestEventData --|> odoo_src.odoo.addons.event.tests.test_event_internals.TestEventInternalsCommon
+odoo_src.odoo.addons.event.tests.test_event_internals.TestEventRegistrationData --|> odoo_src.odoo.addons.event.tests.test_event_internals.TestEventInternalsCommon
+odoo_src.odoo.addons.event.tests.test_event_internals.TestEventTicketData --|> odoo_src.odoo.addons.event.tests.test_event_internals.TestEventInternalsCommon
+odoo_src.odoo.addons.event.tests.test_event_internals.TestEventTypeData --|> odoo_src.odoo.addons.event.tests.test_event_internals.TestEventInternalsCommon
+@enduml

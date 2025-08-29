@@ -1,0 +1,7 @@
+@startuml classes_l10n_cm
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cm.models.template_cm.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cm.models.template_cm_syscebnl.AccountChartTemplate {
+}
+@enduml

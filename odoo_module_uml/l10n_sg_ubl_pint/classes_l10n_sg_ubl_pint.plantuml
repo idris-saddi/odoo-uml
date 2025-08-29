@@ -1,0 +1,17 @@
+@startuml classes_l10n_sg_ubl_pint
+set namespaceSeparator none
+class "AccountEdiXmlUBLPINTSG" as odoo_src.odoo.addons.l10n_sg_ubl_pint.models.account_edi_xml_pint_sg.AccountEdiXmlUBLPINTSG {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sg_ubl_pint.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_sg_ubl_pint.models.account_tax.AccountTax {
+  ubl_cii_tax_category_code
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_sg_ubl_pint.models.res_partner.ResPartner {
+  invoice_edi_format
+}
+class "TestSgUBLPint" as odoo_src.odoo.addons.l10n_sg_ubl_pint.tests.test_sg_ubl_pint.TestSgUBLPint {
+  setUpClass()
+  test_invoice()
+}
+@enduml

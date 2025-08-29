@@ -1,0 +1,41 @@
+@startuml classes_payment_asiapay
+set namespaceSeparator none
+class "AsiaPayCommon" as odoo_src.odoo.addons.payment_asiapay.tests.common.AsiaPayCommon {
+  setUpClass()
+}
+class "AsiaPayController" as odoo_src.odoo.addons.payment_asiapay.controllers.main.AsiaPayController {
+  asiapay_return_from_checkout()
+  asiapay_webhook()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment_asiapay.models.payment_provider.PaymentProvider {
+  asiapay_brand
+  asiapay_merchant_id
+  asiapay_secure_hash_function
+  asiapay_secure_hash_secret
+  code
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_asiapay.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment_asiapay.tests.test_payment_provider.TestPaymentProvider {
+  test_incompatible_with_unsupported_currencies()
+  test_signature_calculation_for_incoming_data()
+  test_signature_calculation_for_outgoing_data()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment_asiapay.tests.test_payment_transaction.TestPaymentTransaction {
+  test_no_input_missing_from_redirect_form()
+  test_no_item_missing_from_rendering_values()
+  test_processing_notification_data_confirms_transaction()
+  test_reference_is_computed_based_on_document_name()
+  test_reference_is_singularized()
+  test_reference_is_stripped_at_max_length()
+}
+class "TestProcessingFlows" as odoo_src.odoo.addons.payment_asiapay.tests.test_processing_flows.TestProcessingFlows {
+  test_accept_webhook_notification_with_valid_signature()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_webhook_notification_triggers_processing()
+  test_webhook_notification_triggers_signature_check()
+}
+@enduml

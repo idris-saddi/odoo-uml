@@ -1,0 +1,53 @@
+@startuml classes_mail_plugin
+set namespaceSeparator none
+class "Authenticate" as odoo_src.odoo.addons.mail_plugin.controllers.authenticate.Authenticate {
+  auth()
+  auth_access_token(auth_code)
+  auth_confirm(scope, friendlyname, redirect, info, do)
+}
+class "IrHttp" as odoo_src.odoo.addons.mail_plugin.models.ir_http.IrHttp {
+}
+class "MailPluginController" as odoo_src.odoo.addons.mail_plugin.controllers.mail_plugin.MailPluginController {
+  get_translations()
+  log_mail_content(model, res_id, message, attachments)
+  modules_get()
+  res_partner_create(email, name, company)
+  res_partner_enrich_and_create_company(partner_id)
+  res_partner_enrich_and_update_company(partner_id)
+  res_partner_get(email, name, partner_id)
+  res_partners_search(search_term, limit)
+}
+class "ResPartner" as odoo_src.odoo.addons.mail_plugin.models.res_partner.ResPartner {
+  iap_enrich_info
+  iap_search_domain
+  create(vals_list)
+  write(vals)
+}
+class "ResPartnerIap" as odoo_src.odoo.addons.mail_plugin.models.res_partner_iap.ResPartnerIap {
+  iap_enrich_info
+  iap_search_domain
+  partner_id
+}
+class "TestMailPluginController" as odoo_src.odoo.addons.mail_plugin.tests.test_controller.TestMailPluginController {
+  test_enrich_and_create_company()
+  test_get_partner_blacklisted_domain()
+  test_get_partner_company_found()
+  test_get_partner_company_not_found()
+  test_get_partner_iap_return_different_domain()
+  test_get_partner_is_default_from()
+  test_get_partner_no_access()
+  test_get_partner_no_email_returned_by_iap()
+}
+class "TestMailPluginControllerCommon" as odoo_src.odoo.addons.mail_plugin.tests.common.TestMailPluginControllerCommon {
+  user_test
+  mock_enrich_and_create_company(partner_id, patched_iap_enrich)
+  mock_plugin_partner_get(name, email, patched_iap_enrich)
+  setUp()
+}
+class "TestResPartnerIap" as odoo_src.odoo.addons.mail_plugin.tests.test_res_partner_iap.TestResPartnerIap {
+  test_res_partner_iap_compute_iap_enrich_info()
+  test_res_partner_iap_constraint()
+  test_res_partner_iap_creation()
+  test_res_partner_iap_writing()
+}
+@enduml

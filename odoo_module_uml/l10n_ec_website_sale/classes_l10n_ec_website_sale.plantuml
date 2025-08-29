@@ -1,0 +1,20 @@
+@startuml classes_l10n_ec_website_sale
+set namespaceSeparator none
+class "CustomerPortalEcuador" as odoo_src.odoo.addons.l10n_ec_website_sale.controllers.portal.CustomerPortalEcuador {
+  details_form_validate(data, partner_creation)
+}
+class "L10nECWebsiteSale" as odoo_src.odoo.addons.l10n_ec_website_sale.controllers.main.L10nECWebsiteSale {
+}
+class "PaymentMethod" as odoo_src.odoo.addons.l10n_ec_website_sale.models.payment_method.PaymentMethod {
+  fiscal_country_codes
+  l10n_ec_sri_payment_id
+}
+class "SaleOrder" as odoo_src.odoo.addons.l10n_ec_website_sale.models.sale_order.SaleOrder {
+}
+class "TestUi" as odoo_src.odoo.addons.l10n_ec_website_sale.tests.test_l10n_ec_website_sale.TestUi {
+  test_checkout_address_ec()
+  test_new_billing_ec()
+}
+class "Website" as odoo_src.odoo.addons.l10n_ec_website_sale.models.website.Website {
+}
+@enduml

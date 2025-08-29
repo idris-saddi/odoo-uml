@@ -1,0 +1,49 @@
+@startuml classes_l10n_fr_pos_cert
+set namespaceSeparator none
+class "AccountClosing" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.account_closing.AccountClosing {
+  company_id
+  cumulative_total
+  currency_id
+  date_closing_start
+  date_closing_stop
+  frequency
+  last_order_hash
+  last_order_id
+  name
+  sequence_number
+  total_interval
+  write(vals)
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.account_fiscal_position.AccountFiscalPosition {
+  write(vals)
+}
+class "PosOrderLine" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.pos.PosOrderLine {
+  write(vals)
+}
+class "ReportPosHashIntegrity" as odoo_src.odoo.addons.l10n_fr_pos_cert.report.pos_hash_integrity.ReportPosHashIntegrity {
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.res_company.ResCompany {
+  l10n_fr_pos_cert_sequence_id
+  create(vals_list)
+  write(vals)
+}
+class "TestStringToHash" as odoo_src.odoo.addons.l10n_fr_pos_cert.tests.test_string_to_hash.TestStringToHash {
+  setUpClass()
+  test_string_to_hash()
+}
+class "pos_config" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.pos.pos_config {
+  open_ui()
+}
+class "pos_order" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.pos.pos_order {
+  l10n_fr_hash
+  l10n_fr_secure_sequence_number
+  l10n_fr_string_to_hash
+  pos_version
+  previous_order_id
+  create(vals_list)
+  write(vals)
+}
+class "pos_session" as odoo_src.odoo.addons.l10n_fr_pos_cert.models.pos.pos_session {
+  open_frontend_cb()
+}
+@enduml

@@ -1,0 +1,143 @@
+@startuml classes_maintenance
+set namespaceSeparator none
+class "MaintenanceEquipment" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceEquipment {
+  active
+  assign_date
+  category_id
+  color
+  cost
+  equipment_properties
+  location
+  maintenance_ids
+  match_serial
+  model
+  name
+  note
+  owner_user_id
+  partner_id
+  partner_ref
+  scrap_date
+  serial_no
+  technician_user_id
+  warranty_date
+  action_open_matched_serial()
+  create(vals_list)
+  write(vals)
+}
+class "MaintenanceEquipmentCategory" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceEquipmentCategory {
+  alias_id
+  color
+  company_id
+  equipment_count
+  equipment_ids
+  equipment_properties_definition
+  fold
+  maintenance_count
+  maintenance_ids
+  maintenance_open_count
+  name
+  note
+  technician_user_id
+}
+class "MaintenanceMixin" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceMixin {
+  company_id
+  effective_date
+  estimated_next_failure
+  expected_mtbf
+  latest_failure_date
+  maintenance_count
+  maintenance_ids
+  maintenance_open_count
+  maintenance_team_id
+  mtbf
+  mttr
+  technician_user_id
+}
+class "MaintenanceRequest" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceRequest {
+  archive
+  category_id
+  close_date
+  color
+  company_id
+  description
+  done
+  duration
+  equipment_id
+  instruction_google_slide
+  instruction_pdf
+  instruction_text
+  instruction_type
+  kanban_state
+  maintenance_team_id
+  maintenance_type
+  name
+  owner_user_id
+  priority
+  recurring_maintenance
+  repeat_interval
+  repeat_type
+  repeat_unit
+  repeat_until
+  request_date
+  schedule_date
+  stage_id
+  user_id
+  activity_update()
+  archive_equipment_request()
+  create(vals_list)
+  reset_equipment_request()
+  write(vals)
+}
+class "MaintenanceStage" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceStage {
+  done
+  fold
+  name
+  sequence
+}
+class "MaintenanceTeam" as odoo_src.odoo.addons.maintenance.models.maintenance.MaintenanceTeam {
+  active
+  color
+  company_id
+  equipment_ids
+  member_ids
+  name
+  request_ids
+  todo_request_count
+  todo_request_count_block
+  todo_request_count_date
+  todo_request_count_high_priority
+  todo_request_count_unscheduled
+  todo_request_ids
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.maintenance.models.res_config_settings.ResConfigSettings {
+  module_maintenance_worksheet
+}
+class "TestCalendarWithRecurrence" as odoo_src.odoo.addons.maintenance.tests.test_calendar_with_recurrence.TestCalendarWithRecurrence {
+  test_dblclick_event_from_calendar()
+  test_drag_and_drop_calendar_event()
+}
+class "TestEquipment" as odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipment {
+  test_10_equipment_request_category()
+  test_forever_maintenance_repeat_type()
+  test_update_multiple_maintenance_request_record()
+}
+class "TestEquipmentCommon" as odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipmentCommon {
+  equipment
+  equipment_monitor
+  main_company
+  maintenance_request
+  maintenance_team
+  manager
+  res_users
+  user
+  setUp()
+}
+class "TestEquipmentMulticompany" as odoo_src.odoo.addons.maintenance.tests.test_maintenance_multicompany.TestEquipmentMulticompany {
+  test_00_equipment_multicompany_user()
+}
+class "TestEquipmentPostInstall" as odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipmentPostInstall {
+  test_basic_access_and_new_equipment()
+}
+odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipment --|> odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipmentCommon
+odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipmentPostInstall --|> odoo_src.odoo.addons.maintenance.tests.test_maintenance.TestEquipmentCommon
+@enduml

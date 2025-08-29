@@ -1,0 +1,12 @@
+@startuml classes_l10n_fr_hr_work_entry_holidays
+set namespaceSeparator none
+class "HrContract" as odoo_src.odoo.addons.l10n_fr_hr_work_entry_holidays.models.hr_contract.HrContract {
+}
+class "HrWorkEntry" as odoo_src.odoo.addons.l10n_fr_hr_work_entry_holidays.models.hr_work_entry.HrWorkEntry {
+}
+class "TestFrenchWorkEntries" as odoo_src.odoo.addons.l10n_fr_hr_work_entry_holidays.tests.test_french_work_entries.TestFrenchWorkEntries {
+  setUpClass()
+  test_create_work_entry_with_french_company()
+  test_fill_gaps()
+}
+@enduml

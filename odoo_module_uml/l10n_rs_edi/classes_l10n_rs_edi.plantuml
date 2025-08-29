@@ -1,0 +1,41 @@
+@startuml classes_l10n_rs_edi
+set namespaceSeparator none
+class "AccountEdiXmlUBL21RS" as odoo_src.odoo.addons.l10n_rs_edi.models.account_edi_xml_ubl_21_rs.AccountEdiXmlUBL21RS {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_rs_edi.models.account_move.AccountMove {
+  l10n_rs_edi_attachment_file
+  l10n_rs_edi_attachment_id
+  l10n_rs_edi_error
+  l10n_rs_edi_invoice
+  l10n_rs_edi_is_eligible
+  l10n_rs_edi_purchase_invoice
+  l10n_rs_edi_sales_invoice
+  l10n_rs_edi_state
+  l10n_rs_edi_uuid
+  l10n_rs_tax_date_obligations_code
+  button_draft()
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_rs_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.l10n_rs_edi.wizard.account_move_send_wizard.AccountMoveSendWizard {
+  extra_edi_checkboxes
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_rs_edi.models.res_company.ResCompany {
+  l10n_rs_edi_api_key
+  l10n_rs_edi_demo_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_rs_edi.models.res_config_settings.ResConfigSettings {
+  l10n_rs_edi_api_key
+  l10n_rs_edi_demo_env
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_rs_edi.models.res_partner.ResPartner {
+  l10n_rs_edi_public_funds
+  l10n_rs_edi_registration_number
+}
+class "TestUBLRS" as odoo_src.odoo.addons.l10n_rs_edi.tests.test_xml_ubl_rs.TestUBLRS {
+  create_invoice(move_type)
+  setUpClass()
+  test_export_credit_note()
+  test_export_invoice()
+}
+@enduml

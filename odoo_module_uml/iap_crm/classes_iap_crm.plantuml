@@ -1,0 +1,6 @@
+@startuml classes_iap_crm
+set namespaceSeparator none
+class "Lead" as odoo_src.odoo.addons.iap_crm.models.crm_lead.Lead {
+  reveal_id
+}
+@enduml

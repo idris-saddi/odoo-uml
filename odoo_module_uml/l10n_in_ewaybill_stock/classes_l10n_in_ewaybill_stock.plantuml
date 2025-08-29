@@ -1,0 +1,83 @@
+@startuml classes_l10n_in_ewaybill_stock
+set namespaceSeparator none
+class "EWayBillApi" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.tools.ewaybill_api.EWayBillApi {
+  DEFAULT_HELP_MESSAGE
+  company
+  env
+}
+class "<color:red>EWayBillError</color>" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.tools.ewaybill_api.EWayBillError {
+  error_codes
+  error_json
+  get_all_error_message()
+  get_error_codes()
+}
+class "Ewaybill" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.models.l10n_in_ewaybill.Ewaybill {
+  blocking_level
+  cancel_reason
+  cancel_remarks
+  company_currency_id
+  company_id
+  content
+  distance
+  document_date
+  document_number
+  error_message
+  ewaybill_date
+  ewaybill_expiry_date
+  fiscal_position_id
+  is_bill_from_editable
+  is_bill_to_editable
+  is_ship_from_editable
+  is_ship_to_editable
+  mode
+  move_ids
+  name
+  partner_bill_from_id
+  partner_bill_to_id
+  partner_ship_from_id
+  partner_ship_to_id
+  picking_id
+  picking_type_code
+  state
+  sub_type_code
+  supply_type
+  transportation_doc_date
+  transportation_doc_no
+  transporter_id
+  type_description
+  type_id
+  vehicle_no
+  vehicle_type
+  action_export_json()
+  action_print()
+  action_set_to_challan()
+  cancel_ewaybill()
+  generate_ewaybill()
+  reset_to_pending()
+}
+class "EwaybillCancel" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.wizard.l10n_in_ewaybill_cancel.EwaybillCancel {
+  cancel_reason
+  cancel_remarks
+  l10n_in_ewaybill_id
+  cancel_ewaybill()
+}
+class "StockMove" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.models.stock_move.StockMove {
+  company_currency_id
+  ewaybill_price_unit
+  ewaybill_tax_ids
+  l10n_in_ewaybill_id
+}
+class "StockPicking" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.models.stock_picking.StockPicking {
+  l10n_in_ewaybill_id
+  action_l10n_in_ewaybill_create()
+  action_open_l10n_in_ewaybill()
+}
+class "TestStockEwaybill" as odoo_src.odoo.addons.l10n_in_ewaybill_stock.tests.test_ewaybill_stock.TestStockEwaybill {
+  setUpClass()
+  test_ewaybill_stock()
+  test_ewaybill_stock_test_2()
+  test_ewaybill_stock_test_3()
+  test_ewaybill_stock_transporter_with_vehicle_no()
+  test_ewaybill_stock_transporter_without_vehicle_no()
+}
+@enduml

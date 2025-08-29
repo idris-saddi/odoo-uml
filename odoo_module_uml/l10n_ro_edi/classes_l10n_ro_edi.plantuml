@@ -1,0 +1,70 @@
+@startuml classes_l10n_ro_edi
+set namespaceSeparator none
+class "AccountEdiXmlUBLRO" as odoo_src.odoo.addons.l10n_ro_edi.models.account_edi_xml_ubl_ciusro.AccountEdiXmlUBLRO {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_ro_edi.models.account_move.AccountMove {
+  l10n_ro_edi_attachment_id
+  l10n_ro_edi_document_ids
+  l10n_ro_edi_index
+  l10n_ro_edi_state
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_ro_edi.models.account_move_send.AccountMoveSend {
+}
+class "AccountMoveSendWizard" as odoo_src.odoo.addons.l10n_ro_edi.wizard.account_move_send_wizard.AccountMoveSendWizard {
+}
+class "L10nRoEdiController" as odoo_src.odoo.addons.l10n_ro_edi.controllers.main.L10nRoEdiController {
+  authorize(company_id)
+  callback(company_id)
+}
+class "L10nRoEdiDocument" as odoo_src.odoo.addons.l10n_ro_edi.models.ciusro_document.L10nRoEdiDocument {
+  attachment_id
+  datetime
+  invoice_id
+  key_certificate
+  key_loading
+  key_signature
+  message
+  state
+  action_l10n_ro_edi_download_signature()
+  action_l10n_ro_edi_fetch_status()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_ro_edi.models.res_company.ResCompany {
+  l10n_ro_edi_access_expiry_date
+  l10n_ro_edi_access_token
+  l10n_ro_edi_callback_url
+  l10n_ro_edi_client_id
+  l10n_ro_edi_client_secret
+  l10n_ro_edi_oauth_error
+  l10n_ro_edi_refresh_expiry_date
+  l10n_ro_edi_refresh_token
+  l10n_ro_edi_test_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_ro_edi.models.res_config_settings.ResConfigSettings {
+  l10n_ro_edi_access_expiry_date
+  l10n_ro_edi_access_token
+  l10n_ro_edi_callback_url
+  l10n_ro_edi_client_id
+  l10n_ro_edi_client_secret
+  l10n_ro_edi_oauth_error
+  l10n_ro_edi_refresh_expiry_date
+  l10n_ro_edi_refresh_token
+  l10n_ro_edi_test_env
+  button_l10n_ro_edi_generate_token()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_ro_edi.models.res_partner.ResPartner {
+  invoice_edi_format
+}
+class "TestUBLRO" as odoo_src.odoo.addons.l10n_ro_edi.tests.test_xml_ubl_ro.TestUBLRO {
+  create_move(move_type, send)
+  get_attachment(move)
+  setUpClass()
+  test_export_constraints()
+  test_export_credit_note()
+  test_export_invoice()
+  test_export_invoice_different_currency()
+  test_export_invoice_without_country_code_prefix_in_vat()
+  test_export_no_vat_and_no_company_registry_raises_error()
+  test_export_no_vat_but_have_company_registry()
+  test_export_no_vat_but_have_company_registry_without_prefix()
+}
+@enduml

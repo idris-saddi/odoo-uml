@@ -1,0 +1,48 @@
+@startuml classes_certificate
+set namespaceSeparator none
+class "Certificate" as odoo_src.odoo.addons.certificate.models.certificate.Certificate {
+  active
+  company_id
+  content
+  content_format
+  country_code
+  date_end
+  date_start
+  is_valid
+  loading_error
+  name
+  pem_certificate
+  pkcs12_password
+  private_key_id
+  public_key_id
+  scope
+  serial_number
+  subject_common_name
+}
+class "CertificateAdapter" as odoo_src.odoo.addons.certificate.tools.certificate_adapter.CertificateAdapter {
+  cert_verify(conn, url, verify, cert)
+  get_connection(url, proxies)
+  init_poolmanager()
+}
+class "Key" as odoo_src.odoo.addons.certificate.models.key.Key {
+  active
+  company_id
+  content
+  loading_error
+  name
+  password
+  pem_key
+  public
+}
+class "TestKeysCertificates" as odoo_src.odoo.addons.certificate.tests.test_keys_certificates.TestKeysCertificates {
+  setUpClass()
+  test_der_certificate()
+  test_ec_key_generated()
+  test_is_valid()
+  test_key_loading_wrong_password()
+  test_keys_certificate_not_matching()
+  test_pem_certificate()
+  test_pfx_certificate()
+  test_rsa_key_generated()
+}
+@enduml

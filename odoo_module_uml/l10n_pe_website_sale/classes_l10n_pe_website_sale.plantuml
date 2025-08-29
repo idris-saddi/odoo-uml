@@ -1,0 +1,9 @@
+@startuml classes_l10n_pe_website_sale
+set namespaceSeparator none
+class "L10nPEWebsiteSale" as odoo_src.odoo.addons.l10n_pe_website_sale.controllers.main.L10nPEWebsiteSale {
+  city_infos(city)
+  state_infos(state)
+}
+class "Website" as odoo_src.odoo.addons.l10n_pe_website_sale.models.website.Website {
+}
+@enduml

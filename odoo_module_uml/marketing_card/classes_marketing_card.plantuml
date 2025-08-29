@@ -1,0 +1,128 @@
+@startuml classes_marketing_card
+set namespaceSeparator none
+class "CardCampaign" as odoo_src.odoo.addons.marketing_card.models.card_campaign.CardCampaign {
+  active
+  body_html
+  card_click_count
+  card_count
+  card_ids
+  card_share_count
+  card_template_id
+  content_background
+  content_button
+  content_header
+  content_header_color
+  content_header_dyn
+  content_header_path
+  content_image1_path
+  content_image2_path
+  content_section
+  content_section_dyn
+  content_section_path
+  content_sub_header
+  content_sub_header_color
+  content_sub_header_dyn
+  content_sub_header_path
+  content_sub_section1
+  content_sub_section1_dyn
+  content_sub_section1_path
+  content_sub_section2
+  content_sub_section2_dyn
+  content_sub_section2_path
+  image_preview
+  link_tracker_id
+  mailing_count
+  mailing_ids
+  name
+  post_suggestion
+  preview_record_ref
+  request_description
+  request_title
+  res_model
+  reward_message
+  reward_target_url
+  tag_ids
+  target_url
+  target_url_click_count
+  user_id
+  action_preview()
+  action_share()
+  action_view_cards()
+  action_view_cards_clicked()
+  action_view_cards_shared()
+  action_view_mailings()
+  create(create_vals)
+  write(vals)
+}
+class "CardCampaignTag" as odoo_src.odoo.addons.marketing_card.models.card_campaign_tag.CardCampaignTag {
+  color
+  name
+}
+class "CardCampaignTemplate" as odoo_src.odoo.addons.marketing_card.models.card_template.CardCampaignTemplate {
+  body
+  default_background
+  name
+  primary_color
+  primary_text_color
+  secondary_color
+  secondary_text_color
+}
+class "IrModel" as odoo_src.odoo.addons.marketing_card.models.ir_model.IrModel {
+}
+class "MailComposeMessage" as odoo_src.odoo.addons.marketing_card.wizards.mail_compose_message.MailComposeMessage {
+}
+class "MarketingCard" as odoo_src.odoo.addons.marketing_card.models.card_card.MarketingCard {
+  active
+  campaign_id
+  image
+  requires_sync
+  res_id
+  res_model
+  share_status
+}
+class "MarketingCardCommon" as odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon {
+  mock_datetime_and_now(mock_dt)
+  setUpClass()
+}
+class "MarketingCardController" as odoo_src.odoo.addons.marketing_card.controllers.marketing_card.MarketingCardController {
+  card_campaign_image(card_id, card_slug)
+  card_campaign_preview(card_id, card_slug)
+  card_campaign_redirect(card_id, card_slug)
+}
+class "MassMailing" as odoo_src.odoo.addons.marketing_card.models.mailing_mailing.MassMailing {
+  card_campaign_id
+  card_requires_sync_count
+  mailing_model_id
+  action_put_in_queue()
+  action_send_mail(res_ids)
+  action_update_cards()
+}
+class "MockImageRender" as odoo_src.odoo.addons.marketing_card.tests.common.MockImageRender {
+  mock_image_renderer(collect_params)
+}
+class "TestMarketingCardMail" as odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardMail {
+  assertSentMailCorrectCard(sent_mails, cards)
+  test_campaign_send_mailing()
+  test_campaign_send_mailing_with_duplicates()
+}
+class "TestMarketingCardRender" as odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardRender {
+  test_campaign()
+  test_fetch_datetime()
+}
+class "TestMarketingCardRouting" as odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardRouting {
+  test_campaign_stats()
+}
+class "TestMarketingCardSecurity" as odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardSecurity {
+  test_campaign_field_paths()
+  test_campaign_ownership()
+  test_mail_render_security_body_html()
+  test_mail_render_security_render_field_write_access()
+}
+class "UtmSource" as odoo_src.odoo.addons.marketing_card.models.utm_source.UtmSource {
+}
+odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon --|> odoo_src.odoo.addons.marketing_card.tests.common.MockImageRender
+odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardMail --|> odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon
+odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardRender --|> odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon
+odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardRouting --|> odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon
+odoo_src.odoo.addons.marketing_card.tests.test_campaign.TestMarketingCardSecurity --|> odoo_src.odoo.addons.marketing_card.tests.common.MarketingCardCommon
+@enduml

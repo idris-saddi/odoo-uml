@@ -1,0 +1,30 @@
+@startuml classes_base_sparse_field
+set namespaceSeparator none
+class "Base" as odoo_src.odoo.addons.base_sparse_field.models.models.Base {
+}
+class "IrModelFields" as odoo_src.odoo.addons.base_sparse_field.models.models.IrModelFields {
+  serialization_field_id
+  ttype
+  write(vals)
+}
+class "Serialized" as odoo_src.odoo.addons.base_sparse_field.models.fields.Serialized {
+  column_type : tuple
+  prefetch : bool
+  type : str
+  convert_to_cache(value, record, validate)
+  convert_to_column_insert(value, record, values, validate)
+  convert_to_record(value, record)
+}
+class "TestSparse" as odoo_src.odoo.addons.base_sparse_field.models.models.TestSparse {
+  boolean
+  char
+  data
+  float
+  integer
+  partner
+  selection
+}
+class "TestSparseFields" as odoo_src.odoo.addons.base_sparse_field.tests.test_sparse_fields.TestSparseFields {
+  test_sparse()
+}
+@enduml

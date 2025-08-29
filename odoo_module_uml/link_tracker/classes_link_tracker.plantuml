@@ -1,0 +1,74 @@
+@startuml classes_link_tracker
+set namespaceSeparator none
+class "LinkTracker" as odoo_src.odoo.addons.link_tracker.models.link_tracker.LinkTracker {
+  absolute_url
+  campaign_id
+  code
+  count
+  label
+  link_click_ids
+  link_code_ids
+  medium_id
+  redirected_url
+  short_url
+  short_url_host
+  source_id
+  title
+  url
+  action_view_statistics()
+  action_visit_page()
+  {abstract}convert_links(html, vals, blacklist)
+  create(vals_list)
+  get_url_from_code(code)
+  recent_links(filter, limit)
+  search_or_create(vals_list)
+}
+class "LinkTracker" as odoo_src.odoo.addons.link_tracker.controller.main.LinkTracker {
+  full_url_redirect(code)
+}
+class "LinkTrackerClick" as odoo_src.odoo.addons.link_tracker.models.link_tracker.LinkTrackerClick {
+  campaign_id
+  country_id
+  ip
+  link_id
+  add_click(code)
+}
+class "LinkTrackerCode" as odoo_src.odoo.addons.link_tracker.models.link_tracker.LinkTrackerCode {
+  code
+  link_id
+}
+class "MailRenderMixin" as odoo_src.odoo.addons.link_tracker.models.mail_render_mixin.MailRenderMixin {
+}
+class "MockLinkTracker" as odoo_src.odoo.addons.link_tracker.tests.common.MockLinkTracker {
+  assertLinkParams(url, link_tracker, link_params)
+  assertLinkShortenedHtml(body, link_info, link_params)
+  assertLinkShortenedText(body, link_info, link_params)
+  setUp()
+}
+class "TestLinkTracker" as odoo_src.odoo.addons.link_tracker.tests.test_link_tracker.TestLinkTracker {
+  setUp()
+  test_absolute_url()
+  test_constraint()
+  test_create()
+  test_no_external_tracking()
+  test_no_loop()
+  test_search_or_create()
+}
+class "TestMailRenderMixin" as odoo_src.odoo.addons.link_tracker.tests.test_mail_render_mixin.TestMailRenderMixin {
+  setUpClass()
+  test_shorten_blacklisted_links()
+  test_shorten_links()
+  test_shorten_links_html_different_labels()
+  test_shorten_links_html_including_base_url()
+  test_shorten_links_html_markup()
+  test_shorten_links_html_skip_shorts()
+  test_shorten_links_text_including_base_url()
+  test_shorten_links_text_skip_shorts()
+}
+class "TestTrackerHttpRequests" as odoo_src.odoo.addons.link_tracker.tests.test_tracker_http_requests.TestTrackerHttpRequests {
+  test_no_preview_tracking()
+}
+class "UtmCampaign" as odoo_src.odoo.addons.link_tracker.models.utm.UtmCampaign {
+  click_count
+}
+@enduml

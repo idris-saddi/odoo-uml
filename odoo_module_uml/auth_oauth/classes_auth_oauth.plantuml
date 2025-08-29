@@ -1,0 +1,42 @@
+@startuml classes_auth_oauth
+set namespaceSeparator none
+class "AuthOAuthProvider" as odoo_src.odoo.addons.auth_oauth.models.auth_oauth.AuthOAuthProvider {
+  auth_endpoint
+  body
+  client_id
+  css_class
+  data_endpoint
+  enabled
+  name
+  scope
+  sequence
+  validation_endpoint
+}
+class "IrConfigParameter" as odoo_src.odoo.addons.auth_oauth.models.ir_config_parameter.IrConfigParameter {
+  init(force)
+}
+class "OAuthController" as odoo_src.odoo.addons.auth_oauth.controllers.main.OAuthController {
+  oea()
+  signin()
+}
+class "OAuthLogin" as odoo_src.odoo.addons.auth_oauth.controllers.main.OAuthLogin {
+  get_auth_signup_qcontext()
+  get_state(provider)
+  list_providers()
+  web_login()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.auth_oauth.models.res_config_settings.ResConfigSettings {
+  auth_oauth_google_client_id
+  auth_oauth_google_enabled
+  server_uri_google
+  get_uri()
+  get_values()
+  set_values()
+}
+class "ResUsers" as odoo_src.odoo.addons.auth_oauth.models.res_users.ResUsers {
+  oauth_access_token
+  oauth_provider_id
+  oauth_uid
+  auth_oauth(provider, params)
+}
+@enduml

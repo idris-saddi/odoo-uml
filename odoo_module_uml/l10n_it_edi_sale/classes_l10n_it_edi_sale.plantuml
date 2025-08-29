@@ -1,0 +1,19 @@
+@startuml classes_l10n_it_edi_sale
+set namespaceSeparator none
+class "SaleOrder" as odoo_src.odoo.addons.l10n_it_edi_sale.models.sale_order.SaleOrder {
+  l10n_it_cig
+  l10n_it_cup
+  l10n_it_origin_document_date
+  l10n_it_origin_document_name
+  l10n_it_origin_document_type
+  l10n_it_partner_pa
+}
+class "TestItEdiSaleOrderPa" as odoo_src.odoo.addons.l10n_it_edi_sale.tests.test_edi_sale_order_pa.TestItEdiSaleOrderPa {
+  create_sale_order_and_invoice(sale_order_vals)
+  get_sales_order_vals()
+  setUpClass()
+  test_invoice_from_sale_order_pa_partner_no_origin_fields()
+  test_invoice_from_sale_order_pa_partner_no_pa_fields()
+  test_invoice_from_sale_order_pa_partner_with_origin_fields()
+}
+@enduml

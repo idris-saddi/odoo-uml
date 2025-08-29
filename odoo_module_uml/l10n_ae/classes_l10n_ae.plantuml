@@ -1,0 +1,8 @@
+@startuml classes_l10n_ae
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_ae.models.template_ae.AccountChartTemplate {
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_ae.models.account_move_line.AccountMoveLine {
+  l10n_ae_vat_amount
+}
+@enduml

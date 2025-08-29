@@ -1,0 +1,22 @@
+@startuml classes_l10n_cz
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_cz.models.template_cz.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_cz.models.account_move.AccountMove {
+  taxable_supply_date
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_cz.models.account_move_line.AccountMoveLine {
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_cz.models.res_company.BaseDocumentLayout {
+  account_fiscal_country_id
+  company_registry
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_cz.models.res_company.ResCompany {
+  trade_registry
+}
+class "TestAccountCZ" as odoo_src.odoo.addons.l10n_cz.tests.test_moves.TestAccountCZ {
+  setUpClass()
+  test_cz_bank_rec_no_taxable_supply_date()
+  test_cz_out_invoice_onchange_accounting_date()
+}
+@enduml

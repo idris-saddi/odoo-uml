@@ -1,0 +1,17 @@
+@startuml classes_l10n_sk
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_sk.models.template_sk.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_sk.models.account_move.AccountMove {
+  taxable_supply_date
+}
+class "BaseDocumentLayout" as odoo_src.odoo.addons.l10n_sk.models.res_company.BaseDocumentLayout {
+  account_fiscal_country_id
+  company_registry
+  income_tax_id
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_sk.models.res_company.ResCompany {
+  income_tax_id
+  trade_registry
+}
+@enduml

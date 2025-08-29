@@ -1,0 +1,73 @@
+@startuml classes_membership
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.membership.models.account_move.AccountMove {
+  button_cancel()
+  button_draft()
+  write(vals)
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.membership.models.account_move.AccountMoveLine {
+  create(vals_list)
+  write(vals)
+}
+class "MembershipInvoice" as odoo_src.odoo.addons.membership.wizard.membership_invoice.MembershipInvoice {
+  member_price
+  product_id
+  membership_invoice()
+  onchange_product()
+}
+class "MembershipLine" as odoo_src.odoo.addons.membership.models.membership.MembershipLine {
+  account_invoice_id
+  account_invoice_line
+  company_id
+  date
+  date_cancel
+  date_from
+  date_to
+  member_price
+  membership_id
+  partner
+  state
+}
+class "Partner" as odoo_src.odoo.addons.membership.models.partner.Partner {
+  associate_member
+  free_member
+  member_lines
+  membership_amount
+  membership_cancel
+  membership_start
+  membership_state
+  membership_stop
+  create_membership_invoice(product, amount)
+}
+class "Product" as odoo_src.odoo.addons.membership.models.product.Product {
+  membership
+  membership_date_from
+  membership_date_to
+}
+class "ReportMembership" as odoo_src.odoo.addons.membership.report.report_membership.ReportMembership {
+  associate_member_id
+  company_id
+  date_to
+  membership_id
+  membership_state
+  num_invoiced
+  num_paid
+  num_waiting
+  partner_id
+  quantity
+  start_date
+  tot_earned
+  tot_pending
+  user_id
+  init()
+}
+class "TestMembership" as odoo_src.odoo.addons.membership.tests.test_membership.TestMembership {
+  test_cancel_membership()
+  test_none_membership()
+  test_old_membership()
+  test_paid_membership()
+}
+class "TestMembershipCommon" as odoo_src.odoo.addons.membership.tests.common.TestMembershipCommon {
+  setUpClass()
+}
+@enduml

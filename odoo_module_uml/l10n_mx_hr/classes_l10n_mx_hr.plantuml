@@ -1,0 +1,7 @@
+@startuml classes_l10n_mx_hr
+set namespaceSeparator none
+class "Employee" as odoo_src.odoo.addons.l10n_mx_hr.models.hr_employee.Employee {
+  l10n_mx_curp
+  l10n_mx_rfc
+}
+@enduml

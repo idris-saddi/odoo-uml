@@ -1,0 +1,42 @@
+@startuml classes_barcodes
+set namespaceSeparator none
+class "BarcodeEventsMixin" as odoo_src.odoo.addons.barcodes.models.barcode_events_mixin.BarcodeEventsMixin {
+  {abstract}on_barcode_scanned(barcode)
+}
+class "BarcodeNomenclature" as odoo_src.odoo.addons.barcodes.models.barcode_nomenclature.BarcodeNomenclature {
+  name
+  rule_ids
+  upc_ean_conv
+  match_pattern(barcode, pattern)
+  parse_barcode(barcode)
+  parse_nomenclature_barcode(barcode)
+  parse_uri(barcode)
+  sanitize_ean(ean)
+  sanitize_upc(upc)
+}
+class "BarcodeRule" as odoo_src.odoo.addons.barcodes.models.barcode_rule.BarcodeRule {
+  alias
+  barcode_nomenclature_id
+  encoding
+  name
+  pattern
+  sequence
+  type
+}
+class "IrHttp" as odoo_src.odoo.addons.barcodes.models.ir_http.IrHttp {
+  session_info()
+}
+class "ResCompany" as odoo_src.odoo.addons.barcodes.models.res_company.ResCompany {
+  nomenclature_id
+}
+class "TestBarcodeNomenclature" as odoo_src.odoo.addons.barcodes.tests.test_barcode_nomenclature.TestBarcodeNomenclature {
+  setUpClass()
+  test_barcode_nomenclature_parse_barcode_ean13_01()
+  test_barcode_nomenclature_parse_barcode_ean13_02_sequence()
+  test_barcode_nomenclature_parse_barcode_ean8_01()
+  test_barcode_nomenclature_parse_barcode_ean8_02_validation_error()
+  test_barcode_nomenclature_parse_barcode_ean8_03_value()
+  test_barcode_nomenclature_parse_barcode_ean8_04_multiple_rules()
+  test_barcode_uri_conversion()
+}
+@enduml

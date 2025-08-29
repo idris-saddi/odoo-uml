@@ -1,0 +1,13 @@
+@startuml classes_l10n_uy_website_sale
+set namespaceSeparator none
+class "CustomerPortalUruguay" as odoo_src.odoo.addons.l10n_uy_website_sale.controllers.portal.CustomerPortalUruguay {
+  details_form_validate(data, partner_creation)
+}
+class "L10nUYWebsiteSale" as odoo_src.odoo.addons.l10n_uy_website_sale.controllers.main.L10nUYWebsiteSale {
+}
+class "TestUi" as odoo_src.odoo.addons.l10n_uy_website_sale.tests.test_l10n_uy_website_sale.TestUi {
+  test_checkout_address_uy()
+}
+class "Website" as odoo_src.odoo.addons.l10n_uy_website_sale.models.website.Website {
+}
+@enduml

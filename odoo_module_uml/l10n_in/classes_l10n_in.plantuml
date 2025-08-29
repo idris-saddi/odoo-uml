@@ -1,0 +1,113 @@
+@startuml classes_l10n_in
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_in.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_in.models.template_in.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_in.models.account_invoice.AccountMove {
+  l10n_in_gst_treatment
+  l10n_in_gstin
+  l10n_in_journal_type
+  l10n_in_reseller_partner_id
+  l10n_in_shipping_bill_date
+  l10n_in_shipping_bill_number
+  l10n_in_shipping_port_code_id
+  l10n_in_state_id
+  l10n_in_warning
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_in.models.account_move_line.AccountMoveLine {
+  l10n_in_hsn_code
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_in.models.account_tax.AccountTax {
+  l10n_in_reverse_charge
+  l10n_in_tax_type
+}
+class "CountryState" as odoo_src.odoo.addons.l10n_in.models.res_country_state.CountryState {
+  l10n_in_tin
+}
+class "IapAccount" as odoo_src.odoo.addons.l10n_in.models.iap_account.IapAccount {
+}
+class "L10nInPortCode" as odoo_src.odoo.addons.l10n_in.models.port_code.L10nInPortCode {
+  code
+  name
+  state_id
+}
+class "L10nInTestInvoicingCommon" as odoo_src.odoo.addons.l10n_in.tests.common.L10nInTestInvoicingCommon {
+  setUpClass()
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_in.models.product_template.ProductTemplate {
+  l10n_in_hsn_code
+  l10n_in_hsn_warning
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_in.models.company.ResCompany {
+  l10n_in_edi_production_env
+  l10n_in_gst_state_warning
+  l10n_in_hsn_code_digit
+  l10n_in_pan
+  l10n_in_pan_type
+  l10n_in_upi_id
+  action_update_state_as_per_gstin()
+  create(vals_list)
+  write(vals)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_in.models.res_config_settings.ResConfigSettings {
+  group_l10n_in_reseller
+  l10n_in_edi_production_env
+  l10n_in_hsn_code_digit
+  module_l10n_in_edi
+  module_l10n_in_edi_ewaybill
+  module_l10n_in_enet_batch_payment
+  module_l10n_in_gstin_status
+  module_l10n_in_withholding
+  l10n_in_edi_buy_iap()
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_in.models.res_partner.ResPartner {
+  display_pan_warning
+  l10n_in_gst_state_warning
+  l10n_in_gst_treatment
+  l10n_in_pan
+  state_id
+  action_update_state_as_per_gstin()
+  check_vat_in(vat)
+  onchange_vat()
+}
+class "TestFiscal" as odoo_src.odoo.addons.l10n_in.tests.test_l10n_in_fiscal_position.TestFiscal {
+  setUpClass()
+  test_l10n_in_auto_apply_fiscal_invoices()
+  test_l10n_in_company_with_no_vat()
+  test_l10n_in_fiscal_for_branch()
+  test_l10n_in_fiscal_in_bill_to_ship_to()
+  test_l10n_in_fiscal_in_vendor_bills()
+  test_l10n_in_setting_up_company()
+}
+class "TestL10nInHSNSummary" as odoo_src.odoo.addons.l10n_in.tests.test_hsn_summary.TestL10nInHSNSummary {
+  assert_invoice_l10n_in_hsn_summary(invoice, expected_values)
+  assert_l10n_in_hsn_summary(document, expected_values, display_uom)
+  convert_base_line_to_invoice_line(document, base_line)
+  create_base_line_dict(l10n_in_hsn_code, quantity, price_unit, discount, uom, taxes, product)
+  setUpClass()
+  test_l10n_in_hsn_summary_1_generic_helpers()
+  test_l10n_in_hsn_summary_1_invoices()
+  test_l10n_in_hsn_summary_2_generic_helpers()
+  test_l10n_in_hsn_summary_2_invoices()
+  test_l10n_in_hsn_summary_3_generic_helpers()
+  test_l10n_in_hsn_summary_3_invoices()
+  test_l10n_in_hsn_summary_4_generic_helpers()
+  test_l10n_in_hsn_summary_4_invoices()
+  test_l10n_in_hsn_summary_5_generic_helpers()
+  test_l10n_in_hsn_summary_5_invoices()
+  test_l10n_in_hsn_summary_6_generic_helpers()
+  test_l10n_in_hsn_summary_6_invoices()
+  test_l10n_in_hsn_summary_manual_edit_invoice_taxes()
+}
+class "TestReports" as odoo_src.odoo.addons.l10n_in.tests.test_partner_details_on_invoice.TestReports {
+  setUpClass()
+  test_foreign_customer_without_state()
+  test_partner_change_with_invoice()
+  test_partner_details_change_with_invoice()
+  test_place_of_supply()
+}
+class "UoM" as odoo_src.odoo.addons.l10n_in.models.uom_uom.UoM {
+  l10n_in_code
+}
+@enduml

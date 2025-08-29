@@ -1,0 +1,190 @@
+@startuml classes_loyalty
+set namespaceSeparator none
+class "CustomerPortalLoyalty" as odoo_src.odoo.addons.loyalty.controllers.portal.CustomerPortalLoyalty {
+  portal_get_card_history_values(card_id)
+  portal_my_loyalty_card_history(card_id, page, sortby)
+}
+class "LoyaltyCard" as odoo_src.odoo.addons.loyalty.models.loyalty_card.LoyaltyCard {
+  active
+  code
+  company_id
+  currency_id
+  expiration_date
+  history_ids
+  partner_id
+  point_name
+  points
+  points_display
+  program_id
+  program_type
+  use_count
+  action_coupon_send()
+  action_loyalty_update_balance()
+  create(vals_list)
+  write(vals)
+}
+class "LoyaltyCardUpdateBalance" as odoo_src.odoo.addons.loyalty.wizard.loyalty_card_update_balance.LoyaltyCardUpdateBalance {
+  card_id
+  description
+  new_balance
+  old_balance
+  action_update_card_point()
+}
+class "LoyaltyGenerateWizard" as odoo_src.odoo.addons.loyalty.wizard.loyalty_generate_wizard.LoyaltyGenerateWizard {
+  confirmation_message
+  coupon_qty
+  customer_ids
+  customer_tag_ids
+  description
+  mode
+  points_granted
+  points_name
+  program_id
+  program_type
+  valid_until
+  will_send_mail
+  generate_coupons()
+}
+class "LoyaltyHistory" as odoo_src.odoo.addons.loyalty.models.loyalty_history.LoyaltyHistory {
+  card_id
+  company_id
+  description
+  issued
+  order_id
+  order_model
+  used
+}
+class "LoyaltyMail" as odoo_src.odoo.addons.loyalty.models.loyalty_mail.LoyaltyMail {
+  active
+  mail_template_id
+  points
+  program_id
+  trigger
+}
+class "LoyaltyProgram" as odoo_src.odoo.addons.loyalty.models.loyalty_program.LoyaltyProgram {
+  active
+  applies_on
+  available_on
+  communication_plan_ids
+  company_id
+  coupon_count
+  coupon_count_display
+  coupon_ids
+  currency_id
+  currency_symbol
+  date_from
+  date_to
+  is_nominative
+  is_payment_program
+  limit_usage
+  mail_template_id
+  max_usage
+  name
+  payment_program_discount_product_id
+  portal_point_name
+  portal_visible
+  pricelist_ids
+  program_type
+  reward_ids
+  rule_ids
+  sequence
+  total_order_count
+  trigger
+  trigger_product_ids
+  action_open_loyalty_cards()
+  create(vals_list)
+  create_from_template(template_id)
+  default_get(fields_list)
+  get_program_templates()
+  toggle_active()
+  write(vals)
+}
+class "LoyaltyReward" as odoo_src.odoo.addons.loyalty.models.loyalty_reward.LoyaltyReward {
+  active
+  all_discount_product_ids
+  clear_wallet
+  company_id
+  currency_id
+  description
+  discount
+  discount_applicability
+  discount_line_product_id
+  discount_max_amount
+  discount_mode
+  discount_product_category_id
+  discount_product_domain
+  discount_product_ids
+  discount_product_tag_id
+  is_global_discount
+  multi_product
+  point_name
+  program_id
+  program_type
+  required_points
+  reward_product_domain
+  reward_product_id
+  reward_product_ids
+  reward_product_qty
+  reward_product_tag_id
+  reward_product_uom_id
+  reward_type
+  tax_ids
+  user_has_debug
+  create(vals_list)
+  default_get(fields_list)
+  unlink()
+  write(vals)
+}
+class "LoyaltyRule" as odoo_src.odoo.addons.loyalty.models.loyalty_rule.LoyaltyRule {
+  active
+  code
+  company_id
+  currency_id
+  minimum_amount
+  minimum_amount_tax_mode
+  minimum_qty
+  mode
+  product_category_id
+  product_domain
+  product_ids
+  product_tag_id
+  program_id
+  program_type
+  reward_point_amount
+  reward_point_mode
+  reward_point_name
+  reward_point_split
+  user_has_debug
+  default_get(fields_list)
+}
+class "MergePartnerAutomatic" as odoo_src.odoo.addons.loyalty.wizard.base_partner_merge.MergePartnerAutomatic {
+}
+class "ProductPricelist" as odoo_src.odoo.addons.loyalty.models.product_pricelist.ProductPricelist {
+  action_archive()
+}
+class "ProductProduct" as odoo_src.odoo.addons.loyalty.models.product_product.ProductProduct {
+  write(vals)
+}
+class "ProductTemplate" as odoo_src.odoo.addons.loyalty.models.product_template.ProductTemplate {
+}
+class "ResPartner" as odoo_src.odoo.addons.loyalty.models.res_partner.ResPartner {
+  loyalty_card_count
+  action_view_loyalty_cards()
+}
+class "TestLoyalty" as odoo_src.odoo.addons.loyalty.tests.test_loyalty.TestLoyalty {
+  setUpClass()
+  test_archiving_unarchiving()
+  test_card_description_on_tag_change()
+  test_discount_product_unlink()
+  test_loyalty_mail()
+  test_loyalty_program_default_values()
+  test_loyalty_program_default_values_in_form()
+  test_loyalty_program_preserve_reward_upon_writing()
+  test_loyalty_program_preserve_reward_with_always_edit()
+  test_merge_loyalty_cards()
+  test_prevent_archive_pricelist_linked_to_program()
+  test_prevent_archiving_product_linked_to_active_loyalty_reward()
+  test_prevent_archiving_product_used_for_discount_reward()
+  test_prevent_archiving_product_when_archiving_program()
+}
+@enduml

@@ -1,0 +1,28 @@
+@startuml classes_base_geolocalize
+set namespaceSeparator none
+class "GeoCoder" as odoo_src.odoo.addons.base_geolocalize.models.base_geocoder.GeoCoder {
+  geo_find(addr)
+  geo_query_address(street, zip, city, state, country)
+}
+class "GeoProvider" as odoo_src.odoo.addons.base_geolocalize.models.base_geocoder.GeoProvider {
+  name
+  tech_name
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.base_geolocalize.models.res_config_settings.ResConfigSettings {
+  geoloc_provider_googlemap_key
+  geoloc_provider_id
+  geoloc_provider_techname
+}
+class "ResPartner" as odoo_src.odoo.addons.base_geolocalize.models.res_partner.ResPartner {
+  date_localization
+  geo_localize()
+  write(vals)
+}
+class "TestGeoLocalize" as odoo_src.odoo.addons.base_geolocalize.tests.test_geolocalize.TestGeoLocalize {
+  test_default_openstreetmap()
+  test_googlemap_without_api_key()
+}
+class "TestPartnerGeoLocalization" as odoo_src.odoo.addons.base_geolocalize.tests.test_geolocalize.TestPartnerGeoLocalization {
+  test_geo_localization_notification()
+}
+@enduml

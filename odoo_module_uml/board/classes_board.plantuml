@@ -1,0 +1,11 @@
+@startuml classes_board
+set namespaceSeparator none
+class "Board" as odoo_src.odoo.addons.board.models.board.Board {
+  id
+  create(vals_list)
+  get_view(view_id, view_type)
+}
+class "Board" as odoo_src.odoo.addons.board.controllers.main.Board {
+  add_to_dashboard(action_id, context_to_save, domain, view_mode, name)
+}
+@enduml

@@ -1,0 +1,130 @@
+@startuml classes_l10n_es_edi_tbai
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.account_move.AccountMove {
+  l10n_es_tbai_cancel_document_id
+  l10n_es_tbai_cancel_file
+  l10n_es_tbai_cancel_file_name
+  l10n_es_tbai_chain_index
+  l10n_es_tbai_is_required
+  l10n_es_tbai_post_document_id
+  l10n_es_tbai_post_file
+  l10n_es_tbai_post_file_name
+  l10n_es_tbai_refund_reason
+  l10n_es_tbai_reversed_ids
+  l10n_es_tbai_state
+  button_draft()
+  l10n_es_tbai_cancel()
+  l10n_es_tbai_resend_bill()
+  l10n_es_tbai_send_bill()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.account_move_line.AccountMoveLine {
+}
+class "AccountMoveReversal" as odoo_src.odoo.addons.l10n_es_edi_tbai.wizards.account_move_reversal.AccountMoveReversal {
+  l10n_es_tbai_is_required
+  l10n_es_tbai_refund_reason
+}
+class "AccountMoveSend" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.account_move_send.AccountMoveSend {
+}
+class "Certificate" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.certificate.Certificate {
+  scope
+}
+class "L10nEsEdiTbaiDocument" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.l10n_es_edi_tbai_document.L10nEsEdiTbaiDocument {
+  L10N_ES_TBAI_VERSION : float
+  chain_index
+  company_id
+  date
+  is_cancel
+  name
+  response_message
+  state
+  xml_attachment_id
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.res_company.ResCompany {
+  l10n_es_tbai_certificate_id
+  l10n_es_tbai_certificate_ids
+  l10n_es_tbai_chain_sequence_id
+  l10n_es_tbai_is_enabled
+  l10n_es_tbai_license_html
+  l10n_es_tbai_tax_agency
+  l10n_es_tbai_test_env
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.l10n_es_edi_tbai.models.res_config_settings.ResConfigSettings {
+  l10n_es_tbai_certificate_ids
+  l10n_es_tbai_tax_agency
+  l10n_es_tbai_test_env
+}
+class "TestEdiTbaiWebServices" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_web_services.TestEdiTbaiWebServices {
+  setUpClass()
+  test_edi_gipuzkoa()
+}
+class "TestEdiTbaiXmls" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_xml.TestEdiTbaiXmls {
+  in_invoice
+  create_total_refund()
+  setUpClass()
+  test_xml_tree_cancel()
+  test_xml_tree_in_140_post()
+  test_xml_tree_in_ic_post()
+  test_xml_tree_in_post()
+  test_xml_tree_no_deducible_tax()
+  test_xml_tree_post()
+  test_xml_tree_post_generic_sequence()
+  test_xml_tree_post_multicurrency()
+  test_xml_tree_post_multitax()
+  test_xml_tree_post_refund()
+  test_xml_tree_post_retention()
+}
+class "TestEsEdiTbaiCommon" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommon {
+  create_invoice()
+  setUpClass()
+}
+class "TestEsEdiTbaiCommonBizkaia" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonBizkaia {
+  RESPONSE_HEADERS_FAILURE : dict
+  RESPONSE_HEADERS_SUCCESS : dict
+  setUpClass()
+}
+class "TestEsEdiTbaiCommonGipuzkoa" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonGipuzkoa {
+  setUpClass()
+}
+class "TestSendAndPrintEdiBizkaia" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_invoice_bizkaia.TestSendAndPrintEdiBizkaia {
+  test_cancel_invoice_request_error()
+  test_cancel_invoice_tbai_failure()
+  test_post_and_cancel_invoice_tbai_success()
+  test_post_invoice_tbai_failure()
+  test_post_invoice_tbai_request_error()
+}
+class "TestSendAndPrintEdiGipuzkoa" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_invoice.TestSendAndPrintEdiGipuzkoa {
+  test_cancel_invoice_request_error()
+  test_cancel_invoice_tbai_failure()
+  test_post_and_cancel_invoice_tbai_success()
+  test_post_invoice_tbai_failure()
+  test_post_invoice_tbai_request_error()
+  test_tbai_credit_note_importe_total()
+}
+class "TestSendAndPrintEdiGipuzkoa" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_move_reversal.TestSendAndPrintEdiGipuzkoa {
+  test_post_and_cancel_tbai_credit_note()
+}
+class "TestSendBillEdiBizkaia" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_bill_bizkaia.TestSendBillEdiBizkaia {
+  test_cancel_bill_tbai_failure()
+  test_post_and_cancel_bill_tbai_success()
+  test_post_bill_tbai_failure()
+  test_post_bill_tbai_request_error()
+}
+class "TestTbaiUserErrors" as odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_user_errors.TestTbaiUserErrors {
+  setUpClass()
+  test_no_certificate()
+  test_no_company_vat()
+  test_no_tax_agency()
+  test_no_tax_on_line()
+  test_pending_invoice()
+  test_post_tbai_credit_note_before_reversed_invoice()
+}
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonBizkaia --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommon
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonGipuzkoa --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommon
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_bill_bizkaia.TestSendBillEdiBizkaia --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonBizkaia
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_invoice.TestSendAndPrintEdiGipuzkoa --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonGipuzkoa
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_send_invoice_bizkaia.TestSendAndPrintEdiBizkaia --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonBizkaia
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_tbai_user_errors.TestTbaiUserErrors --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonGipuzkoa
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_web_services.TestEdiTbaiWebServices --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommon
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_edi_xml.TestEdiTbaiXmls --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommon
+odoo_src.odoo.addons.l10n_es_edi_tbai.tests.test_move_reversal.TestSendAndPrintEdiGipuzkoa --|> odoo_src.odoo.addons.l10n_es_edi_tbai.tests.common.TestEsEdiTbaiCommonGipuzkoa
+@enduml

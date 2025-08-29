@@ -1,0 +1,33 @@
+@startuml classes_payment_worldline
+set namespaceSeparator none
+class "PaymentProvider" as odoo_src.odoo.addons.payment_worldline.models.payment_provider.PaymentProvider {
+  code
+  worldline_api_key
+  worldline_api_secret
+  worldline_pspid
+  worldline_webhook_key
+  worldline_webhook_secret
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment_worldline.models.payment_transaction.PaymentTransaction {
+  payment_method_id
+  provider_reference
+}
+class "WorldlineCommon" as odoo_src.odoo.addons.payment_worldline.tests.common.WorldlineCommon {
+  setUpClass()
+}
+class "WorldlineController" as odoo_src.odoo.addons.payment_worldline.controllers.main.WorldlineController {
+  worldline_return_from_checkout()
+  worldline_webhook()
+}
+class "WorldlineTest" as odoo_src.odoo.addons.payment_worldline.tests.test_worldline.WorldlineTest {
+  test_accept_notification_with_valid_signature()
+  test_failed_webhook_notification_set_tx_as_cancel()
+  test_failed_webhook_notification_set_tx_as_error_1()
+  test_failed_webhook_notification_set_tx_as_error_2()
+  test_reject_notification_with_invalid_signature()
+  test_reject_notification_with_missing_signature()
+  test_webhook_notification_confirms_transaction()
+  test_webhook_notification_creates_token()
+  test_webhook_notification_triggers_signature_check()
+}
+@enduml

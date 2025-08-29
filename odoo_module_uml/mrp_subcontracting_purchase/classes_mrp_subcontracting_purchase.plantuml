@@ -1,0 +1,48 @@
+@startuml classes_mrp_subcontracting_purchase
+set namespaceSeparator none
+class "AccountMoveLine" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.account_move_line.AccountMoveLine {
+}
+class "MrpSubcontractingPurchaseTest" as odoo_src.odoo.addons.mrp_subcontracting_purchase.tests.test_mrp_subcontracting_purchase.MrpSubcontractingPurchaseTest {
+  bom_finished2
+  comp3
+  finished2
+  vendor
+  setUp()
+  test_bom_overview_availability()
+  test_bom_overview_availability_po_lead()
+  test_count_smart_buttons()
+  test_decrease_qty()
+  test_global_visibility_days_affect_lead_time()
+  test_location_after_dest_location_update_backorder_production()
+  test_mrp_report_bom_structure_subcontracting_quantities()
+  test_mrp_subcontract_modify_date()
+  test_orderpoint_warehouse_not_required()
+  test_purchase_and_return01()
+  test_purchase_and_return02()
+  test_purchase_and_return03()
+  test_resupply_order_buy_mto()
+  test_return_and_decrease_pol_qty()
+  test_return_subcontracted_product_to_supplier_location()
+  test_subcontract_product_price_change()
+  test_subcontracting_lead_days()
+  test_subcontracting_lead_days_on_overview()
+  test_subcontracting_resupply_price_diff()
+  test_update_qty_purchased_with_subcontracted_product()
+}
+class "PurchaseOrder" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.purchase_order.PurchaseOrder {
+  subcontracting_resupply_picking_count
+  action_view_subcontracting_resupply()
+}
+class "ReportBomStructure" as odoo_src.odoo.addons.mrp_subcontracting_purchase.report.mrp_report_bom_structure.ReportBomStructure {
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.stock_move.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.stock_picking.StockPicking {
+  subcontracting_source_purchase_count
+  action_view_subcontracting_source_purchase()
+}
+class "StockRule" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.stock_rule.StockRule {
+}
+class "StockValuationLayer" as odoo_src.odoo.addons.mrp_subcontracting_purchase.models.stock_valuation_layer.StockValuationLayer {
+}
+@enduml

@@ -1,0 +1,29 @@
+@startuml classes_mrp_subcontracting_account
+set namespaceSeparator none
+class "MrpProduction" as odoo_src.odoo.addons.mrp_subcontracting_account.models.mrp_production.MrpProduction {
+  extra_cost
+}
+class "ProductProduct" as odoo_src.odoo.addons.mrp_subcontracting_account.models.product_product.ProductProduct {
+}
+class "StockMove" as odoo_src.odoo.addons.mrp_subcontracting_account.models.stock_move.StockMove {
+}
+class "StockPicking" as odoo_src.odoo.addons.mrp_subcontracting_account.models.stock_picking.StockPicking {
+  action_view_stock_valuation_layers()
+}
+class "TestAccountSubcontractingFlows" as odoo_src.odoo.addons.mrp_subcontracting_account.tests.test_subcontracting_account.TestAccountSubcontractingFlows {
+  customer_location
+  stock_location
+  supplier_location
+  uom_unit
+  test_input_output_accout_with_subcontract()
+  test_subcontract_cost_different_when_standard_price()
+  test_subcontracting_account_backorder()
+  test_subcontracting_account_flow_1()
+  test_subcontracting_account_flow_2()
+  test_tracked_compo_and_backorder()
+}
+class "TestBomPriceSubcontracting" as odoo_src.odoo.addons.mrp_subcontracting_account.tests.test_subcontracting_account.TestBomPriceSubcontracting {
+  test_01_compute_price_subcontracting_cost()
+  test_02_compute_price_subcontracting_cost()
+}
+@enduml

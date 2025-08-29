@@ -1,0 +1,14 @@
+@startuml classes_l10n_tr
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_tr.models.template_tr.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_tr.models.account_journal.AccountJournal {
+  l10n_tr_default_sales_return_account_id
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_tr.models.account_move_line.AccountMoveLine {
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_tr.models.product.ProductTemplate {
+  l10n_tr_default_sales_return_account_id
+  create(vals_list)
+}
+@enduml

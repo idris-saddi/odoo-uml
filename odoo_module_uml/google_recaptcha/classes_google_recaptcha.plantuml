@@ -1,0 +1,12 @@
+@startuml classes_google_recaptcha
+set namespaceSeparator none
+class "Http" as odoo_src.odoo.addons.google_recaptcha.models.ir_http.Http {
+  get_frontend_session_info()
+  session_info()
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.google_recaptcha.models.res_config_settings.ResConfigSettings {
+  recaptcha_min_score
+  recaptcha_private_key
+  recaptcha_public_key
+}
+@enduml

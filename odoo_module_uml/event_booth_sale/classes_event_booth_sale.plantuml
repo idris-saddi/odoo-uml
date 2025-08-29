@@ -1,0 +1,85 @@
+@startuml classes_event_booth_sale
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.event_booth_sale.models.account_move.AccountMove {
+}
+class "EventBooth" as odoo_src.odoo.addons.event_booth_sale.models.event_booth.EventBooth {
+  event_booth_registration_ids
+  is_paid
+  sale_order_id
+  sale_order_line_id
+  sale_order_line_registration_ids
+  action_set_paid()
+  action_view_sale_order()
+}
+class "EventBoothCategory" as odoo_src.odoo.addons.event_booth_sale.models.event_booth_category.EventBoothCategory {
+  currency_id
+  image_1920
+  price
+  price_incl
+  price_reduce
+  price_reduce_taxinc
+  product_id
+}
+class "EventBoothConfigurator" as odoo_src.odoo.addons.event_booth_sale.wizard.event_booth_configurator.EventBoothConfigurator {
+  event_booth_category_available_ids
+  event_booth_category_id
+  event_booth_ids
+  event_id
+  product_id
+  sale_order_line_id
+}
+class "EventBoothRegistration" as odoo_src.odoo.addons.event_booth_sale.models.event_booth_registration.EventBoothRegistration {
+  contact_email
+  contact_name
+  contact_phone
+  event_booth_id
+  partner_id
+  sale_order_line_id
+  action_confirm()
+}
+class "EventTypeBooth" as odoo_src.odoo.addons.event_booth_sale.models.event_type_booth.EventTypeBooth {
+  currency_id
+  price
+  product_id
+}
+class "Product" as odoo_src.odoo.addons.event_booth_sale.models.product_product.Product {
+  invoice_policy : str
+}
+class "ProductTemplate" as odoo_src.odoo.addons.event_booth_sale.models.product_template.ProductTemplate {
+  invoice_policy : str
+  service_tracking
+}
+class "SaleOrder" as odoo_src.odoo.addons.event_booth_sale.models.sale_order.SaleOrder {
+  event_booth_count
+  event_booth_ids
+  action_confirm()
+  action_view_booth_list()
+}
+class "SaleOrderLine" as odoo_src.odoo.addons.event_booth_sale.models.sale_order_line.SaleOrderLine {
+  event_booth_category_id
+  event_booth_ids
+  event_booth_pending_ids
+  event_booth_registration_ids
+  event_id : NoneType
+  is_event_booth
+}
+class "TestEventBoothSale" as odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSale {
+  test_event_booth_prices_with_sale_order()
+  test_event_booth_registrations_inverse()
+}
+class "TestEventBoothSaleCommon" as odoo_src.odoo.addons.event_booth_sale.tests.common.TestEventBoothSaleCommon {
+  setUpClass()
+}
+class "TestEventBoothSaleInvoice" as odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSaleInvoice {
+  setUpClass()
+  test_event_booth_with_invoice()
+}
+class "TestEventBoothSaleWData" as odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSaleWData {
+  setUpClass()
+}
+class "TestEventData" as odoo_src.odoo.addons.event_booth_sale.tests.test_event_internals.TestEventData {
+  test_event_configuration_booths_from_type()
+}
+odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSale --|> odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSaleWData
+odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSaleInvoice --|> odoo_src.odoo.addons.event_booth_sale.tests.test_event_booth_sale.TestEventBoothSaleWData
+@enduml

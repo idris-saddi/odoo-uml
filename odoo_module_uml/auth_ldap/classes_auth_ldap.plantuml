@@ -1,0 +1,37 @@
+@startuml classes_auth_ldap
+set namespaceSeparator none
+class "CompanyLDAP" as odoo_src.odoo.addons.auth_ldap.models.res_company_ldap.CompanyLDAP {
+  company
+  create_user
+  ldap_base
+  ldap_binddn
+  ldap_filter
+  ldap_password
+  ldap_server
+  ldap_server_port
+  ldap_tls
+  sequence
+  user
+}
+class "LDAPWrapper" as odoo_src.odoo.addons.auth_ldap.models.res_company_ldap.LDAPWrapper {
+  passwd_s()
+  search_st()
+  simple_bind_s()
+  unbind()
+}
+class "ResCompany" as odoo_src.odoo.addons.auth_ldap.models.res_company.ResCompany {
+  ldaps
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.auth_ldap.models.res_config_settings.ResConfigSettings {
+  ldaps
+}
+class "TestAuthLDAP" as odoo_src.odoo.addons.auth_ldap.tests.test_auth_ldap.TestAuthLDAP {
+  opener
+  setUp()
+  setUpClass()
+  test_auth_ldap()
+}
+class "Users" as odoo_src.odoo.addons.auth_ldap.models.res_users.Users {
+  change_password(old_passwd, new_passwd)
+}
+@enduml

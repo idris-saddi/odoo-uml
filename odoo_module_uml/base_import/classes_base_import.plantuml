@@ -1,0 +1,42 @@
+@startuml classes_base_import
+set namespaceSeparator none
+class "Base" as odoo_src.odoo.addons.base_import.models.base_import.Base {
+  get_import_templates()
+}
+class "Import" as odoo_src.odoo.addons.base_import.models.base_import.Import {
+  FUZZY_MATCH_DISTANCE : float
+  file
+  file_name
+  file_type
+  res_model
+  execute_import(fields, columns, options, dryrun)
+  get_fields_tree(model, depth)
+  parse_preview(options, count)
+}
+class "ImportController" as odoo_src.odoo.addons.base_import.controllers.main.ImportController {
+  set_file(id)
+}
+class "ImportMapping" as odoo_src.odoo.addons.base_import.models.base_import.ImportMapping {
+  column_name
+  field_name
+  res_model
+}
+class "<color:red>ImportValidationError</color>" as odoo_src.odoo.addons.base_import.models.base_import.ImportValidationError {
+  field_path : bool, list
+  field_type
+  message
+  not_matching_error : bool
+  record : bool
+  type
+}
+class "ODSReader" as odoo_src.odoo.addons.base_import.models.odf_ods_reader.ODSReader {
+  SHEETS : dict
+  clonespannedcolumns : NoneType
+  doc : NoneType
+  getFirstSheet()
+  getSheet(name)
+  readSheet(sheet)
+}
+class "ResUsers" as odoo_src.odoo.addons.base_import.models.base_import.ResUsers {
+}
+@enduml

@@ -1,0 +1,34 @@
+@startuml classes_l10n_it_stock_ddt
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_stock_ddt.models.account_invoice.AccountMove {
+  l10n_it_ddt_count
+  l10n_it_ddt_ids
+  get_linked_ddts()
+}
+class "StockPicking" as odoo_src.odoo.addons.l10n_it_stock_ddt.models.stock_picking.StockPicking {
+  l10n_it_ddt_number
+  l10n_it_parcels
+  l10n_it_show_print_ddt_button
+  l10n_it_transport_method
+  l10n_it_transport_method_details
+  l10n_it_transport_reason
+}
+class "StockPickingType" as odoo_src.odoo.addons.l10n_it_stock_ddt.models.stock_picking.StockPickingType {
+  l10n_it_ddt_sequence_id
+  create(vals_list)
+  write(vals)
+}
+class "TestDDT" as odoo_src.odoo.addons.l10n_it_stock_ddt.tests.test_ddt.TestDDT {
+  inv1
+  inv2
+  so
+  setUpClass()
+  test_ddt_flow()
+  test_ddt_flow_2()
+}
+class "TestItEdiDDT" as odoo_src.odoo.addons.l10n_it_stock_ddt.tests.test_edi.TestItEdiDDT {
+  sale_order
+  setUpClass()
+  test_deferred_invoice()
+}
+@enduml

@@ -1,0 +1,299 @@
+@startuml classes_payment
+set namespaceSeparator none
+class "IrHttp" as odoo_src.odoo.addons.payment.models.ir_http.IrHttp {
+}
+class "OnboardingStep" as odoo_src.odoo.addons.payment.models.onboarding_step.OnboardingStep {
+  action_validate_step_payment_provider()
+}
+class "PaymentCaptureWizard" as odoo_src.odoo.addons.payment.wizards.payment_capture_wizard.PaymentCaptureWizard {
+  amount_to_capture
+  authorized_amount
+  available_amount
+  captured_amount
+  currency_id
+  has_draft_children
+  has_remaining_amount
+  is_amount_to_capture_valid
+  support_partial_capture
+  transaction_ids
+  void_remaining_amount
+  voided_amount
+  action_capture()
+}
+class "PaymentCommon" as odoo_src.odoo.addons.payment.tests.common.PaymentCommon {
+  post_process_patcher : _patch
+  setUp()
+  setUpClass()
+}
+class "PaymentHttpCommon" as odoo_src.odoo.addons.payment.tests.http_common.PaymentHttpCommon {
+}
+class "PaymentLinkWizard" as odoo_src.odoo.addons.payment.wizards.payment_link_wizard.PaymentLinkWizard {
+  amount
+  amount_max
+  company_id
+  currency_id
+  link
+  partner_email
+  partner_id
+  res_id
+  res_model
+  warning_message
+  default_get(fields_list)
+}
+class "PaymentMethod" as odoo_src.odoo.addons.payment.models.payment_method.PaymentMethod {
+  active
+  brand_ids
+  code
+  image
+  image_payment_form
+  is_primary
+  name
+  primary_payment_method_id
+  provider_ids
+  sequence
+  support_express_checkout
+  support_refund
+  support_tokenization
+  supported_country_ids
+  supported_currency_ids
+  write(values)
+}
+class "PaymentPortal" as odoo_src.odoo.addons.payment.controllers.portal.PaymentPortal {
+  archive_token(token_id)
+  payment_confirm(tx_id, access_token)
+  payment_method()
+  payment_pay(reference, amount, currency_id, partner_id, company_id, access_token)
+  payment_transaction(amount, currency_id, partner_id, access_token)
+}
+class "PaymentPostProcessing" as odoo_src.odoo.addons.payment.controllers.post_processing.PaymentPostProcessing {
+  MONITORED_TX_ID_KEY : str
+  display_status()
+  monitor_transaction(transaction)
+  poll_status()
+}
+class "PaymentProvider" as odoo_src.odoo.addons.payment.models.payment_provider.PaymentProvider {
+  allow_express_checkout
+  allow_tokenization
+  auth_msg
+  available_country_ids
+  available_currency_ids
+  cancel_msg
+  capture_manually
+  code
+  color
+  company_id
+  done_msg
+  express_checkout_form_view_id
+  image_128
+  inline_form_view_id
+  is_published
+  main_currency_id
+  maximum_amount
+  module_id
+  module_state
+  module_to_buy
+  name
+  payment_method_ids
+  pending_msg
+  pre_msg
+  redirect_form_view_id
+  sequence
+  state
+  support_express_checkout
+  support_manual_capture
+  support_refund
+  support_tokenization
+  token_inline_form_view_id
+  action_toggle_is_published()
+  action_view_payment_methods()
+  button_immediate_install()
+  create(values_list)
+  write(values)
+}
+class "PaymentToken" as odoo_src.odoo.addons.payment.models.payment_token.PaymentToken {
+  active
+  company_id
+  partner_id
+  payment_details
+  payment_method_code
+  payment_method_id
+  provider_code
+  provider_id
+  provider_ref
+  transaction_ids
+  create(values_list)
+  get_linked_records_info()
+  write(values)
+}
+class "PaymentTransaction" as odoo_src.odoo.addons.payment.models.payment_transaction.PaymentTransaction {
+  amount
+  child_transaction_ids
+  company_id
+  currency_id
+  is_post_processed
+  landing_route
+  last_state_change
+  operation
+  partner_address
+  partner_city
+  partner_country_id
+  partner_email
+  partner_id
+  partner_lang
+  partner_name
+  partner_phone
+  partner_state_id
+  partner_zip
+  payment_method_code
+  payment_method_id
+  provider_code
+  provider_id
+  provider_reference
+  reference
+  refunds_count
+  source_transaction_id
+  state
+  state_message
+  token_id
+  tokenize
+  action_capture()
+  action_refund(amount_to_refund)
+  action_view_refunds()
+  action_void()
+  create(values_list)
+}
+class "PaymentWizard" as odoo_src.odoo.addons.payment.wizards.payment_onboarding_wizard.PaymentWizard {
+  acc_number
+  journal_name
+  manual_name
+  manual_post_msg
+  payment_method
+  paypal_email_account
+  add_payment_methods()
+}
+class "ResCompany" as odoo_src.odoo.addons.payment.models.res_company.ResCompany {
+  payment_onboarding_payment_method
+}
+class "ResCountry" as odoo_src.odoo.addons.payment.models.res_country.ResCountry {
+  is_stripe_supported_country
+}
+class "ResPartner" as odoo_src.odoo.addons.payment.models.res_partner.ResPartner {
+  payment_token_count
+  payment_token_ids
+}
+class "TestFlows" as odoo_src.odoo.addons.payment.tests.test_flows.TestFlows {
+  currency
+  partner
+  reference : str
+  user
+  test_10_direct_checkout_public()
+  test_11_direct_checkout_portal()
+  test_12_direct_checkout_internal()
+  test_20_redirect_checkout_public()
+  test_21_redirect_checkout_portal()
+  test_22_redirect_checkout_internal()
+  test_31_tokenize_portal()
+  test_32_tokenize_internal()
+  test_51_validation_direct_portal()
+  test_52_validation_direct_internal()
+  test_61_validation_redirect_portal()
+  test_62_validation_redirect_internal()
+  test_access_disabled_providers_tokens()
+  test_direct_payment_triggers_no_payment_request()
+  test_pay_no_token()
+  test_pay_redirect_if_no_partner_exist()
+  test_pay_wrong_currency()
+  test_pay_wrong_token()
+  test_payment_by_token_triggers_exactly_one_payment_request()
+  test_payment_with_redirect_triggers_no_payment_request()
+  test_tokenization_input_is_shown_to_logged_in_users()
+  test_tokenization_input_is_shown_to_logged_out_users()
+  test_transaction_route_rejects_unexpected_kwarg()
+  test_transaction_wrong_flow()
+  test_transaction_wrong_token()
+}
+class "TestMultiCompanyFlows" as odoo_src.odoo.addons.payment.tests.test_multicompany_flows.TestMultiCompanyFlows {
+  partner
+  setUpClass()
+  test_archive_token_logged_in_another_company()
+  test_full_access_to_partner_tokens()
+  test_pay_logged_in_another_company()
+}
+class "TestPaymentMethod" as odoo_src.odoo.addons.payment.tests.test_payment_method.TestPaymentMethod {
+  maxDiff : NoneType
+  test_availability_report_covers_all_reasons()
+  test_non_primary_payment_method_not_compatible()
+  test_payment_method_compatible_when_no_supported_countries_set()
+  test_payment_method_compatible_when_no_supported_currencies_set()
+  test_payment_method_compatible_when_provider_is_enabled()
+  test_payment_method_compatible_when_tokenization_forced()
+  test_payment_method_compatible_with_express_checkout()
+  test_payment_method_compatible_with_supported_countries()
+  test_payment_method_compatible_with_supported_currencies()
+  test_payment_method_not_compatible_when_provider_is_disabled()
+  test_payment_method_not_compatible_when_tokenization_forced()
+  test_payment_method_not_compatible_with_express_checkout()
+  test_payment_method_not_compatible_with_unsupported_countries()
+  test_payment_method_not_compatible_with_unsupported_currencies()
+  test_payment_method_requires_provider_to_be_activated()
+  test_unlinking_payment_method_from_provider_state_archives_tokens()
+}
+class "TestPaymentProvider" as odoo_src.odoo.addons.payment.tests.test_payment_provider.TestPaymentProvider {
+  env
+  maxDiff : NoneType
+  test_availability_report_covers_all_reasons()
+  test_changing_provider_state_archives_tokens()
+  test_disabling_provider_deactivates_default_payment_methods()
+  test_disabling_provider_deactivates_processing_cron()
+  test_enabling_provider_activates_default_payment_methods()
+  test_enabling_provider_activates_processing_cron()
+  test_provider_compatible_when_maximum_amount_is_zero()
+  test_provider_compatible_when_no_available_countries_set()
+  test_provider_compatible_when_no_available_currencies_set()
+  test_provider_compatible_when_payment_below_maximum_amount()
+  test_provider_compatible_when_tokenization_forced()
+  test_provider_compatible_when_tokenization_required()
+  test_provider_compatible_with_available_countries()
+  test_provider_compatible_with_available_currencies()
+  test_provider_compatible_with_express_checkout()
+  test_provider_not_compatible_when_payment_above_maximum_amount()
+  test_provider_not_compatible_when_tokenization_forced()
+  test_provider_not_compatible_when_tokenization_required()
+  test_provider_not_compatible_with_express_checkout()
+  test_provider_not_compatible_with_unavailable_countries()
+  test_provider_not_compatible_with_unavailable_currencies()
+  test_published_provider_compatible_with_all_users()
+  test_unpublished_provider_compatible_with_internal_user()
+  test_unpublished_provider_not_compatible_with_non_internal_user()
+  test_validation_currency_is_supported()
+}
+class "TestPaymentToken" as odoo_src.odoo.addons.payment.tests.test_payment_token.TestPaymentToken {
+  test_cannot_assign_token_to_public_partner()
+  test_display_name_for_empty_payment_details()
+  test_display_name_is_not_padded()
+  test_display_name_is_padded()
+  test_display_name_is_shortened_to_max_length()
+  test_unarchiving_token_requires_active_payment_method()
+  test_unarchiving_token_requires_active_provider()
+  test_users_have_no_access_to_other_users_tokens()
+}
+class "TestPaymentTransaction" as odoo_src.odoo.addons.payment.tests.test_payment_transaction.TestPaymentTransaction {
+  test_capture_allowed_for_authorized_users()
+  test_capture_blocked_for_unauthorized_user()
+  test_capturing_child_tx_triggers_source_tx_state_update()
+  test_capturing_full_amount_confirms_source_tx()
+  test_capturing_partial_amount_leaves_source_tx_authorized()
+  test_log_processing_values()
+  test_partial_capture_transaction_values()
+  test_refund_allowed_for_authorized_users()
+  test_refund_blocked_for_unauthorized_user()
+  test_refund_transaction_values()
+  test_refunds_count()
+  test_update_state_to_extra_allowed_state()
+  test_update_state_to_illegal_target_state()
+  test_updating_state_resets_post_processing_status()
+  test_void_allowed_for_authorized_users()
+  test_void_blocked_for_unauthorized_user()
+  test_voiding_child_tx_triggers_source_tx_state_update()
+}
+@enduml

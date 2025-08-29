@@ -1,0 +1,285 @@
+@startuml classes_microsoft_calendar
+set namespaceSeparator none
+class "AlarmManager" as odoo_src.odoo.addons.microsoft_calendar.models.calendar_alarm_manager.AlarmManager {
+}
+class "Attendee" as odoo_src.odoo.addons.microsoft_calendar.models.calendar_attendee.Attendee {
+  do_accept()
+  do_decline()
+  do_tentative()
+}
+class "<color:red>InvalidSyncToken</color>" as odoo_src.odoo.addons.microsoft_calendar.utils.microsoft_calendar.InvalidSyncToken {
+}
+class "Meeting" as odoo_src.odoo.addons.microsoft_calendar.models.calendar.Meeting {
+  microsoft_recurrence_master_id
+  action_mass_archive(recurrence_update_setting)
+  create(vals_list)
+  unlink()
+  write(values)
+}
+class "MicrosoftCalendarController" as odoo_src.odoo.addons.microsoft_calendar.controllers.main.MicrosoftCalendarController {
+  microsoft_calendar_sync_data(model)
+}
+class "MicrosoftCalendarService" as odoo_src.odoo.addons.microsoft_calendar.utils.microsoft_calendar.MicrosoftCalendarService {
+  microsoft_service
+  answer(event_id, answer, values, token, timeout)
+  delete(event_id, token, timeout)
+  get_events(sync_token, token, timeout)
+  insert(values, token, timeout)
+  is_authorized(user)
+  patch(event_id, values, token, timeout)
+}
+class "MicrosoftEvent" as odoo_src.odoo.addons.microsoft_calendar.utils.microsoft_event.MicrosoftEvent {
+  ids
+  odoo_ids
+  uids
+  cancelled()
+  filter(func) -> 'MicrosoftEvent'
+  get_recurrence()
+  is_cancelled()
+  is_recurrence()
+  is_recurrence_outlier()
+  is_recurrent()
+  is_recurrent_not_master()
+  is_removed()
+  match_with_odoo_events(env) -> 'MicrosoftEvent'
+  microsoft_ids()
+  odoo_id(env)
+  owner_id(env)
+}
+class "MicrosoftSync" as odoo_src.odoo.addons.microsoft_calendar.models.microsoft_sync.MicrosoftSync {
+  active
+  microsoft_id
+  ms_universal_event_id
+  need_sync_m
+  create(vals_list)
+  unlink()
+  write(vals)
+}
+class "RecurrenceRule" as odoo_src.odoo.addons.microsoft_calendar.models.calendar_recurrence_rule.RecurrenceRule {
+  need_sync_m
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.microsoft_calendar.models.res_config_settings.ResConfigSettings {
+  cal_microsoft_client_id
+  cal_microsoft_client_secret
+  cal_microsoft_sync_paused
+}
+class "ResUsersSettings" as odoo_src.odoo.addons.microsoft_calendar.models.res_users_settings.ResUsersSettings {
+  microsoft_calendar_sync_token
+  microsoft_last_sync_date
+  microsoft_synchronization_stopped
+}
+class "ResetMicrosoftAccount" as odoo_src.odoo.addons.microsoft_calendar.wizard.reset_account.ResetMicrosoftAccount {
+  delete_policy
+  sync_policy
+  user_id
+  reset_account()
+}
+class "TestAnswerEvents" as odoo_src.odoo.addons.microsoft_calendar.tests.test_answer_events.TestAnswerEvents {
+  simple_event
+  setUp()
+  test_answer_event_with_external_organizer(mock_answer, mock_get_single_event)
+  test_attendee_accepts_event_from_odoo_calendar(mock_answer, mock_get_single_event)
+  test_attendee_accepts_event_from_outlook_calendar(mock_get_events)
+  test_attendee_accepts_event_from_outlook_calendar_synced_by_organizer(mock_get_events)
+  test_attendee_declines_event_from_odoo_calendar(mock_answer, mock_get_single_event)
+  {abstract}test_attendee_declines_event_from_outlook_calendar()
+  test_attendee_declines_event_from_outlook_calendar_synced_by_organizer(mock_get_events)
+  test_sync_data_with_stopped_sync()
+}
+class "TestCommon" as odoo_src.odoo.addons.microsoft_calendar.tests.common.TestCommon {
+  attendee_user
+  end_date : datetime
+  expected_odoo_event_from_outlook : dict
+  expected_odoo_recurrency_events_from_outlook
+  expected_odoo_recurrency_from_outlook : dict
+  organizer_user
+  recurrence
+  recurrence_end_date
+  recurrent_base_event
+  recurrent_event_from_outlook_attendee
+  recurrent_event_from_outlook_organizer : list
+  recurrent_event_interval : int
+  recurrent_event_ms_values : dict
+  recurrent_event_values : dict
+  recurrent_events
+  recurrent_events_count : int
+  several_events
+  simple_event
+  simple_event_from_outlook_attendee : dict
+  simple_event_from_outlook_organizer : dict
+  simple_event_ms_values : dict
+  simple_event_values : dict
+  start_date : datetime
+  assert_dict_equal(dict1, dict2)
+  assert_odoo_event(odoo_event, expected_values)
+  assert_odoo_recurrence(odoo_recurrence, expected_values)
+  call_post_commit_hooks()
+  create_events_for_tests()
+  mock_datetime_and_now(mock_dt)
+  setUp()
+  sync_odoo_recurrences_with_outlook_feature()
+}
+class "TestCreateEvents" as odoo_src.odoo.addons.microsoft_calendar.tests.test_create_events.TestCreateEvents {
+  employee_emp
+  holiday
+  hr_leave_type
+  rd_dept
+  response_from_outlook_organizer
+  response_from_outlook_organizer_1
+  user_employee
+  user_hrmanager
+  test_create_duplicate_event_microsoft_calendar(mock_insert, mock_get_events)
+  test_create_event_for_another_user(mock_insert, mock_get_events)
+  test_create_event_with_default_and_undefined_sensitivity()
+  test_create_event_with_sync_config_paused(mock_insert)
+  test_create_recurrent_event_from_outlook_attendee_calendar(mock_get_events)
+  test_create_recurrent_event_from_outlook_organizer_calendar(mock_get_events)
+  test_create_recurrent_event_with_sync(mock_insert, mock_get_events)
+  test_create_recurrent_event_with_sync_by_another_user(mock_insert, mock_get_events)
+  test_create_recurrent_event_without_sync(mock_insert)
+  test_create_simple_event_from_outlook_attendee_calendar_and_organizer_does_not_exist_in_odoo(mock_get_events)
+  test_create_simple_event_from_outlook_attendee_calendar_and_organizer_exists_in_odoo(mock_get_events)
+  test_create_simple_event_from_outlook_attendee_calendar_where_email_addresses_are_capitalized(mock_get_events)
+  test_create_simple_event_from_outlook_organizer_calendar(mock_get_events)
+  test_create_simple_event_from_outlook_without_organizer(mock_get_events)
+  test_create_simple_event_without_email()
+  test_create_simple_event_without_sync(mock_insert)
+  test_create_videocall_sync_microsoft_calendar(mock_insert, mock_get_events)
+  test_forbid_recurrences_creation_synced_outlook_calendar(mock_insert)
+  test_new_db_skip_odoo2microsoft_sync_previously_created_events(mock_insert, mock_get_events)
+  test_no_videocall_hr_holidays(mock_insert, mock_get_events)
+  test_old_db_odoo2microsoft_sync_previously_created_events(mock_insert, mock_get_events)
+  test_skip_sync_for_non_synchronized_users_new_events(mock_insert)
+  test_sync_create_update_single_event(mock_insert, mock_get_events)
+}
+class "TestDeleteEvents" as odoo_src.odoo.addons.microsoft_calendar.tests.test_delete_events.TestDeleteEvents {
+  setUp()
+  test_archive_several_events_at_once(mock_delete)
+  test_archive_simple_event_from_odoo_attendee_calendar(mock_delete)
+  test_archive_simple_event_from_odoo_organizer_calendar(mock_delete)
+  test_cancel_simple_event_from_outlook_organizer_calendar(mock_get_events)
+  {abstract}test_delete_all_events_from_recurrence_from_outlook_calendar(mock_get_events)
+  test_delete_first_event_and_future_from_recurrence_from_outlook_calendar(mock_get_events)
+  test_delete_first_event_from_recurrence_from_odoo_calendar(mock_delete)
+  test_delete_first_event_from_recurrence_from_outlook_calendar(mock_get_events)
+  test_delete_one_event_and_future_from_recurrence_from_outlook_calendar(mock_get_events)
+  test_delete_one_event_from_recurrence_from_odoo_calendar(mock_delete)
+  test_delete_one_event_from_recurrence_from_outlook_calendar(mock_get_events)
+  test_delete_recurrence_previously_synced(mock_delete)
+  test_delete_simple_event_from_odoo_attendee_calendar(mock_delete)
+  test_delete_simple_event_from_odoo_organizer_calendar(mock_delete)
+  {abstract}test_delete_simple_event_from_outlook_attendee_calendar()
+  test_delete_single_event_from_recurrence_from_odoo_calendar(mock_delete)
+  test_delete_synced_event_with_sync_config_paused(mock_delete)
+  test_forbid_recurrence_unlinking_list_view()
+}
+class "TestMicrosoftEvent" as odoo_src.odoo.addons.microsoft_calendar.tests.test_microsoft_event.TestMicrosoftEvent {
+  setUp()
+  test_already_mapped_events()
+  test_ignore_not_found_items()
+  test_map_a_recurrence_using_global_id()
+  test_map_a_recurrence_using_instance_id()
+  test_map_an_event_using_global_id()
+  test_map_an_event_using_instance_id()
+  test_map_an_event_without_uid_using_instance_id()
+  test_map_an_event_without_uid_using_instance_id_2()
+  test_match_event_only()
+  test_match_mix_of_events_and_recurrences()
+  test_match_not_typed_recurrence()
+  test_match_recurrence_only()
+  test_microsoft_event_readonly()
+  test_performance_check()
+  test_search_set_ms_universal_event_id()
+  test_try_to_map_mixed_of_single_events_and_recurrences()
+}
+class "TestMicrosoftService" as odoo_src.odoo.addons.microsoft_calendar.tests.test_microsoft_service.TestMicrosoftService {
+  call_with_sync_token : _Call
+  call_without_sync_token : _Call
+  delete_header : dict
+  fake_next_sync_token : str
+  fake_next_sync_token_url : str
+  fake_sync_token : str
+  fake_token : str
+  header : dict
+  header_prefer : str
+  service
+  setUp()
+  test_answer_returns_false_if_event_does_not_exist(mock_do_request)
+  test_answer_to_an_existing_event(mock_do_request)
+  test_answer_token_error()
+  test_delete_an_already_cancelled_event(mock_do_request)
+  test_delete_an_existing_event(mock_do_request)
+  test_delete_returns_false_if_event_does_not_exist(mock_do_request)
+  test_delete_token_error()
+  test_get_events_delta_token_error(mock_do_request, mock_check_full_sync_required)
+  test_get_events_delta_with_outdated_sync_token(mock_do_request, mock_check_full_sync_required)
+  test_get_events_delta_with_sync_token(mock_do_request)
+  test_get_events_delta_without_sync_token(mock_do_request)
+  test_get_events_delta_without_token()
+  test_get_events_filter_out_occurrences(mock_do_request)
+  test_get_events_loop_over_pages(mock_do_request)
+  test_get_events_no_serie_master(mock_do_request)
+  test_get_events_one_page(mock_do_request)
+  test_get_events_token_error()
+  test_get_events_unexpected_exception(mock_do_request)
+  test_get_events_with_one_serie_master(mock_do_request)
+  test_get_occurrence_details(mock_do_request)
+  test_get_occurrence_details_token_error()
+  test_insert(mock_do_request)
+  test_insert_token_error()
+  test_patch_an_existing_event(mock_do_request)
+  test_patch_returns_false_if_event_does_not_exist(mock_do_request)
+  test_patch_token_error()
+}
+class "TestSyncOdoo2MicrosoftMail" as odoo_src.odoo.addons.microsoft_calendar.tests.test_create_events.TestSyncOdoo2MicrosoftMail {
+  setUpClass()
+  test_change_organizer_pure_odoo_event()
+  test_event_creation_for_user()
+}
+class "TestUpdateEvents" as odoo_src.odoo.addons.microsoft_calendar.tests.test_update_events.TestUpdateEvents {
+  setUp()
+  test_changing_event_organizer_to_another_user(mock_insert, mock_delete, mock_get_events)
+  test_forbid_simple_event_become_recurrence_sync_on(mock_patch)
+  test_restart_sync_with_synced_recurrence(mock_patch)
+  test_update_all_events_of_recurrence_from_odoo_attendee_calendar(mock_patch, mock_insert, mock_delete)
+  test_update_name_of_all_events_of_recurrence_from_odoo(mock_patch, mock_insert, mock_delete)
+  test_update_name_of_all_events_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_name_of_one_and_future_events_of_recurrence_from_odoo(mock_patch, mock_insert, mock_delete)
+  test_update_name_of_one_event_and_future_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_name_of_one_event_of_recurrence_from_odoo(mock_patch)
+  test_update_name_of_one_event_of_recurrence_from_odoo_attendee_calendar(mock_patch)
+  test_update_name_of_one_event_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_odoo_simple_event_without_sync(mock_patch)
+  test_update_old_event_synced_with_outlook(mock_get_events, mock_write_from_microsoft)
+  test_update_one_and_future_events_of_recurrence_from_odoo_attendee_calendar(mock_patch, mock_insert, mock_delete)
+  test_update_simple_event_from_odoo(mock_patch)
+  test_update_simple_event_from_odoo_attendee_calendar(mock_patch)
+  test_update_simple_event_from_outlook_attendee_calendar(mock_get_events)
+  test_update_simple_event_from_outlook_organizer_calendar(mock_get_events)
+  test_update_start_of_all_events_of_recurrence_from_odoo(mock_patch, mock_insert, mock_delete)
+  test_update_start_of_all_events_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_start_of_all_events_of_recurrence_with_exceptions(mock_get_events)
+  test_update_start_of_all_events_of_recurrence_with_less_events(mock_get_events)
+  test_update_start_of_all_events_of_recurrence_with_more_events(mock_get_events)
+  test_update_start_of_one_and_future_events_of_recurrence_from_odoo(mock_patch, mock_insert, mock_delete)
+  test_update_start_of_one_and_future_events_of_recurrence_from_odoo_with_overlap(mock_patch, mock_insert, mock_delete)
+  test_update_start_of_one_event_and_future_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_start_of_one_event_and_future_of_recurrence_from_outlook_organizer_calendar_with_overlap(mock_get_events)
+  test_update_start_of_one_event_of_recurrence_from_odoo(mock_patch)
+  test_update_start_of_one_event_of_recurrence_from_odoo_with_overlap(mock_patch)
+  test_update_start_of_one_event_of_recurrence_from_outlook_organizer_calendar(mock_get_events)
+  test_update_start_of_one_event_of_recurrence_from_outlook_organizer_calendar_with_overlap(mock_get_events)
+  test_update_synced_event_with_sync_config_paused(mock_patch)
+}
+class "User" as odoo_src.odoo.addons.microsoft_calendar.models.res_users.User {
+  microsoft_calendar_sync_token
+  microsoft_last_sync_date
+  microsoft_synchronization_stopped
+  check_calendar_credentials()
+  check_synchronization_status()
+  pause_microsoft_synchronization()
+  restart_microsoft_synchronization()
+  stop_microsoft_synchronization()
+  unpause_microsoft_synchronization()
+}
+@enduml

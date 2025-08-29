@@ -1,0 +1,26 @@
+@startuml classes_base_address_extended
+set namespaceSeparator none
+class "City" as odoo_src.odoo.addons.base_address_extended.models.res_city.City {
+  country_id
+  name
+  state_id
+  zipcode
+}
+class "Country" as odoo_src.odoo.addons.base_address_extended.models.res_country.Country {
+  enforce_cities
+}
+class "Partner" as odoo_src.odoo.addons.base_address_extended.models.res_partner.Partner {
+  city : bool
+  city_id
+  country_enforce_cities
+  state_id : bool
+  street_name
+  street_number
+  street_number2
+  zip : bool
+}
+class "TestStreetFields" as odoo_src.odoo.addons.base_address_extended.tests.test_street_fields.TestStreetFields {
+  test_child_sync()
+  test_partner_create()
+}
+@enduml

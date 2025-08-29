@@ -1,0 +1,14 @@
+@startuml classes_l10n_br_website_sale
+set namespaceSeparator none
+class "CustomerPortalBr" as odoo_src.odoo.addons.l10n_br_website_sale.controllers.portal.CustomerPortalBr {
+  details_form_validate(data, partner_creation)
+}
+class "L10nBRWebsiteSale" as odoo_src.odoo.addons.l10n_br_website_sale.controllers.main.L10nBRWebsiteSale {
+}
+class "TestBrazilianAddress" as odoo_src.odoo.addons.l10n_br_website_sale.tests.test_address.TestBrazilianAddress {
+  test_brazilian_address_frontend()
+}
+class "Website" as odoo_src.odoo.addons.l10n_br_website_sale.models.website.Website {
+  create(vals_list)
+}
+@enduml

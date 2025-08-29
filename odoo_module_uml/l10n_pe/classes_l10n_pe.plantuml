@@ -1,0 +1,35 @@
+@startuml classes_l10n_pe
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_pe.demo.account_demo.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_pe.models.template_pe.AccountChartTemplate {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_pe.models.account_move.AccountMove {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_pe.models.account_tax.AccountTax {
+  l10n_pe_edi_isc_type
+  l10n_pe_edi_tax_code
+  l10n_pe_edi_unece_category
+}
+class "City" as odoo_src.odoo.addons.l10n_pe.models.res_city.City {
+  l10n_pe_code
+}
+class "L10nLatamIdentificationType" as odoo_src.odoo.addons.l10n_pe.models.l10n_latam_identification_type.L10nLatamIdentificationType {
+  l10n_pe_vat_code
+}
+class "L10nPeResCityDistrict" as odoo_src.odoo.addons.l10n_pe.models.res_city_district.L10nPeResCityDistrict {
+  city_id
+  code
+  name
+}
+class "ResBank" as odoo_src.odoo.addons.l10n_pe.models.res_bank.ResBank {
+  l10n_pe_edi_code
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_pe.models.res_company.ResCompany {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_pe.models.res_partner.ResPartner {
+  city_id
+  l10n_pe_district
+  l10n_pe_district_name
+}
+@enduml

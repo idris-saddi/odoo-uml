@@ -1,0 +1,77 @@
+@startuml classes_l10n_it_edi_doi
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_it_edi_doi.models.account_chart_template.AccountChartTemplate {
+}
+class "AccountFiscalPosition" as odoo_src.odoo.addons.l10n_it_edi_doi.models.account_fiscal_position.AccountFiscalPosition {
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_it_edi_doi.models.account_move.AccountMove {
+  l10n_it_edi_doi_amount
+  l10n_it_edi_doi_date
+  l10n_it_edi_doi_id
+  l10n_it_edi_doi_use
+  l10n_it_edi_doi_warning
+  action_open_declaration_of_intent()
+  copy_data(default)
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_it_edi_doi.models.account_tax.AccountTax {
+}
+class "L10nItDeclarationOfIntent" as odoo_src.odoo.addons.l10n_it_edi_doi.models.declaration_of_intent.L10nItDeclarationOfIntent {
+  company_id
+  currency_id
+  end_date
+  invoice_ids
+  invoiced
+  issue_date
+  not_yet_invoiced
+  partner_id
+  protocol_number_part1
+  protocol_number_part2
+  remaining
+  sale_order_ids
+  start_date
+  state
+  threshold
+  action_open_invoice_ids()
+  action_open_sale_order_ids()
+  action_reactivate()
+  action_reset_to_draft()
+  action_revoke()
+  action_terminate()
+  action_validate()
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_it_edi_doi.models.res_company.ResCompany {
+  l10n_it_edi_doi_fiscal_position_id
+  l10n_it_edi_doi_tax_id
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_it_edi_doi.models.res_partner.ResPartner {
+  l10n_it_edi_doi_ids
+  l10n_it_edi_doi_action_open_declarations()
+}
+class "SaleOrder" as odoo_src.odoo.addons.l10n_it_edi_doi.models.sale_order.SaleOrder {
+  l10n_it_edi_doi_date
+  l10n_it_edi_doi_id
+  l10n_it_edi_doi_not_yet_invoiced
+  l10n_it_edi_doi_use
+  l10n_it_edi_doi_warning
+  action_confirm()
+  action_open_declaration_of_intent()
+  action_quotation_send()
+  action_quotation_sent()
+  copy_data(default)
+}
+class "TestItEdiDoi" as odoo_src.odoo.addons.l10n_it_edi_doi.tests.common.TestItEdiDoi {
+  setUpClass()
+}
+class "TestItEdiDoiRemaining" as odoo_src.odoo.addons.l10n_it_edi_doi.tests.test_amounts_and_warnings.TestItEdiDoiRemaining {
+  create_invoice(declaration, invoice_line_vals)
+  create_sale_order(declaration, order_line_vals)
+  get_sale_order_vals(declaration, order_line_vals)
+  setUpClass()
+  test_consolidated_billing()
+  test_invoice()
+  test_invoice_line_edit()
+  test_overinvoiced_sale_order_and_credit_note()
+  test_sale_order_and_independent_invoice()
+  test_sale_order_line_edit()
+}
+@enduml

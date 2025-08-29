@@ -1,0 +1,19 @@
+@startuml classes_mrp_product_expiry
+set namespaceSeparator none
+class "ConfirmExpiry" as odoo_src.odoo.addons.mrp_product_expiry.wizard.confirm_expiry.ConfirmExpiry {
+  description
+  production_ids
+  show_lots
+  workorder_id
+  confirm_produce()
+  confirm_workorder()
+}
+class "MrpWorkorder" as odoo_src.odoo.addons.mrp_product_expiry.models.mrp_production.MrpWorkorder {
+  pre_button_mark_done()
+}
+class "TestStockLot" as odoo_src.odoo.addons.mrp_product_expiry.tests.test_mrp_product_expiry.TestStockLot {
+  setUpClass()
+  test_01_product_produce()
+  test_02_product_produce_using_expired()
+}
+@enduml

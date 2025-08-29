@@ -1,0 +1,22 @@
+@startuml classes_l10n_mx
+set namespaceSeparator none
+class "AccountAccount" as odoo_src.odoo.addons.l10n_mx.models.account_account.AccountAccount {
+  create(vals_list)
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_mx.models.template_mx.AccountChartTemplate {
+}
+class "AccountTax" as odoo_src.odoo.addons.l10n_mx.models.account_tax.AccountTax {
+  l10n_mx_factor_type
+  l10n_mx_tax_type
+}
+class "Bank" as odoo_src.odoo.addons.l10n_mx.models.res_bank.Bank {
+  fiscal_country_codes
+  l10n_mx_edi_code
+}
+class "CustomerPortal" as odoo_src.odoo.addons.l10n_mx.controllers.portal.CustomerPortal {
+}
+class "ResPartnerBank" as odoo_src.odoo.addons.l10n_mx.models.res_bank.ResPartnerBank {
+  fiscal_country_codes
+  l10n_mx_edi_clabe
+}
+@enduml

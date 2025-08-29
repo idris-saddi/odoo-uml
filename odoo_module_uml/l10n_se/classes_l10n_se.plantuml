@@ -1,0 +1,24 @@
+@startuml classes_l10n_se
+set namespaceSeparator none
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_se.models.template_se_K3.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_se.models.template_se.AccountChartTemplate {
+}
+class "AccountChartTemplate" as odoo_src.odoo.addons.l10n_se.models.template_se_K2.AccountChartTemplate {
+}
+class "AccountJournal" as odoo_src.odoo.addons.l10n_se.models.account_journal.AccountJournal {
+  invoice_reference_model
+  l10n_se_invoice_ocr_length
+}
+class "AccountMove" as odoo_src.odoo.addons.l10n_se.models.account_move.AccountMove {
+  payment_reference
+}
+class "ResCompany" as odoo_src.odoo.addons.l10n_se.models.res_company.ResCompany {
+  org_number
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_se.models.res_partner.ResPartner {
+  l10n_se_check_vendor_ocr
+  l10n_se_default_vendor_payment_ref
+  onchange_l10n_se_default_vendor_payment_ref()
+}
+@enduml

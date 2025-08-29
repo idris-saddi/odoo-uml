@@ -1,0 +1,27 @@
+@startuml classes_hr_holidays_contract
+set namespaceSeparator none
+class "HrContract" as odoo_src.odoo.addons.hr_holidays_contract.models.hr_contract.HrContract {
+  write(vals)
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_holidays_contract.models.hr_employee_base.HrEmployeeBase {
+  write(vals)
+}
+class "HrLeave" as odoo_src.odoo.addons.hr_holidays_contract.models.hr_leave.HrLeave {
+}
+class "TestHolidayContract" as odoo_src.odoo.addons.hr_holidays_contract.tests.common.TestHolidayContract {
+  create_leave(date_from, date_to, name, employee_id)
+  setUpClass()
+}
+class "TestHolidaysMultiContract" as odoo_src.odoo.addons.hr_holidays_contract.tests.test_multi_contract.TestHolidaysMultiContract {
+  setUpClass()
+  test_contract_traceability_calculate_nbr_leave()
+  test_create_contract_in_leave()
+  test_leave_multi_contracts_same_schedule()
+  test_leave_multi_contracts_split()
+  test_leave_outside_contract()
+  test_leave_request_next_contracts()
+  test_move_contract_in_leave()
+  test_multi_contract_out_of_office()
+  test_no_leave_overlapping_contracts()
+}
+@enduml

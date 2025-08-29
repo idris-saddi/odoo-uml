@@ -1,0 +1,198 @@
+@startuml classes_hr_attendance
+set namespaceSeparator none
+class "HrAttendance" as odoo_src.odoo.addons.hr_attendance.models.hr_attendance.HrAttendance {
+  check_in
+  check_out
+  color
+  department_id
+  employee_id
+  expected_hours
+  in_browser
+  in_city
+  in_country_name
+  in_ip_address
+  in_latitude
+  in_longitude
+  in_mode
+  manager_id
+  no_validated_overtime_hours
+  out_browser
+  out_city
+  out_country_name
+  out_ip_address
+  out_latitude
+  out_longitude
+  out_mode
+  overtime_hours
+  overtime_status
+  validated_overtime_hours
+  worked_hours
+  action_approve_overtime()
+  action_in_attendance_maps()
+  action_out_attendance_maps()
+  action_refuse_overtime()
+  action_try_kiosk()
+  copy(default)
+  create(vals_list)
+  get_kiosk_url()
+  has_demo_data()
+  unlink()
+  write(vals)
+}
+class "HrAttendance" as odoo_src.odoo.addons.hr_attendance.controllers.main.HrAttendance {
+  employee_attendance_data(token, employee_id)
+  employees_infos(token, limit, offset, domain)
+  has_password()
+  is_fresh_db(token)
+  kiosk_keepalive()
+  kiosk_menu_item_action(company_id)
+  manual_selection(token, employee_id, pin_code)
+  manual_selection_with_geolocation(token, employee_id, pin_code, latitude, longitude)
+  open_kiosk_mode(token, from_trial_mode)
+  scan_barcode(token, barcode)
+  set_attendance_settings(token, mode)
+  set_user_barcode(token, barcode)
+  systray_attendance(latitude, longitude)
+  user_attendance_data()
+}
+class "HrAttendanceOvertime" as odoo_src.odoo.addons.hr_attendance.models.hr_attendance_overtime.HrAttendanceOvertime {
+  adjustment
+  company_id
+  date
+  duration
+  duration_real
+  employee_id
+  init()
+}
+class "HrEmployee" as odoo_src.odoo.addons.hr_attendance.models.hr_employee.HrEmployee {
+  attendance_ids
+  attendance_manager_id
+  attendance_state
+  hours_last_month
+  hours_last_month_display
+  hours_previously_today
+  hours_today
+  last_attendance_id
+  last_attendance_worked_hours
+  last_check_in
+  last_check_out
+  overtime_ids
+  total_overtime
+  action_open_last_month_attendances()
+  action_open_last_month_overtime()
+  create(vals_list)
+  write(values)
+}
+class "HrEmployeeBase" as odoo_src.odoo.addons.hr_attendance.models.hr_employee_base.HrEmployeeBase {
+}
+class "HrEmployeePublic" as odoo_src.odoo.addons.hr_attendance.models.hr_employee_public.HrEmployeePublic {
+  attendance_manager_id
+  attendance_state
+  hours_today
+  last_attendance_id
+  last_check_in
+  last_check_out
+  total_overtime
+}
+class "ResCompany" as odoo_src.odoo.addons.hr_attendance.models.res_company.ResCompany {
+  absence_management
+  attendance_barcode_source
+  attendance_from_systray
+  attendance_kiosk_delay
+  attendance_kiosk_key
+  attendance_kiosk_mode
+  attendance_kiosk_url
+  attendance_kiosk_use_pin
+  attendance_overtime_validation
+  auto_check_out
+  auto_check_out_tolerance
+  hr_attendance_display_overtime
+  overtime_company_threshold
+  overtime_employee_threshold
+  write(vals)
+}
+class "ResConfigSettings" as odoo_src.odoo.addons.hr_attendance.models.res_config_settings.ResConfigSettings {
+  absence_management
+  attendance_barcode_source
+  attendance_from_systray
+  attendance_kiosk_delay
+  attendance_kiosk_mode
+  attendance_kiosk_url
+  attendance_kiosk_use_pin
+  attendance_overtime_validation
+  auto_check_out
+  auto_check_out_tolerance
+  hr_attendance_display_overtime
+  overtime_company_threshold
+  overtime_employee_threshold
+  get_values()
+  regenerate_kiosk_key()
+  set_values()
+}
+class "TestHrAttendance" as odoo_src.odoo.addons.hr_attendance.tests.test_hr_attendance_process.TestHrAttendance {
+  setUp()
+  setUpClass()
+  test_change_in_out_mode_when_manual_modification()
+  test_employee_state()
+  test_hours_today()
+}
+class "TestHrAttendance" as odoo_src.odoo.addons.hr_attendance.tests.test_hr_attendance_constraints.TestHrAttendance {
+  my_attend
+  setUpClass()
+  test_attendance_1()
+  test_attendance_in_before_out()
+  test_attendance_list_limited_to_managed_employees()
+  test_attendance_no_check_out()
+  test_new_attendances()
+  test_time_format_attendance()
+}
+class "TestHrAttendanceDomainTranslation" as odoo_src.odoo.addons.hr_attendance.tests.test_hr_attendance_domain_translation.TestHrAttendanceDomainTranslation {
+  setUpClass()
+  test_searchbar_with_user_domain()
+}
+class "TestHrAttendanceKiosk" as odoo_src.odoo.addons.hr_attendance.tests.test_hr_attendance_kiosk.TestHrAttendanceKiosk {
+  setUpClass()
+  test_employee_count_kiosk()
+}
+class "TestHrAttendanceOvertime" as odoo_src.odoo.addons.hr_attendance.tests.test_hr_attendance_overtime.TestHrAttendanceOvertime {
+  setUpClass()
+  test_absence_management()
+  test_auto_check_out()
+  test_auto_check_out_calendar_tz()
+  test_auto_check_out_lunch_period()
+  test_auto_check_out_two_weeks_calendar()
+  test_no_validation_extra_hours_change()
+  test_overtime_both_threshold()
+  test_overtime_change_employee()
+  test_overtime_company_settings()
+  test_overtime_company_threshold()
+  test_overtime_employee_threshold()
+  test_overtime_far_timezones()
+  test_overtime_hours_flexible_resource()
+  test_overtime_hours_fully_flexible_resource()
+  test_overtime_hours_inside_attendance()
+  test_overtime_hours_multiple_flexible_resources()
+  test_overtime_lunch()
+  test_overtime_multiple()
+  test_overtime_unclosed()
+  test_overtime_weekend()
+  test_refuse_timeoff()
+  test_simple_overtime()
+}
+class "TestHrAttendanceScenario" as odoo_src.odoo.addons.hr_attendance.tests.test_load_scenario.TestHrAttendanceScenario {
+  test_load_scenario()
+}
+class "User" as odoo_src.odoo.addons.hr_attendance.models.res_users.User {
+  SELF_READABLE_FIELDS
+  attendance_manager_id
+  attendance_state
+  display_extra_hours
+  hours_last_month
+  hours_last_month_display
+  last_check_in
+  last_check_out
+  total_overtime
+  action_open_last_month_attendances()
+  action_open_last_month_overtime()
+}
+@enduml

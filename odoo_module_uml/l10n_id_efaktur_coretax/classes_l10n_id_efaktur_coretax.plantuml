@@ -1,0 +1,69 @@
+@startuml classes_l10n_id_efaktur_coretax
+set namespaceSeparator none
+class "AccountMove" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.account_move.AccountMove {
+  l10n_id_coretax_add_info_07
+  l10n_id_coretax_add_info_08
+  l10n_id_coretax_custom_doc
+  l10n_id_coretax_document
+  l10n_id_coretax_efaktur_available
+  l10n_id_coretax_facility_info_07
+  l10n_id_coretax_facility_info_08
+  l10n_id_kode_transaksi
+  l10n_id_need_kode_transaksi : bool
+  download_efaktur()
+  download_xml()
+  prepare_efaktur_vals()
+}
+class "AccountMoveLine" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.account_move_line.AccountMoveLine {
+}
+class "EfakturDocument" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.efaktur_document.EfakturDocument {
+  active
+  attachment_id
+  company_id
+  invoice_ids
+  name
+  action_download()
+  action_regenerate()
+}
+class "EfakturDownloadController" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.controllers.download_efaktur.EfakturDownloadController {
+  download_invoice_attachments(attachments)
+}
+class "EfakturProductCode" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.product_code.EfakturProductCode {
+  code
+  description
+}
+class "EfakturUomCode" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.uom_code.EfakturUomCode {
+  code
+  name
+}
+class "Partner" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.res_partner.Partner {
+  l10n_id_buyer_document_number
+  l10n_id_buyer_document_type
+  l10n_id_kode_transaksi
+  l10n_id_tku
+}
+class "ProductTemplate" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.product_template.ProductTemplate {
+  l10n_id_product_code
+}
+class "TestEfakturCoretax" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.tests.test_l10n_id_efaktur_coretax.TestEfakturCoretax {
+  setUpClass()
+  test_download_efaktur_invalid_customer()
+  test_download_efaktur_invalid_invoice()
+  test_efaktur_change_facility_add_info()
+  test_efaktur_invalid_kode_07_08()
+  test_efaktur_tax_include()
+  test_efaktur_tax_include_with_discount()
+  test_efaktur_xml_luxury_goods()
+  test_efaktur_xml_multiple_invoices()
+  test_efaktur_xml_multiple_lines()
+  test_efaktur_xml_partner_edit()
+  test_efaktur_xml_trx_01()
+  test_efaktur_xml_trx_04()
+  test_efaktur_xml_trx_07()
+  test_invoice_user_main_contact()
+  test_product_code_default()
+}
+class "Uom" as odoo_src.odoo.addons.l10n_id_efaktur_coretax.models.uom_uom.Uom {
+  l10n_id_uom_code
+}
+@enduml

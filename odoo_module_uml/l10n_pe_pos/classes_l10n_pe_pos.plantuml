@@ -1,0 +1,18 @@
+@startuml classes_l10n_pe_pos
+set namespaceSeparator none
+class "L10nLatamIdentificationType" as odoo_src.odoo.addons.l10n_pe_pos.models.l10n_latam_identification_type.L10nLatamIdentificationType {
+}
+class "L10nPeResCityDistrict" as odoo_src.odoo.addons.l10n_pe_pos.models.l10n_pe_res_city_district.L10nPeResCityDistrict {
+  country_id
+  state_id
+}
+class "PosConfig" as odoo_src.odoo.addons.l10n_pe_pos.models.pos_config.PosConfig {
+  get_limited_partners_loading()
+}
+class "PosSession" as odoo_src.odoo.addons.l10n_pe_pos.models.pos_session.PosSession {
+}
+class "ResCity" as odoo_src.odoo.addons.l10n_pe_pos.models.res_city.ResCity {
+}
+class "ResPartner" as odoo_src.odoo.addons.l10n_pe_pos.models.res_partner.ResPartner {
+}
+@enduml
